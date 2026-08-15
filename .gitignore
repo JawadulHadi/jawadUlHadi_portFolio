@@ -1,0 +1,21 @@
+# Vercel
+.vercel
+node_modules/
+
+# Env — never commit real values
+.env
+.env.*
+!.env.example
+
+# OS / editor
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Logs
+*.log
+npm-debug.log*

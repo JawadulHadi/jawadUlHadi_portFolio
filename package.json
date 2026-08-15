@@ -1,0 +1,18 @@
+{
+  "name": "juh-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal portfolio — static site with Express dev server",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "lint": "node --check server.js && node --check assets/app.js",
+    "build": "echo 'Static assets ready'"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

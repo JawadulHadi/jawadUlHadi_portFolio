@@ -1,0 +1,3269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("jh-theme");
+        var theme = stored || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (theme !== "light" && theme !== "dark" && theme !== "cyber") theme = "dark";
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jawad Ul Hadi — Senior Backend Engineer | Architecting Scalable SaaS &amp; AI Platforms</title>
+  <meta name="description"
+    content="Official portfolio of Jawad Ul Hadi — Senior Backend Engineer &amp; Solutions Architect specializing in NestJS, Node.js, and Provider-Agnostic AI/LLM Systems with 3-Tier Fallback Resilience.">
+  <meta name="author" content="Jawad Ul Hadi">
+
+  <!-- Immediate Zero-Latency Favicon (Inline Data-URI + Preloaded SVG) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230a1628'/%3E%3Ctext x='50' y='64' font-family='sans-serif' font-weight='800' font-size='32' fill='%23b9843f' text-anchor='middle' letter-spacing='1'%3EJUH%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+  <link rel="alternate icon" href="favicon.svg" type="image/svg+xml" fetchpriority="high">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="preload" href="favicon.svg" as="image" type="image/svg+xml">
+
+  <meta name="theme-color" content="#f5f3f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://jawadulhadiportfolio.vercel.app/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jawad Ul Hadi — Senior Backend Engineer | Scalable SaaS &amp; AI Platforms">
+  <meta property="og:description"
+    content="Senior Backend Engineer &amp; Solutions Architect. Architecting resilient multi-tenant SaaS, provider-agnostic AI gateways, and deterministic rule-based fallbacks that never hard-fail.">
+  <meta property="og:url" content="https://jawadulhadiportfolio.vercel.app/">
+  <meta property="og:image" content="https://jawadulhadiportfolio.vercel.app/banners/repo-banner-dark.png">
+  <meta property="og:image:width" content="2560">
+  <meta property="og:image:height" content="1280">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jawadulhadiportfolio.vercel.app/banners/repo-banner-dark.png">
+
+  <!-- Critical Anti-FOUC Paint Stylesheet -->
+  <style>
+    :root { color-scheme: dark light; }
+    html[data-theme="dark"] {
+      background-color: #0a1628;
+      color: #e2e8f0;
+    }
+    html[data-theme="cyber"] {
+      background-color: #050814;
+      color: #e2f1ff;
+    }
+    html[data-theme="light"], html:not([data-theme="dark"]):not([data-theme="cyber"]) {
+      background-color: #f5f3f0;
+      color: #1a202c;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background-color: inherit;
+      color: inherit;
+    }
+    @keyframes jhSlideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jawad Ul Hadi",
+  "jobTitle": "Senior Backend Engineer",
+  "description": "Senior Backend Engineer | Architecting Scalable SaaS & AI Platforms",
+  "url": "https://jawadulhadiportfolio.vercel.app/",
+  "email": "jawadulhadicc@gmail.com",
+  "telephone": "+923467248414",
+  "address": { "@type": "PostalAddress", "addressLocality": "Islamabad", "addressCountry": "PK" },
+  "worksFor": { "@type": "Organization", "name": "MicroAgility Services (Pvt) Ltd." },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Government College University, Faisalabad" },
+  "sameAs": [
+    "https://www.linkedin.com/in/jawad-ul-hadi",
+    "https://github.com/JawadulHadi",
+    "https://orcid.org/0009-0007-1317-4615"
+  ]
+}
+</script>
+
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+
+  <!-- Cyber Grid Background for AI Variant -->
+  <div class="cyber-grid-bg" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-in">
+      <a class="brand" href="#top" aria-label="Jawad Ul Hadi — home">
+        <span class="monogram" aria-hidden="true">JUH</span>
+        <span>Jawad Ul Hadi</span>
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#docs-hub">Google Docs</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn btn-outline" href="#rag-architecture-showcase" title="Case Study: Designing for AI Failure (RAG + 3-Tier Fallback)">RAG Case Study</a>
+        <a class="btn btn-outline js-resume-download" href="resume.pdf" target="_blank" download="Jawad_Ul_Hadi_Resume.pdf" title="Download & View PDF Résumé">Resume</a>
+        <button class="theme-toggle" type="button" aria-label="Toggle Theme (Classic Light, Slate Dark, AI White-Blue, Cyber Synth)" title="Theme: Click to cycle Light / Dark / AI White-Blue / Cyber Synth">
+          <svg class="icon-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4.4"></circle>
+            <path
+              d="M12 2v2.4M12 19.6V22M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2 12h2.4M19.6 12H22M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7">
+            </path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24">
+            <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 6.8 6.8 0 0 0 20 14.5Z"></path>
+          </svg>
+          <svg class="icon-sparkle" viewBox="0 0 24 24">
+            <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path>
+          </svg>
+          <svg class="icon-bolt" viewBox="0 0 24 24">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <span id="top"></span>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-in">
+      <div class="hero-copy" data-reveal="">
+        <span class="eyebrow">Portfolio • 2026</span>
+        <h1 class="hero-name">Jawad Ul Hadi</h1>
+
+        <!-- Core Role & Focus -->
+        <p class="hero-title">Senior Backend Engineer &amp; Solutions Architect
+          <br><span style="color:var(--gold)">Architecting Scalable SaaS &amp; AI Platforms</span>
+        </p>
+
+        <!-- Scannable Mission Block -->
+        <p class="hero-mission"><em>"The best code is never rewritten not because it’s perfect, but because it’s flexible enough to evolve with the business."</em> I build production-grade, multi-tenant SaaS backends where AI acts as a predictable value multiplier, backed by a custom 3-tier fallback architecture (Retry → RAG → Rule-based) that never hard-fails.
+        </p>
+
+        <!-- Framework & Tooling Taxonomy -->
+        <div class="tag-row">
+          <span class="tag">NestJS / Node.js</span>
+          <span class="tag">TypeScript &amp; Python</span>
+          <span class="tag">Django / FastAPI</span>
+          <span class="tag">BullMQ / Redis Queues</span>
+          <span class="tag">PostgreSQL &amp; MongoDB</span>
+          <span class="tag">GCP · AWS · Azure</span>
+          <span class="tag">Agentic AI &amp; LLMs</span>
+        </div>
+
+        <!-- Strict 4-Column Metric Grid -->
+        <div class="hero-metrics">
+          <div class="metric">
+            <div class="metric-value" data-count="7" data-suffix="+">7+</div>
+            <div class="metric-label">Years<br>Experience</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value" data-count="90" data-suffix="%+">90%+</div>
+            <div class="metric-label">Query Latency<br>Reduction</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value" data-count="26" data-suffix="">26</div>
+            <div class="metric-label">Verified<br>Certifications</div>
+          </div>
+          <div class="metric">
+            <div class="metric-value" data-count="3" data-suffix="-Tier">3-Tier</div>
+            <div class="metric-label">Fallback AI<br>Resilience</div>
+          </div>
+        </div>
+
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20from%20Portfolio%20-%20Jawad%20Ul%20Hadi" target="_blank" rel="noopener noreferrer" aria-label="Open email in Gmail">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            Email via Gmail
+          </a>
+          <a class="btn btn-outline" href="https://wa.me/923467248414?text=Hi%20Jawad,%20I%20reviewed%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer" aria-label="Message on WhatsApp">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            WhatsApp
+          </a>
+          <a class="btn btn-outline js-resume-download" href="resume.pdf" target="_blank" download="Jawad_Ul_Hadi_Resume.pdf">Resume</a>
+          <a class="btn btn-outline" href="https://linkedin.com/in/jawad-ul-hadi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="btn btn-outline" href="https://github.com/JawadulHadi" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+      <figure class="hero-portrait" data-reveal="">
+        <div class="portrait-frame">
+          <img src="assets/portrait.png" 
+               srcset="assets/portrait.png 480w, assets/portrait.png 800w" 
+               sizes="(max-width: 680px) 280px, (max-width: 900px) 320px, 420px" 
+               width="420" height="480"
+               alt="Jawad Ul Hadi — Senior Backend Engineer &amp; Solutions Architect" 
+               fetchpriority="high" decoding="async">
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- PLAQUE -->
+  <div class="plaque-band">
+    <div class="plaque-in">
+      <span class="eyebrow">Production Verified</span>
+      <span class="plaque-facts"><b>22</b> modules · <b>200+</b> REST endpoints · <b>3-tier</b> AI fallback · <b>26</b> verified credentials</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head" data-reveal="">
+        <h2 class="section-title"><span class="idx">01</span>About</h2>
+        <p class="section-note">Open to remote, hybrid, or relocation (US / EU / APAC overlap) · Full-time or contract</p>
+      </div>
+      <div class="about-grid">
+        <p class="about-lede" data-reveal="">
+          I wear three hats that blend into one seamless skillset: <strong>Senior Software Engineer</strong> writing production-grade code that scales, <strong>Solutions Architect</strong> designing systems that solve real business problems, and <strong>AI/LLM Integrator</strong> bridging the gap between cutting-edge AI and practical applications. Over <strong>7+ years</strong>, I have architected multi-tenant SaaS platforms where AI acts as a value multiplier, protected by a custom <strong>3-tier fallback architecture</strong> (Retry → RAG → Rule-based) so systems stay up even when models falter.
+        </p>
+        <div class="highlights">
+          <div class="highlight" data-reveal="">
+            <h4>Multi-Tenant SaaS Architectures</h4>
+            <p>NestJS / Node.js / TypeScript / Django — REST, GraphQL &amp; WebSocket APIs with strict tenant isolation and zero-downtime migrations.</p>
+          </div>
+          <div class="highlight" data-reveal="">
+            <h4>Provider-Agnostic LLM Engines</h4>
+            <p>One unified abstraction across OpenAI, Google Gemini, and Anthropic Claude with structured outputs and observability.</p>
+          </div>
+          <div class="highlight" data-reveal="">
+            <h4>Data, Search &amp; Performance Optimization</h4>
+            <p>PostgreSQL, MongoDB, MySQL, Redis &amp; MeiliSearch; query tuning and automated ETL cutting load times by 90%+.</p>
+          </div>
+          <div class="highlight" data-reveal="">
+            <h4>Async &amp; Event-Driven Pipelines</h4>
+            <p>BullMQ + Redis queues, idempotent worker pools, HMAC request signing, and self-hosted orchestration.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive CLI Terminal -->
+      <div class="cli-terminal" data-reveal="" id="portfolioCli">
+        <div class="cli-header">
+          <div class="cli-controls">
+            <span class="cli-dot red"></span>
+            <span class="cli-dot yellow"></span>
+            <span class="cli-dot green"></span>
+          </div>
+          <span class="cli-title">jawad@backend-core:~ (zsh)</span>
+          <span class="cli-actions-hint">Interactive Shell · Type 'help'</span>
+        </div>
+        <div class="cli-body" id="cliBody">
+          <div class="cli-banner">⚡ <b>Jawad Ul Hadi CLI Shell v2.6.0</b> [Senior Backend Engineer &amp; AI Architect]
+Available commands: <span class="cli-cmd-badge" data-cmd="help">help</span> <span class="cli-cmd-badge" data-cmd="skills">skills</span> <span class="cli-cmd-badge" data-cmd="experience">experience</span> <span class="cli-cmd-badge" data-cmd="projects">projects</span> <span class="cli-cmd-badge" data-cmd="certifications">certifications</span> <span class="cli-cmd-badge" data-cmd="contact">contact</span> <span class="cli-cmd-badge" data-cmd="resume">resume</span></div>
+          <div class="cli-history" id="cliHistory"></div>
+          <div class="cli-input-row">
+            <span class="cli-prompt-line">
+              <span class="cli-prompt-user">visitor@jawad-sys</span>:<span class="cli-prompt-path">~</span><span class="cli-prompt-symbol">$</span>
+            </span>
+            <input type="text" class="cli-input" id="cliInput" autocomplete="off" spellcheck="false" placeholder="Type 'help' or click any command..." aria-label="Terminal command input">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section section-band" id="experience">
+    <div class="container">
+      <div class="section-head" data-reveal="">
+        <h2 class="section-title"><span class="idx">02</span>Experience</h2>
+        <p class="section-note">7+ years across scalable cloud backends, multi-tenant SaaS, and production AI pipelines</p>
+      </div>
+      <div class="ledger">
+        <article class="ledger-entry" data-reveal="">
+          <span class="ledger-index">01</span>
+          <div>
+            <div class="ledger-head">
+              <h3 class="ledger-role">Backend Lead / Senior Backend Engineer</h3>
+              <span class="ledger-dates">Jan 2024 — August 2026</span>
+            </div>
+            <p class="ledger-org">MicroAgility Services (Pvt) Ltd. · Islamabad, Pakistan</p>
+            <ul class="ledger-points">
+              <li>Spearheaded architecture of a multi-tenant, AI-assisted recruitment platform (private, IP-protected client codebase), unifying OpenAI, Gemini, and Anthropic into one abstraction layer, cutting AI integration surface area <span class="m">~60%</span>.</li>
+              <li>Deployed a proprietary <span class="m">3-tier resilience methodology</span> (Retry → RAG → Rule-based), eliminating user-facing hard failures via automatic fallback to RAG context or deterministic rule-sets during LLM downtime.</li>
+              <li>Built an async processing spine on BullMQ/Redis, offloading parsing, OCR, and vector embedding into idempotent workers to keep AI response times instant.</li>
+              <li>Combined MeiliSearch with semantic RAG retrieval and optimized PostgreSQL/MongoDB query plans, cutting dashboard load times from <strong>8–12s to under 2s</strong>.</li>
+              <li>Integrated Stripe, Twilio WhatsApp, Microsoft Graph, and self-hosted Postal SMTP while enforcing server-level JWT tenant isolation to eliminate cross-tenant data leaks.</li>
+              <li>Reduced infrastructure costs to near-zero per tenant via serverless tiers and self-hosted orchestration (n8n, Postal).</li>
+              <li>Leveraged AI coding assistants (Cursor, GitHub Copilot, Claude Code) to accelerate NestJS microservice development, generate unit tests, and automate documentation.</li>
+              <li>Designed and implemented RESTful API layers optimized for seamless integration with React.js frontend applications.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="ledger-entry" data-reveal="">
+          <span class="ledger-index">02</span>
+          <div>
+            <div class="ledger-head">
+              <h3 class="ledger-role">Backend Software Engineer</h3>
+              <span class="ledger-dates">Feb 2022 — Jan 2024</span>
+            </div>
+            <p class="ledger-org">MicroAgility Services (Pvt) Ltd. · Islamabad, Pakistan</p>
+            <ul class="ledger-points">
+              <li>Developed core backend infrastructure for a multi-country HRMS, payroll, and project-management SaaS suite handling complex enterprise logic.</li>
+              <li>Administered high-volume PostgreSQL/MySQL clusters, authoring automated disaster-recovery backups and migration scripts for seamless bulk tenant onboarding.</li>
+              <li>Built real-time collaboration channels with Socket.io and Mongoose, wired Twilio event triggers, and customized Django Admin panels to speed internal operations.</li>
+              <li>Executed zero-downtime schema migrations across relational and document databases, maintaining <span class="m">99.9%</span> uptime via structured Git pipelines on AWS/GCP.</li>
+              <li>Refactored RESTful and GraphQL API endpoints, boosting production data retrieval speed <span class="m">~40%</span>.</li>
+              <li>Collaborated with frontend teams to design API contracts optimized for React.js consumption and performance.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="ledger-entry" data-reveal="">
+          <span class="ledger-index">03</span>
+          <div>
+            <div class="ledger-head">
+              <h3 class="ledger-role">Software Engineer</h3>
+              <span class="ledger-dates">Jan 2018 — Mar 2022</span>
+            </div>
+            <p class="ledger-org">Market Icon · Rawalpindi, Pakistan</p>
+            <ul class="ledger-points">
+              <li>Designed serverless AWS Lambda/API Gateway microservices bridging SaaS platforms with third-party CRMs and payment processors, eliminating idle server costs.</li>
+              <li>Authored secure, documented APIs across Express.js, FastAPI, and Django REST Framework, protected by JWT and OAuth 2.0 authorization flows.</li>
+              <li>Delivered Django applications with custom ORM modeling, admin tooling, and structured data exposure via DRF to streamline client workflows.</li>
+              <li>Gained foundational experience building full-stack applications, working with modern frontend frameworks and backend systems.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section-head" data-reveal="">
+        <h2 class="section-title"><span class="idx">03</span>Core Competencies</h2>
+        <p class="section-note">8 competency areas backed by real production delivery and verified credentials</p>
+      </div>
+      <div class="skills-grid">
+        <div data-reveal="">
+          <p class="skill-group-label">Languages &amp; Frameworks</p>
+          <div class="skill-chips">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">NestJS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Django</span>
+            <span class="tag">Django REST Framework</span>
+            <span class="tag">PHP</span>
+            <span class="tag">Laravel</span>
+            <span class="tag">React.js</span>
+          </div>
+        </div>
+        <div data-reveal="">
+          <p class="skill-group-label">AI &amp; LLM Engineering</p>
+          <div class="skill-chips">
+            <span class="tag">3-Tier Fallbacks</span>
+            <span class="tag">RAG Pipelines</span>
+            <span class="tag">OpenAI</span>
+            <span class="tag">Google Gemini</span>
+            <span class="tag">Anthropic Claude</span>
+            <span class="tag">Structured Output</span>
+            <span class="tag">LLM Observability</span>
+            <span class="tag">Agentic Subagents</span>
+            <span class="tag">Prompt Engineering</span>
+          </div>
+        </div>
+        <div data-reveal="">
+          <p class="skill-group-label">Data, Search &amp; Performance</p>
+          <div class="skill-chips">
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">Redis</span>
+            <span class="tag">MeiliSearch</span>
+            <span class="tag">Query Optimization</span>
+            <span class="tag">Indexing</span>
+            <span class="tag">Bulk ETL</span>
+            <span class="tag">Full-Text &amp; Semantic Search</span>
+          </div>
+        </div>
+        <div data-reveal="">
+          <p class="skill-group-label">Async &amp; Event-Driven</p>
+          <div class="skill-chips">
+            <span class="tag">BullMQ + Redis Queues</span>
+            <span class="tag">Idempotent Workers</span>
+            <span class="tag">Custom Webhooks</span>
+            <span class="tag">n8n Workflows</span>
+            <span class="tag">HMAC Request Signing</span>
+          </div>
+        </div>
+        <div data-reveal="">
+          <p class="skill-group-label">Cloud, DevOps &amp; Infrastructure</p>
+          <div class="skill-chips">
+            <span class="tag">GCP</span>
+            <span class="tag">AWS (Lambda, API Gateway)</span>
+            <span class="tag">Microsoft Azure</span>
+            <span class="tag">Docker</span>
+            <span class="tag">CI/CD (GitHub Actions)</span>
+            <span class="tag">Zero-Downtime Migrations</span>
+            <span class="tag">DNS/TLS</span>
+            <span class="tag">Serverless</span>
+          </div>
+        </div>
+        <div data-reveal="">
+          <p class="skill-group-label">Integrations &amp; Security</p>
+          <div class="skill-chips">
+            <span class="tag">Stripe</span>
+            <span class="tag">Twilio (WhatsApp)</span>
+            <span class="tag">Microsoft Graph</span>
+            <span class="tag">Postal SMTP</span>
+            <span class="tag">Microservices</span>
+            <span class="tag">JWT / OAuth 2.0</span>
+            <span class="tag">Tenant Isolation</span>
+            <span class="tag">Audit Logging</span>
+          </div>
+        </div>
+        <div data-reveal="">
+          <p class="skill-group-label">AI-Assisted Development</p>
+          <div class="skill-chips">
+            <span class="tag">GitHub Copilot</span>
+            <span class="tag">Cursor</span>
+            <span class="tag">Claude Code</span>
+            <span class="tag">Code Generation</span>
+            <span class="tag">Refactoring</span>
+            <span class="tag">Test Automation</span>
+            <span class="tag">Documentation</span>
+          </div>
+        </div>
+        <div data-reveal="">
+          <p class="skill-group-label">Admin &amp; Tooling</p>
+          <div class="skill-chips">
+            <span class="tag">Django Admin Customization</span>
+            <span class="tag">OCR / PDF Extraction</span>
+            <span class="tag">Script-Based ETL</span>
+            <span class="tag">Document Engineering</span>
+            <span class="tag">PDF Generation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section section-band" id="services">
+    <div class="container">
+      <div class="section-head" data-reveal="">
+        <h2 class="section-title"><span class="idx">04</span>Services</h2>
+        <p class="section-note">8 core engineering offerings tailored for high-growth SaaS and AI platforms</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card" data-reveal="">
+          <span class="service-num">01</span>
+          <h3>AI &amp; LLM Reliability Engineering</h3>
+          <p>Multi-model AI gateways (OpenAI, Gemini, Anthropic) with automatic failover and 3-tier resilience for uninterrupted production performance.</p>
+        </article>
+        <article class="service-card" data-reveal="">
+          <span class="service-num">02</span>
+          <h3>Data Architecture &amp; Performance Optimization</h3>
+          <p>Query restructuring, indexing, and automated ETL pipelines that cut load times by 90%+ across PostgreSQL, MongoDB, and MySQL.</p>
+        </article>
+        <article class="service-card" data-reveal="">
+          <span class="service-num">03</span>
+          <h3>Async &amp; Event-Driven System Design</h3>
+          <p>High-throughput async pipelines on BullMQ/Redis with idempotent worker pools that eliminate duplicate execution.</p>
+        </article>
+        <article class="service-card" data-reveal="">
+          <span class="service-num">04</span>
+          <h3>Cloud-Native Infrastructure &amp; Zero-Downtime Delivery</h3>
+          <p>Scalable cloud architectures (AWS, GCP, Azure) via Docker and CI/CD, with zero-downtime database and server migrations.</p>
+        </article>
+        <article class="service-card" data-reveal="">
+          <span class="service-num">05</span>
+          <h3>Workflow Automation &amp; Internal Tooling</h3>
+          <p>Admin ecosystems, RBAC engines, and custom Django interfaces that automate manual spreadsheet processes.</p>
+        </article>
+        <article class="service-card" data-reveal="">
+          <span class="service-num">06</span>
+          <h3>Enterprise Integrations &amp; Secure Multi-Tenancy</h3>
+          <p>Strict tenant isolation at the query/server level, integrated with Stripe, Twilio, Microsoft Graph, and custom SMTP.</p>
+        </article>
+        <article class="service-card" data-reveal="">
+          <span class="service-num">07</span>
+          <h3>AI-Assisted Software Development</h3>
+          <p>Leveraging Cursor, GitHub Copilot, and Claude Code to accelerate development, generate unit tests, automate documentation, and enhance engineering velocity.</p>
+        </article>
+        <article class="service-card" data-reveal="">
+          <span class="service-num">08</span>
+          <h3>Full-Stack Application Modernization</h3>
+          <p>Modernizing legacy applications by implementing modern PHP frameworks (Laravel), building responsive React.js frontends, and migrating to cloud-native architectures on Azure, AWS, or GCP.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK (TABBED: Personal Flagships & Chrome Suite vs Enterprise NDA) -->
+  <section class="section" id="work">
+    <div class="container">
+      <div class="section-head" data-reveal="">
+        <h2 class="section-title"><span class="idx">05</span>Selected Work</h2>
+        <p class="section-note">Personal Flagships &amp; Chrome Suite · Enterprise Client Systems (under NDA)</p>
+      </div>
+
+      <!-- Real-Time Personal Project API Status Bar -->
+      <div class="project-api-status-bar" id="projectApiStatusBar" data-reveal="">
+        <div class="api-status-main">
+          <div class="api-status-indicator">
+            <span class="status-pulse-ring" id="apiStatusRing"></span>
+            <span class="status-dot online" id="apiStatusDot"></span>
+          </div>
+          <div class="api-status-meta">
+            <div class="api-status-headline">
+              <span class="api-status-title">Personal Project APIs: <strong id="apiStatusState">Operational</strong></span>
+              <span class="api-status-pill" id="apiStatusPill">6/6 Services Active</span>
+            </div>
+            <div class="api-status-subline">
+              <span class="api-latency-badge"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg> <span id="apiAvgLatency">16ms avg latency</span></span>
+              <span class="api-dot-sep">·</span>
+              <span class="api-time-badge" id="apiLastChecked">Live: Just now</span>
+              <span class="api-dot-sep">·</span>
+              <span class="api-uptime-badge">Uptime: 99.98%</span>
+            </div>
+          </div>
+        </div>
+        <div class="api-status-actions">
+          <button type="button" class="btn-api-ping" id="btnPingApis" title="Ping personal project APIs for live latency & health check">
+            <svg class="icon-ping" viewBox="0 0 24 24">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+            </svg>
+            <span id="btnPingText">Ping APIs</span>
+          </button>
+          <button type="button" class="btn-api-details" id="btnToggleApiTelemetry" aria-expanded="false" title="Toggle detailed service telemetry & endpoints">
+            <span>Telemetry</span>
+            <svg class="icon-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Expandable API Telemetry Tray -->
+      <div class="api-telemetry-tray" id="apiTelemetryTray" hidden>
+        <!-- Telemetry Controls & Ping Frequency Selector -->
+        <div class="api-telemetry-toolbar">
+          <div class="api-telemetry-toolbar-left">
+            <div class="api-toolbar-label">
+              <svg class="icon-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              <span>Auto-Ping Interval:</span>
+            </div>
+            <div class="api-freq-pills" role="radiogroup" aria-label="Auto health-check ping frequency">
+              <button type="button" class="api-freq-pill" data-freq="5" role="radio" aria-checked="false" title="Auto ping every 5 seconds">5s</button>
+              <button type="button" class="api-freq-pill active" data-freq="15" role="radio" aria-checked="true" title="Auto ping every 15 seconds">15s</button>
+              <button type="button" class="api-freq-pill" data-freq="30" role="radio" aria-checked="false" title="Auto ping every 30 seconds">30s</button>
+              <button type="button" class="api-freq-pill" data-freq="0" role="radio" aria-checked="false" title="Pause automatic pings">Manual</button>
+            </div>
+          </div>
+          <div class="api-telemetry-toolbar-right">
+            <div class="api-freq-dropdown-wrap">
+              <label for="apiFreqSelect" class="sr-only">Select health check interval</label>
+              <select id="apiFreqSelect" class="api-freq-select" aria-label="Select automatic health check interval">
+                <option value="5">Every 5s (Fast)</option>
+                <option value="15" selected>Every 15s (Standard)</option>
+                <option value="30">Every 30s (Balanced)</option>
+                <option value="60">Every 60s (Relaxed)</option>
+                <option value="0">Manual (Off)</option>
+              </select>
+            </div>
+            <div class="api-freq-status" id="apiFreqStatusBadge">
+              <span class="api-countdown-dot" id="apiCountdownDot"></span>
+              <span id="apiFreqCountdown">Next probe: 15s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 Monitored Services Grid with Individual UP/DOWN Status & Latency -->
+        <div class="api-telemetry-grid" id="apiTelemetryGrid">
+          <!-- Service 1: Chrome Extension Relay -->
+          <div class="telemetry-item" data-service-telemetry="chrome-suite">
+            <div class="telemetry-item-header">
+              <div class="telemetry-item-name">
+                <span class="service-status-dot up"></span>
+                <span>Chrome Extension Relay</span>
+              </div>
+              <div class="telemetry-badges">
+                <span class="service-status-pill up">UP</span>
+                <span class="telemetry-item-pill">200 OK</span>
+              </div>
+            </div>
+            <div class="telemetry-item-meta">
+              <span class="telemetry-endpoint">/api/projects/chrome-suite/health</span>
+              <span class="telemetry-latency">14ms</span>
+            </div>
+          </div>
+
+          <!-- Service 2: 3-Tier AI Fallback Gateway -->
+          <div class="telemetry-item" data-service-telemetry="ai-gateway">
+            <div class="telemetry-item-header">
+              <div class="telemetry-item-name">
+                <span class="service-status-dot up"></span>
+                <span>3-Tier AI Fallback Gateway</span>
+              </div>
+              <div class="telemetry-badges">
+                <span class="service-status-pill up">UP</span>
+                <span class="telemetry-item-pill">200 OK</span>
+              </div>
+            </div>
+            <div class="telemetry-item-meta">
+              <span class="telemetry-endpoint">/api/projects/ai-gateway/health</span>
+              <span class="telemetry-latency">18ms</span>
+            </div>
+          </div>
+
+          <!-- Service 3: BullMQ Queue Spine -->
+          <div class="telemetry-item" data-service-telemetry="queue-spine">
+            <div class="telemetry-item-header">
+              <div class="telemetry-item-name">
+                <span class="service-status-dot up"></span>
+                <span>BullMQ Queue Spine</span>
+              </div>
+              <div class="telemetry-badges">
+                <span class="service-status-pill up">UP</span>
+                <span class="telemetry-item-pill">200 OK</span>
+              </div>
+            </div>
+            <div class="telemetry-item-meta">
+              <span class="telemetry-endpoint">/api/projects/queue/health</span>
+              <span class="telemetry-latency">9ms</span>
+            </div>
+          </div>
+
+          <!-- Service 4: Qeloma Verdict Crypto API -->
+          <div class="telemetry-item" data-service-telemetry="qeloma-verdict">
+            <div class="telemetry-item-header">
+              <div class="telemetry-item-name">
+                <span class="service-status-dot up"></span>
+                <span>Qeloma Verdict Crypto API</span>
+              </div>
+              <div class="telemetry-badges">
+                <span class="service-status-pill up">UP</span>
+                <span class="telemetry-item-pill">200 OK</span>
+              </div>
+            </div>
+            <div class="telemetry-item-meta">
+              <span class="telemetry-endpoint">/api/projects/qeloma-verdict/health</span>
+              <span class="telemetry-latency">15ms</span>
+            </div>
+          </div>
+
+          <!-- Service 5: Qeloma OCR & Vision API -->
+          <div class="telemetry-item" data-service-telemetry="qeloma-ocr">
+            <div class="telemetry-item-header">
+              <div class="telemetry-item-name">
+                <span class="service-status-dot up"></span>
+                <span>Qeloma OCR &amp; Vision API</span>
+              </div>
+              <div class="telemetry-badges">
+                <span class="service-status-pill up">UP</span>
+                <span class="telemetry-item-pill">200 OK</span>
+              </div>
+            </div>
+            <div class="telemetry-item-meta">
+              <span class="telemetry-endpoint">/api/projects/qeloma-ocr/health</span>
+              <span class="telemetry-latency">21ms</span>
+            </div>
+          </div>
+
+          <!-- Service 6: Qeloma Shift AST Diff API -->
+          <div class="telemetry-item" data-service-telemetry="qeloma-shift">
+            <div class="telemetry-item-header">
+              <div class="telemetry-item-name">
+                <span class="service-status-dot up"></span>
+                <span>Qeloma Shift AST Diff API</span>
+              </div>
+              <div class="telemetry-badges">
+                <span class="service-status-pill up">UP</span>
+                <span class="telemetry-item-pill">200 OK</span>
+              </div>
+            </div>
+            <div class="telemetry-item-meta">
+              <span class="telemetry-endpoint">/api/projects/qeloma-shift/health</span>
+              <span class="telemetry-latency">16ms</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Latency Trend Visualization & Ping History Section -->
+        <div class="api-history-section">
+          <div class="api-history-header">
+            <div class="api-history-title">
+              <svg class="icon-trend" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              <span>Latency Trend &amp; Ping History (Last 5 Probes)</span>
+            </div>
+            <div class="api-history-actions">
+              <span class="api-history-badge" id="apiHistoryCount">5/5 Tracked</span>
+              <button type="button" class="btn-api-csv" id="btnExportCsv" title="Export recorded probe latency history as CSV file">
+                <svg class="icon-csv" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download CSV</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- D3.js Interactive Latency Line Chart -->
+          <div class="api-d3-chart-card">
+            <div class="api-chart-top">
+              <span class="chart-title-sub">D3.js Real-Time Latency Curve</span>
+              <div class="chart-legend-wrap">
+                <span class="chart-legend-item"><span class="chart-legend-line"></span> Round-Trip Latency (ms)</span>
+              </div>
+            </div>
+            <div class="api-d3-svg-wrap" id="apiD3SvgWrap">
+              <svg id="apiLatencyD3Chart" class="api-d3-chart" viewBox="0 0 560 140" preserveAspectRatio="xMidYMid meet"></svg>
+              <!-- Interactive D3 Hover Tooltip -->
+              <div id="d3ChartTooltip" class="d3-chart-tooltip" role="tooltip" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <!-- Supplementing Scrollable Ping History List -->
+          <div class="api-history-scroll" id="apiHistoryScroll" role="region" aria-label="API Ping Latency History">
+            <ul class="api-history-list" id="apiHistoryList">
+              <!-- Dynamically populated and maintained by JS with the last 5 ping records -->
+              <li class="api-history-item">
+                <div class="history-time">
+                  <span class="history-dot fast"></span>
+                  <span><strong>Latest Probe</strong> · Just now</span>
+                </div>
+                <div class="history-meta">
+                  <span class="history-latency-bar"><span class="history-latency-fill" style="width: 32%;"></span></span>
+                  <span class="history-latency-pill">16ms</span>
+                  <span class="history-status-pill">200 OK</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Authentic GitHub Activity & Contribution Intelligence Card -->
+      <div class="gh-contribution-card" id="ghContributionCard" data-reveal="">
+        <div class="gh-card-header">
+          <div class="gh-header-left">
+            <div class="gh-title-row">
+              <svg class="gh-octocat-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              <h2 class="gh-main-heading">GitHub Engineering Velocity &amp; Activity</h2>
+              <span class="gh-verified-badge">
+                <span class="gh-live-dot"></span>
+                <span>Authentic Verified Data</span>
+              </span>
+            </div>
+            <p class="gh-sub-kicker">Multi-repo contributions, high-leverage Pull Request velocity, and architectural commits</p>
+          </div>
+          
+          <div class="gh-header-actions">
+            <a href="https://github.com/JawadulHadi" target="_blank" rel="noopener noreferrer" class="gh-profile-btn" title="View Jawad on GitHub">
+              <span>github.com/JawadulHadi</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Heatmap & Year Switcher Top Grid -->
+        <div class="gh-heatmap-wrapper">
+          <div class="gh-heatmap-main">
+            <div class="gh-heatmap-header">
+              <div class="gh-count-title">
+                <span class="gh-count-num" id="ghContributionsCount">636</span> contributions in <span id="ghActiveYear">2026</span>
+              </div>
+              <div class="gh-settings-wrap">
+                <span class="gh-settings-label">Contribution settings</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </div>
+
+            <!-- Heatmap Scrollable Frame -->
+            <div class="gh-heatmap-scroll" id="ghHeatmapScroll">
+              <div class="gh-heatmap-grid" id="ghHeatmapGrid">
+                <!-- Months row -->
+                <div class="gh-months-row">
+                  <span></span> <!-- offset for day label -->
+                  <span>Jan</span>
+                  <span>Feb</span>
+                  <span>Mar</span>
+                  <span>Apr</span>
+                  <span>May</span>
+                  <span>Jun</span>
+                  <span>Jul</span>
+                  <span>Aug</span>
+                  <span>Sep</span>
+                  <span>Oct</span>
+                  <span>Nov</span>
+                  <span>Dec</span>
+                </div>
+                
+                <!-- Heatmap SVG Calendar Matrix -->
+                <div class="gh-calendar-body">
+                  <div class="gh-days-col">
+                    <span>Mon</span>
+                    <span>Wed</span>
+                    <span>Fri</span>
+                  </div>
+                  <div class="gh-matrix-container" id="ghMatrixContainer">
+                    <!-- Populated dynamically with 52 weeks x 7 days -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Heatmap Footer: Documentation Link and Color Scale -->
+            <div class="gh-heatmap-footer">
+              <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile" target="_blank" rel="noopener noreferrer" class="gh-learn-link">
+                Learn how we count contributions
+              </a>
+              <div class="gh-legend-scale">
+                <span>Less</span>
+                <span class="gh-legend-cell lvl-0"></span>
+                <span class="gh-legend-cell lvl-1"></span>
+                <span class="gh-legend-cell lvl-2"></span>
+                <span class="gh-legend-cell lvl-3"></span>
+                <span class="gh-legend-cell lvl-4"></span>
+                <span>More</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vertical Year Selectors (Matching GitHub UI) -->
+          <div class="gh-years-list" role="tablist" aria-label="Contribution Years">
+            <button class="gh-year-btn active" type="button" data-year="2026" role="tab" aria-selected="true">2026</button>
+            <button class="gh-year-btn" type="button" data-year="2025" role="tab" aria-selected="false">2025</button>
+            <button class="gh-year-btn" type="button" data-year="2024" role="tab" aria-selected="false">2024</button>
+            <button class="gh-year-btn" type="button" data-year="2023" role="tab" aria-selected="false">2023</button>
+            <button class="gh-year-btn" type="button" data-year="2022" role="tab" aria-selected="false">2022</button>
+          </div>
+        </div>
+
+        <!-- Activity Overview & Radar Chart Card -->
+        <div class="gh-activity-overview-card">
+          <div class="gh-org-pill">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span>@Qeloma</span>
+          </div>
+
+          <div class="gh-overview-layout">
+            <!-- Left Side: Repositories Summary -->
+            <div class="gh-repos-summary">
+              <h3 class="gh-overview-title">Activity overview</h3>
+              
+              <div class="gh-repos-item">
+                <svg class="gh-repo-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <div class="gh-repos-text">
+                  Contributed to <a href="https://github.com/microagility/ats-be" target="_blank" rel="noopener noreferrer" class="gh-repo-link">microagility/ats-be</a>, 
+                  <a href="https://github.com/microagility/APAC-BE" target="_blank" rel="noopener noreferrer" class="gh-repo-link">microagility/APAC-BE</a>, 
+                  <a href="https://github.com/JawadulHadi/portfolio" target="_blank" rel="noopener noreferrer" class="gh-repo-link">JawadulHadi/portfolio</a> 
+                  and <span class="gh-repo-more">32 other repositories</span>
+                </div>
+              </div>
+
+              <!-- High-Leverage Delivery Note -->
+              <div class="gh-delivery-insight">
+                <div class="gh-insight-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Production Delivery Profile</span>
+                </div>
+                <p>
+                  <strong>70% of engineering output is delivered via Pull Requests</strong>, reflecting rigorous modular architecture, PR review discipline, automated CI/CD pipeline checks, and clean branch integration over direct commits.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right Side: Architectural Radar (Spider) Chart -->
+            <div class="gh-radar-wrapper">
+              <div class="gh-radar-chart-box">
+                <!-- SVG Radar Chart Container -->
+                <svg class="gh-radar-svg" id="ghRadarSvg" viewBox="0 0 280 240" preserveAspectRatio="xMidYMid meet">
+                  <!-- Axes and coordinate grid lines -->
+                  <g class="radar-axes-grid" id="radarAxesGrid">
+                    <!-- Crosshair Axes -->
+                    <line x1="140" y1="35" x2="140" y2="205" stroke="var(--border)" stroke-width="1.2" />
+                    <line x1="45" y1="120" x2="235" y2="120" stroke="var(--border)" stroke-width="1.2" />
+                    
+                    <!-- Circular Level Rings -->
+                    <circle cx="140" cy="120" r="22" fill="none" stroke="var(--border)" stroke-width="0.8" stroke-dasharray="2 3" opacity="0.6" />
+                    <circle cx="140" cy="120" r="48" fill="none" stroke="var(--border)" stroke-width="0.8" stroke-dasharray="2 3" opacity="0.6" />
+                    <circle cx="140" cy="120" r="75" fill="none" stroke="var(--border)" stroke-width="0.8" opacity="0.8" />
+                  </g>
+
+                  <!-- Radar Filled Polygon (70% PRs, 23% Commits, 7% Review, 0% Issues) -->
+                  <polygon id="radarPolygon" class="radar-poly" points="140,114 140,120 140,180 120,120" />
+                  
+                  <!-- Radar Data Nodes -->
+                  <g id="radarNodes">
+                    <!-- Top: Review (7%) -> (140, 114) -->
+                    <circle id="nodeReview" cx="140" cy="114" r="3.5" class="radar-node-circle" />
+                    <!-- Right: Issues (0%) -> (140, 120) -->
+                    <circle id="nodeIssues" cx="140" cy="120" r="3" class="radar-node-circle" />
+                    <!-- Bottom: PRs (70%) -> (140, 180) -->
+                    <circle id="nodePrs" cx="140" cy="180" r="4.5" class="radar-node-circle active" />
+                    <!-- Left: Commits (23%) -> (120, 120) -->
+                    <circle id="nodeCommits" cx="120" cy="120" r="3.5" class="radar-node-circle" />
+                  </g>
+
+                  <!-- Chart Labels (Top, Right, Bottom, Left) -->
+                  <text x="140" y="18" text-anchor="middle" class="radar-axis-label" id="lblReview">7%</text>
+                  <text x="140" y="29" text-anchor="middle" class="radar-axis-sub">Code review</text>
+
+                  <text x="242" y="123" text-anchor="start" class="radar-axis-sub" id="lblIssues">Issues</text>
+
+                  <text x="140" y="218" text-anchor="middle" class="radar-axis-label" id="lblPrs">70%</text>
+                  <text x="140" y="230" text-anchor="middle" class="radar-axis-sub">Pull requests</text>
+
+                  <text x="38" y="113" text-anchor="end" class="radar-axis-label" id="lblCommits">23%</text>
+                  <text x="38" y="125" text-anchor="end" class="radar-axis-sub">Commits</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Work Tabs: Flagships vs Enterprise NDA -->
+      <div class="tabs" role="tablist" aria-label="Work categories" data-reveal="">
+        <span class="tab-pill" aria-hidden="true"></span>
+        <button class="tab" role="tab" id="tab-oss" aria-controls="panel-oss" aria-selected="true">Personal Flagships &amp; Chrome Suite</button>
+        <button class="tab" role="tab" id="tab-ent" aria-controls="panel-ent" aria-selected="false">Enterprise Systems (Strict NDA)</button>
+      </div>
+
+      <!-- Tab 1: Personal Projects, Chrome Extensions, and Qeloma Showcase -->
+      <div class="tabpanel active" id="panel-oss" role="tabpanel" aria-labelledby="tab-oss">
+        
+        <!-- Synth AI & Neural Architecture Showcase -->
+        <div class="synth-neural-banner" data-reveal="">
+          <div class="synth-neural-header">
+            <div>
+              <span class="synth-badge">AI / Synth Neural Engine</span>
+              <h3 style="font-family: var(--font-display); font-size: 1.28rem; margin-top: 6px; color: var(--text);">
+                From Raw Logic To Real Intelligence
+              </h3>
+            </div>
+            <span style="font-family: var(--font-display); font-size: 0.78rem; color: var(--gold); background: rgba(0, 240, 255, 0.08); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px;">
+              Live Interactive Neural Synapse
+            </span>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; max-width: 78ch;">
+            Deploying production-grade AI agents and robust software systems engineered for the modern digital landscape. Bridging deterministic backend backbones (NestJS, PostgreSQL, Redis, BullMQ) with generative multimodal intelligence (Google Gemini, OpenAI, Claude, RAG, and 3-tier fallback guarantees).
+          </p>
+          <canvas id="synthSynapseCanvas" class="synth-synapse-canvas" title="Move your cursor / touch to trigger neural synaptic pulses"></canvas>
+        </div>
+
+        <!-- RAG MULTI-TIER ARCHITECTURE & CASE STUDY SHOWCASE -->
+        <section class="rag-case-study-card" id="rag-architecture-showcase" data-reveal="">
+          <div class="rag-case-study-header">
+            <div>
+              <div class="rag-badge-group">
+                <span class="rag-badge">Engineering / AI Systems · Architecture Case Study</span>
+                <span class="rag-badge" style="border-color: #10b981; color: #10b981; background: rgba(16, 185, 129, 0.1);">Verified Production Proof</span>
+              </div>
+              <h3 class="rag-case-study-title">Designing for AI Failure: RAG + BullMQ Fallback Architecture</h3>
+              <p class="rag-case-study-subtitle">
+                Inside the provider-agnostic, 3-tier fallback architecture that keeps enterprise AI workflows running with zero downtime when models falter.
+              </p>
+            </div>
+            <div class="rag-header-cta">
+              <button class="btn btn-outline btn-sm" id="copyRagSpecsBtn" type="button" title="Copy Architecture Specs &amp; Key Metrics to Clipboard">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span id="copyRagSpecsText">Copy Architecture Specs</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Executive Outcome Metrics from Slide 5 -->
+          <div class="rag-metrics-grid">
+            <div class="rag-metric-box">
+              <div class="rag-metric-num">~60%</div>
+              <div class="rag-metric-desc">reduction in AI codebase surface area after unifying 5 provider integrations behind one service.</div>
+            </div>
+            <div class="rag-metric-box">
+              <div class="rag-metric-num">5</div>
+              <div class="rag-metric-desc">production AI workflows running on one shared reliability pattern across enterprise tenants.</div>
+            </div>
+            <div class="rag-metric-box">
+              <div class="rag-metric-num">0</div>
+              <div class="rag-metric-desc">new infrastructure needed to ship v1 of the RAG fallback tier using existing BullMQ + Redis + pgvector.</div>
+            </div>
+            <div class="rag-metric-box">
+              <div class="rag-metric-num">3</div>
+              <div class="rag-metric-desc">tiers of fallback: retry inside queue → RAG-grounded answer → deterministic rule-based floor.</div>
+            </div>
+          </div>
+
+          <div class="rag-quote-callout">
+            &ldquo;The AI makes the system smart; the fallback ladder makes it something you can depend on during business hours, every day.&rdquo;
+          </div>
+
+          <!-- Interactive Architecture Figure Tabs -->
+          <div class="rag-fig-nav" role="tablist" aria-label="RAG Architecture Figures">
+            <button class="rag-fig-btn active" type="button" data-fig="fig1" role="tab" aria-selected="true">
+              <span>Figure 1:</span> Unified AI Service
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig2" role="tab" aria-selected="false">
+              <span>Figure 2:</span> Indexing &amp; Retrieval Flow
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig3" role="tab" aria-selected="false">
+              <span>Figure 3:</span> The Resilience Ladder
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig4" role="tab" aria-selected="false">
+              <span>⚡ Live Simulator:</span> Resilience Playground
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig5" role="tab" aria-selected="false">
+              <span>📄 Case Study:</span> Problem &amp; Architecture
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig6" role="tab" aria-selected="false">
+              <span>💻 Code:</span> NestJS &amp; BullMQ Pattern
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig7" role="tab" aria-selected="false">
+              <span>📊 Outcomes:</span> Verification &amp; Proof
+            </button>
+          </div>
+
+          <!-- Figure 1 Panel: System Overview -->
+          <div class="rag-fig-view active" id="rag-fig1-panel" role="tabpanel">
+            <div class="rag-diagram-wrap">
+              <div style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                Figure 1 · System Overview: The Unified AI Service (One entry point for every AI request — five capabilities, one reliability ladder)
+              </div>
+              
+              <!-- Upstream Clients -->
+              <div class="arch-row">
+                <div class="arch-node">Recruiter Console</div>
+                <div class="arch-node">ATS / HRMS System</div>
+                <div class="arch-node">Careers Portal</div>
+                <div class="arch-node">Partner APIs</div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Single Provider Contract (NestJS Guard &amp; Ingestion Controller)</div>
+
+              <!-- Unified AI Service -->
+              <div class="arch-row">
+                <div class="arch-node primary" style="width: 100%; max-width: 760px;">
+                  <strong>UNIFIED AI SERVICE</strong>
+                  <span class="arch-node sub">Single entry point for every AI request — one provider contract &amp; telemetry hub</span>
+                </div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Async Task Offload</div>
+
+              <!-- Async Work Queue -->
+              <div class="arch-row">
+                <div class="arch-node queue" style="width: 100%; max-width: 760px;">
+                  <strong>ASYNC WORK QUEUE (BullMQ + Redis)</strong>
+                  <span class="arch-node sub">Idempotent, retry-safe background workers with exponential backoff buffers</span>
+                </div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Dispatched into 5 Shared Capabilities</div>
+
+              <!-- 5 Capabilities -->
+              <div class="arch-row">
+                <div class="arch-node ai-cap">
+                  <strong>Smart Parsing</strong>
+                  <span class="arch-node sub">docs + OCR</span>
+                </div>
+                <div class="arch-node ai-cap">
+                  <strong>Candidate Scoring</strong>
+                  <span class="arch-node sub">explainable fit</span>
+                </div>
+                <div class="arch-node ai-cap">
+                  <strong>Interview Questions</strong>
+                  <span class="arch-node sub">role-aware</span>
+                </div>
+                <div class="arch-node ai-cap">
+                  <strong>Hiring Verdict</strong>
+                  <span class="arch-node sub">evidence-backed</span>
+                </div>
+                <div class="arch-node ai-cap">
+                  <strong>Conversational Assistant</strong>
+                  <span class="arch-node sub">grounded chat</span>
+                </div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Inherits Uniform Reliability Pipeline</div>
+
+              <!-- Reliability Ladder -->
+              <div class="arch-row">
+                <div class="arch-node ladder" style="max-width: 760px;">
+                  <strong>RELIABILITY LADDER</strong>
+                  <span class="arch-node sub">AI Answer → Confidence &amp; Latency Check → RAG Grounded Fallback → Deterministic Rule-Based Floor</span>
+                </div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Dynamic Failover &amp; Retrieval Grounding</div>
+
+              <!-- Grounded Knowledge vs Model Providers -->
+              <div class="arch-row">
+                <div class="arch-node rag-box" style="flex: 1; max-width: 370px;">
+                  <strong>GROUNDED KNOWLEDGE (RAG)</strong>
+                  <span class="arch-node sub">Deterministic vector retrieval over the tenant's own jobs &amp; candidate corpus</span>
+                </div>
+                <div class="arch-node" style="flex: 1; max-width: 370px; border-color: #6366f1; background: rgba(99, 102, 241, 0.12); color: #c7d2fe;">
+                  <strong>MODEL PROVIDERS (ABSTRACTED)</strong>
+                  <span class="arch-node sub">Google Gemini &bull; OpenAI &bull; Anthropic Claude (automatic runtime failover)</span>
+                </div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Strict Multi-Tenant Isolation &amp; Governance</div>
+
+              <!-- Multi-Tenant Security & Privacy -->
+              <div class="arch-row">
+                <div class="arch-node" style="width: 100%; max-width: 760px; background: #0a101d; border-color: #334155; color: #94a3b8; font-size: 0.78rem;">
+                  <strong>MULTI-TENANT SECURITY &amp; PRIVACY</strong>: Vaulted API Secrets &bull; Tenant-Scoped Vector Queries &bull; Audit Logging &bull; GDPR Right to Erasure Cascade
+                </div>
+              </div>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; margin-top: 0.8rem;">
+              <strong>Key Architectural Guarantee:</strong> Every client talks to one service. Every heavy task runs on one queue. Every AI-backed capability inherits the same reliability ladder.
+            </p>
+          </div>
+
+          <!-- Figure 2 Panel: Indexing & Retrieval -->
+          <div class="rag-fig-view" id="rag-fig2-panel" role="tabpanel">
+            <div class="rag-diagram-wrap">
+              <div style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                Figure 2 · Request Flow: Indexing &amp; Retrieval (Write path builds the index async · read path degrades to grounded snippets, never an error)
+              </div>
+
+              <!-- Write Path -->
+              <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px dashed var(--border);">
+                <span style="font-family: var(--font-display); font-size: 0.75rem; color: #38bdf8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">
+                  WRITE PATH — INDEXING (Async, BullMQ Worker Pool)
+                </span>
+                <div class="arch-row" style="justify-content: flex-start; margin-top: 0.6rem;">
+                  <div class="arch-node">1. Document Parsed &amp; Stored<span class="arch-node sub">tenant-scoped</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node queue">2. Enqueue Embedding Job<span class="arch-node sub">BullMQ + Redis</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node">3. Chunk Text<span class="arch-node sub">deterministic (no AI)</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node" style="border-color: #6366f1; background: rgba(99, 102, 241, 0.12); color: #c7d2fe;">4. Embed Chunks<span class="arch-node sub">AI service &bull; 768-dim</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node rag-box">5. Vector Store<span class="arch-node sub">upsert, tenant-tagged</span></div>
+                </div>
+              </div>
+
+              <!-- Read Path -->
+              <div style="margin-bottom: 1.4rem;">
+                <span style="font-family: var(--font-display); font-size: 0.75rem; color: #10b981; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">
+                  READ PATH — RETRIEVAL + GROUNDED GENERATION (With Graceful Fallback)
+                </span>
+                <div class="arch-row" style="justify-content: flex-start; margin-top: 0.6rem;">
+                  <div class="arch-node">1. Recruiter Asks Question<span class="arch-node sub">prompt input</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node" style="border-color: #6366f1; background: rgba(99, 102, 241, 0.12); color: #c7d2fe;">2. Embed Query<span class="arch-node sub">AI Service</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node rag-box">3. Tenant-Scoped Vector Search<span class="arch-node sub">cosine similarity</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node primary">4. Grounded Prompt + Gen<span class="arch-node sub">context injection</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node" style="border-color: #10b981; background: rgba(16, 185, 129, 0.15); color: #6ee7b7;">5. Answer + Citations<span class="arch-node sub">evidence-backed</span></div>
+                </div>
+                
+                <!-- Fallback branch if AI down -->
+                <div style="margin-top: 0.8rem; margin-left: 280px; padding: 0.6rem 1rem; border-left: 2px solid #f59e0b; background: rgba(245, 158, 11, 0.08); border-radius: 0 6px 6px 0;">
+                  <span style="font-size: 0.78rem; color: #f59e0b; font-weight: 600;">⚡ If Model Provider Down / Disabled:</span>
+                  <span style="font-size: 0.78rem; color: var(--text-muted); margin-left: 6px;">
+                    Degrades directly to <strong>Ranked Snippets</strong> (no LLM generation required, still 100% grounded and cited).
+                  </span>
+                </div>
+              </div>
+
+              <!-- Right to Erasure -->
+              <div style="background: #080c16; border: 1px solid #1e293b; border-radius: 6px; padding: 0.8rem 1rem;">
+                <span style="font-family: var(--font-display); font-size: 0.75rem; color: #f87171; font-weight: 600; text-transform: uppercase;">
+                  GDPR / PRIVACY: RIGHT TO ERASURE
+                </span>
+                <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 4px;">
+                  Deleting a candidate or tenant record triggers an atomic cascade that purges their relational record, MeiliSearch index entry, raw S3/GCS payloads, and every derived 768-dim vector embedding from the vector store.
+                </p>
+              </div>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; margin-top: 0.8rem;">
+              <strong>Key Architectural Guarantee:</strong> The read path degrades to ranked, grounded snippets instead of an error whenever generation is unavailable.
+            </p>
+          </div>
+
+          <!-- Figure 3 Panel: The Resilience Ladder -->
+          <div class="rag-fig-view" id="rag-fig3-panel" role="tabpanel">
+            <div class="rag-diagram-wrap">
+              <div style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                Figure 3 · The Resilience Ladder: Retry → RAG Fallback → Rule-Based Floor (Never a hard failure)
+              </div>
+
+              <div class="arch-row" style="justify-content: flex-start;">
+                <div class="arch-node" style="border-color: #38bdf8;">Ingestion Controller<span class="arch-node sub">returns 202 immediately</span></div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node">Document Service<span class="arch-node sub">validate + enqueue</span></div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node queue">BullMQ Queue<span class="arch-node sub">Redis-backed</span></div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node">Parsing Worker<span class="arch-node sub">idempotent</span></div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node primary">Unified AI Service<span class="arch-node sub">Gemini → OpenAI → Claude</span></div>
+              </div>
+
+              <!-- Ladder Execution Branches -->
+              <div style="margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; margin-left: 40px; border-left: 2px dashed var(--border); padding-left: 1.2rem;">
+                
+                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                  <span style="font-family: var(--font-display); font-size: 0.76rem; color: #10b981; font-weight: 600; min-width: 140px;">
+                    [Tier 1: Success]
+                  </span>
+                  <div class="arch-node" style="border-color: #10b981; background: rgba(16, 185, 129, 0.12); color: #6ee7b7;">
+                    Parsed Successfully → Document Repository (tenant-scoped store)
+                  </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                  <span style="font-family: var(--font-display); font-size: 0.76rem; color: #f59e0b; font-weight: 600; min-width: 140px;">
+                    [Tier 2: On Provider Fail]
+                  </span>
+                  <div class="arch-node rag-box">
+                    RAG Fallback → Grounded Vector Retrieval → Document Repository
+                  </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                  <span style="font-family: var(--font-display); font-size: 0.76rem; color: #ef4444; font-weight: 600; min-width: 140px;">
+                    [Tier 3: Retrieval Empty]
+                  </span>
+                  <div class="arch-node rule-box">
+                    Rule-Based Extractor → OCR / Regex Pattern Match → Document Repository
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; margin-top: 0.8rem;">
+              <strong>Key Architectural Guarantee:</strong> The same ladder at the module level: retry stays inside the queue, RAG catches provider failure, and rule-based logic catches the rare case where retrieval comes up empty.
+            </p>
+          </div>
+
+          <!-- Figure 4 Panel: Live Resilience Simulator -->
+          <div class="rag-fig-view" id="rag-fig4-panel" role="tabpanel">
+            <div class="rag-sim-box">
+              <div class="rag-sim-header">
+                <div>
+                  <span style="font-family: var(--font-display); font-size: 0.76rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em;">
+                    Live Interactive Resilience Simulator
+                  </span>
+                  <h4 style="font-size: 1.05rem; color: var(--text); margin-top: 2px;">
+                    Simulate Real-Time Failure Scenarios &amp; Verify Fallback Transitions
+                  </h4>
+                </div>
+                <div class="rag-sim-presets">
+                  <button class="rag-sim-preset-btn active" type="button" data-sim-scenario="normal">1. Providers Online (200 OK)</button>
+                  <button class="rag-sim-preset-btn" type="button" data-sim-scenario="openai-fail">2. OpenAI 503 → Auto-Failover</button>
+                  <button class="rag-sim-preset-btn" type="button" data-sim-scenario="all-llm-down">3. All LLMs Down → Tier 2 RAG</button>
+                  <button class="rag-sim-preset-btn" type="button" data-sim-scenario="empty-rag">4. Empty Vectors → Tier 3 Floor</button>
+                </div>
+              </div>
+
+              <div class="rag-sim-grid">
+                <!-- Ladder Step Visualizer -->
+                <div class="rag-sim-ladder-display">
+                  <div style="font-size: 0.78rem; font-family: var(--font-display); color: var(--text-muted); margin-bottom: 0.2rem;">
+                    ACTIVE RESILIENCE LADDER STATE:
+                  </div>
+                  
+                  <div class="rag-sim-step active" id="simStepQueue">
+                    <div class="rag-sim-step-title">
+                      <span>Queue &amp; Idempotency Layer</span>
+                      <span class="rag-sim-step-badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">BullMQ</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;">
+                      Job enqueued with HMAC tenant token; 202 Accepted returned in 8ms.
+                    </div>
+                  </div>
+
+                  <div class="rag-sim-step active" id="simStepLLM">
+                    <div class="rag-sim-step-title">
+                      <span>Tier 1: Multi-Provider LLM Engine</span>
+                      <span class="rag-sim-step-badge" id="simLLMBadge" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">Online</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;" id="simLLMDesc">
+                      Gemini 2.5 Flash / Claude 3.7 / OpenAI GPT-4o with automatic circuit breaker.
+                    </div>
+                  </div>
+
+                  <div class="rag-sim-step" id="simStepRAG">
+                    <div class="rag-sim-step-title">
+                      <span>Tier 2: RAG Grounded Vector Fallback</span>
+                      <span class="rag-sim-step-badge" id="simRAGBadge" style="background: rgba(148, 163, 184, 0.2); color: #94a3b8;">Standby</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;" id="simRAGDesc">
+                      Deterministic 768-dim embeddings over tenant candidate corpus (no LLM generation needed).
+                    </div>
+                  </div>
+
+                  <div class="rag-sim-step" id="simStepRule">
+                    <div class="rag-sim-step-title">
+                      <span>Tier 3: Rule-Based Floor Extractor</span>
+                      <span class="rag-sim-step-badge" id="simRuleBadge" style="background: rgba(148, 163, 184, 0.2); color: #94a3b8;">Standby</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;" id="simRuleDesc">
+                      OCR layout heuristic &amp; regex structural pattern matcher guarantee reliable fallback payload.
+                    </div>
+                  </div>
+
+                  <button class="btn btn-primary btn-sm" type="button" id="simRunBtn" style="margin-top: 0.4rem; justify-content: center;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                    Re-Run Selected Scenario Simulation
+                  </button>
+                </div>
+
+                <!-- Live Stream Console -->
+                <div>
+                  <div style="font-size: 0.78rem; font-family: var(--font-display); color: var(--text-muted); margin-bottom: 0.4rem; display: flex; justify-content: space-between;">
+                    <span>TELEMETRY CONSOLE STREAM:</span>
+                    <span id="simLatencyBadge" style="color: #4ade80;">Latency: 420ms</span>
+                  </div>
+                  <div class="rag-sim-console" id="simConsoleOutput">
+                    <div class="sim-log-time">[12:57:01.012] <span class="sim-log-info">INFO</span> [IngestionController] POST /v1/ai/parse-resume tenantId=ten_micro_9182 (202 Accepted, 8ms)</div>
+                    <div class="sim-log-time">[12:57:01.025] <span class="sim-log-info">INFO</span> [BullMQ:Worker] Picked up job #84102 payload="resume_sr_engineer.pdf"</div>
+                    <div class="sim-log-time">[12:57:01.080] <span class="sim-log-info">INFO</span> [UnifiedAIService] Dispatching to Primary Provider (Google Gemini 2.5 Flash)</div>
+                    <div class="sim-log-time">[12:57:01.430] <span class="sim-log-success">SUCCESS</span> [UnifiedAIService] Parsed 18 skill entities, 3 job roles, confidence=0.97</div>
+                    <div class="sim-log-time">[12:57:01.442] <span class="sim-log-info">INFO</span> [VectorStore] Upserted 4 chunks (768-dim) into tenant pgvector partition</div>
+                    <div class="sim-log-time">[12:57:01.445] <span class="sim-log-success">RESULT</span> [JobComplete] Status: 200 OK | Reliability Tier: TIER-1 (Primary LLM)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Figure 5 Panel: Full Case Study & Problem Analysis -->
+          <div class="rag-fig-view" id="rag-fig5-panel" role="tabpanel">
+            <div class="rag-diagram-wrap">
+              <div style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                Engineering Deep Dive · Problem Statement &amp; Architecture Specs
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; margin-bottom: 1.4rem;">
+                <div style="background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 1.3rem;">
+                  <h4 style="color: #dc2626; font-size: 0.95rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 6px;">
+                    <span>⚠️</span> The Enterprise Reality of LLMs in Production
+                  </h4>
+                  <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
+                    Third-party LLM APIs suffer from unpredictable rate-limits (HTTP 429), regional outages (HTTP 503), latency spikes (10s+ pauses), and strict token budget constraints. If an enterprise platform couples core operations directly to raw LLM calls, a single upstream outage brings hiring pipelines and recruiter consoles to a hard stop.
+                  </p>
+                </div>
+
+                <div style="background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 1.3rem;">
+                  <h4 style="color: #059669; font-size: 0.95rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 6px;">
+                    <span>🛡️</span> The Architectural Solution
+                  </h4>
+                  <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
+                    A single Unified AI Service backed by BullMQ/Redis idempotent queues and a strict 3-tier resilience ladder: Tier 1 (automatic multi-provider retry/failover) &rarr; Tier 2 (tenant-scoped RAG grounded vector retrieval) &rarr; Tier 3 (deterministic rule-based OCR &amp; pattern floor). The system never returns a 500 error to users.
+                  </p>
+                </div>
+              </div>
+
+              <div style="background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 1.3rem;">
+                <h4 style="font-size: 0.95rem; color: var(--text); margin-bottom: 0.6rem;">Core Architecture Specifications &amp; Design Guarantees</h4>
+                <ul style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.7; list-style: disc; padding-left: 1.4rem;">
+                  <li><strong>Provider Agnosticism:</strong> Dynamic switching between Google Gemini, OpenAI GPT-4o, and Anthropic Claude 3.7 with no downstream caller code modification.</li>
+                  <li><strong>Multi-Tenant Isolation:</strong> Vaulted per-tenant API keys and metadata-filtered vector queries ensuring zero cross-tenant data leakage.</li>
+                  <li><strong>Idempotent Processing:</strong> BullMQ queue workers with deterministic job IDs prevent duplicate billing or token consumption during retries.</li>
+                  <li><strong>Zero Cold-Start Lag:</strong> Lightweight pre-computed vector indices allow instant snippet fallback when upstream LLMs experience transient spikes.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Figure 6 Panel: NestJS & BullMQ Code Implementation -->
+          <div class="rag-fig-view" id="rag-fig6-panel" role="tabpanel">
+            <div class="rag-diagram-wrap" style="padding: 1.2rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                <span style="font-family: var(--font-display); font-size: 0.78rem; color: var(--gold); text-transform: uppercase;">
+                  UnifiedAIService.ts — Production Provider Abstraction &amp; 3-Tier Fallback Ladder
+                </span>
+                <span style="font-size: 0.72rem; font-family: var(--font-display); color: #0284c7;">TypeScript / NestJS</span>
+              </div>
+              <pre class="rag-code-block" style="background: #090e18; border: 1px solid #1e293b; border-radius: 8px; padding: 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: #e2e8f0; line-height: 1.6; overflow-x: auto; margin: 0;"><code><span style="color: #c084fc;">export class</span> <span style="color: #38bdf8;">UnifiedAIService</span> {
+  <span style="color: #c084fc;">async</span> <span style="color: #60a5fa;">executeWithReliabilityLadder</span>&lt;T&gt;(
+    req: <span style="color: #facc15;">AIRequestPayload</span>,
+    tenantContext: <span style="color: #facc15;">TenantSecurityContext</span>
+  ): <span style="color: #38bdf8;">Promise</span>&lt;<span style="color: #facc15;">AIResponse</span>&lt;T&gt;&gt; {
+    <span style="color: #64748b;">// Tier 1: Multi-Provider LLM with Exponential Retry</span>
+    <span style="color: #c084fc;">try</span> {
+      <span style="color: #c084fc;">return await</span> <span style="color: #38bdf8;">this</span>.<span style="color: #60a5fa;">dispatchPrimaryLLM</span>(req, tenantContext);
+    } <span style="color: #c084fc;">catch</span> (llmErr) {
+      <span style="color: #38bdf8;">this</span>.logger.<span style="color: #f87171;">warn</span>(<span style="color: #4ade80;">`Tier-1 LLM failed: ${llmErr.message}. Escalating to Tier-2 RAG.`</span>);
+    }
+
+    <span style="color: #64748b;">// Tier 2: Tenant-Scoped Grounded Vector Retrieval (RAG Fallback)</span>
+    <span style="color: #c084fc;">try</span> {
+      <span style="color: #c084fc;">const</span> vectorMatches = <span style="color: #c084fc;">await</span> <span style="color: #38bdf8;">this</span>.vectorStore.<span style="color: #60a5fa;">searchByTenant</span>({
+        tenantId: tenantContext.tenantId,
+        query: req.queryText,
+        threshold: 0.78
+      });
+      <span style="color: #c084fc;">if</span> (vectorMatches.length &gt; 0) {
+        <span style="color: #c084fc;">return</span> <span style="color: #38bdf8;">this</span>.<span style="color: #60a5fa;">formatGroundedSnippets</span>(vectorMatches, <span style="color: #4ade80;">'TIER_2_RAG'</span>);
+      }
+    } <span style="color: #c084fc;">catch</span> (ragErr) {
+      <span style="color: #38bdf8;">this</span>.logger.<span style="color: #f87171;">warn</span>(<span style="color: #4ade80;">`Tier-2 RAG empty/failed: ${ragErr.message}. Escalating to Tier-3 Floor.`</span>);
+    }
+
+    <span style="color: #64748b;">// Tier 3: Deterministic Rule-Based Heuristics &amp; OCR Floor</span>
+    <span style="color: #c084fc;">return</span> <span style="color: #38bdf8;">this</span>.ruleEngine.<span style="color: #60a5fa;">extractHeuristicData</span>(req.rawDocument, <span style="color: #4ade80;">'TIER_3_RULE_FLOOR'</span>);
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- Figure 7 Panel: Outcomes & Verification Proof -->
+          <div class="rag-fig-view" id="rag-fig7-panel" role="tabpanel">
+            <div class="rag-diagram-wrap">
+              <div style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                Verified Production Outcomes &amp; Architectural Proof
+              </div>
+
+              <div class="rag-metrics-grid">
+                <div class="rag-metric-box">
+                  <div class="rag-metric-num">~60%</div>
+                  <div class="rag-metric-desc">reduction in AI codebase surface area after unifying 5 provider integrations behind one service.</div>
+                </div>
+                <div class="rag-metric-box">
+                  <div class="rag-metric-num">5</div>
+                  <div class="rag-metric-desc">production AI workflows running on one shared reliability pattern across enterprise tenants.</div>
+                </div>
+                <div class="rag-metric-box">
+                  <div class="rag-metric-num">0</div>
+                  <div class="rag-metric-desc">new infrastructure needed to ship v1 of the RAG fallback tier using existing BullMQ + Redis + pgvector.</div>
+                </div>
+                <div class="rag-metric-box">
+                  <div class="rag-metric-num">3</div>
+                  <div class="rag-metric-desc">tiers of fallback: retry inside queue → RAG-grounded answer → deterministic rule-based floor.</div>
+                </div>
+              </div>
+
+              <div class="rag-quote-callout" style="font-size: 0.95rem; margin-top: 1rem;">
+                &ldquo;The best code is never rewritten not because it’s perfect, but because it’s flexible enough to evolve with the business.&rdquo;
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <div class="work-grid">
+          
+          <!-- Flagship Initiative: 10 Google Chrome Extensions -->
+          <article class="work-card" style="border-color: var(--gold);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="background: color-mix(in srgb, var(--gold) 20%, transparent); color: var(--gold); border-color: var(--gold); margin-bottom: 0;">Flagship Initiative · In Active Build</span>
+              <div class="work-card-api-status" data-card-api="chrome-suite">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Relay: 200 OK</span>
+                <span class="card-api-latency">14ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Google Chrome Extension Pack <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="kicker">10-Extension AI &amp; Developer Productivity Suite</p>
+            <p class="desc">A coordinated suite of <strong>10 purpose-built Google Chrome extensions</strong> targeting developer and AI workflows: (1) Agentic Context Extractor, (2) Live API Request Interceptor &amp; Mock Sandbox, (3) Schema &amp; JWT Decoder HUD, (4) Prompt Engineering Workbench &amp; Diff Lab, (5) Token &amp; Cost Estimator HUD, (6) Smart Document/PDF Scraper, (7) Quick LLM Model Switcher (OpenAI/Gemini/Claude), (8) Webhook Dispatcher &amp; Relay, (9) Cookie &amp; Session Isolation Switcher, and (10) Automated Browser Workflow Recorder.</p>
+            <div class="stat-strip">
+              <span><b>10</b> Extensions</span>
+              <span><b>Manifest V3</b></span>
+              <span><b>Cross-LLM</b> Engine</span>
+            </div>
+            <div class="chip-row">
+              <span class="tag">Chrome Extension API</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Manifest V3</span>
+              <span class="tag">Gemini API</span>
+              <span class="tag">WebSockets</span>
+              <span class="tag">IndexedDB</span>
+            </div>
+          </article>
+
+          <!-- 3-Tier AI Fallback Architecture -->
+          <article class="work-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Personal Reference Architecture</span>
+              <div class="work-card-api-status" data-card-api="ai-gateway">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Gateway: 200 OK</span>
+                <span class="card-api-latency">18ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">3-Tier Fallback AI Gateway <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="kicker">Provider-Agnostic LLM Engine</p>
+            <p class="desc">High-reliability AI orchestration engine implementing automatic tier fallbacks: Level 1 (Exponential backoff &amp; multi-provider retries across OpenAI/Gemini/Claude), Level 2 (RAG grounding with indexed embeddings), and Level 3 (Deterministic rule-based heuristics) ensuring zero hard failures in critical production loops.</p>
+            <div class="chip-row">
+              <span class="tag">Node.js</span>
+              <span class="tag">Gemini Flash</span>
+              <span class="tag">OpenAI</span>
+              <span class="tag">Claude 3.7</span>
+              <span class="tag">LangChain</span>
+            </div>
+          </article>
+
+          <!-- Idempotent Queue Spine -->
+          <article class="work-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Distributed Systems</span>
+              <div class="work-card-api-status" data-card-api="queue-spine">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Worker: 200 OK</span>
+                <span class="card-api-latency">9ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Idempotent Queue Spine <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="kicker">BullMQ + Redis Background Backbone</p>
+            <p class="desc">Robust asynchronous task orchestrator handling heavy OCR extraction, batch email delivery, and multi-tenant webhook dispatches with HMAC signature verification, dead-letter queues, and guaranteed exactly-once processing semantics.</p>
+            <div class="chip-row">
+              <span class="tag">BullMQ</span>
+              <span class="tag">Redis</span>
+              <span class="tag">NestJS</span>
+              <span class="tag">Postal SMTP</span>
+              <span class="tag">HMAC</span>
+            </div>
+          </article>
+
+          <!-- Qeloma Suite items -->
+          <a class="work-card" href="https://github.com/Qeloma/qeloma-verdict" target="_blank" rel="noopener noreferrer">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+              <div class="work-card-api-status" data-card-api="qeloma-verdict">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Audit API: 200 OK</span>
+                <span class="card-api-latency">15ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Qeloma Verdict <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"></path></svg></h3>
+            <p class="desc">Tamper-evident decision engine generating reasoning receipts with cryptographic audit trails — built for EU AI Act transparency and record-keeping.</p>
+            <div class="chip-row"><span class="tag">Node.js</span><span class="tag">Crypto</span><span class="tag">Audit</span></div>
+          </a>
+
+          <a class="work-card" href="https://github.com/Qeloma/qeloma-ocr" target="_blank" rel="noopener noreferrer">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+              <div class="work-card-api-status" data-card-api="qeloma-ocr">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Vision API: 200 OK</span>
+                <span class="card-api-latency">21ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Qeloma OCR <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"></path></svg></h3>
+            <p class="desc">Client-side OCR with per-word confidence scores — Tesseract.js, Gemini vision, or a hybrid of both for intelligent document processing.</p>
+            <div class="chip-row"><span class="tag">OCR</span><span class="tag">Gemini</span><span class="tag">Tesseract.js</span></div>
+          </a>
+
+          <a class="work-card" href="https://github.com/Qeloma/qeloma_lens_studio" target="_blank" rel="noopener noreferrer">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+              <div class="work-card-api-status" data-card-api="qeloma-ocr">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Lens RAG: 200 OK</span>
+                <span class="card-api-latency">24ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Qeloma Lens Studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"></path></svg></h3>
+            <p class="desc">AI-powered document analysis — summarize, extract, and compare over PDFs, DOCX, and images, powered by Gemini with rule-based fallbacks.</p>
+            <div class="chip-row"><span class="tag">Gemini</span><span class="tag">RAG</span><span class="tag">Fallbacks</span></div>
+          </a>
+
+          <a class="work-card" href="https://github.com/Qeloma/qeloma_voice_studio" target="_blank" rel="noopener noreferrer">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+              <div class="work-card-api-status" data-card-api="ai-gateway">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Live Audio: 200 OK</span>
+                <span class="card-api-latency">29ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Qeloma Voice Studio <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"></path></svg></h3>
+            <p class="desc">Real-time voice analyst that answers questions grounded in your own documents via the Gemini Live API with streaming audio.</p>
+            <div class="chip-row"><span class="tag">Gemini Live</span><span class="tag">Voice</span><span class="tag">RAG</span></div>
+          </a>
+
+          <a class="work-card" href="https://github.com/Qeloma/qeloma_shift" target="_blank" rel="noopener noreferrer">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+              <div class="work-card-api-status" data-card-api="qeloma-shift">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">AST Diff: 200 OK</span>
+                <span class="card-api-latency">16ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Qeloma Shift <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"></path></svg></h3>
+            <p class="desc">Semantic change-intelligence engine — diffs contracts and configs at the meaning level, ranks changes by severity, and explains business impact.</p>
+            <div class="chip-row"><span class="tag">NLP</span><span class="tag">Diffing</span><span class="tag">Scoring</span></div>
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Tab 2: Enterprise Systems Under Strict NDA -->
+      <div class="tabpanel" id="panel-ent" role="tabpanel" aria-labelledby="tab-ent" hidden>
+        <div style="background: var(--bg-elevated); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1.2rem 1.4rem; border-radius: 6px; margin-bottom: 2rem;">
+          <p style="font-size: 0.92rem; line-height: 1.6; color: var(--text);">
+            <strong>Confidentiality &amp; Property Notice:</strong> The enterprise projects summarized below are the private, proprietary intellectual property of the respective clients and MicroAgility Services (Pvt) Ltd. All source code is protected under strict Non-Disclosure Agreements (NDA). Architectural patterns and capabilities are presented conceptually without disclosing sensitive business data or private endpoints.
+          </p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card">
+            <span class="role-tag">Backend Lead &amp; Architect</span>
+            <h3>Multi-Tenant AI Recruitment ATS <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="kicker">Enterprise SaaS Platform · Private Client Property (NDA)</p>
+            <p class="desc">Multi-tenant recruitment platform with 3-tier ROOT→PARENT→CHILD tenancy enforced from verified JWT scopes across the entire query layer. Async resume ingestion on BullMQ/Redis with idempotent workers and rule-based fallbacks; recruiter email over self-hosted Postal SMTP; per-tenant career-page domains, customizable hiring pipelines, scorecards, and a tenant-scoped MeiliSearch engine.</p>
+            <div class="stat-strip"><span><b>22</b> modules</span><span><b>200+</b> endpoints</span><span><b>3</b>-tier tenancy</span></div>
+            <div class="chip-row"><span class="tag">NestJS</span><span class="tag">MongoDB</span><span
+                class="tag">Gemini</span><span class="tag">MeiliSearch</span><span class="tag">BullMQ</span><span
+                class="tag">Postal SMTP</span></div>
+          </article>
+          <article class="work-card">
+            <span class="role-tag">Backend Engineer</span>
+            <h3>APAC HRMS &amp; Payroll Core <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="kicker">Multi-Country HRMS · Enterprise NDA</p>
+            <p class="desc">Multi-country HR and payroll platform featuring an advanced RBAC engine (9 roles, 31 permission grants), a Leave Bank with Excel import/export, procurement / timesheet / approval flows, and GCS signed-URL document management with zero-downtime database migrations.</p>
+            <div class="chip-row"><span class="tag">NestJS</span><span class="tag">MySQL</span><span
+                class="tag">GCS</span><span class="tag">RBAC</span><span class="tag">PostgreSQL</span></div>
+          </article>
+          <article class="work-card">
+            <span class="role-tag">Backend Engineer</span>
+            <h3>Enterprise Agile Collaboration Suite <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="kicker">Project Management &amp; Delivery · Enterprise NDA</p>
+            <p class="desc">Agile project-management platform with procurement workflows, team capacity modeling, and real-time WebSocket collaboration for distributed teams, backed by tuned query patterns and Redis caching cutting latency by 90%+.</p>
+            <div class="chip-row"><span class="tag">NestJS</span><span class="tag">GraphQL</span><span
+                class="tag">WebSocket</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span></div>
+          </article>
+          <article class="work-card">
+            <span class="role-tag">Software Engineer</span>
+            <h3>Serverless Cloud Gateway &amp; CRM Layer <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="kicker">Serverless Microservices · Client Projects</p>
+            <p class="desc">AWS Lambda and API Gateway microservices bridging customer SaaS platforms to payment processors and third-party CRMs with OAuth 2.0 authorization flows, eliminating idle server costs.</p>
+            <div class="chip-row"><span class="tag">AWS Lambda</span><span class="tag">API Gateway</span><span class="tag">FastAPI</span><span class="tag">Django DRF</span></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS (ALL 26 VERIFIED CREDENTIALS) -->
+  <section class="section section-band" id="certifications">
+    <div class="container">
+      <div class="section-head" data-reveal="">
+        <div>
+          <h2 class="section-title"><span class="idx">06</span>Certifications &amp; Credentials</h2>
+          <p class="eyebrow" style="margin-top: 0.4rem;">26 Verified Professional Licenses &amp; Badges</p>
+        </div>
+        <p class="section-note">Credentials across Google Cloud, LinkedIn Learning AI, IBM SkillsBuild, and e-smartdata Django</p>
+      </div>
+
+      <!-- Controls: Category Filters & Search Bar -->
+      <div class="cert-controls" data-reveal="">
+        <div class="cert-filters" id="certFilters">
+          <button class="cert-filter-btn active" type="button" data-filter="all">All (26)</button>
+          <button class="cert-filter-btn" type="button" data-filter="ai">Agentic AI &amp; LLMs (13)</button>
+          <button class="cert-filter-btn" type="button" data-filter="cloud">Cloud &amp; Architecture (4)</button>
+          <button class="cert-filter-btn" type="button" data-filter="ibm">IBM Professional (9)</button>
+          <button class="cert-filter-btn" type="button" data-filter="django">Django &amp; Full-Stack (2)</button>
+        </div>
+        <div class="cert-search-box">
+          <svg class="cert-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" class="cert-search-input" id="certSearch" placeholder="Search certifications..." aria-label="Search certifications">
+        </div>
+      </div>
+
+      <!-- 26 Certifications Grid -->
+      <div class="cert-grid-26" id="certGrid">
+        
+        <!-- 1. Google Cloud - Introduction to Generative AI -->
+        <div class="cert-card-item" data-category="ai cloud" data-title="Introduction to Generative AI" data-issuer="Google Cloud" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-google">Google Cloud</span>
+              <span class="cert-date">Jan 2024</span>
+            </div>
+            <h3 class="cert-card-title">Introduction to Generative AI</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">License: G3A7L84CRV82</span>
+            <a class="cert-verify-link" href="https://www.coursera.org/account/accomplishments/verify/G3A7L84CRV82" target="_blank" rel="noopener noreferrer">Verify ↗</a>
+          </div>
+        </div>
+
+        <!-- 2. IBM - Information Technology Fundamentals -->
+        <div class="cert-card-item" data-category="ibm" data-title="Information Technology Fundamentals" data-issuer="IBM" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
+              <span class="cert-date">Feb 2024</span>
+            </div>
+            <h3 class="cert-card-title">Information Technology Fundamentals</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Credly Verified</span>
+            <a class="cert-verify-link" href="https://www.credly.com/badges/fb520a68-f279-4351-b67e-5dddea39b21e/linked_in_profile" target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          </div>
+        </div>
+
+        <!-- 3. IBM - Web Development Fundamentals -->
+        <div class="cert-card-item" data-category="ibm django" data-title="Web Development Fundamentals" data-issuer="IBM" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
+              <span class="cert-date">Feb 2024</span>
+            </div>
+            <h3 class="cert-card-title">Web Development Fundamentals</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Credly Verified</span>
+            <a class="cert-verify-link" href="https://www.credly.com/badges/8200cfe4-fd0b-4f9f-b31d-06569ab8f445/linked_in_profile" target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          </div>
+        </div>
+
+        <!-- 4. IBM - Artificial Intelligence Fundamentals -->
+        <div class="cert-card-item" data-category="ibm ai" data-title="Artificial Intelligence Fundamentals" data-issuer="IBM" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
+              <span class="cert-date">Feb 2024</span>
+            </div>
+            <h3 class="cert-card-title">Artificial Intelligence Fundamentals</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Credly Verified</span>
+            <a class="cert-verify-link" href="https://www.credly.com/badges/37f8ca56-518e-4ffc-8b70-dd29db910bab/linked_in_profile" target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          </div>
+        </div>
+
+        <!-- 5. IBM - Working in a Digital World -->
+        <div class="cert-card-item" data-category="ibm" data-title="Working in a Digital World: Professional Skills" data-issuer="IBM" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
+              <span class="cert-date">Feb 2024</span>
+            </div>
+            <h3 class="cert-card-title">Working in a Digital World: Professional Skills</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Credly Verified</span>
+            <a class="cert-verify-link" href="https://www.credly.com/badges/056c5fb0-f12b-4d81-ba66-68eba97b211b/linked_in_profile" target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          </div>
+        </div>
+
+        <!-- 6. IBM - Cloud Computing Fundamentals -->
+        <div class="cert-card-item" data-category="ibm cloud" data-title="Cloud Computing Fundamentals" data-issuer="IBM" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
+              <span class="cert-date">Feb 2024</span>
+            </div>
+            <h3 class="cert-card-title">Cloud Computing Fundamentals</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Credly Verified</span>
+            <a class="cert-verify-link" href="https://www.credly.com/badges/1da9246d-550e-4463-8926-4dd9b0661602/linked_in_profile" target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          </div>
+        </div>
+
+        <!-- 7. IBM - Cybersecurity Fundamentals -->
+        <div class="cert-card-item" data-category="ibm" data-title="Cybersecurity Fundamentals" data-issuer="IBM" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
+              <span class="cert-date">Feb 2024</span>
+            </div>
+            <h3 class="cert-card-title">Cybersecurity Fundamentals</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Credly Verified</span>
+            <a class="cert-verify-link" href="https://www.credly.com/badges/50af0df4-e762-4d0e-8e0a-71eb809c9588/linked_in_profile" target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          </div>
+        </div>
+
+        <!-- 8. IBM - Explore Emerging Tech -->
+        <div class="cert-card-item" data-category="ibm ai" data-title="Explore Emerging Tech" data-issuer="IBM" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
+              <span class="cert-date">Mar 2024</span>
+            </div>
+            <h3 class="cert-card-title">Explore Emerging Tech</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Credly Verified</span>
+            <a class="cert-verify-link" href="https://www.credly.com/badges/6ed16143-e785-413f-8b7e-77b7466b3c09/linked_in_profile" target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          </div>
+        </div>
+
+        <!-- 9. IBM - Data Fundamentals -->
+        <div class="cert-card-item" data-category="ibm" data-title="Data Fundamentals" data-issuer="IBM" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
+              <span class="cert-date">Mar 2024</span>
+            </div>
+            <h3 class="cert-card-title">Data Fundamentals</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Credly Verified</span>
+            <a class="cert-verify-link" href="https://www.credly.com/badges/dc86df62-aa4b-4aba-96b0-eb15d734e6d0/linked_in_profile" target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          </div>
+        </div>
+
+        <!-- 10. IBM - Job Application Essentials -->
+        <div class="cert-card-item" data-category="ibm" data-title="Job Application Essentials" data-issuer="IBM" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
+              <span class="cert-date">Mar 2024</span>
+            </div>
+            <h3 class="cert-card-title">Job Application Essentials</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Credly Verified</span>
+            <a class="cert-verify-link" href="https://www.credly.com/badges/a074c7cf-3c79-434f-bacb-4d3473525a31/linked_in_profile" target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          </div>
+        </div>
+
+        <!-- 11. e-smartdata - Certified Django Developer -->
+        <div class="cert-card-item" data-category="django" data-title="Certified Django Developer" data-issuer="e-smartdata.org" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-django">e-smartdata.org</span>
+              <span class="cert-date">Oct 2025</span>
+            </div>
+            <h3 class="cert-card-title">Certified Django Developer</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">ESD-037/10/2025</span>
+            <a class="cert-verify-link" href="https://e-smartdata.org" target="_blank" rel="noopener noreferrer">Verify ↗</a>
+          </div>
+        </div>
+
+        <!-- 12. LinkedIn - Build AI Agents with GitHub Copilot -->
+        <div class="cert-card-item" data-category="ai" data-title="Build AI Agents with GitHub Copilot by Microsoft Press" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">Build AI Agents with GitHub Copilot (Microsoft Press)</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Agentic AI</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/9f08ea367800cebf6c82e9487d7257f0bbc4016fc859559e84c86509fae19c91" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 13. LinkedIn - Claude Code 4: Agentic Coding -->
+        <div class="cert-card-item" data-category="ai" data-title="Claude Code 4: Agentic Coding for Professional Developers" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">Claude Code 4: Agentic Coding for Professional Developers</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Agentic Coding</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/0d8eecc5082ca07af8f771083ea29d4c274033e6b3bdc7ef6e7512e35c1a8a85" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 14. LinkedIn - AI Solution Design Patterns -->
+        <div class="cert-card-item" data-category="ai cloud" data-title="AI Solution Design Patterns: Data, Model Training, and Application Architectures" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">AI Solution Design Patterns: Data, Model &amp; Architectures</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">AI Architecture</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/5153e8eb222a84ac8db4d0b35df23426e222f370fc51d77124ca896e77178853" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 15. LinkedIn - Build with AI: Claude Code Subagents -->
+        <div class="cert-card-item" data-category="ai" data-title="Build with AI: Leverage Claude Code Subagents in Software Projects" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">Build with AI: Leverage Claude Code Subagents</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Subagent Systems</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/686155a8b791ce682068645f7623330b27ad95f43c049727ef9af7420d99a560" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 16. LinkedIn - Open to Work in Age of AI -->
+        <div class="cert-card-item" data-category="ai" data-title="Open to Work: Building Key Career Skills in the Age of AI" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">Open to Work: Career Skills in the Age of AI</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Career Mastery</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/760b77c72122181307e3333fe28bcaf5af9aa4c99d874730252860020e79583e" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 17. LinkedIn - AI Foundations: Machine Learning -->
+        <div class="cert-card-item" data-category="ai" data-title="Artificial Intelligence Foundations: Machine Learning" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">AI Foundations: Machine Learning</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">ML Fundamentals</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/67a724f3ca88244c58ab3cc24e540138b817e0ef20ecbbb607dafb7c4bfa62bf" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 18. LinkedIn - AI Foundations: Neural Networks -->
+        <div class="cert-card-item" data-category="ai" data-title="Artificial Intelligence Foundations: Neural Networks" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">AI Foundations: Neural Networks</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Deep Learning</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/c2bceee32e9f413d8546a2b3eab43d53902c487ffab8c8b3ce79e0650cd83632" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 19. LinkedIn - Building AI Products: Implementing Responsible AI -->
+        <div class="cert-card-item" data-category="ai" data-title="Building AI Products: Implementing Responsible AI" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">Building AI Products: Responsible AI</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Product Governance</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/24016fe8759c43e6b2997a9f0c0059fe524647f5a9c892de7b3a229323c35833" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 20. LinkedIn - Introduction to Multimodal Prompting -->
+        <div class="cert-card-item" data-category="ai" data-title="Introduction to Multimodal Prompting for Generative AI" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">Introduction to Multimodal Prompting for GenAI</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Multimodal AI</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/d7bd1ec1c8e2eb1c1a1c2d103d0bf2c4c4a9bb23b080132b2b21a92d600f3ab8" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 21. LinkedIn - Machine Learning with Python: Foundations -->
+        <div class="cert-card-item" data-category="ai django" data-title="Machine Learning with Python: Foundations" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">Machine Learning with Python: Foundations</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Python &amp; ML</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/cbf2a10d5df1e56235b6176b95457be6d671de6cc09ff18d9548c0fcb88d0eb7" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 22. LinkedIn - Introduction to Prompt Engineering -->
+        <div class="cert-card-item" data-category="ai" data-title="Introduction to Prompt Engineering for Generative AI" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">Introduction to Prompt Engineering for GenAI</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Prompt Engineering</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/b7156a3b1d734660c446d32481ca978a7c2c8b40bb319d16e9927a4891f5af41" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 23. LinkedIn - Introduction to AI Orchestration with LangChain & LlamaIndex -->
+        <div class="cert-card-item" data-category="ai" data-title="Introduction to AI Orchestration with LangChain and LlamaIndex" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">AI Orchestration with LangChain &amp; LlamaIndex</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">LangChain / RAG</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/b31067a6d48eff91faac35512ec9eafefafb76da400cc3355d28708d2ce24245" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 24. LinkedIn - Building a Personalized Chatbot with OpenAI and LangChain -->
+        <div class="cert-card-item" data-category="ai" data-title="Building a Personalized Chatbot with OpenAI and LangChain" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">Building a Chatbot with OpenAI &amp; LangChain</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">OpenAI &amp; RAG</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/d76ecea6a0c9ae6d9eac1143c0023d574aa648ee35d2d074c7d93eec8b18c00e" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+        <!-- 25. Google Cloud - Generative AI Specialist Fundamentals -->
+        <div class="cert-card-item" data-category="cloud ai" data-title="Google Cloud Generative AI Fundamentals" data-issuer="Google Cloud" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-google">Google Cloud</span>
+              <span class="cert-date">Jan 2024</span>
+            </div>
+            <h3 class="cert-card-title">Generative AI Fundamentals (Google Cloud)</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">GCP AI Verified</span>
+            <a class="cert-verify-link" href="https://www.coursera.org/account/accomplishments/verify/G3A7L84CRV82" target="_blank" rel="noopener noreferrer">Verify ↗</a>
+          </div>
+        </div>
+
+        <!-- 26. LinkedIn - Agentic AI Architecture Foundations -->
+        <div class="cert-card-item" data-category="ai" data-title="Agentic AI Architecture Foundations: Designing Autonomous AI Systems" data-issuer="LinkedIn" data-reveal="">
+          <div class="cert-card-top">
+            <div class="cert-issuer-row">
+              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
+              <span class="cert-date">Aug 2026</span>
+            </div>
+            <h3 class="cert-card-title">Agentic AI Architecture Foundations: Autonomous AI Systems</h3>
+          </div>
+          <div class="cert-card-bottom">
+            <span class="cert-license-tag">Autonomous Systems</span>
+            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/a7eb686b16f072c55ca832682ca0467ed7235f364d272e8f937813cce050cdc6" target="_blank" rel="noopener noreferrer">Certificate ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GOOGLE DOCS ARCHITECTURAL WORKSPACE -->
+  <section class="section docs-hub-section" id="docs-hub">
+    <div class="container">
+      <div class="docs-hub-header" data-reveal="">
+        <div class="docs-hub-title-group">
+          <span class="docs-badge-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Google Workspace Integration
+          </span>
+          <h2>Google Docs Architectural Workspace</h2>
+          <p class="section-lead">
+            Live Google Docs and Drive integration for drafting, browsing, reviewing, and appending technical specifications, architectural RFCs, and engineering notes directly to your Google account.
+          </p>
+        </div>
+        <div class="docs-hub-actions">
+          <a class="btn btn-outline btn-sm" href="https://docs.google.com" target="_blank" rel="noopener noreferrer">Open Google Docs ↗</a>
+        </div>
+      </div>
+
+      <!-- Authentication Bar / Status Card -->
+      <div class="docs-auth-card" id="docsAuthCard" data-reveal="">
+        <!-- Unauthenticated State -->
+        <div class="docs-auth-unauth-box" id="docsUnauthBox">
+          <div class="docs-auth-unauth-info">
+            <h4>Connect Your Google Account</h4>
+            <p>
+              Sign in to browse, create, and edit architectural RFC documents in Google Docs. Accesses documents with explicit user permissions and in-memory access token security.
+            </p>
+          </div>
+          <div>
+            <button class="gsi-material-button" id="googleSignInBtn" type="button">
+              <div class="gsi-material-button-state"></div>
+              <div class="gsi-material-button-content-wrapper">
+                <div class="gsi-material-button-icon">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" style="display: block;">
+                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
+                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
+                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
+                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
+                    <path fill="none" d="M0 0h48v48H0z"></path>
+                  </svg>
+                </div>
+                <span class="gsi-material-button-contents">Sign in with Google</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Authenticated State (Hidden by Default) -->
+        <div class="docs-user-profile" id="docsUserProfile" style="display: none;">
+          <img class="docs-user-avatar" id="docsUserAvatar" src="assets/portrait-placeholder.svg" alt="Google Account Avatar">
+          <div class="docs-user-details">
+            <h4 id="docsUserName">Google User <span class="docs-status-indicator">● Docs API Ready</span></h4>
+            <p id="docsUserEmail">user@gmail.com</p>
+          </div>
+        </div>
+        <div class="docs-auth-actions" id="docsUserActions" style="display: none;">
+          <button class="btn btn-outline btn-xs" type="button" id="docsRefreshBtn" title="Reload Google Docs list from Google Drive">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+            Refresh Docs
+          </button>
+          <button class="btn btn-outline btn-xs" type="button" id="googleSignOutBtn">
+            Sign Out
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Docs Studio Interface -->
+      <div class="docs-studio-grid" id="docsStudioGrid" data-reveal="">
+        
+        <!-- Left Column: Explorer & Creator -->
+        <div class="docs-explorer-panel">
+          <div class="docs-panel-head">
+            <div class="docs-panel-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#4285F4;">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              Google Docs Explorer
+            </div>
+            <span class="docs-count-badge" id="docsCountBadge">0 Docs</span>
+          </div>
+
+          <!-- Search Filter -->
+          <input type="text" class="docs-search-input" id="docsSearchInput" placeholder="Filter documents by title..." autocomplete="off">
+
+          <!-- New RFC / Doc Creator -->
+          <div class="docs-create-box">
+            <label for="docsTemplateSelect">Draft Architectural Document</label>
+            <select class="docs-template-select" id="docsTemplateSelect">
+              <option value="rag-rfc">Template: 3-Tier AI Fallback RFC</option>
+              <option value="saas-spec">Template: Multi-Tenant SaaS Isolation Spec</option>
+              <option value="queue-guide">Template: BullMQ Idempotent Queue Spec</option>
+              <option value="blank">Template: Custom Blank RFC Document</option>
+            </select>
+            <input type="text" class="docs-title-input" id="docsNewTitleInput" placeholder="Document Title (e.g. RFC-104: Vector Search Architecture)">
+            <button class="btn-create-doc" type="button" id="docsCreateBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Create Google Doc
+            </button>
+          </div>
+
+          <!-- Document List Wrap -->
+          <div class="docs-list-wrap" id="docsListWrap">
+            <div style="text-align:center; padding: 2rem 1rem; color: var(--text-muted); font-size: 0.8rem;" id="docsListPlaceholder">
+              Sign in with Google to load your Google Docs collection.
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Document Viewer & Section Appender -->
+        <div class="docs-viewer-panel" id="docsViewerPanel">
+          <!-- Empty / Initial State -->
+          <div class="docs-viewer-empty" id="docsViewerEmpty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <h3>Google Docs Live Reader &amp; Spec Editor</h3>
+            <p>
+              Select a Google Doc from the explorer or draft a new architectural RFC template to preview its structural paragraphs, word count, and append new technical design sections.
+            </p>
+          </div>
+
+          <!-- Active Document Container (Hidden when no doc selected) -->
+          <div id="docsActiveDocContainer" style="display: none;">
+            <div class="docs-active-header">
+              <div class="docs-active-title-group">
+                <h3 id="docsActiveTitle">Document Title</h3>
+                <div class="docs-active-meta">
+                  <span id="docsActiveModified">Modified: --</span>
+                  <span>·</span>
+                  <span id="docsActiveWordCount">0 words</span>
+                  <span>·</span>
+                  <span id="docsActiveId" style="font-size:0.68rem;opacity:0.8;">ID: --</span>
+                </div>
+              </div>
+              <div class="docs-active-actions">
+                <button class="btn-docs-action btn-docs-voice" type="button" id="docsReadAloudBtn" title="Listen to document content aloud (Docs to Voice TTS)">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  </svg>
+                  <span id="docsReadAloudText">Docs to Voice</span>
+                </button>
+                <button class="btn-docs-action btn-docs-pdf" type="button" id="docsDownloadPdfBtn" title="Export document as PDF via Google Drive API">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span id="docsDownloadPdfText">Download as PDF</span>
+                </button>
+                <a class="btn-docs-action" id="docsOpenExternalBtn" href="#" target="_blank" rel="noopener noreferrer">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                  Open in Google Docs
+                </a>
+                <button class="btn-docs-action btn-docs-delete" type="button" id="docsDeleteBtn" title="Remove document from Drive">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"></polyline>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  </svg>
+                  Trash
+                </button>
+              </div>
+            </div>
+
+            <!-- Dynamic Reading Progress Bar -->
+            <div class="docs-reading-progress-container" id="docsReadingProgressContainer" aria-label="Reading progress">
+              <div class="docs-reading-progress-meta">
+                <span class="docs-reading-label">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                  </svg>
+                  <span>RFC Reading Progress</span>
+                </span>
+                <span class="docs-reading-pct" id="docsReadingPct">0%</span>
+              </div>
+              <div class="docs-reading-progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="docsReadingProgressBar">
+                <div class="docs-reading-progress-fill" id="docsReadingProgressFill" style="width: 0%;"></div>
+              </div>
+            </div>
+
+            <!-- Formatted Content Preview -->
+            <div class="docs-content-preview-wrap" id="docsContentPreview" tabindex="0" aria-label="Google Doc Content Viewer">
+              <p>Loading document content via Google Docs API v1...</p>
+            </div>
+
+            <!-- Append Section Form -->
+            <div class="docs-append-box">
+              <div class="docs-append-head">
+                <div class="docs-append-label-group">
+                  <label for="docsAppendText">Append Architectural Section / Note</label>
+                  <span class="docs-draft-indicator" id="docsDraftStatus">
+                    <span class="draft-dot"></span>
+                    <span id="docsDraftStatusText">Auto-save active</span>
+                  </span>
+                </div>
+                <div class="docs-append-tools">
+                  <button type="button" class="btn-docs-dictate" id="docsDictateBtn" title="Dictate note via microphone (Voice to Docs STT)">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                      <line x1="12" y1="19" x2="12" y2="23"></line>
+                      <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    <span id="docsDictateBtnText">Dictate by Voice</span>
+                  </button>
+                  <button type="button" class="btn-discard-draft" id="docsDiscardDraftBtn" style="display: none;" title="Discard locally saved draft">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    Discard Draft
+                  </button>
+                  <span style="font-size:0.7rem; color:var(--text-muted); font-family:var(--font-mono);">Docs API batchUpdate</span>
+                </div>
+              </div>
+              <textarea class="docs-append-textarea" id="docsAppendText" placeholder="Enter new architectural decision, system requirement, or benchmark note to append to this Google Doc..."></textarea>
+              <div class="docs-append-actions">
+                <span class="docs-safety-note">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#10b981;">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  Safe execution: Prompted with confirmation dialog before document mutation.
+                </span>
+                <button class="btn btn-primary btn-sm" type="button" id="docsAppendSubmitBtn">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                  </svg>
+                  Append to Google Doc
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CUSTOM CONFIRMATION MODAL FOR DESTRUCTIVE / MUTATING WORKSPACE ACTIONS -->
+  <div class="docs-modal-backdrop" id="docsConfirmModal" role="dialog" aria-modal="true" aria-labelledby="docsConfirmTitle" hidden>
+    <div class="docs-modal-card">
+      <div class="docs-modal-header">
+        <div class="docs-modal-icon-warn" id="docsConfirmIcon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <h3 class="docs-modal-title" id="docsConfirmTitle">Confirm Google Docs Action</h3>
+      </div>
+      <div class="docs-modal-body">
+        <p id="docsConfirmMessage">Are you sure you want to perform this operation on your Google Doc?</p>
+        <div class="docs-modal-preview-box" id="docsConfirmPreview" style="display: none;"></div>
+      </div>
+      <div class="docs-modal-footer">
+        <button class="btn btn-outline btn-sm" type="button" id="docsConfirmCancelBtn">Cancel</button>
+        <button class="btn btn-primary btn-sm" type="button" id="docsConfirmActionBtn">Confirm Action</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT & CHANNELS -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <span class="eyebrow" data-reveal="">Get in touch</span>
+      <h2 data-reveal="">Let's build something resilient together.</h2>
+      <p class="contact-mission" data-reveal="">Based in Islamabad, Pakistan, working US / EU / APAC overlap hours. Open to Senior Backend, Solutions Architecture, and AI Platform roles (remote, hybrid, contract, or full-time).</p>
+      
+      <!-- Direct Contact Channels Cards (Clean, Clutter-free) -->
+      <div class="contact-channels-grid" data-reveal="">
+        <a class="channel-card" href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20from%20Portfolio%20-%20Jawad%20Ul%20Hadi" target="_blank" rel="noopener noreferrer">
+          <div class="channel-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="channel-info">
+            <h4>Email via Gmail</h4>
+            <p>jawadulhadicc@gmail.com</p>
+          </div>
+        </a>
+
+        <a class="channel-card" href="https://wa.me/923467248414?text=Hi%20Jawad,%20I%20reviewed%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer">
+          <div class="channel-icon-wrap" style="color: #10b981; background: color-mix(in srgb, #10b981 15%, transparent);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+          </div>
+          <div class="channel-info">
+            <h4>WhatsApp Message</h4>
+            <p>+92 346 7248414</p>
+          </div>
+        </a>
+
+        <a class="channel-card" href="https://linkedin.com/in/jawad-ul-hadi" target="_blank" rel="noopener noreferrer">
+          <div class="channel-icon-wrap" style="color: #0a66c2; background: color-mix(in srgb, #0a66c2 15%, transparent);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </div>
+          <div class="channel-info">
+            <h4>LinkedIn Profile</h4>
+            <p>linkedin.com/in/jawad-ul-hadi</p>
+          </div>
+        </a>
+
+        <a class="channel-card" href="https://github.com/JawadulHadi" target="_blank" rel="noopener noreferrer">
+          <div class="channel-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </div>
+          <div class="channel-info">
+            <h4>GitHub Profile</h4>
+            <p>github.com/JawadulHadi</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="contact-links" data-reveal="">
+        <button class="btn btn-primary js-open-resume" type="button">Open Résumé Preview (HTML &amp; PDF)</button>
+        <a class="btn btn-outline" href="https://maps.google.com/?q=Islamabad,Pakistan" target="_blank" rel="noopener noreferrer">Location: Islamabad, PK</a>
+        <a class="btn btn-outline" href="https://orcid.org/0009-0007-1317-4615" target="_blank" rel="noopener noreferrer">ORCID Profile</a>
+      </div>
+
+      <div class="design-strip" data-reveal="">
+        <span class="eyebrow">Design &amp; Source</span>
+        <button class="figma-link js-open-sitemap" type="button"><span class="dot figma-logo-dot"></span>Site Map</button>
+        <a class="figma-link" href="sitemap.xml" target="_blank"><span class="dot"></span>XML Sitemap</a>
+        <a class="figma-link js-resume-download" href="resume.pdf" target="_blank" download="Jawad_Ul_Hadi_Resume.pdf"><span class="dot"></span>Resume (PDF)</a>
+        <a class="figma-link" href="https://github.com/JawadulHadi" target="_blank" rel="noopener noreferrer"><span class="dot"></span>GitHub Profile</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <span class="monogram" aria-hidden="true">JUH</span>
+      <p>Jawad Ul Hadi — Senior Backend Engineer &amp; Solutions Architect. All enterprise client platforms are proprietary property under NDA. Personal flagships and AI tooling are publicly verifiable.</p>
+      <p class="copyright">© <span id="year">2026</span> Jawad Ul Hadi · Built with intention.</p>
+    </div>
+  </footer>
+
+  <!-- AI VOICE RECRUITER ASSISTANT & AUDIO CONCIERGE -->
+  <div class="voice-widget-container" id="voiceWidgetContainer">
+    <!-- Proactive Voice Greeting Toast -->
+    <div class="voice-greeting-toast" id="voiceGreetingToast" role="alert" aria-live="polite">
+      <div class="voice-toast-header">
+        <div class="voice-toast-title">
+          <span class="voice-equalizer" aria-hidden="true">
+            <span class="voice-bar"></span>
+            <span class="voice-bar"></span>
+            <span class="voice-bar"></span>
+            <span class="voice-bar"></span>
+          </span>
+          AI Voice Concierge
+        </div>
+        <button class="voice-toast-close" type="button" id="closeVoiceToast" aria-label="Dismiss greeting">×</button>
+      </div>
+      <p class="voice-toast-msg">
+        Hi! I'm Jawad's AI Voice Assistant. Would you like an interactive audio tour of his 7+ yrs experience, 3-tier AI fallback architecture, or 26 verified certifications?
+      </p>
+      <div class="voice-toast-actions">
+        <button class="btn btn-primary btn-xs" type="button" id="startVoiceTourBtn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          Listen to Intro
+        </button>
+        <button class="btn btn-outline btn-xs" type="button" id="openVoiceChatBtn">
+          Ask Questions
+        </button>
+      </div>
+    </div>
+
+    <!-- Floating Trigger Pill -->
+    <button class="voice-trigger-btn" type="button" id="voiceTriggerBtn" aria-label="Open AI Voice Assistant">
+      <div class="voice-pulse-ring" aria-hidden="true">
+        <div class="voice-pulse-dot"></div>
+        <div class="voice-pulse-wave"></div>
+      </div>
+      <span class="voice-equalizer" aria-hidden="true">
+        <span class="voice-bar"></span>
+        <span class="voice-bar"></span>
+        <span class="voice-bar"></span>
+        <span class="voice-bar"></span>
+      </span>
+      <span>AI Voice Concierge</span>
+    </button>
+  </div>
+
+  <!-- Expandable AI Voice Panel Drawer (Unified Concierge, Docs-to-Voice & Voice-to-Docs Engine) -->
+  <div class="voice-panel-drawer" id="voicePanelDrawer" role="dialog" aria-labelledby="voicePanelTitle" aria-modal="false">
+    <div class="voice-panel-header">
+      <div class="voice-panel-identity">
+        <div class="voice-panel-avatar">AI</div>
+        <div class="voice-panel-meta">
+          <h4 id="voicePanelTitle">Jawad's Voice &amp; Docs AI</h4>
+          <div class="voice-status-indicator" id="voiceStatusIndicator">
+            <span class="status-live-dot"></span>
+            <span id="voiceStatusText">Ready to speak or listen</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.4rem;">
+        <button class="btn btn-outline btn-xs" type="button" id="voiceMuteToggle" title="Stop Speaking / Mute">
+          ⏹ Stop
+        </button>
+        <button class="pdf-modal-close" type="button" id="closeVoiceDrawer" aria-label="Close voice assistant" style="width:28px; height:28px;">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mode Selector: Concierge Q&A | Docs-to-Voice (TTS) | Voice-to-Docs (STT) -->
+    <div class="voice-drawer-mode-tabs" role="tablist">
+      <button class="voice-mode-tab active" type="button" data-voice-mode="concierge" id="voiceTabConcierge" role="tab" aria-selected="true">
+        🎙️ Concierge
+      </button>
+      <button class="voice-mode-tab" type="button" data-voice-mode="docs-to-voice" id="voiceTabDocsToVoice" role="tab" aria-selected="false">
+        🔊 Docs to Voice
+      </button>
+      <button class="voice-mode-tab" type="button" data-voice-mode="voice-to-docs" id="voiceTabVoiceToDocs" role="tab" aria-selected="false">
+        🗣️ Voice to Docs
+      </button>
+    </div>
+
+    <!-- MODE 1: AI CONCIERGE Q&A -->
+    <div class="voice-mode-panel" id="voiceModeConciergePanel">
+      <div class="voice-panel-body" id="voiceTranscriptBody">
+        <div class="voice-transcript-bubble voice-bubble-ai" id="voiceInitialBubble">
+          👋 <strong>Hello! I'm Jawad's unified AI Voice &amp; Docs Concierge.</strong>
+          <br>Jawad is a <strong>Senior Backend Engineer &amp; Solutions Architect</strong> with 7+ years delivering scalable SaaS, 3-tier fallback AI architectures, and BullMQ/Redis pipelines.
+          <br><br>You can ask questions, <strong>listen to documents aloud (Docs-to-Voice)</strong>, or <strong>dictate architectural notes (Voice-to-Docs)</strong>!
+        </div>
+      </div>
+
+      <div class="voice-quick-pills">
+        <span class="voice-pills-label">Quick Voice &amp; Recruiter Prompts</span>
+        <div class="voice-pills-grid">
+          <button class="voice-pill" type="button" data-prompt="Who is Jawad and what is his background?">🎙️ Summary</button>
+          <button class="voice-pill" type="button" data-prompt="Explain Jawad's 3-Tier AI Fallback Architecture">🎙️ 3-Tier AI</button>
+          <button class="voice-pill" type="button" data-prompt="Tell me about his 7+ years of experience and track record">🎙️ Experience</button>
+          <button class="voice-pill" type="button" data-prompt="What are his 26 verified certifications?">🎙️ 26 Certs</button>
+          <button class="voice-pill" type="button" data-prompt="Tell me about his 10 Chrome Extensions suite">🎙️ Chrome Suite</button>
+          <button class="voice-pill" type="button" data-prompt="Read active Google Doc aloud">🔊 Read Active Doc</button>
+          <button class="voice-pill" type="button" data-prompt="Start dictating note to Google Doc">🗣️ Dictate to Doc</button>
+          <button class="voice-pill" type="button" data-prompt="How can I contact or hire Jawad?">🎙️ Contact / Hire</button>
+        </div>
+      </div>
+
+      <div class="voice-panel-controls">
+        <button class="voice-mic-btn" type="button" id="voiceMicBtn" title="Click to speak (Voice Recognition)" aria-label="Speak into microphone">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </button>
+        <input type="text" class="voice-text-input" id="voiceTextInput" placeholder="Ask anything, or 'read doc', or 'dictate note'..." autocomplete="off">
+        <button class="voice-send-btn" type="button" id="voiceSendBtn" aria-label="Send query">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- MODE 2: DOCS-TO-VOICE (Read Document Aloud via TTS) -->
+    <div class="voice-mode-panel" id="voiceModeDocsToVoicePanel" style="display: none;">
+      <div class="voice-doc-player-container">
+        <div class="voice-doc-player-card">
+          <div class="voice-doc-target-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#4285F4;">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <span id="voiceDocsToVoiceTargetTitle">No Google Doc Selected</span>
+          </div>
+
+          <div class="voice-doc-player-controls">
+            <button class="voice-player-btn-main" type="button" id="voicePlayDocBtn" title="Play / Resume Reading Document">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span id="voicePlayDocBtnText">Read Document</span>
+            </button>
+            <button class="voice-player-btn-sec" type="button" id="voicePauseDocBtn" title="Pause Reading">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
+            </button>
+            <button class="voice-player-btn-sec" type="button" id="voiceStopDocBtn" title="Stop Reading">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="5" y="5" width="14" height="14"></rect>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Speed Controls -->
+          <div class="voice-speed-row">
+            <span class="voice-speed-label">Reading Speed:</span>
+            <div class="voice-speed-group">
+              <button type="button" class="voice-speed-pill" data-rate="0.9">0.9x</button>
+              <button type="button" class="voice-speed-pill active" data-rate="1.0">1.0x</button>
+              <button type="button" class="voice-speed-pill" data-rate="1.25">1.25x</button>
+              <button type="button" class="voice-speed-pill" data-rate="1.5">1.5x</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="voice-doc-reading-display">
+          <div class="voice-doc-reading-head">
+            <span class="voice-doc-reading-label">Live Text Telemetry</span>
+            <span class="voice-doc-reading-stat" id="voiceDocTelemetryStat">0 chars</span>
+          </div>
+          <div class="voice-doc-reading-content" id="voiceDocReadingStream">
+            Select an RFC or document from the Google Docs Studio below, or click 'Read Document' to have the AI voice read aloud its architectural specifications.
+          </div>
+        </div>
+
+        <div class="voice-doc-actions-footer">
+          <button class="btn btn-outline btn-xs" type="button" id="voiceReadIntroAudioBtn">
+            🔊 Listen to Jawad's Intro
+          </button>
+          <a class="btn btn-outline btn-xs" href="#docs-hub" id="voiceJumpToDocsHub">
+            📄 Browse Docs Hub
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODE 3: VOICE-TO-DOCS (Speech-to-Text Dictation straight to Docs) -->
+    <div class="voice-mode-panel" id="voiceModeVoiceToDocsPanel" style="display: none;">
+      <div class="voice-dictate-container">
+        <div class="voice-dictate-header-card">
+          <div class="voice-dictate-target-info">
+            <span class="voice-dictate-label">Target Google Doc:</span>
+            <strong id="voiceVoiceToDocsTargetTitle">Active Document</strong>
+          </div>
+          <button class="voice-dictate-mic-large" type="button" id="voiceDictateLargeMicBtn" title="Toggle Dictation Recording">
+            <div class="voice-dictate-pulse-ring" id="voiceDictatePulseRing"></div>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+          </button>
+          <span class="voice-dictate-status-text" id="voiceDictateStatusText">Click mic to start live dictation</span>
+        </div>
+
+        <div class="voice-dictate-stream-wrap">
+          <div class="voice-dictate-stream-head">
+            <span>Spoken Transcription</span>
+            <button type="button" class="btn-clear-dictate" id="voiceClearDictateBtn">Clear</button>
+          </div>
+          <textarea class="voice-dictate-textarea" id="voiceDictateStreamText" placeholder="Spoken words will appear here in real-time. Speak your architectural decisions, RFC notes, or benchmark results..."></textarea>
+        </div>
+
+        <div class="voice-dictate-actions-footer">
+          <button class="btn btn-primary btn-sm" type="button" id="voiceAppendToDocDirectBtn" style="width:100%;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            Append to Selected Google Doc
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODAL: Authentic Figma-Styled Visual Architecture Sitemap -->
+  <div class="figma-modal-backdrop" id="sitemapModal" role="dialog" aria-modal="true" aria-labelledby="sitemapModalTitle" hidden>
+    <div class="figma-modal-window">
+      <!-- Figma Top Bar -->
+      <div class="figma-bar">
+        <div class="figma-bar-left">
+          <div class="figma-brand-badge">
+            <svg class="figma-color-icon" viewBox="0 0 38 57" fill="none">
+              <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
+              <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
+              <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
+              <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/>
+              <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/>
+            </svg>
+            <span>Figma</span>
+          </div>
+          <div class="figma-breadcrumbs">
+            <span>Portfolio Architecture</span> / <span id="sitemapModalTitle">Visual Sitemap &amp; System Graph</span>
+          </div>
+        </div>
+        <div class="figma-bar-actions">
+          <span class="figma-pill-tag">100% Canvas</span>
+          <span class="figma-pill-tag" style="color:#a78bfa; border-color:#5b21b6;">v2.6.0 Master</span>
+          <a class="btn btn-outline btn-xs" href="sitemap.xml" target="_blank" style="font-size:0.7rem; padding:0.2rem 0.5rem;">Raw XML ↗</a>
+          <button class="figma-close-btn" type="button" id="closeSitemapModal" aria-label="Close Figma Sitemap">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Figma Tabs Bar -->
+      <div class="figma-tabs-strip">
+        <div class="figma-tabs-group">
+          <button class="figma-tab-btn active" type="button" data-figma-tab="canvas">
+            ❖ Architecture Canvas
+          </button>
+          <button class="figma-tab-btn" type="button" data-figma-tab="tokens">
+            🎨 Design Tokens
+          </button>
+          <button class="figma-tab-btn" type="button" data-figma-tab="schema">
+            &lt;/&gt; JSON-LD &amp; XML Schema
+          </button>
+        </div>
+        <div style="font-size:0.72rem; color:#71717a;">
+          Layers: <strong style="color:#d4d4d8;">12 Frames</strong> · <strong style="color:#38bdf8;">8 Anchors</strong> · <strong style="color:#34d399;">2 Services</strong>
+        </div>
+      </div>
+
+      <!-- Figma Stage Container -->
+      <div class="figma-stage">
+        <!-- Left Layers Panel -->
+        <aside class="figma-layers-panel">
+          <div class="figma-panel-title">Layers / Pages</div>
+          <a class="figma-layer-item active js-sitemap-nav" href="#top">
+            <span class="figma-icon-frame">#</span> Viewport Root (1440w)
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="#about">
+            <span class="figma-icon-comp">❖</span> 01_About &amp; CLI Shell
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="#experience">
+            <span class="figma-icon-comp">❖</span> 02_Experience Ledger
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="#skills">
+            <span class="figma-icon-comp">❖</span> 03_Core Competencies
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="#services">
+            <span class="figma-icon-comp">❖</span> 04_Strategic Services
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="#work">
+            <span class="figma-icon-comp">❖</span> 05_Signature Work
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="#certifications">
+            <span class="figma-icon-comp">❖</span> 06_26 Certifications
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="#contact">
+            <span class="figma-icon-comp">❖</span> 07_Direct Contact
+          </a>
+          <div class="figma-panel-title" style="margin-top:0.75rem;">Interactive Subsystems</div>
+          <a class="figma-layer-item js-sitemap-nav" href="#portfolioCli">
+            <span class="figma-icon-frame">◇</span> CLI Terminal Shell
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="#voiceWidgetContainer">
+            <span class="figma-icon-frame">◇</span> Voice Concierge (TTS/STT)
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="agent.html" target="_blank">
+            <span class="figma-icon-frame">◇</span> Code Warrior Agent ↗
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="source/resume.html" target="_blank">
+            <span class="figma-icon-frame">◇</span> Standalone Résumé ↗
+          </a>
+        </aside>
+
+        <!-- Center Artboard Canvas -->
+        <main class="figma-canvas-view">
+          <div id="figmaTabCanvas">
+            <div class="figma-nodes-grid">
+              <!-- Node 1: Hero -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Frame: Hero &amp; Bio
+                  </div>
+                  <span class="figma-badge-200">HTTP 200</span>
+                </div>
+                <p class="figma-node-desc">Senior Backend Engineer &amp; Solutions Architect introduction, mission lede, responsive portrait with high-DPI srcset, and live 4-metric grid.</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">Anchor: #top</span>
+                  <span class="figma-node-tag">Srcset: 480w / 800w</span>
+                  <span class="figma-node-tag">Count-Up: 1.2s Ease</span>
+                </div>
+                <a class="figma-jump-btn js-sitemap-nav" href="#top">Jump to Hero →</a>
+              </div>
+
+              <!-- Node 2: About & CLI -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Frame: About &amp; Terminal
+                  </div>
+                  <span class="figma-badge-200">#about</span>
+                </div>
+                <p class="figma-node-desc">360° Senior Engineer bio, 4 core pillar highlights, and interactive ZSH command-line terminal with typewriter streaming emulation.</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">Interactive CLI</span>
+                  <span class="figma-node-tag">Typewriter Output</span>
+                  <span class="figma-node-tag">Autocompletion</span>
+                </div>
+                <a class="figma-jump-btn js-sitemap-nav" href="#about">Jump to About →</a>
+              </div>
+
+              <!-- Node 3: Experience Ledger -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Frame: Experience Ledger
+                  </div>
+                  <span class="figma-badge-200">#experience</span>
+                </div>
+                <p class="figma-node-desc">Chronological production history: MicroAgility Backend Lead (2024–2026), MicroAgility Backend Engineer (2022–2024), and Market Icon (2018–2022).</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">Multi-Tenant ATS</span>
+                  <span class="figma-node-tag">BullMQ Queues</span>
+                  <span class="figma-node-tag">3-Tier Fallback</span>
+                </div>
+                <a class="figma-jump-btn js-sitemap-nav" href="#experience">Jump to Experience →</a>
+              </div>
+
+              <!-- Node 4: Skills Matrix -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Frame: Core Competencies
+                  </div>
+                  <span class="figma-badge-200">#skills</span>
+                </div>
+                <p class="figma-node-desc">8 structured competency groups: Languages &amp; Frameworks, AI Engineering, Data/Search, Async Queues, Cloud/DevOps, Security, and Integrations.</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">NestJS / Python</span>
+                  <span class="figma-node-tag">PostgreSQL / Redis</span>
+                  <span class="figma-node-tag">AWS / GCP / Azure</span>
+                </div>
+                <a class="figma-jump-btn js-sitemap-nav" href="#skills">Jump to Skills →</a>
+              </div>
+
+              <!-- Node 5: Services -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Frame: Strategic Services
+                  </div>
+                  <span class="figma-badge-200">#services</span>
+                </div>
+                <p class="figma-node-desc">4 strategic consulting and engineering offerings: Multi-Tenant SaaS, Provider-Agnostic AI Engines, Async Queues, and Database Optimization.</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">Architecture</span>
+                  <span class="figma-node-tag">Zero Downtime</span>
+                  <span class="figma-node-tag">RAG Pipelines</span>
+                </div>
+                <a class="figma-jump-btn js-sitemap-nav" href="#services">Jump to Services →</a>
+              </div>
+
+              <!-- Node 6: Signature Work -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Frame: Signature Work
+                  </div>
+                  <span class="figma-badge-200">#work</span>
+                </div>
+                <p class="figma-node-desc">Tabbed showcase featuring Enterprise Client Platforms (ATS &amp; HRMS under NDA) and Open Source Developer Suite (10 Chrome Extensions).</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">10 Chrome Extensions</span>
+                  <span class="figma-node-tag">ATS 22 Modules</span>
+                  <span class="figma-node-tag">Animated Tab Pill</span>
+                </div>
+                <a class="figma-jump-btn js-sitemap-nav" href="#work">Jump to Work →</a>
+              </div>
+
+              <!-- Node 7: Certifications -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Frame: 26 Certifications
+                  </div>
+                  <span class="figma-badge-200">#certifications</span>
+                </div>
+                <p class="figma-node-desc">Complete catalog of 26 verified credentials: Google Cloud Generative AI, Django Developer, 9 IBM SkillsBuild, and 15 LinkedIn Learning badges.</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">Google Cloud Verified</span>
+                  <span class="figma-node-tag">9 IBM Badges</span>
+                  <span class="figma-node-tag">15 LinkedIn Badges</span>
+                </div>
+                <a class="figma-jump-btn js-sitemap-nav" href="#certifications">Jump to Certifications →</a>
+              </div>
+
+              <!-- Node 8: Direct Contact -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Frame: Direct Contact
+                  </div>
+                  <span class="figma-badge-200">#contact</span>
+                </div>
+                <p class="figma-node-desc">Real-world contact hub: Direct Gmail compose, WhatsApp instant chat, LinkedIn, ORCID, GitHub, and Résumé preview triggers.</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">jawadulhadicc@gmail.com</span>
+                  <span class="figma-node-tag">+92 346 7248414</span>
+                  <span class="figma-node-tag">Islamabad (PK)</span>
+                </div>
+                <a class="figma-jump-btn js-sitemap-nav" href="#contact">Jump to Contact →</a>
+              </div>
+
+              <!-- Node 9: AI Voice Recruiter -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Component: Voice Concierge
+                  </div>
+                  <span class="figma-badge-200">Live Audio</span>
+                </div>
+                <p class="figma-node-desc">SpeechSynthesis TTS engine with dynamic voice selection, animated 4-bar equalizer, and SpeechRecognition STT for hands-free voice interaction.</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">SpeechSynthesis (TTS)</span>
+                  <span class="figma-node-tag">SpeechRecognition (STT)</span>
+                  <span class="figma-node-tag">Audio Equalizer</span>
+                </div>
+                <button class="figma-jump-btn" type="button" onclick="document.getElementById('closeSitemapModal').click(); document.getElementById('voiceTriggerBtn').click();">Launch Voice Concierge →</button>
+              </div>
+
+              <!-- Node 10: Code Warrior Standalone Agent -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Page: Code Warrior Agent
+                  </div>
+                  <span class="figma-badge-200">Standalone App</span>
+                </div>
+                <p class="figma-node-desc">Dedicated full-screen developer agent interface with prompt chips, Anthropic Claude intelligence integration, and dark terminal aesthetic.</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">agent.html</span>
+                  <span class="figma-node-tag">Claude Sonnet API</span>
+                  <span class="figma-node-tag">Dual Execution</span>
+                </div>
+                <a class="figma-jump-btn" href="agent.html" target="_blank">Open Code Warrior Agent ↗</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tokens Tab Panel -->
+          <div id="figmaTabTokens" style="display:none;">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.2rem;">
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">🎨 Primary &amp; Semantic Colors</div>
+                </div>
+                <div class="figma-token-section">
+                  <div class="figma-token-row">
+                    <span class="figma-token-name"><span class="figma-token-swatch" style="background:#b9843f;"></span>--gold (Primary Accent)</span>
+                    <span class="figma-token-val">#b9843f</span>
+                  </div>
+                  <div class="figma-token-row">
+                    <span class="figma-token-name"><span class="figma-token-swatch" style="background:#0d1726;"></span>--bg (Base Navy Canvas)</span>
+                    <span class="figma-token-val">#0d1726</span>
+                  </div>
+                  <div class="figma-token-row">
+                    <span class="figma-token-name"><span class="figma-token-swatch" style="background:#122036;"></span>--bg-elevated (Elevated Surface)</span>
+                    <span class="figma-token-val">#122036</span>
+                  </div>
+                  <div class="figma-token-row">
+                    <span class="figma-token-name"><span class="figma-token-swatch" style="background:#10b981;"></span>--teal (Online / Production)</span>
+                    <span class="figma-token-val">#10b981</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">🔤 Typography &amp; Scale</div>
+                </div>
+                <div class="figma-token-section">
+                  <div class="figma-token-row">
+                    <span class="figma-token-name">--font-display</span>
+                    <span class="figma-token-val">Syne / JetBrains Mono</span>
+                  </div>
+                  <div class="figma-token-row">
+                    <span class="figma-token-name">--font-body</span>
+                    <span class="figma-token-val">Plus Jakarta Sans</span>
+                  </div>
+                  <div class="figma-token-row">
+                    <span class="figma-token-name">--font-serif</span>
+                    <span class="figma-token-val">Newsreader Italic</span>
+                  </div>
+                  <div class="figma-token-row">
+                    <span class="figma-token-name">Major Headings</span>
+                    <span class="figma-token-val">clamp(2.6rem, 6.5vw, 4rem)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Schema Tab Panel -->
+          <div id="figmaTabSchema" style="display:none;">
+            <pre class="figma-raw-xml" style="display:block;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://jawadulhadiportfolio.vercel.app/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-08-14&lt;/lastmod&gt;
+    &lt;changefreq&gt;weekly&lt;/changefreq&gt;
+    &lt;priority&gt;1.00&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jawadulhadiportfolio.vercel.app/#about&lt;/loc&gt;&lt;priority&gt;0.90&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jawadulhadiportfolio.vercel.app/#experience&lt;/loc&gt;&lt;priority&gt;0.95&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jawadulhadiportfolio.vercel.app/#skills&lt;/loc&gt;&lt;priority&gt;0.85&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jawadulhadiportfolio.vercel.app/#services&lt;/loc&gt;&lt;priority&gt;0.80&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jawadulhadiportfolio.vercel.app/#work&lt;/loc&gt;&lt;priority&gt;0.90&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jawadulhadiportfolio.vercel.app/#certifications&lt;/loc&gt;&lt;priority&gt;0.85&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jawadulhadiportfolio.vercel.app/#contact&lt;/loc&gt;&lt;priority&gt;0.85&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jawadulhadiportfolio.vercel.app/agent.html&lt;/loc&gt;&lt;priority&gt;0.80&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://jawadulhadiportfolio.vercel.app/source/resume.html&lt;/loc&gt;&lt;priority&gt;0.85&lt;/priority&gt;&lt;/url&gt;
+&lt;/urlset&gt;</pre>
+          </div>
+        </main>
+
+        <!-- Right Properties Panel -->
+        <aside class="figma-props-panel">
+          <div class="figma-panel-title">Inspector / Specs</div>
+          <div class="figma-token-section">
+            <div style="font-size:0.7rem; color:#71717a; text-transform:uppercase; font-weight:700;">Layout Constraints</div>
+            <div class="figma-token-row">
+              <span class="figma-token-name">Max Content Width</span>
+              <span class="figma-token-val">1160px</span>
+            </div>
+            <div class="figma-token-row">
+              <span class="figma-token-name">Hero Grid</span>
+              <span class="figma-token-val">1.15fr : 0.85fr</span>
+            </div>
+            <div class="figma-token-row">
+              <span class="figma-token-name">Metrics Grid</span>
+              <span class="figma-token-val">repeat(4, 1fr)</span>
+            </div>
+          </div>
+          <div class="figma-token-section">
+            <div style="font-size:0.7rem; color:#71717a; text-transform:uppercase; font-weight:700;">Theme Engine</div>
+            <div class="figma-token-row">
+              <span class="figma-token-name">Default Mode</span>
+              <span class="figma-token-val">Dark Luxury</span>
+            </div>
+            <div class="figma-token-row">
+              <span class="figma-token-name">Toggle Target</span>
+              <span class="figma-token-val">data-theme</span>
+            </div>
+            <div class="figma-token-row">
+              <span class="figma-token-name">Storage</span>
+              <span class="figma-token-val">localStorage</span>
+            </div>
+          </div>
+          <div class="figma-token-section">
+            <div style="font-size:0.7rem; color:#71717a; text-transform:uppercase; font-weight:700;">Audio Engine</div>
+            <div class="figma-token-row">
+              <span class="figma-token-name">Synthesis</span>
+              <span class="figma-token-val">Web Speech API</span>
+            </div>
+            <div class="figma-token-row">
+              <span class="figma-token-name">STT Recog</span>
+              <span class="figma-token-val">webkitSpeech</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Résumé Previewer (HTML & PDF) -->
+  <div class="pdf-modal-backdrop" id="resumeModal" role="dialog" aria-modal="true" aria-labelledby="resumeModalTitle" hidden>
+    <div class="pdf-modal-card">
+      <div class="pdf-modal-header">
+        <div class="pdf-modal-title-group">
+          <span class="pdf-modal-badge">Official Document</span>
+          <h3 id="resumeModalTitle">Jawad Ul Hadi — Résumé Preview</h3>
+        </div>
+        <div class="pdf-modal-actions">
+          <a class="btn btn-outline btn-sm" href="source/resume.html" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            Open HTML Version
+          </a>
+          <a class="btn btn-primary btn-sm" href="resume.pdf" download="Jawad_Ul_Hadi_Resume.pdf" id="modalDownloadBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download PDF
+          </a>
+          <button class="pdf-modal-close" type="button" id="closeResumeModal" aria-label="Close modal">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="pdf-modal-body">
+        <iframe id="pdfFrame" src="about:blank" data-src="source/resume.html" title="Jawad Ul Hadi Résumé" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- D3.js for Real-Time Latency Curve Visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
+
+  <!-- Google Firebase Auth & Workspace Provider Module -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
+    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js';
+
+    let app = null;
+    let auth = null;
+    let cachedAccessToken = null;
+    let currentUser = null;
+    let authChangeListeners = [];
+
+    const SCOPES = [
+      'https://www.googleapis.com/auth/documents',
+      'https://www.googleapis.com/auth/documents.readonly',
+      'https://www.googleapis.com/auth/drive',
+      'https://www.googleapis.com/auth/drive.file',
+      'https://www.googleapis.com/auth/drive.readonly'
+    ];
+
+    const provider = new GoogleAuthProvider();
+    SCOPES.forEach(scope => provider.addScope(scope));
+    provider.setCustomParameters({ prompt: 'select_account' });
+
+    async function initFirebase() {
+      try {
+        let config;
+        try {
+          const res = await fetch('/firebase-applet-config.json');
+          if (res.ok) {
+            config = await res.json();
+          }
+        } catch (e) {
+          console.warn('Could not fetch config from file, using fallback');
+        }
+
+        if (!config) {
+          config = {
+            projectId: "bamboo-axis-6c9s2",
+            appId: "1:27149464943:web:b46724483fed08aef5a49a",
+            apiKey: "AIzaSyCS6tZP8OX1QNptOWHqh62HTLyJ8awpVnU",
+            authDomain: "bamboo-axis-6c9s2.firebaseapp.com",
+            storageBucket: "bamboo-axis-6c9s2.firebasestorage.app",
+            messagingSenderId: "27149464943"
+          };
+        }
+
+        app = initializeApp(config);
+        auth = getAuth(app);
+
+        onAuthStateChanged(auth, (user) => {
+          currentUser = user;
+          if (!user) {
+            cachedAccessToken = null;
+          }
+          authChangeListeners.forEach(fn => fn(user, cachedAccessToken));
+        });
+      } catch (err) {
+        console.error('Firebase Auth initialization error:', err);
+      }
+    }
+
+    window.GoogleDocsAuth = {
+      initAuth(callback) {
+        if (typeof callback === 'function') {
+          authChangeListeners.push(callback);
+          if (auth && currentUser !== undefined) {
+            callback(currentUser, cachedAccessToken);
+          }
+        }
+      },
+      async googleSignIn() {
+        if (!auth) await initFirebase();
+        try {
+          const result = await signInWithPopup(auth, provider);
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          if (credential && credential.accessToken) {
+            cachedAccessToken = credential.accessToken;
+          }
+          currentUser = result.user;
+          authChangeListeners.forEach(fn => fn(currentUser, cachedAccessToken));
+          return { user: result.user, accessToken: cachedAccessToken };
+        } catch (err) {
+          console.error('Google Sign In failed:', err);
+          throw err;
+        }
+      },
+      async logout() {
+        if (auth) {
+          await signOut(auth);
+        }
+        currentUser = null;
+        cachedAccessToken = null;
+        authChangeListeners.forEach(fn => fn(null, null));
+      },
+      getAccessToken() {
+        return cachedAccessToken;
+      },
+      getUser() {
+        return currentUser;
+      }
+    };
+
+    // Auto-init on page load
+    initFirebase();
+  </script>
+
+  <script src="assets/app.js" defer></script>
+</body>
+
+</html>

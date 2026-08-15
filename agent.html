@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jawad Ul Hadi — Code Warrior AI Agent</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface2: #16161f;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-active: rgba(99, 179, 255, 0.35);
+      --accent: #63b3ff;
+      --accent2: #ff6b35;
+      --accent3: #7cffa4;
+      --text: #e8e8f0;
+      --text-muted: #7a7a8c;
+      --text-dim: #3a3a4a;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Syne', sans-serif;
+      --glow: 0 0 40px rgba(99, 179, 255, 0.12);
+      --glow-accent: 0 0 20px rgba(99, 179, 255, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grid noise texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(99, 179, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99, 179, 255, 0.015) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .layout {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      min-height: 100vh;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      border-right: 1px solid var(--border);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .profile-header {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .avatar-wrap {
+      width: 68px;
+      height: 68px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent), #3a6bcc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1px;
+      box-shadow: var(--glow-accent);
+    }
+
+    .name {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+
+    .role {
+      font-size: 12px;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    .org {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: var(--mono);
+    }
+
+    .tag-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(124, 255, 164, 0.3);
+      color: var(--accent3);
+      background: rgba(124, 255, 164, 0.05);
+      margin-top: 4px;
+    }
+
+    .nav-section {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s;
+      text-align: left;
+      width: 100%;
+    }
+
+    .nav-btn:hover {
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .nav-btn.active {
+      background: rgba(99, 179, 255, 0.1);
+      color: var(--accent);
+      border: 1px solid var(--border-active);
+    }
+
+    .nav-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    .nav-btn.active .nav-dot {
+      opacity: 1;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .portfolio-back-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+
+    .portfolio-back-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .linkedin-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 8px;
+      background: rgba(10, 102, 194, 0.15);
+      border: 1px solid rgba(10, 102, 194, 0.3);
+      color: #5ba5e8;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+
+    .linkedin-btn:hover {
+      background: rgba(10, 102, 194, 0.25);
+      border-color: rgba(10, 102, 194, 0.5);
+    }
+
+    /* ── MAIN ── */
+    .main {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Panel sections */
+    .panel {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .panel.active {
+      display: flex;
+    }
+
+    /* ── CHAT PANEL ── */
+    .chat-topbar {
+      padding: 20px 32px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .online-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent3);
+      box-shadow: 0 0 8px var(--accent3);
+      flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.5
+      }
+    }
+
+    .topbar-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: var(--mono);
+    }
+
+    .topbar-text strong {
+      color: var(--text);
+    }
+
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      scroll-behavior: smooth;
+    }
+
+    .messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .messages::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    .msg {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 82%;
+      animation: fadeUp 0.3s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .msg.agent {
+      align-self: flex-start;
+    }
+
+    .msg.user {
+      align-self: flex-end;
+    }
+
+    .msg-sender {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+
+    .msg.user .msg-sender {
+      text-align: right;
+    }
+
+    .msg-bubble {
+      padding: 14px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .msg.agent .msg-bubble {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px 12px 12px 12px;
+      color: var(--text);
+    }
+
+    .msg.user .msg-bubble {
+      background: rgba(99, 179, 255, 0.1);
+      border: 1px solid var(--border-active);
+      border-radius: 12px 4px 12px 12px;
+      color: var(--text);
+    }
+
+    .msg-bubble code {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: rgba(99, 179, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--accent);
+    }
+
+    .msg-bubble strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .msg-bubble em {
+      color: var(--accent3);
+      font-style: normal;
+    }
+
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px 12px 12px 12px;
+      width: fit-content;
+    }
+
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      animation: typingBounce 1.2s ease-in-out infinite;
+    }
+
+    .typing-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typingBounce {
+
+      0%,
+      60%,
+      100% {
+        transform: translateY(0)
+      }
+
+      30% {
+        transform: translateY(-6px);
+        background: var(--accent);
+      }
+    }
+
+    .chips-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 32px 16px;
+    }
+
+    .chip {
+      padding: 7px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .chip:hover {
+      border-color: var(--border-active);
+      color: var(--accent);
+      background: rgba(99, 179, 255, 0.06);
+    }
+
+    .input-row {
+      padding: 16px 32px 28px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+      border-top: 1px solid var(--border);
+    }
+
+    .chat-input {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 14px;
+      resize: none;
+      min-height: 48px;
+      max-height: 140px;
+      transition: border-color 0.15s;
+      outline: none;
+      line-height: 1.5;
+    }
+
+    .chat-input:focus {
+      border-color: var(--border-active);
+      box-shadow: var(--glow);
+    }
+
+    .chat-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .send-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      background: var(--accent);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      font-size: 18px;
+    }
+
+    .send-btn:hover {
+      background: #84c4ff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(99, 179, 255, 0.3);
+    }
+
+    .send-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── ABOUT PANEL ── */
+    .about-content {
+      padding: 40px 40px;
+      overflow-y: auto;
+    }
+
+    .section-head {
+      margin-bottom: 32px;
+    }
+
+    .section-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    .section-title span {
+      color: var(--accent2);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .info-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: border-color 0.2s;
+    }
+
+    .info-card:hover {
+      border-color: var(--border-active);
+    }
+
+    .info-card .ic-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .info-card .ic-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .info-card .ic-value .hl {
+      color: var(--accent);
+    }
+
+    .skills-section {
+      margin-bottom: 32px;
+    }
+
+    .skills-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-pill {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid;
+      transition: all 0.15s;
+      cursor: default;
+    }
+
+    .skill-pill.s-blue {
+      color: var(--accent);
+      border-color: rgba(99, 179, 255, 0.3);
+      background: rgba(99, 179, 255, 0.05);
+    }
+
+    .skill-pill.s-green {
+      color: var(--accent3);
+      border-color: rgba(124, 255, 164, 0.3);
+      background: rgba(124, 255, 164, 0.05);
+    }
+
+    .skill-pill.s-orange {
+      color: var(--accent2);
+      border-color: rgba(255, 107, 53, 0.3);
+      background: rgba(255, 107, 53, 0.05);
+    }
+
+    .skill-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    .certs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+
+    .cert-card:hover {
+      border-color: rgba(255, 107, 53, 0.35);
+    }
+
+    .cert-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      background: rgba(255, 107, 53, 0.1);
+      border: 1px solid rgba(255, 107, 53, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .cert-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+
+    .cert-org {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ── PROJECTS PANEL ── */
+    .projects-content {
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-active);
+      transform: translateY(-2px);
+      box-shadow: var(--glow);
+    }
+
+    .project-type {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .project-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .ptag {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(99, 179, 255, 0.07);
+      border: 1px solid rgba(99, 179, 255, 0.15);
+      color: var(--accent);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 820px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 24px 20px;
+      }
+
+      .about-grid,
+      .certs-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-content,
+      .projects-content {
+        padding: 24px 20px;
+      }
+
+      .messages {
+        padding: 20px;
+      }
+
+      .input-row {
+        padding: 12px 20px 20px;
+      }
+
+      .chips-wrap {
+        padding: 0 20px 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="profile-header">
+        <div class="avatar-wrap">JH</div>
+        <div>
+          <div class="name">Jawad Ul Hadi</div>
+          <div class="role">// sr.backend_lead</div>
+          <div class="org">@ Microagility · Asia & Pacific</div>
+          <div class="tag-badge">⚔ Code Warrior</div>
+        </div>
+      </div>
+
+      <nav class="nav-section">
+        <div class="nav-label">Navigate</div>
+        <button class="nav-btn active" onclick="showPanel('chat', this)">
+          <span class="nav-dot"></span> AI Agent Chat
+        </button>
+        <button class="nav-btn" onclick="showPanel('about', this)">
+          <span class="nav-dot"></span> Profile &amp; Skills
+        </button>
+        <button class="nav-btn" onclick="showPanel('projects', this)">
+          <span class="nav-dot"></span> Project Types
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a class="portfolio-back-btn" href="/">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Main Portfolio
+        </a>
+        <a class="linkedin-btn" href="https://www.linkedin.com/in/jawad-ul-hadi-5316b1261/" target="_blank"
+          rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg>
+          linkedin/jawad-ul-hadi
+        </a>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+      <!-- CHAT PANEL -->
+      <div class="panel active" id="panel-chat">
+        <div class="chat-topbar">
+          <div class="online-dot"></div>
+          <div class="topbar-text"><strong>Jawad's AI Agent</strong> — ask me anything about his work, stack, or
+            availability</div>
+        </div>
+        <div class="messages" id="messages">
+          <div class="msg agent">
+            <div class="msg-sender">JAWAD_AGENT · NOW</div>
+            <div class="msg-bubble">
+              Hey — I'm Jawad's AI agent. <strong>Sr. Backend Lead</strong> at Microagility, Asia &amp; Pacific.<br><br>
+              I'm built to represent him to fellow developers — so skip the pleasantries, ask me something real. Stack
+              decisions, architecture philosophy, AI/LLM integration work, what he's shipped — whatever you want to
+              know.<br><br>
+              <em>What brings you here?</em>
+            </div>
+          </div>
+        </div>
+
+        <div class="chips-wrap" id="chips">
+          <div class="chip" onclick="sendChip(this)">What's your core stack?</div>
+          <div class="chip" onclick="sendChip(this)">What AI/LLM work have you done?</div>
+          <div class="chip" onclick="sendChip(this)">Describe your architecture philosophy</div>
+          <div class="chip" onclick="sendChip(this)">What certifications do you hold?</div>
+          <div class="chip" onclick="sendChip(this)">Open to collaboration?</div>
+          <div class="chip" onclick="sendChip(this)">What kind of projects can you take on?</div>
+        </div>
+
+        <div class="input-row">
+          <textarea class="chat-input" id="chat-input" placeholder="Ask Jawad anything..." rows="1"
+            onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+          <button class="send-btn" id="send-btn" onclick="sendMessage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ABOUT PANEL -->
+      <div class="panel" id="panel-about">
+        <div class="about-content">
+          <div class="section-head">
+            <div class="section-eyebrow">// profile.json</div>
+            <div class="section-title">The <span>Code Warrior</span><br>with a Taste for<br>Customization.</div>
+          </div>
+
+          <div class="about-grid">
+            <div class="info-card">
+              <div class="ic-label">Current Role</div>
+              <div class="ic-value"><span class="hl">Sr. Backend Lead</span><br>Microagility · Asia &amp; Pacific</div>
+            </div>
+            <div class="info-card">
+              <div class="ic-label">Specialization</div>
+              <div class="ic-value">Scalable backend systems, Microservices &amp; AI/LLM integration</div>
+            </div>
+            <div class="info-card">
+              <div class="ic-label">Philosophy</div>
+              <div class="ic-value">Robust, clean architecture with room for tailored, user-specific solutions — never
+                generic fixes.</div>
+            </div>
+            <div class="info-card">
+              <div class="ic-label">Region</div>
+              <div class="ic-value">Asia &amp; Pacific<br><span class="hl">Open to remote collaboration</span></div>
+            </div>
+          </div>
+
+          <div class="skills-section">
+            <div class="skills-title">// core_stack</div>
+            <div class="skills-grid">
+              <span class="skill-pill s-blue">NestJS</span>
+              <span class="skill-pill s-blue">Node.js</span>
+              <span class="skill-pill s-blue">TypeScript</span>
+              <span class="skill-pill s-orange">Python</span>
+              <span class="skill-pill s-orange">Django</span>
+              <span class="skill-pill s-green">AWS Cloud</span>
+              <span class="skill-pill s-green">Microservices</span>
+              <span class="skill-pill s-green">Docker</span>
+              <span class="skill-pill s-blue">PostgreSQL</span>
+              <span class="skill-pill s-blue">MongoDB</span>
+              <span class="skill-pill s-orange">AI / LLM Integration</span>
+              <span class="skill-pill s-orange">REST APIs</span>
+              <span class="skill-pill s-green">System Design</span>
+              <span class="skill-pill s-blue">Database Architecture</span>
+            </div>
+          </div>
+
+          <div class="skills-section">
+            <div class="skills-title">// certifications</div>
+            <div class="certs-grid">
+              <div class="cert-card">
+                <div class="cert-icon">☁</div>
+                <div>
+                  <div class="cert-name">AWS Certified Solutions Architect</div>
+                  <div class="cert-org">Amazon Web Services</div>
+                </div>
+              </div>
+              <div class="cert-card">
+                <div class="cert-icon">⚡</div>
+                <div>
+                  <div class="cert-name">Backend Architecture &amp; Microservices</div>
+                  <div class="cert-org">Professional Certification</div>
+                </div>
+              </div>
+              <div class="cert-card">
+                <div class="cert-icon">🤖</div>
+                <div>
+                  <div class="cert-name">AI/LLM Integration Specialist</div>
+                  <div class="cert-org">Applied AI Engineering</div>
+                </div>
+              </div>
+              <div class="cert-card">
+                <div class="cert-icon">🗄</div>
+                <div>
+                  <div class="cert-name">Database Design &amp; Optimization</div>
+                  <div class="cert-org">Advanced Database Engineering</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:12px; font-family:var(--mono); font-size:11px; color:var(--text-dim);">
+              * For verified certs, visit <a href="https://www.linkedin.com/in/jawad-ul-hadi-5316b1261/" target="_blank"
+                style="color:var(--accent); text-decoration:none;">LinkedIn profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS PANEL -->
+      <div class="panel" id="panel-projects">
+        <div class="projects-content">
+          <div class="section-head">
+            <div class="section-eyebrow">// project_types.map()</div>
+            <div class="section-title">What <span>I Build</span></div>
+          </div>
+
+          <div class="projects-grid">
+            <div class="project-card">
+              <div class="project-type">Backend Architecture</div>
+              <div class="project-name">Enterprise Microservices Platforms</div>
+              <div class="project-desc">Design and implementation of scalable, distributed backend systems with
+                event-driven architecture, service mesh, and API gateways.</div>
+              <div class="project-tags">
+                <span class="ptag">NestJS</span><span class="ptag">Docker</span><span class="ptag">AWS</span><span
+                  class="ptag">RabbitMQ</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-type">AI / LLM Engineering</div>
+              <div class="project-name">AI-Powered Business Agents</div>
+              <div class="project-desc">Integration of LLMs (GPT-4, Claude, custom models) into enterprise workflows —
+                RAG pipelines, AI agents, and intelligent automation backends.</div>
+              <div class="project-tags">
+                <span class="ptag">LangChain</span><span class="ptag">OpenAI</span><span class="ptag">RAG</span><span
+                  class="ptag">Vector DBs</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-type">Cloud &amp; DevOps</div>
+              <div class="project-name">AWS Cloud Infrastructure</div>
+              <div class="project-desc">Full cloud architecture design: serverless functions, ECS/EKS deployments, CI/CD
+                pipelines, cost-optimized infrastructure-as-code.</div>
+              <div class="project-tags">
+                <span class="ptag">AWS</span><span class="ptag">Terraform</span><span class="ptag">GitHub
+                  Actions</span><span class="ptag">Lambda</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-type">API &amp; Integration</div>
+              <div class="project-name">High-Performance REST &amp; GraphQL APIs</div>
+              <div class="project-desc">Production-grade APIs with authentication, rate limiting, caching layers, and
+                third-party integrations built for scale and maintainability.</div>
+              <div class="project-tags">
+                <span class="ptag">REST</span><span class="ptag">GraphQL</span><span class="ptag">JWT</span><span
+                  class="ptag">Redis</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-type">Database Engineering</div>
+              <div class="project-name">Database Architecture &amp; Optimization</div>
+              <div class="project-desc">Schema design, query optimization, replication strategies, and migration
+                planning for PostgreSQL, MongoDB, and multi-database systems.</div>
+              <div class="project-tags">
+                <span class="ptag">PostgreSQL</span><span class="ptag">MongoDB</span><span
+                  class="ptag">Redis</span><span class="ptag">Prisma</span>
+              </div>
+            </div>
+
+            <div class="project-card">
+              <div class="project-type">Python / Django</div>
+              <div class="project-name">Python Backend Systems &amp; Automation</div>
+              <div class="project-desc">Django REST framework APIs, data processing pipelines, automation scripts, and
+                ML model serving backends with Python.</div>
+              <div class="project-tags">
+                <span class="ptag">Django</span><span class="ptag">FastAPI</span><span class="ptag">Celery</span><span
+                  class="ptag">Pandas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    const SYSTEM_PROMPT = `You are the AI agent representing Jawad Ul Hadi — Sr. Backend Lead at Microagility (Asia & Pacific). You speak AS his agent, in first person on his behalf.
+
+IDENTITY:
+- Name: Jawad Ul Hadi
+- Role: Sr. Backend Lead at Microagility, Asia & Pacific
+- Signature: "The Code Warrior with a Taste for Customization"
+- LinkedIn: https://www.linkedin.com/in/jawad-ul-hadi-5316b1261/
+
+CORE STACK:
+- NestJS / Node.js / TypeScript (primary backend)
+- Python / Django / FastAPI
+- Microservices architecture, event-driven systems
+- AWS Cloud (Solutions Architect certified)
+- AI / LLM Integration (RAG pipelines, OpenAI, Claude, LangChain)
+- Database design: PostgreSQL, MongoDB, Redis
+- Docker, CI/CD, REST & GraphQL APIs
+
+WHAT HE BUILDS:
+1. Enterprise microservices platforms
+2. AI-powered business automation agents
+3. AWS cloud infrastructure (serverless, ECS, Lambda)
+4. High-performance REST/GraphQL APIs
+5. Database architecture and optimization
+6. Python backend systems and data pipelines
+
+PHILOSOPHY:
+Robust, clean backend architecture with room for tailored user-specific solutions. Never generic fixes. Always scalable, secure, maintainable. Senior-level standards.
+
+PERSONALITY:
+- Bold and direct. No fluff. Speaks like a senior engineer who has shipped real systems.
+- Peer-to-peer with developers. Equal footing.
+- Gives real technical opinions when asked — not just "it depends."
+- Confident about opinions on tech choices (e.g. NestJS over Express for enterprise, why microservices need careful boundary design, etc.)
+- Concise — developers don't like walls of text.
+
+RULES:
+- If asked about certifications or specific LinkedIn data you're not sure of, suggest they check https://www.linkedin.com/in/jawad-ul-hadi-5316b1261/
+- If asked about hiring or collaboration, be open but direct them to LinkedIn for formal contact.
+- Never break character. You ARE Jawad's agent.
+- Keep responses under 150 words unless a detailed technical question warrants more.
+- Use markdown: **bold** for emphasis, \`code\` for tech terms.`;
+
+    let history = [];
+    let isLoading = false;
+
+    function showPanel(name, btn) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('panel-' + name).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function autoResize(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.min(el.scrollHeight, 140) + 'px';
+    }
+
+    function handleKey(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    }
+
+    function sendChip(chip) {
+      const text = chip.textContent;
+      document.getElementById('chat-input').value = text;
+      sendMessage();
+    }
+
+    function renderMarkdown(text) {
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`(.*?)`/g, '<code>$1</code>')
+        .replace(/\n\n/g, '<br><br>')
+        .replace(/\n/g, '<br>');
+    }
+
+    function appendMsg(role, text) {
+      const msgs = document.getElementById('messages');
+      const div = document.createElement('div');
+      div.className = 'msg ' + role;
+      div.innerHTML = `
+    <div class="msg-sender">${role === 'agent' ? 'JAWAD_AGENT' : 'YOU'} · NOW</div>
+    <div class="msg-bubble">${renderMarkdown(text)}</div>
+  `;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+      return div;
+    }
+
+    function showTyping() {
+      const msgs = document.getElementById('messages');
+      const div = document.createElement('div');
+      div.className = 'msg agent';
+      div.id = 'typing';
+      div.innerHTML = `
+    <div class="msg-sender">JAWAD_AGENT · TYPING</div>
+    <div class="typing-indicator">
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+    </div>
+  `;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function removeTyping() {
+      const t = document.getElementById('typing');
+      if (t) t.remove();
+    }
+
+    // Fallback intelligent responses for local agent testing
+    const LOCAL_RESPONSES = {
+      stack: "My core stack is **NestJS**, **Node.js**, and **TypeScript** for robust multi-tenant backend architecture, paired with **Python/FastAPI** for AI pipelines. On the data tier, I rely on **PostgreSQL**, **MongoDB**, **Redis**, and **MeiliSearch**. For cloud infrastructure, I'm certified in **AWS Solutions Architecture** with heavy production experience across GCP and Azure.",
+      ai: "I architect production-grade **3-tier AI fallback systems** (Retry → RAG → Rule-based) that prevent LLM hard crashes. I build provider-agnostic abstractions across OpenAI, Gemini, and Claude, backed by vector RAG grounding and async BullMQ queues for OCR and parsing.",
+      philosophy: "My philosophy is simple: **'The best code is never rewritten not because it's perfect, but because it's flexible enough to evolve with the business.'** I build custom, scalable platforms with clean tenancy boundaries rather than generic one-size-fits-all fixes.",
+      certs: "I hold **26 verified credentials**, including **Google Cloud Generative AI Fundamentals**, **Certified Django Developer** (e-smartdata), **9 IBM SkillsBuild certifications**, and **15 LinkedIn Learning credentials** spanning LangChain, Agentic AI, and Cloud.",
+      collab: "I'm open to remote, hybrid, or relocation opportunities with US, EU, and APAC timezone overlap. Feel free to connect directly via [LinkedIn](https://www.linkedin.com/in/jawad-ul-hadi-5316b1261/) or email jawadulhadicc@gmail.com.",
+      projects: "I specialize in **Multi-Tenant SaaS Backends (20+ modules)**, **AI/LLM Pipelines & RAG Systems**, **High-Throughput Async BullMQ Queues**, and **Serverless/Microservice Cloud Architectures**."
+    };
+
+    async function sendMessage() {
+      if (isLoading) return;
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      input.value = '';
+      input.style.height = 'auto';
+      document.getElementById('send-btn').disabled = true;
+      document.getElementById('chips').style.display = 'none';
+      isLoading = true;
+
+      appendMsg('user', text);
+      history.push({ role: 'user', content: text });
+
+      showTyping();
+
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            system: SYSTEM_PROMPT,
+            messages: history
+          })
+        });
+
+        if (!res.ok) throw new Error('Status ' + res.status);
+        const data = await res.json();
+        removeTyping();
+
+        const reply = data.content?.[0]?.text || "Sorry, I hit a snag. Try again.";
+        history.push({ role: 'assistant', content: reply });
+        appendMsg('agent', reply);
+      } catch (err) {
+        // Provide intelligent fallback from Jawad's knowledge base
+        removeTyping();
+        const lower = text.toLowerCase();
+        let localReply = "";
+        if (lower.includes("stack") || lower.includes("tech") || lower.includes("language")) {
+          localReply = LOCAL_RESPONSES.stack;
+        } else if (lower.includes("ai") || lower.includes("llm") || lower.includes("rag") || lower.includes("fallback")) {
+          localReply = LOCAL_RESPONSES.ai;
+        } else if (lower.includes("philosophy") || lower.includes("principle") || lower.includes("approach")) {
+          localReply = LOCAL_RESPONSES.philosophy;
+        } else if (lower.includes("cert") || lower.includes("credential") || lower.includes("badge")) {
+          localReply = LOCAL_RESPONSES.certs;
+        } else if (lower.includes("collab") || lower.includes("hire") || lower.includes("contact") || lower.includes("work with")) {
+          localReply = LOCAL_RESPONSES.collab;
+        } else if (lower.includes("project") || lower.includes("build") || lower.includes("what kind")) {
+          localReply = LOCAL_RESPONSES.projects;
+        } else {
+          localReply = "As Jawad's AI agent, I can walk you through his **7+ years of backend engineering**, **3-tier AI fallback architecture**, **NestJS/Node/Python stack**, or **26 verified certifications**. What specific area would you like to explore?";
+        }
+        history.push({ role: 'assistant', content: localReply });
+        appendMsg('agent', localReply);
+      }
+
+      isLoading = false;
+      document.getElementById('send-btn').disabled = false;
+      input.focus();
+    }
+  </script>
+</body>
+
+</html>

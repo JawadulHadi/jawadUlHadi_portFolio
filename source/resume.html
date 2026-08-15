@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jawad Ul Hadi — Résumé | Senior Backend Engineer</title>
+  <meta name="description" content="Official Résumé of Jawad Ul Hadi — Senior Backend Engineer specializing in NestJS, Node.js, and Scalable AI/LLM Systems.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --page-bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --text-subtle: #64748b;
+      --accent: #b9843f;
+      --accent-dark: #8c5d1e;
+      --accent-light: #fef8ee;
+      --border: #e2e8f0;
+      --border-dark: #cbd5e1;
+      --font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+      --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+      --radius: 8px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--page-bg);
+      color: var(--text);
+      font-family: var(--font-main);
+      font-size: 14.5px;
+      line-height: 1.6;
+      padding: 2.5rem 1rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .resume-nav {
+      max-width: 880px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .nav-left a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-left a:hover {
+      color: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: var(--text);
+      border-color: var(--border-dark);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .resume-paper {
+      max-width: 880px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 3.5rem 3.25rem;
+    }
+
+    /* HEADER */
+    .resume-header {
+      border-bottom: 2px solid var(--text);
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .name-title h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1.15;
+    }
+
+    .role-headline {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-top: 0.35rem;
+      letter-spacing: -0.01em;
+    }
+
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.4rem;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .contact-bar a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .contact-bar a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .contact-bar span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* SECTIONS */
+    .section-block {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      border-bottom: 1px solid var(--border-dark);
+      padding-bottom: 0.35rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .summary-text {
+      color: var(--text);
+      line-height: 1.7;
+      text-align: justify;
+    }
+
+    .competency-list, .service-list {
+      display: grid;
+      gap: 0.65rem;
+      list-style: none;
+    }
+
+    .competency-list li, .service-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .competency-list li::before, .service-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+
+    .competency-list strong, .service-list strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* EXPERIENCE */
+    .job-entry {
+      margin-bottom: 1.6rem;
+    }
+
+    .job-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .job-role {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .job-period {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+
+    .job-org {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .job-bullets {
+      list-style: none;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .job-bullets li {
+      position: relative;
+      padding-left: 1.25rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .job-bullets li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+
+    /* EDUCATION & CERTS */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .edu-degree {
+      font-weight: 700;
+    }
+
+    .edu-school {
+      color: var(--text-muted);
+    }
+
+    .edu-date {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      color: var(--accent-dark);
+      font-weight: 600;
+    }
+
+    .cert-grid-resume {
+      display: grid;
+      gap: 0.5rem;
+      list-style: none;
+    }
+
+    .cert-grid-resume li {
+      position: relative;
+      padding-left: 1.25rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .cert-grid-resume li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+
+    .info-list {
+      list-style: none;
+      display: grid;
+      gap: 0.4rem;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    .info-list li {
+      position: relative;
+      padding-left: 1.25rem;
+    }
+
+    .info-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        padding: 0 !important;
+        font-size: 12.5px !important;
+        line-height: 1.45 !important;
+      }
+      .resume-nav { display: none !important; }
+      .resume-paper {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+      .section-block {
+        margin-bottom: 1.3rem !important;
+        page-break-inside: avoid;
+      }
+      .job-entry {
+        page-break-inside: avoid;
+      }
+      a {
+        text-decoration: none !important;
+        color: var(--text) !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 1rem 0.5rem; }
+      .resume-paper { padding: 1.75rem 1.25rem; }
+      .name-title h1 { font-size: 1.7rem; }
+      .contact-bar { flex-direction: column; gap: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation & Print Controls -->
+  <nav class="resume-nav" aria-label="Résumé actions">
+    <div class="nav-left">
+      <a href="../index.html">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to Portfolio
+      </a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-outline" onclick="window.print()" type="button">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Print / Save as PDF
+      </button>
+      <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20from%20Portfolio%20-%20Jawad%20Ul%20Hadi" target="_blank" rel="noopener noreferrer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        Open in Gmail
+      </a>
+    </div>
+  </nav>
+
+  <!-- Résumé Document Paper -->
+  <main class="resume-paper" id="resumeContent">
+
+    <!-- HEADER -->
+    <header class="resume-header">
+      <div class="name-title">
+        <h1>Jawad Ul Hadi</h1>
+        <div class="role-headline">Senior Backend Engineer | Architecting Scalable SaaS &amp; AI Platforms</div>
+      </div>
+      <div class="contact-bar">
+        <span>Islamabad, Pakistan</span>
+        <span>•</span>
+        <span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20-%20Jawad%20Ul%20Hadi" target="_blank" rel="noopener noreferrer">jawadulhadicc@gmail.com</a></span>
+        <span>•</span>
+        <span><a href="https://wa.me/923467248414?text=Hi%20Jawad,%20I%20reviewed%20your%20resume%20and%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer">+92 346 7248414 (WhatsApp)</a></span>
+        <span>•</span>
+        <span><a href="https://linkedin.com/in/jawad-ul-hadi" target="_blank" rel="noopener noreferrer">linkedin.com/in/jawad-ul-hadi</a></span>
+        <span>•</span>
+        <span><a href="https://github.com/JawadulHadi" target="_blank" rel="noopener noreferrer">github.com/JawadulHadi</a></span>
+        <span>•</span>
+        <span><a href="https://jawadulhadi-portfolio.vercel.app" target="_blank" rel="noopener noreferrer">jawadulhadi-portfolio.vercel.app</a></span>
+      </div>
+    </header>
+
+    <!-- PROFESSIONAL SUMMARY -->
+    <section class="section-block">
+      <h2 class="section-title">Professional Summary</h2>
+      <p class="summary-text">
+        Senior Backend Engineer with <strong>7+ years</strong> of experience architecting production-grade, multi-tenant SaaS platforms where AI acts as a value multiplier, not a fragile dependency. Built resilient systems around a custom <strong>3-tier fallback architecture</strong> (Retry → RAG-grounded retrieval → deterministic rule-based floor) that guarantees business continuity through provider outages. Background spans high-volume data optimization/cutting query latency by <strong>90%+</strong> and event-driven backbones on BullMQ/Redis. Combines engineering rigor with a business-first mindset to deliver measurable revenue and operational impact. Proficient across the full stack with expertise in modern backend frameworks (<strong>Node.js, NestJS, Django</strong>) and hands-on experience with frontend technologies (<strong>React.js</strong>) and PHP ecosystems (<strong>Laravel</strong>). Daily practitioner of AI-assisted development tools (<strong>Cursor, GitHub Copilot, Claude Code</strong>) for accelerating delivery without compromising quality.
+      </p>
+    </section>
+
+    <!-- CORE COMPETENCIES -->
+    <section class="section-block">
+      <h2 class="section-title">Core Competencies</h2>
+      <ul class="competency-list">
+        <li><strong>Languages &amp; Frameworks:</strong> TypeScript, Node.js, NestJS, JavaScript, Python, FastAPI, Django, Django REST Framework, PHP, Laravel, React.js</li>
+        <li><strong>AI &amp; LLM Engineering:</strong> 3-Tier Fallback Architectures, RAG Pipelines, OpenAI, Google Gemini, Anthropic Claude, Structured Output, LLM Observability</li>
+        <li><strong>Data, Search &amp; Performance:</strong> PostgreSQL, MongoDB, MySQL, Redis, MeiliSearch, Query Optimization, Indexing, Bulk ETL, Full-Text &amp; Semantic Search</li>
+        <li><strong>Async &amp; Event-Driven:</strong> BullMQ + Redis Queues, Idempotent Workers, Custom Webhooks, n8n Workflows, HMAC Request Signing</li>
+        <li><strong>Cloud, DevOps &amp; Infrastructure:</strong> GCP, AWS (Lambda, API Gateway), Microsoft Azure, Docker, CI/CD (GitHub Actions), Zero-Downtime Migrations, DNS/TLS, Serverless</li>
+        <li><strong>Integrations &amp; Security:</strong> Stripe, Twilio (WhatsApp), Microsoft Graph, Postal SMTP, Microservices, JWT/OAuth 2.0, Tenant Isolation, Audit Logging</li>
+        <li><strong>AI-Assisted Development:</strong> GitHub Copilot, Cursor, Claude Code daily use for code generation, refactoring, test automation, documentation, and deployment script optimization</li>
+        <li><strong>Admin &amp; Tooling:</strong> Django Admin Customization, OCR/PDF Extraction, Script-Based ETL, Document Engineering, PDF Generation</li>
+      </ul>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="section-block">
+      <h2 class="section-title">Services</h2>
+      <ul class="service-list">
+        <li><strong>AI &amp; LLM Reliability Engineering:</strong> Multi-model AI gateways (OpenAI, Gemini, Anthropic) with automatic failover and 3-tier resilience for uninterrupted production performance.</li>
+        <li><strong>Data Architecture &amp; Performance Optimization:</strong> Query restructuring, indexing, and automated ETL pipelines that cut load times by 90%+ across PostgreSQL, MongoDB, and MySQL.</li>
+        <li><strong>Async &amp; Event-Driven System Design:</strong> High-throughput async pipelines on BullMQ/Redis with idempotent worker pools that eliminate duplicate execution.</li>
+        <li><strong>Cloud-Native Infrastructure &amp; Zero-Downtime Delivery:</strong> Scalable cloud architectures (AWS, GCP, Azure) via Docker and CI/CD, with zero-downtime database and server migrations.</li>
+        <li><strong>Workflow Automation &amp; Internal Tooling:</strong> Admin ecosystems, RBAC engines, and custom Django interfaces that automate manual spreadsheet processes.</li>
+        <li><strong>Enterprise Integrations &amp; Secure Multi-Tenancy:</strong> Strict tenant isolation at the query/server level, integrated with Stripe, Twilio, Microsoft Graph, and custom SMTP.</li>
+        <li><strong>AI-Assisted Software Development:</strong> Leveraging Cursor, GitHub Copilot, and Claude Code to accelerate development, generate unit tests, automate documentation, optimize deployment scripts, and enhance engineering productivity.</li>
+        <li><strong>Full-Stack Application Modernization:</strong> Modernizing legacy applications by implementing modern PHP frameworks (Laravel), building responsive React.js frontends, and migrating to cloud-native architectures on Azure, AWS, or GCP.</li>
+      </ul>
+    </section>
+
+    <!-- PROFESSIONAL EXPERIENCE -->
+    <section class="section-block">
+      <h2 class="section-title">Professional Experience</h2>
+
+      <!-- Role 1 -->
+      <article class="job-entry">
+        <div class="job-header">
+          <div class="job-role">Backend Lead / Senior Backend Engineer</div>
+          <div class="job-period">Jan 2024 — August 2026</div>
+        </div>
+        <div class="job-org">MicroAgility Services (Pvt) Ltd. · Islamabad, Pakistan</div>
+        <ul class="job-bullets">
+          <li>Spearheaded architecture of a multi-tenant, AI-assisted recruitment platform, unifying OpenAI, Gemini, and Anthropic into one abstraction layer, cutting AI integration surface area ~60%.</li>
+          <li>Deployed a proprietary 3-tier resilience methodology, eliminating user-facing hard failures via automatic fallback to RAG context or deterministic rule-sets during LLM downtime.</li>
+          <li>Built an async processing spine on BullMQ/Redis, offloading parsing, OCR, and vector embedding into idempotent workers to keep AI response times instant.</li>
+          <li>Combined MeiliSearch with semantic RAG retrieval and optimized PostgreSQL/MongoDB query plans, cutting dashboard load times from 8–12s to under 2s.</li>
+          <li>Integrated Stripe, Twilio, Microsoft Graph, and self-hosted Postal SMTP while enforcing server-level JWT tenant isolation to eliminate cross-tenant data leaks.</li>
+          <li>Reduced infrastructure costs to near-zero per tenant via serverless tiers and self-hosted orchestration (n8n, Postal).</li>
+          <li>Leveraged AI coding assistants (Cursor, GitHub Copilot) to accelerate NestJS microservice development, generate unit tests, and automate documentation.</li>
+          <li>Designed and implemented RESTful API layers optimized for seamless integration with React.js frontend applications.</li>
+        </ul>
+      </article>
+
+      <!-- Role 2 -->
+      <article class="job-entry">
+        <div class="job-header">
+          <div class="job-role">Backend Software Engineer</div>
+          <div class="job-period">Feb 2022 — Jan 2024</div>
+        </div>
+        <div class="job-org">MicroAgility Services (Pvt) Ltd. · Islamabad, Pakistan</div>
+        <ul class="job-bullets">
+          <li>Developed core backend infrastructure for a multi-country HRMS, payroll, and project-management SaaS suite handling complex enterprise logic.</li>
+          <li>Administered high-volume PostgreSQL/MySQL clusters, authoring automated disaster-recovery backups and migration scripts for seamless bulk tenant onboarding.</li>
+          <li>Built real-time collaboration channels with Socket.io and Mongoose, wired Twilio event triggers, and customized Django Admin panels to speed internal operations.</li>
+          <li>Executed zero-downtime schema migrations across relational and document databases, maintaining 99.9% uptime via structured Git pipelines on AWS/GCP.</li>
+          <li>Refactored RESTful and GraphQL API endpoints, boosting production data retrieval speed ~40%.</li>
+          <li>Collaborated with frontend teams to design API contracts optimized for React.js consumption and performance.</li>
+        </ul>
+      </article>
+
+      <!-- Role 3 -->
+      <article class="job-entry">
+        <div class="job-header">
+          <div class="job-role">Software Engineer</div>
+          <div class="job-period">Jan 2018 — Mar 2022</div>
+        </div>
+        <div class="job-org">Market Icon · Rawalpindi, Pakistan</div>
+        <ul class="job-bullets">
+          <li>Designed serverless AWS Lambda/API Gateway microservices bridging SaaS platforms with third-party CRMs and payment processors, eliminating idle server costs.</li>
+          <li>Authored secure, documented APIs across Express.js, FastAPI, and Django REST Framework, protected by JWT and OAuth 2.0 authorization flows.</li>
+          <li>Delivered Django applications with custom ORM modeling, admin tooling, and structured data exposure via DRF to streamline client workflows.</li>
+          <li>Gained foundational experience building full-stack applications, working with modern frontend frameworks and backend systems.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section-block">
+      <h2 class="section-title">Education</h2>
+      <div class="edu-item">
+        <div>
+          <span class="edu-degree">B.S. in Computer Science</span> — 
+          <span class="edu-school">Government College University, Faisalabad</span>
+        </div>
+        <div class="edu-date">Dec 2017</div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="section-block">
+      <h2 class="section-title">Certifications (26 Verified Credentials)</h2>
+      <ul class="cert-grid-resume">
+        <li><strong>Google Cloud:</strong> Generative AI Fundamentals (G3A7L84CRV82) · Cloud Computing Foundations (with IBM)</li>
+        <li><strong>Certified Django Developer:</strong> e-smartdata.org (License: ESD-037/10/2025)</li>
+        <li><strong>IBM SkillsBuild (Credly-verified):</strong> Artificial Intelligence Fundamentals · Information Technology Fundamentals · Web Development Fundamentals · Cloud Computing Fundamentals · Cybersecurity Fundamentals · Data Fundamentals · Explore Emerging Tech · Working in a Digital World · Job Application Essentials</li>
+        <li><strong>LinkedIn Learning &amp; AI Engineering:</strong> Agentic AI Architecture Foundations · Build AI Agents with GitHub Copilot · Claude Code 4: Agentic Coding for Developers · Build with AI: Claude Code Subagents · AI Solution Design Patterns · Introduction to AI Orchestration (LangChain &amp; LlamaIndex) · Building Chatbots with OpenAI &amp; LangChain · Multimodal Prompting &amp; Prompt Engineering · Machine Learning Foundations (Python &amp; Neural Networks) · Responsible AI Product Implementation</li>
+      </ul>
+    </section>
+
+    <!-- ADDITIONAL INFORMATION -->
+    <section class="section-block" style="margin-bottom: 0;">
+      <h2 class="section-title">Additional Information</h2>
+      <ul class="info-list">
+        <li><strong>Languages:</strong> English (Professional working proficiency), Urdu (Native)</li>
+        <li><strong>Availability:</strong> Open to remote, hybrid, or on-site roles (full-time or contract) with US / EU / APAC overlap</li>
+        <li><strong>Work Authorization:</strong> Pakistani citizen; immediately available</li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+</html>

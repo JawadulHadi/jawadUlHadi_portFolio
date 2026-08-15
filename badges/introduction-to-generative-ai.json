@@ -1,0 +1,29 @@
+{
+  "@context": "https://w3id.org/openbadges/v2",
+  "id": "https://coursera.org/verify/G3A7L84CRV82",
+  "type": "Assertion",
+  "recipient": {
+    "type": "email",
+    "identity": "jawadulhadicc@gmail.com"
+  },
+  "issuedOn": "2024-01-23T00:00:00Z",
+  "verification": {
+    "type": "hosted"
+  },
+  "badge": {
+    "id": "https://www.coursera.org/learn/introduction-to-generative-ai",
+    "type": "BadgeClass",
+    "name": "Introduction to Generative AI",
+    "description": "Successfully completed the Introduction to Generative AI course, authorized by Google Cloud and offered through Coursera.",
+    "image": "https://www.coursera.org",
+    "criteria": {
+      "id": "https://www.coursera.org/learn/introduction-to-generative-ai"
+    },
+    "issuer": {
+      "id": "https://cloud.google.com",
+      "type": "Issuer",
+      "name": "Google Cloud",
+      "url": "https://cloud.google.com"
+    }
+  }
+}

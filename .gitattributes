@@ -1,0 +1,9 @@
+# Normalize to LF in the repository; the generated index.html is rewritten on
+# Windows, and without this every regeneration shows up as a whole-file diff.
+* text=auto eol=lf
+
+*.woff2 binary
+*.png   binary
+*.jpg   binary
+*.pdf   binary
+*.svg   text eol=lf
