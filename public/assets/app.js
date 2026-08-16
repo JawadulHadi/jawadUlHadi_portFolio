@@ -25,11 +25,14 @@
         theme === "light"
           ? "Classic Warm Light"
           : theme === "dark"
-          ? "Slate Dark"
-          : theme === "ai-classic"
-          ? "AI White & Blue"
-          : "AI Cyber Synth";
-      toggle.setAttribute("title", "Active: " + label + " (Click to cycle next theme)");
+            ? "Slate Dark"
+            : theme === "ai-classic"
+              ? "AI White & Blue"
+              : "AI Cyber Synth";
+      toggle.setAttribute(
+        "title",
+        "Active: " + label + " (Click to cycle next theme)",
+      );
     }
 
     var initial = root.getAttribute("data-theme") || "dark";
@@ -187,7 +190,7 @@
         ".services-grid",
         ".work-grid",
         ".cert-grid",
-        ".contact"
+        ".contact",
       ];
       var textContainers = document.querySelectorAll(selectors.join(", "));
       var combinedText = "";
@@ -196,14 +199,17 @@
         // Clone node and strip script/style elements to ensure pure readable copy
         var clone = container.cloneNode(true);
         var scripts = clone.querySelectorAll("script, style, noscript, svg");
-        scripts.forEach(function (s) { s.remove(); });
+        scripts.forEach(function (s) {
+          s.remove();
+        });
         combinedText += " " + (clone.textContent || "");
       });
 
       // Split into valid words using unicode-aware regex
-      var words = combinedText
-        .replace(/[\r\n\t]+/g, " ")
-        .match(/[a-zA-Z0-9_\u00C0-\u017F'-]+/g) || [];
+      var words =
+        combinedText
+          .replace(/[\r\n\t]+/g, " ")
+          .match(/[a-zA-Z0-9_\u00C0-\u017F'-]+/g) || [];
 
       var wordCount = words.length;
       var wordsPerMinute = 220;
@@ -218,7 +224,7 @@
           wordCount.toLocaleString() +
           " words at " +
           wordsPerMinute +
-          " wpm)"
+          " wpm)",
       );
     }
 
@@ -238,7 +244,11 @@
       if (e) e.preventDefault();
       modal.removeAttribute("hidden");
       // Load iframe source on demand
-      if (pdfFrame && pdfFrame.getAttribute("data-src") && pdfFrame.src === "about:blank") {
+      if (
+        pdfFrame &&
+        pdfFrame.getAttribute("data-src") &&
+        pdfFrame.src === "about:blank"
+      ) {
         pdfFrame.src = pdfFrame.getAttribute("data-src");
       }
       requestAnimationFrame(function () {
@@ -276,7 +286,7 @@
       if (e.key === "Escape" && !modal.hasAttribute("hidden")) {
         closeModal();
       }
-    });      // Expose openModal to CLI terminal
+    }); // Expose openModal to CLI terminal
     window.openResumeModal = openModal;
   })();
 
@@ -307,7 +317,7 @@
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     observer.observe(skillsSection);
@@ -327,13 +337,20 @@
       var q = currentQuery.toLowerCase().trim();
 
       certItems.forEach(function (item) {
-        var categories = (item.getAttribute("data-category") || "").toLowerCase().split(" ");
+        var categories = (item.getAttribute("data-category") || "")
+          .toLowerCase()
+          .split(" ");
         var title = (item.getAttribute("data-title") || "").toLowerCase();
         var issuer = (item.getAttribute("data-issuer") || "").toLowerCase();
         var fullText = item.textContent.toLowerCase();
 
-        var matchesCategory = currentFilter === "all" || categories.indexOf(currentFilter) !== -1;
-        var matchesSearch = !q || title.indexOf(q) !== -1 || issuer.indexOf(q) !== -1 || fullText.indexOf(q) !== -1;
+        var matchesCategory =
+          currentFilter === "all" || categories.indexOf(currentFilter) !== -1;
+        var matchesSearch =
+          !q ||
+          title.indexOf(q) !== -1 ||
+          issuer.indexOf(q) !== -1 ||
+          fullText.indexOf(q) !== -1;
 
         if (matchesCategory && matchesSearch) {
           item.style.display = "flex";
@@ -345,7 +362,9 @@
 
     filterBtns.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        filterBtns.forEach(function (b) { b.classList.remove("active"); });
+        filterBtns.forEach(function (b) {
+          b.classList.remove("active");
+        });
         btn.classList.add("active");
         currentFilter = btn.getAttribute("data-filter") || "all";
         applyFilterAndSearch();
@@ -393,7 +412,9 @@
 
       rag: function () {
         if (typeof window.openRagModal === "function") {
-          setTimeout(function () { window.openRagModal(); }, 180);
+          setTimeout(function () {
+            window.openRagModal();
+          }, 180);
         }
         return [
           '<span class="out-heading">🛡️ RAG PIPELINE &amp; 3-TIER RESILIENCE ARCHITECTURE:</span>',
@@ -436,13 +457,13 @@
         return [
           '<span class="out-heading">🚀 SELECTED PROJECTS & SUITES:</span>',
           '  <span class="out-highlight">1. Google Chrome Extension Pack (10 Extensions):</span>',
-          '     • AI Copilot, Live API Interceptor, Schema/JWT HUD, Prompt Workbench, Token HUD, Webhook Dispatcher.',
+          "     • AI Copilot, Live API Interceptor, Schema/JWT HUD, Prompt Workbench, Token HUD, Webhook Dispatcher.",
           '  <span class="out-highlight">2. 3-Tier Fallback AI Gateway:</span>',
-          '     • Multi-model provider-agnostic engine (Retry → RAG Grounding → Deterministic Rule Floor).',
+          "     • Multi-model provider-agnostic engine (Retry → RAG Grounding → Deterministic Rule Floor).",
           '  <span class="out-highlight">3. Idempotent Queue Spine:</span>',
-          '     • BullMQ + Redis + Postal SMTP worker pool with HMAC verification.',
+          "     • BullMQ + Redis + Postal SMTP worker pool with HMAC verification.",
           '  <span class="out-highlight">4. Qeloma AI Tools:</span>',
-          '     • Qeloma Verdict, OCR, Lens Studio, Voice Studio (Gemini Live), Shift.',
+          "     • Qeloma Verdict, OCR, Lens Studio, Voice Studio (Gemini Live), Shift.",
           '<br><a href="#work" class="out-link">Jump to project gallery ↓</a>',
         ].join("<br>");
       },
@@ -450,10 +471,10 @@
       certifications: function () {
         return [
           '<span class="out-heading">📜 VERIFIED CERTIFICATIONS (26 CREDENTIALS):</span>',
-          '  • Google Cloud: Generative AI Fundamentals (License: G3A7L84CRV82)',
-          '  • e-smartdata: Certified Django Developer (License: ESD-037/10/2025)',
-          '  • IBM SkillsBuild (9 badges): AI, Cloud, Cybersecurity, Data, Web Dev, IT, Digital Skills',
-          '  • LinkedIn Learning (15 certs): Agentic AI, GitHub Copilot Agents, Claude Code Subagents, LangChain, RAG',
+          "  • Google Cloud: Generative AI Fundamentals (License: G3A7L84CRV82)",
+          "  • e-smartdata: Certified Django Developer (License: ESD-037/10/2025)",
+          "  • IBM SkillsBuild (9 badges): AI, Cloud, Cybersecurity, Data, Web Dev, IT, Digital Skills",
+          "  • LinkedIn Learning (15 certs): Agentic AI, GitHub Copilot Agents, Claude Code Subagents, LangChain, RAG",
           '<br><a href="#certifications" class="out-link">Browse all 26 credentials ↓</a>',
         ].join("<br>");
       },
@@ -466,14 +487,14 @@
         return [
           '<span class="out-heading">💼 PRODUCTION TRACK RECORD (7+ YEARS):</span>',
           '  <span class="out-highlight">1. MicroAgility (Jan 2024 — August 2026):</span> Backend Lead & Solutions Architect',
-          '     • Multi-tenant ATS (22 modules, 200+ REST endpoints, 3-tier tenancy).',
-          '     • Async BullMQ resume ingestion with OCR & provider-agnostic AI fallback.',
-          '     • Zero cross-tenant data bleed, custom self-hosted Postal email engine.',
+          "     • Multi-tenant ATS (22 modules, 200+ REST endpoints, 3-tier tenancy).",
+          "     • Async BullMQ resume ingestion with OCR & provider-agnostic AI fallback.",
+          "     • Zero cross-tenant data bleed, custom self-hosted Postal email engine.",
           '  <span class="out-highlight">2. MicroAgility (Feb 2022 — Jan 2024):</span> Backend Software Engineer',
-          '     • APAC HRMS RBAC engine (9 roles, 31 permission grants).',
-          '     • DB query & index tuning reducing latency by 90%+ (8-12s down to 1-2s).',
+          "     • APAC HRMS RBAC engine (9 roles, 31 permission grants).",
+          "     • DB query & index tuning reducing latency by 90%+ (8-12s down to 1-2s).",
           '  <span class="out-highlight">3. Market Icon (Jan 2018 — Mar 2022):</span> Software Engineer',
-          '     • Serverless integrations with AWS Lambda + API Gateway.',
+          "     • Serverless integrations with AWS Lambda + API Gateway.",
           '<br><a href="#experience" class="out-link">Explore detailed ledger ↓</a>',
         ].join("<br>");
       },
@@ -482,26 +503,26 @@
         return [
           '<span class="out-heading">🏛️ SIGNATURE ARCHITECTURAL PATTERNS:</span>',
           '  <span class="out-gold">1. 3-Tier AI Fallback Ladder:</span>',
-          '     [Tier 1: LLM Call / Retry] → [Tier 2: RAG Grounded Retrieval] → [Tier 3: Rule-Based Floor]',
-          '     Ensures AI features degrade gracefully and never hard-fail in production.',
+          "     [Tier 1: LLM Call / Retry] → [Tier 2: RAG Grounded Retrieval] → [Tier 3: Rule-Based Floor]",
+          "     Ensures AI features degrade gracefully and never hard-fail in production.",
           '  <span class="out-gold">2. Tenant Isolation:</span>',
-          '     Enforced strictly at query layer via validated JWT claim scopes (ROOT→PARENT→CHILD).',
+          "     Enforced strictly at query layer via validated JWT claim scopes (ROOT→PARENT→CHILD).",
           '  <span class="out-gold">3. Async Job Backbone:</span>',
-          '     BullMQ + Redis idempotent queue workers with dead-letter retry buffers.',
+          "     BullMQ + Redis idempotent queue workers with dead-letter retry buffers.",
         ].join("<br>");
       },
 
       services: function () {
         return [
           '<span class="out-heading">🚀 8 CORE OFFERINGS:</span>',
-          '  1. AI & LLM Reliability Engineering (3-tier fallbacks)',
-          '  2. Data Architecture & Performance Optimization (90%+ latency cuts)',
-          '  3. Async & Event-Driven System Design (BullMQ/Redis)',
-          '  4. Cloud-Native Infrastructure & Zero-Downtime Delivery',
-          '  5. Workflow Automation & Internal Tooling (Django & RBAC)',
-          '  6. Enterprise Integrations & Secure Multi-Tenancy',
-          '  7. AI-Assisted Software Development (Cursor/Copilot/Claude)',
-          '  8. Full-Stack Application Modernization (Laravel/React)',
+          "  1. AI & LLM Reliability Engineering (3-tier fallbacks)",
+          "  2. Data Architecture & Performance Optimization (90%+ latency cuts)",
+          "  3. Async & Event-Driven System Design (BullMQ/Redis)",
+          "  4. Cloud-Native Infrastructure & Zero-Downtime Delivery",
+          "  5. Workflow Automation & Internal Tooling (Django & RBAC)",
+          "  6. Enterprise Integrations & Secure Multi-Tenancy",
+          "  7. AI-Assisted Software Development (Cursor/Copilot/Claude)",
+          "  8. Full-Stack Application Modernization (Laravel/React)",
           '<br><a href="#services" class="out-link">View services breakdown ↓</a>',
         ].join("<br>");
       },
@@ -533,9 +554,9 @@
       about: function () {
         return [
           '<span class="out-heading">👨‍💻 JAWAD UL HADI — SENIOR BACKEND ENGINEER</span>',
-          '  "The best code is never rewritten not because it\'s perfect, but because it\'s flexible enough to evolve."',
-          '  Specializing in fault-tolerant, provider-agnostic AI backends on multi-tenant SaaS.',
-          '  7+ years of experience delivering scalable software architecture.',
+          "  \"The best code is never rewritten not because it's perfect, but because it's flexible enough to evolve.\"",
+          "  Specializing in fault-tolerant, provider-agnostic AI backends on multi-tenant SaaS.",
+          "  7+ years of experience delivering scalable software architecture.",
         ].join("<br>");
       },
 
@@ -637,7 +658,7 @@
         output =
           '<span class="out-error">command not found: ' +
           escapeHtml(cmd) +
-          "</span>. Type <span class=\"cli-cmd-badge\" data-cmd=\"help\">help</span> for a list of available commands.";
+          '</span>. Type <span class="cli-cmd-badge" data-cmd="help">help</span> for a list of available commands.';
       }
 
       if (output) {
@@ -703,7 +724,10 @@
 
     // Clicking anywhere in terminal body focuses input
     cliBody.addEventListener("click", function (e) {
-      if (e.target.tagName !== "A" && !e.target.classList.contains("cli-cmd-badge")) {
+      if (
+        e.target.tagName !== "A" &&
+        !e.target.classList.contains("cli-cmd-badge")
+      ) {
         cliInput.focus();
       }
     });
@@ -731,28 +755,52 @@
     var voiceTabConcierge = document.getElementById("voiceTabConcierge");
     var voiceTabDocsToVoice = document.getElementById("voiceTabDocsToVoice");
     var voiceTabVoiceToDocs = document.getElementById("voiceTabVoiceToDocs");
-    var voiceModeConciergePanel = document.getElementById("voiceModeConciergePanel");
-    var voiceModeDocsToVoicePanel = document.getElementById("voiceModeDocsToVoicePanel");
-    var voiceModeVoiceToDocsPanel = document.getElementById("voiceModeVoiceToDocsPanel");
+    var voiceModeConciergePanel = document.getElementById(
+      "voiceModeConciergePanel",
+    );
+    var voiceModeDocsToVoicePanel = document.getElementById(
+      "voiceModeDocsToVoicePanel",
+    );
+    var voiceModeVoiceToDocsPanel = document.getElementById(
+      "voiceModeVoiceToDocsPanel",
+    );
 
     // Docs-to-Voice Elements
-    var voiceDocsToVoiceTargetTitle = document.getElementById("voiceDocsToVoiceTargetTitle");
+    var voiceDocsToVoiceTargetTitle = document.getElementById(
+      "voiceDocsToVoiceTargetTitle",
+    );
     var voicePlayDocBtn = document.getElementById("voicePlayDocBtn");
     var voicePlayDocBtnText = document.getElementById("voicePlayDocBtnText");
     var voicePauseDocBtn = document.getElementById("voicePauseDocBtn");
     var voiceStopDocBtn = document.getElementById("voiceStopDocBtn");
-    var voiceDocTelemetryStat = document.getElementById("voiceDocTelemetryStat");
-    var voiceDocReadingStream = document.getElementById("voiceDocReadingStream");
-    var voiceReadIntroAudioBtn = document.getElementById("voiceReadIntroAudioBtn");
+    var voiceDocTelemetryStat = document.getElementById(
+      "voiceDocTelemetryStat",
+    );
+    var voiceDocReadingStream = document.getElementById(
+      "voiceDocReadingStream",
+    );
+    var voiceReadIntroAudioBtn = document.getElementById(
+      "voiceReadIntroAudioBtn",
+    );
     var voiceSpeedBtns = document.querySelectorAll(".voice-speed-pill");
 
     // Voice-to-Docs Elements
-    var voiceVoiceToDocsTargetTitle = document.getElementById("voiceVoiceToDocsTargetTitle");
-    var voiceDictateLargeMicBtn = document.getElementById("voiceDictateLargeMicBtn");
-    var voiceDictateStatusText = document.getElementById("voiceDictateStatusText");
-    var voiceDictateStreamText = document.getElementById("voiceDictateStreamText");
+    var voiceVoiceToDocsTargetTitle = document.getElementById(
+      "voiceVoiceToDocsTargetTitle",
+    );
+    var voiceDictateLargeMicBtn = document.getElementById(
+      "voiceDictateLargeMicBtn",
+    );
+    var voiceDictateStatusText = document.getElementById(
+      "voiceDictateStatusText",
+    );
+    var voiceDictateStreamText = document.getElementById(
+      "voiceDictateStreamText",
+    );
     var voiceClearDictateBtn = document.getElementById("voiceClearDictateBtn");
-    var voiceAppendToDocDirectBtn = document.getElementById("voiceAppendToDocDirectBtn");
+    var voiceAppendToDocDirectBtn = document.getElementById(
+      "voiceAppendToDocDirectBtn",
+    );
 
     if (!voiceWidgetContainer || !voiceTriggerBtn) return;
 
@@ -790,7 +838,9 @@
               v.name.indexOf("David") !== -1)
           );
         }) ||
-        voices.find(function (v) { return v.lang.indexOf("en") === 0; }) ||
+        voices.find(function (v) {
+          return v.lang.indexOf("en") === 0;
+        }) ||
         voices[0];
     }
 
@@ -802,7 +852,8 @@
     }
 
     // Initialize STT Speech Recognition
-    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
 
     // 1. Concierge STT (Single query)
     if (SpeechRecognition) {
@@ -816,7 +867,8 @@
           isConciergeListening = true;
           if (voiceMicBtn) voiceMicBtn.classList.add("is-recording");
           voiceWidgetContainer.classList.add("is-listening");
-          if (voiceStatusText) voiceStatusText.textContent = "Listening... speak now";
+          if (voiceStatusText)
+            voiceStatusText.textContent = "Listening... speak now";
         };
 
         conciergeRecognition.onresult = function (event) {
@@ -830,14 +882,16 @@
           isConciergeListening = false;
           if (voiceMicBtn) voiceMicBtn.classList.remove("is-recording");
           voiceWidgetContainer.classList.remove("is-listening");
-          if (voiceStatusText) voiceStatusText.textContent = "Ready to speak or listen";
+          if (voiceStatusText)
+            voiceStatusText.textContent = "Ready to speak or listen";
         };
 
         conciergeRecognition.onend = function () {
           isConciergeListening = false;
           if (voiceMicBtn) voiceMicBtn.classList.remove("is-recording");
           voiceWidgetContainer.classList.remove("is-listening");
-          if (voiceStatusText) voiceStatusText.textContent = "Ready to speak or listen";
+          if (voiceStatusText)
+            voiceStatusText.textContent = "Ready to speak or listen";
         };
       } catch (err) {
         console.warn("Concierge STT initialization failed:", err);
@@ -911,7 +965,9 @@
 
     function toggleDictation() {
       if (!dictateRecognition) {
-        alert("Speech recognition is not supported in this browser. Please use Chrome, Edge, or Safari.");
+        alert(
+          "Speech recognition is not supported in this browser. Please use Chrome, Edge, or Safari.",
+        );
         return;
       }
       if (synth) synth.cancel();
@@ -930,24 +986,42 @@
     function switchVoiceMode(mode) {
       activeMode = mode;
 
-      if (voiceTabConcierge) voiceTabConcierge.classList.toggle("active", mode === "concierge");
-      if (voiceTabDocsToVoice) voiceTabDocsToVoice.classList.toggle("active", mode === "docs-to-voice");
-      if (voiceTabVoiceToDocs) voiceTabVoiceToDocs.classList.toggle("active", mode === "voice-to-docs");
+      if (voiceTabConcierge)
+        voiceTabConcierge.classList.toggle("active", mode === "concierge");
+      if (voiceTabDocsToVoice)
+        voiceTabDocsToVoice.classList.toggle(
+          "active",
+          mode === "docs-to-voice",
+        );
+      if (voiceTabVoiceToDocs)
+        voiceTabVoiceToDocs.classList.toggle(
+          "active",
+          mode === "voice-to-docs",
+        );
 
-      if (voiceModeConciergePanel) voiceModeConciergePanel.style.display = (mode === "concierge" ? "flex" : "none");
-      if (voiceModeDocsToVoicePanel) voiceModeDocsToVoicePanel.style.display = (mode === "docs-to-voice" ? "flex" : "none");
-      if (voiceModeVoiceToDocsPanel) voiceModeVoiceToDocsPanel.style.display = (mode === "voice-to-docs" ? "flex" : "none");
+      if (voiceModeConciergePanel)
+        voiceModeConciergePanel.style.display =
+          mode === "concierge" ? "flex" : "none";
+      if (voiceModeDocsToVoicePanel)
+        voiceModeDocsToVoicePanel.style.display =
+          mode === "docs-to-voice" ? "flex" : "none";
+      if (voiceModeVoiceToDocsPanel)
+        voiceModeVoiceToDocsPanel.style.display =
+          mode === "voice-to-docs" ? "flex" : "none";
 
       // Synchronize Target Titles with current active Google Doc
       syncActiveDocTargetDisplay();
     }
 
     function syncActiveDocTargetDisplay() {
-      var activeDoc = (window.UnifiedVoiceDocsBridge && typeof window.UnifiedVoiceDocsBridge.getActiveDoc === "function")
-        ? window.UnifiedVoiceDocsBridge.getActiveDoc()
-        : null;
+      var activeDoc =
+        window.UnifiedVoiceDocsBridge &&
+        typeof window.UnifiedVoiceDocsBridge.getActiveDoc === "function"
+          ? window.UnifiedVoiceDocsBridge.getActiveDoc()
+          : null;
 
-      var docTitle = activeDoc && activeDoc.name ? activeDoc.name : "No Google Doc Selected";
+      var docTitle =
+        activeDoc && activeDoc.name ? activeDoc.name : "No Google Doc Selected";
 
       if (voiceDocsToVoiceTargetTitle) {
         voiceDocsToVoiceTargetTitle.textContent = docTitle;
@@ -957,10 +1031,13 @@
       }
 
       if (voiceDocTelemetryStat && activeDoc) {
-        var fullText = window.UnifiedVoiceDocsBridge.getActiveDocFullText ? window.UnifiedVoiceDocsBridge.getActiveDocFullText() : "";
+        var fullText = window.UnifiedVoiceDocsBridge.getActiveDocFullText
+          ? window.UnifiedVoiceDocsBridge.getActiveDocFullText()
+          : "";
         var wordCount = fullText ? fullText.trim().split(/\s+/).length : 0;
         var estMins = Math.max(1, Math.round(wordCount / 140));
-        voiceDocTelemetryStat.textContent = wordCount + " words (~" + estMins + " min read)";
+        voiceDocTelemetryStat.textContent =
+          wordCount + " words (~" + estMins + " min read)";
       }
     }
 
@@ -969,57 +1046,48 @@
       greeting: {
         spoken:
           "Welcome to Jawad Ul Hadi's portfolio! Jawad is a Senior Backend Engineer and Solutions Architect with over 7 years of experience architecting multi-tenant SaaS platforms, resilient 3-tier fallback AI systems, and high-throughput BullMQ async queues. How can I assist you today? You can ask me about his work at MicroAgility, his AI fallback resilience, his 26 verified certifications, his 10 Chrome extensions, or how to contact him.",
-        text:
-          "👋 <strong>Welcome to Jawad Ul Hadi's Portfolio!</strong><br><br>Jawad is a <strong>Senior Backend Engineer &amp; Solutions Architect</strong> with 7+ years of experience in multi-tenant SaaS, 3-tier AI fallback systems, and high-throughput async queues.<br><br>Feel free to ask me anything about his experience, AI architecture, 26 verified certifications, or how to get in touch!"
+        text: "👋 <strong>Welcome to Jawad Ul Hadi's Portfolio!</strong><br><br>Jawad is a <strong>Senior Backend Engineer &amp; Solutions Architect</strong> with 7+ years of experience in multi-tenant SaaS, 3-tier AI fallback systems, and high-throughput async queues.<br><br>Feel free to ask me anything about his experience, AI architecture, 26 verified certifications, or how to get in touch!",
       },
       fallback: {
         spoken:
           "Jawad designed a signature 3-tier AI fallback ladder for mission-critical enterprise systems. Tier 1 handles the primary LLM call with intelligent multi-model routing across OpenAI, Google Gemini, and Anthropic Claude. If models throttle or timeout, Tier 2 automatically executes grounded RAG retrieval. If both fail, Tier 3 falls back to deterministic rule-based heuristics. This guarantees systems never hard-fail in production.",
-        text:
-          "🏛️ <strong>Jawad's 3-Tier AI Fallback Architecture:</strong><br><br>• <strong>Tier 1 (Multi-Provider LLM):</strong> Intelligent routing &amp; retry across OpenAI, Gemini, and Claude.<br>• <strong>Tier 2 (RAG Grounding):</strong> Semantic vector search fallback if LLMs timeout or throttle.<br>• <strong>Tier 3 (Rule-Based Floor):</strong> Deterministic heuristics ensuring zero hard crashes in production."
+        text: "🏛️ <strong>Jawad's 3-Tier AI Fallback Architecture:</strong><br><br>• <strong>Tier 1 (Multi-Provider LLM):</strong> Intelligent routing &amp; retry across OpenAI, Gemini, and Claude.<br>• <strong>Tier 2 (RAG Grounding):</strong> Semantic vector search fallback if LLMs timeout or throttle.<br>• <strong>Tier 3 (Rule-Based Floor):</strong> Deterministic heuristics ensuring zero hard crashes in production.",
       },
       experience: {
         spoken:
           "Jawad brings over 7 years of production backend leadership. At MicroAgility from 2024 to 2026, he led backend architecture for an enterprise ATS with 22 modules and over 200 REST endpoints, implementing BullMQ resume parsing and self-hosted Postal email delivery. Previously, he engineered APAC HRMS with 9 roles and 31 permission grants, slashing query latencies by over 90 percent.",
-        text:
-          "💼 <strong>Production Track Record (7+ Years):</strong><br><br>• <strong>MicroAgility (2024–2026):</strong> Backend Lead &amp; Architect for Multi-Tenant ATS (22 modules, 200+ endpoints, 3-tier tenancy, BullMQ queues).<br>• <strong>MicroAgility (2022–2024):</strong> Backend Engineer for APAC HRMS (9 roles, 31 RBAC permissions, 90%+ query latency reduction).<br>• <strong>Market Icon (2018–2022):</strong> Serverless APIs with AWS Lambda and API Gateway."
+        text: "💼 <strong>Production Track Record (7+ Years):</strong><br><br>• <strong>MicroAgility (2024–2026):</strong> Backend Lead &amp; Architect for Multi-Tenant ATS (22 modules, 200+ endpoints, 3-tier tenancy, BullMQ queues).<br>• <strong>MicroAgility (2022–2024):</strong> Backend Engineer for APAC HRMS (9 roles, 31 RBAC permissions, 90%+ query latency reduction).<br>• <strong>Market Icon (2018–2022):</strong> Serverless APIs with AWS Lambda and API Gateway.",
       },
       certifications: {
         spoken:
           "Jawad holds 26 verified professional credentials. These include Google Cloud Generative AI Fundamentals, Certified Django Developer from e-smartdata, 9 IBM SkillsBuild certifications across AI, Cloud, and Cybersecurity, and 15 advanced LinkedIn Learning credentials specializing in Agentic AI, GitHub Copilot Agents, and LangChain.",
-        text:
-          "📜 <strong>26 Verified Certifications:</strong><br><br>• <strong>Google Cloud:</strong> Generative AI Fundamentals (License: G3A7L84CRV82)<br>• <strong>e-smartdata:</strong> Certified Django Developer (License: ESD-037/10/2025)<br>• <strong>IBM SkillsBuild (9 Badges):</strong> Artificial Intelligence, Cloud Computing, Cybersecurity, Data, Web Dev<br>• <strong>LinkedIn Learning (15 Credentials):</strong> Agentic AI, Claude Code Subagents, GitHub Copilot Agents, LangChain, RAG"
+        text: "📜 <strong>26 Verified Certifications:</strong><br><br>• <strong>Google Cloud:</strong> Generative AI Fundamentals (License: G3A7L84CRV82)<br>• <strong>e-smartdata:</strong> Certified Django Developer (License: ESD-037/10/2025)<br>• <strong>IBM SkillsBuild (9 Badges):</strong> Artificial Intelligence, Cloud Computing, Cybersecurity, Data, Web Dev<br>• <strong>LinkedIn Learning (15 Credentials):</strong> Agentic AI, Claude Code Subagents, GitHub Copilot Agents, LangChain, RAG",
       },
       extensions: {
         spoken:
           "Jawad created a flagship productivity suite of 10 Google Chrome Extensions. These include an AI Copilot for code context, Live API Interceptors, Schema and JWT Inspection HUDs, Prompt Workbenches, Token HUDs, and Webhook Dispatchers designed for developers and AI engineers.",
-        text:
-          "🚀 <strong>Google Chrome Extension Suite (10 Extensions):</strong><br><br>• Developer AI Copilot &amp; Prompt Workbench<br>• Live API Interceptor &amp; Webhook Dispatcher<br>• Schema &amp; JWT Inspection HUD<br>• Token &amp; Latency Profiler HUD"
+        text: "🚀 <strong>Google Chrome Extension Suite (10 Extensions):</strong><br><br>• Developer AI Copilot &amp; Prompt Workbench<br>• Live API Interceptor &amp; Webhook Dispatcher<br>• Schema &amp; JWT Inspection HUD<br>• Token &amp; Latency Profiler HUD",
       },
       skills: {
         spoken:
           "Jawad's primary tech stack includes TypeScript, Node.js, NestJS, Python, FastAPI, Django, and Laravel. For data, he uses PostgreSQL, MongoDB, MySQL, Redis, and MeiliSearch. His AI toolchain includes Google Gemini, OpenAI, Claude, Cursor, GitHub Copilot, and Claude Code, deployed across GCP, AWS, and Azure.",
-        text:
-          "🛠️ <strong>Core Tech Stack:</strong><br><br>• <strong>Backend:</strong> NestJS, Node.js, TypeScript, Python, FastAPI, Django, Laravel<br>• <strong>Data &amp; Queues:</strong> PostgreSQL, MongoDB, Redis, BullMQ, MeiliSearch<br>• <strong>AI &amp; LLMs:</strong> Google Gemini, OpenAI, Anthropic Claude, LangChain, Cursor, Copilot<br>• <strong>Cloud:</strong> GCP, AWS, Microsoft Azure, Docker, Postal SMTP"
+        text: "🛠️ <strong>Core Tech Stack:</strong><br><br>• <strong>Backend:</strong> NestJS, Node.js, TypeScript, Python, FastAPI, Django, Laravel<br>• <strong>Data &amp; Queues:</strong> PostgreSQL, MongoDB, Redis, BullMQ, MeiliSearch<br>• <strong>AI &amp; LLMs:</strong> Google Gemini, OpenAI, Anthropic Claude, LangChain, Cursor, Copilot<br>• <strong>Cloud:</strong> GCP, AWS, Microsoft Azure, Docker, Postal SMTP",
       },
       contact: {
         spoken:
           "You can reach Jawad directly via email at jawadulhadicc@gmail.com, or message him instantly on WhatsApp at +92 346 7248414. He is also active on LinkedIn and GitHub, and is open to remote, hybrid, or relocation opportunities with US, EU, and APAC overlap.",
-        text:
-          "📬 <strong>Direct Contact Channels:</strong><br><br>• <strong>Gmail:</strong> <a href=\"https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20from%20Portfolio\" target=\"_blank\" class=\"out-link\">jawadulhadicc@gmail.com ↗</a><br>• <strong>WhatsApp:</strong> <a href=\"https://wa.me/923467248414\" target=\"_blank\" class=\"out-link\">+92 346 7248414 ↗</a><br>• <strong>LinkedIn:</strong> <a href=\"https://linkedin.com/in/jawad-ul-hadi\" target=\"_blank\" class=\"out-link\">linkedin.com/in/jawad-ul-hadi ↗</a><br>• <strong>Location:</strong> Islamabad, Pakistan (US / EU / APAC overlap)"
+        text: '📬 <strong>Direct Contact Channels:</strong><br><br>• <strong>Gmail:</strong> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20from%20Portfolio" target="_blank" class="out-link">jawadulhadicc@gmail.com ↗</a><br>• <strong>WhatsApp:</strong> <a href="https://wa.me/923467248414" target="_blank" class="out-link">+92 346 7248414 ↗</a><br>• <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/jawad-ul-hadi" target="_blank" class="out-link">linkedin.com/in/jawad-ul-hadi ↗</a><br>• <strong>Location:</strong> Islamabad, Pakistan (US / EU / APAC overlap)',
       },
       resume: {
         spoken:
           "Opening Jawad's interactive Résumé modal now. You can preview both the HTML version and download the official PDF directly.",
-        text:
-          "📄 <strong>Official Résumé Preview:</strong><br><br>Opening the modal previewer... You can view the full HTML résumé or download the PDF document directly."
+        text: "📄 <strong>Official Résumé Preview:</strong><br><br>Opening the modal previewer... You can view the full HTML résumé or download the PDF document directly.",
       },
       whois: {
         spoken:
           "Jawad Ul Hadi is a Senior Backend Engineer and Solutions Architect based in Islamabad, Pakistan. He has a 360-degree engineering perspective spanning high-performance databases, resilient AI orchestration, and multi-tenant SaaS platforms.",
-        text:
-          "👨‍💻 <strong>About Jawad Ul Hadi:</strong><br><br><em>'The best code is never rewritten not because it’s perfect, but because it’s flexible enough to evolve with the business.'</em><br><br>Senior Backend Engineer, Solutions Architect, and AI Integrator with 7+ years of track record building scalable SaaS backends."
-      }
+        text: "👨‍💻 <strong>About Jawad Ul Hadi:</strong><br><br><em>'The best code is never rewritten not because it’s perfect, but because it’s flexible enough to evolve with the business.'</em><br><br>Senior Backend Engineer, Solutions Architect, and AI Integrator with 7+ years of track record building scalable SaaS backends.",
+      },
     };
 
     function speakText(text, onEnd) {
@@ -1044,13 +1112,15 @@
 
       utterance.onend = function () {
         voiceWidgetContainer.classList.remove("is-speaking");
-        if (voiceStatusText) voiceStatusText.textContent = "Ready to speak or listen";
+        if (voiceStatusText)
+          voiceStatusText.textContent = "Ready to speak or listen";
         if (onEnd) onEnd();
       };
 
       utterance.onerror = function () {
         voiceWidgetContainer.classList.remove("is-speaking");
-        if (voiceStatusText) voiceStatusText.textContent = "Ready to speak or listen";
+        if (voiceStatusText)
+          voiceStatusText.textContent = "Ready to speak or listen";
         if (onEnd) onEnd();
       };
 
@@ -1059,13 +1129,17 @@
 
     // Docs-to-Voice Playback Function
     function playDocumentAloud() {
-      var activeDoc = (window.UnifiedVoiceDocsBridge && typeof window.UnifiedVoiceDocsBridge.getActiveDoc === "function")
-        ? window.UnifiedVoiceDocsBridge.getActiveDoc()
-        : null;
+      var activeDoc =
+        window.UnifiedVoiceDocsBridge &&
+        typeof window.UnifiedVoiceDocsBridge.getActiveDoc === "function"
+          ? window.UnifiedVoiceDocsBridge.getActiveDoc()
+          : null;
 
-      var fullText = (window.UnifiedVoiceDocsBridge && typeof window.UnifiedVoiceDocsBridge.getActiveDocFullText === "function")
-        ? window.UnifiedVoiceDocsBridge.getActiveDocFullText()
-        : "";
+      var fullText =
+        window.UnifiedVoiceDocsBridge &&
+        typeof window.UnifiedVoiceDocsBridge.getActiveDocFullText === "function"
+          ? window.UnifiedVoiceDocsBridge.getActiveDocFullText()
+          : "";
 
       if (!fullText) {
         var contentEl = document.getElementById("docsContentPreview");
@@ -1074,7 +1148,11 @@
         }
       }
 
-      if (!fullText || fullText.indexOf("Loading content") !== -1 || fullText.indexOf("Select a document") !== -1) {
+      if (
+        !fullText ||
+        fullText.indexOf("Loading content") !== -1 ||
+        fullText.indexOf("Select a document") !== -1
+      ) {
         alert("Please select or load a Google Doc with text content first.");
         var docsHub = document.getElementById("docs-hub");
         if (docsHub) docsHub.scrollIntoView({ behavior: "smooth" });
@@ -1098,7 +1176,8 @@
       isReadingDoc = true;
       isPausedDoc = false;
 
-      var docTitle = activeDoc && activeDoc.name ? activeDoc.name : "Google Document";
+      var docTitle =
+        activeDoc && activeDoc.name ? activeDoc.name : "Google Document";
       var spokenIntro = "Reading " + docTitle + ". ";
       var fullSpoken = spokenIntro + fullText;
 
@@ -1121,9 +1200,18 @@
           var charIndex = event.charIndex - spokenIntro.length;
           if (charIndex > 0 && charIndex < fullText.length) {
             var before = escapeHtml(fullText.substring(0, charIndex));
-            var currentWord = escapeHtml(fullText.substring(charIndex, charIndex + 20).split(/\s+/)[0]);
-            var after = escapeHtml(fullText.substring(charIndex + currentWord.length));
-            voiceDocReadingStream.innerHTML = before + '<mark style="background:var(--gold);color:#0a1628;border-radius:2px;padding:0 2px;">' + currentWord + '</mark>' + after;
+            var currentWord = escapeHtml(
+              fullText.substring(charIndex, charIndex + 20).split(/\s+/)[0],
+            );
+            var after = escapeHtml(
+              fullText.substring(charIndex + currentWord.length),
+            );
+            voiceDocReadingStream.innerHTML =
+              before +
+              '<mark style="background:var(--gold);color:#0a1628;border-radius:2px;padding:0 2px;">' +
+              currentWord +
+              "</mark>" +
+              after;
           }
         }
       };
@@ -1166,7 +1254,11 @@
       if (voicePlayDocBtn) {
         voicePlayDocBtn.classList.toggle("is-playing", playing);
         if (voicePlayDocBtnText) {
-          voicePlayDocBtnText.textContent = playing ? "Playing Document Aloud..." : (paused ? "Resume Reading" : "Read Active Google Doc Aloud");
+          voicePlayDocBtnText.textContent = playing
+            ? "Playing Document Aloud..."
+            : paused
+              ? "Resume Reading"
+              : "Read Active Google Doc Aloud";
         }
       }
       voiceWidgetContainer.classList.toggle("is-speaking", playing);
@@ -1183,7 +1275,9 @@
 
     function appendTranscript(type, htmlContent) {
       var bubble = document.createElement("div");
-      bubble.className = "voice-transcript-bubble " + (type === "user" ? "voice-bubble-user" : "voice-bubble-ai");
+      bubble.className =
+        "voice-transcript-bubble " +
+        (type === "user" ? "voice-bubble-user" : "voice-bubble-ai");
       bubble.innerHTML = htmlContent;
       voiceTranscriptBody.appendChild(bubble);
       voiceTranscriptBody.scrollTop = voiceTranscriptBody.scrollHeight;
@@ -1198,45 +1292,102 @@
       var match = null;
 
       // Intelligent intent routing
-      if (q.indexOf("read doc") !== -1 || q.indexOf("listen to doc") !== -1 || q.indexOf("docs to voice") !== -1 || q.indexOf("read document") !== -1) {
+      if (
+        q.indexOf("read doc") !== -1 ||
+        q.indexOf("listen to doc") !== -1 ||
+        q.indexOf("docs to voice") !== -1 ||
+        q.indexOf("read document") !== -1
+      ) {
         switchVoiceMode("docs-to-voice");
         openVoiceDrawer();
         match = {
-          spoken: "Switching to Docs to Voice mode. I am loading your active Google Doc and preparing to read it aloud.",
-          text: "🔊 <strong>Docs to Voice Activated</strong><br><br>Ready to read your active Google Doc aloud at your customized playback speed."
+          spoken:
+            "Switching to Docs to Voice mode. I am loading your active Google Doc and preparing to read it aloud.",
+          text: "🔊 <strong>Docs to Voice Activated</strong><br><br>Ready to read your active Google Doc aloud at your customized playback speed.",
         };
         setTimeout(playDocumentAloud, 1000);
-      } else if (q.indexOf("dictate") !== -1 || q.indexOf("voice to docs") !== -1 || q.indexOf("record note") !== -1 || q.indexOf("write to doc") !== -1) {
+      } else if (
+        q.indexOf("dictate") !== -1 ||
+        q.indexOf("voice to docs") !== -1 ||
+        q.indexOf("record note") !== -1 ||
+        q.indexOf("write to doc") !== -1
+      ) {
         switchVoiceMode("voice-to-docs");
         openVoiceDrawer();
         match = {
-          spoken: "Switching to Voice to Docs mode. Ready for your voice dictation.",
-          text: "🎙️ <strong>Voice to Docs Activated</strong><br><br>Speak your architectural notes or sections to stream directly into Google Docs."
+          spoken:
+            "Switching to Voice to Docs mode. Ready for your voice dictation.",
+          text: "🎙️ <strong>Voice to Docs Activated</strong><br><br>Speak your architectural notes or sections to stream directly into Google Docs.",
         };
         setTimeout(toggleDictation, 1000);
-      } else if (q.indexOf("fallback") !== -1 || q.indexOf("3-tier") !== -1 || q.indexOf("resilience") !== -1 || q.indexOf("rag") !== -1) {
+      } else if (
+        q.indexOf("fallback") !== -1 ||
+        q.indexOf("3-tier") !== -1 ||
+        q.indexOf("resilience") !== -1 ||
+        q.indexOf("rag") !== -1
+      ) {
         match = AI_KNOWLEDGE.fallback;
-      } else if (q.indexOf("cert") !== -1 || q.indexOf("credential") !== -1 || q.indexOf("badge") !== -1 || q.indexOf("ibm") !== -1) {
+      } else if (
+        q.indexOf("cert") !== -1 ||
+        q.indexOf("credential") !== -1 ||
+        q.indexOf("badge") !== -1 ||
+        q.indexOf("ibm") !== -1
+      ) {
         match = AI_KNOWLEDGE.certifications;
-      } else if (q.indexOf("experience") !== -1 || q.indexOf("track record") !== -1 || q.indexOf("microagility") !== -1 || q.indexOf("work") !== -1 || q.indexOf("history") !== -1) {
+      } else if (
+        q.indexOf("experience") !== -1 ||
+        q.indexOf("track record") !== -1 ||
+        q.indexOf("microagility") !== -1 ||
+        q.indexOf("work") !== -1 ||
+        q.indexOf("history") !== -1
+      ) {
         match = AI_KNOWLEDGE.experience;
-      } else if (q.indexOf("extension") !== -1 || q.indexOf("chrome") !== -1 || q.indexOf("suite") !== -1 || q.indexOf("project") !== -1) {
+      } else if (
+        q.indexOf("extension") !== -1 ||
+        q.indexOf("chrome") !== -1 ||
+        q.indexOf("suite") !== -1 ||
+        q.indexOf("project") !== -1
+      ) {
         match = AI_KNOWLEDGE.extensions;
-      } else if (q.indexOf("skill") !== -1 || q.indexOf("stack") !== -1 || q.indexOf("nestjs") !== -1 || q.indexOf("python") !== -1 || q.indexOf("database") !== -1 || q.indexOf("tech") !== -1) {
+      } else if (
+        q.indexOf("skill") !== -1 ||
+        q.indexOf("stack") !== -1 ||
+        q.indexOf("nestjs") !== -1 ||
+        q.indexOf("python") !== -1 ||
+        q.indexOf("database") !== -1 ||
+        q.indexOf("tech") !== -1
+      ) {
         match = AI_KNOWLEDGE.skills;
-      } else if (q.indexOf("contact") !== -1 || q.indexOf("hire") !== -1 || q.indexOf("email") !== -1 || q.indexOf("whatsapp") !== -1 || q.indexOf("call") !== -1 || q.indexOf("reach") !== -1) {
+      } else if (
+        q.indexOf("contact") !== -1 ||
+        q.indexOf("hire") !== -1 ||
+        q.indexOf("email") !== -1 ||
+        q.indexOf("whatsapp") !== -1 ||
+        q.indexOf("call") !== -1 ||
+        q.indexOf("reach") !== -1
+      ) {
         match = AI_KNOWLEDGE.contact;
-      } else if (q.indexOf("resume") !== -1 || q.indexOf("cv") !== -1 || q.indexOf("pdf") !== -1) {
+      } else if (
+        q.indexOf("resume") !== -1 ||
+        q.indexOf("cv") !== -1 ||
+        q.indexOf("pdf") !== -1
+      ) {
         match = AI_KNOWLEDGE.resume;
         if (typeof window.openResumeModal === "function") {
           setTimeout(window.openResumeModal, 800);
         }
-      } else if (q.indexOf("who") !== -1 || q.indexOf("about") !== -1 || q.indexOf("jawad") !== -1 || q.indexOf("summary") !== -1) {
+      } else if (
+        q.indexOf("who") !== -1 ||
+        q.indexOf("about") !== -1 ||
+        q.indexOf("jawad") !== -1 ||
+        q.indexOf("summary") !== -1
+      ) {
         match = AI_KNOWLEDGE.whois;
       } else {
         match = {
-          spoken: "Jawad Ul Hadi is a Senior Backend Engineer and Solutions Architect with 7+ years of experience specializing in resilient AI backends, multi-tenant SaaS, and 26 verified credentials. Would you like to hear about his 3-tier AI fallback, his work experience, or his contact information?",
-          text: "💡 Jawad specializes in <strong>Scalable SaaS</strong>, <strong>3-Tier AI Fallback Ladders</strong>, and <strong>BullMQ Queue Architectures</strong>.<br><br>Ask me about his <strong>Experience</strong>, <strong>Certifications</strong>, <strong>AI Architecture</strong>, or <strong>Direct Contact Channels</strong>!"
+          spoken:
+            "Jawad Ul Hadi is a Senior Backend Engineer and Solutions Architect with 7+ years of experience specializing in resilient AI backends, multi-tenant SaaS, and 26 verified credentials. Would you like to hear about his 3-tier AI fallback, his work experience, or his contact information?",
+          text: "💡 Jawad specializes in <strong>Scalable SaaS</strong>, <strong>3-Tier AI Fallback Ladders</strong>, and <strong>BullMQ Queue Architectures</strong>.<br><br>Ask me about his <strong>Experience</strong>, <strong>Certifications</strong>, <strong>AI Architecture</strong>, or <strong>Direct Contact Channels</strong>!",
         };
       }
 
@@ -1253,7 +1404,8 @@
     function closeVoiceDrawerPanel() {
       voicePanelDrawer.classList.remove("open");
       if (synth) synth.cancel();
-      if (conciergeRecognition && isConciergeListening) conciergeRecognition.stop();
+      if (conciergeRecognition && isConciergeListening)
+        conciergeRecognition.stop();
       if (dictateRecognition && isDictating) dictateRecognition.stop();
       voiceWidgetContainer.classList.remove("is-speaking");
       voiceWidgetContainer.classList.remove("is-listening");
@@ -1266,7 +1418,8 @@
     window.UnifiedVoiceDocsBridge.switchVoiceMode = switchVoiceMode;
     window.UnifiedVoiceDocsBridge.playDocumentAloud = playDocumentAloud;
     window.UnifiedVoiceDocsBridge.toggleDictation = toggleDictation;
-    window.UnifiedVoiceDocsBridge.syncActiveDocTargetDisplay = syncActiveDocTargetDisplay;
+    window.UnifiedVoiceDocsBridge.syncActiveDocTargetDisplay =
+      syncActiveDocTargetDisplay;
 
     // Mode Tab Switcher Listeners
     if (voiceTabConcierge) {
@@ -1305,7 +1458,9 @@
     // Voice Speed selector
     voiceSpeedBtns.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        voiceSpeedBtns.forEach(function (b) { b.classList.remove("active"); });
+        voiceSpeedBtns.forEach(function (b) {
+          b.classList.remove("active");
+        });
         btn.classList.add("active");
         var speedVal = parseFloat(btn.dataset.speed || "1.0");
         currentReadingRate = speedVal;
@@ -1337,28 +1492,43 @@
     }
     if (voiceAppendToDocDirectBtn) {
       voiceAppendToDocDirectBtn.addEventListener("click", function () {
-        var text = voiceDictateStreamText ? voiceDictateStreamText.value.trim() : "";
+        var text = voiceDictateStreamText
+          ? voiceDictateStreamText.value.trim()
+          : "";
         if (!text) {
           alert("Please record or type some text first.");
           return;
         }
 
-        var activeDoc = (window.UnifiedVoiceDocsBridge && typeof window.UnifiedVoiceDocsBridge.getActiveDoc === "function")
-          ? window.UnifiedVoiceDocsBridge.getActiveDoc()
-          : null;
+        var activeDoc =
+          window.UnifiedVoiceDocsBridge &&
+          typeof window.UnifiedVoiceDocsBridge.getActiveDoc === "function"
+            ? window.UnifiedVoiceDocsBridge.getActiveDoc()
+            : null;
 
         if (!activeDoc || !activeDoc.id) {
-          alert("No active Google Doc selected. Please select a document in Google Docs Studio first.");
+          alert(
+            "No active Google Doc selected. Please select a document in Google Docs Studio first.",
+          );
           return;
         }
 
-        if (window.UnifiedVoiceDocsBridge && typeof window.UnifiedVoiceDocsBridge.executeAppend === "function") {
-          window.UnifiedVoiceDocsBridge.executeAppend(text).then(function () {
-            if (voiceDictateStreamText) voiceDictateStreamText.value = "";
-            alert("✓ Successfully appended dictated section to " + (activeDoc.name || "Google Doc") + "!");
-          }).catch(function (err) {
-            alert("Error appending: " + err.message);
-          });
+        if (
+          window.UnifiedVoiceDocsBridge &&
+          typeof window.UnifiedVoiceDocsBridge.executeAppend === "function"
+        ) {
+          window.UnifiedVoiceDocsBridge.executeAppend(text)
+            .then(function () {
+              if (voiceDictateStreamText) voiceDictateStreamText.value = "";
+              alert(
+                "✓ Successfully appended dictated section to " +
+                  (activeDoc.name || "Google Doc") +
+                  "!",
+              );
+            })
+            .catch(function (err) {
+              alert("Error appending: " + err.message);
+            });
         }
       });
     }
@@ -1399,7 +1569,8 @@
     if (voiceMuteToggle) {
       voiceMuteToggle.addEventListener("click", function () {
         if (synth) synth.cancel();
-        if (conciergeRecognition && isConciergeListening) conciergeRecognition.stop();
+        if (conciergeRecognition && isConciergeListening)
+          conciergeRecognition.stop();
         if (dictateRecognition && isDictating) dictateRecognition.stop();
         voiceWidgetContainer.classList.remove("is-speaking");
         voiceWidgetContainer.classList.remove("is-listening");
@@ -1413,7 +1584,9 @@
     if (voiceMicBtn) {
       voiceMicBtn.addEventListener("click", function () {
         if (!conciergeRecognition) {
-          alert("Speech recognition is not supported in this browser. You can type your query in the text box below or use the quick buttons!");
+          alert(
+            "Speech recognition is not supported in this browser. You can type your query in the text box below or use the quick buttons!",
+          );
           return;
         }
 
@@ -1601,12 +1774,17 @@
       btn.addEventListener("click", function () {
         var targetTab = btn.getAttribute("data-figma-tab");
 
-        tabBtns.forEach(function (b) { b.classList.remove("active"); });
+        tabBtns.forEach(function (b) {
+          b.classList.remove("active");
+        });
         btn.classList.add("active");
 
-        if (tabCanvas) tabCanvas.style.display = targetTab === "canvas" ? "block" : "none";
-        if (tabTokens) tabTokens.style.display = targetTab === "tokens" ? "block" : "none";
-        if (tabSchema) tabSchema.style.display = targetTab === "schema" ? "block" : "none";
+        if (tabCanvas)
+          tabCanvas.style.display = targetTab === "canvas" ? "block" : "none";
+        if (tabTokens)
+          tabTokens.style.display = targetTab === "tokens" ? "block" : "none";
+        if (tabSchema)
+          tabSchema.style.display = targetTab === "schema" ? "block" : "none";
       });
     });
 
@@ -1617,7 +1795,9 @@
         if (href && href.startsWith("#")) {
           e.preventDefault();
           closeSitemap();
-          var targetEl = document.querySelector(href === "#top" ? "body" : href);
+          var targetEl = document.querySelector(
+            href === "#top" ? "body" : href,
+          );
           if (targetEl) {
             setTimeout(function () {
               targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1664,26 +1844,30 @@
           "gap: 12px",
           "animation: jhSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1)",
           "backdrop-filter: blur(12px)",
-          "-webkit-backdrop-filter: blur(12px)"
+          "-webkit-backdrop-filter: blur(12px)",
         ].join(";");
 
-        var textContent = message || "A network asset took longer to respond. Click reload to refresh resources and restore full functionality.";
+        var textContent =
+          message ||
+          "A network asset took longer to respond. Click reload to refresh resources and restore full functionality.";
 
         toast.innerHTML = [
           '<div style="display:flex; align-items:flex-start; gap:12px;">',
           '  <div style="flex-shrink:0; width:28px; height:28px; border-radius:6px; background:rgba(185,132,63,0.15); border:1px solid rgba(185,132,63,0.3); display:flex; align-items:center; justify-content:center; color:#e5a95d; font-size:14px; font-weight:bold;">!</div>',
           '  <div style="flex:1;">',
           '    <div style="font-weight:600; color:#f8fafc; margin-bottom:2px; font-size:14px;">Resource Notice</div>',
-          '    <div style="color:#cbd5e1; font-size:13px;">' + escapeHtml(textContent) + '</div>',
-          '  </div>',
-          '</div>',
+          '    <div style="color:#cbd5e1; font-size:13px;">' +
+            escapeHtml(textContent) +
+            "</div>",
+          "  </div>",
+          "</div>",
           '<div style="display:flex; justify-content:flex-end; gap:8px; margin-top:2px;">',
           '  <button id="jh-error-dismiss-btn" type="button" style="background:transparent; border:1px solid rgba(255,255,255,0.15); color:#94a3b8; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:500; cursor:pointer; transition:all 0.15s ease;">Dismiss</button>',
           '  <button id="jh-error-reload-btn" type="button" style="background:#b9843f; border:none; color:#ffffff; padding:6px 14px; border-radius:6px; font-size:12px; font-weight:600; cursor:pointer; display:inline-flex; align-items:center; gap:5px; box-shadow:0 2px 8px rgba(185,132,63,0.35); transition:background 0.15s ease;">',
           '    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>',
-          '    Reload Application',
-          '  </button>',
-          '</div>'
+          "    Reload Application",
+          "  </button>",
+          "</div>",
         ].join("");
 
         document.body.appendChild(toast);
@@ -1719,13 +1903,20 @@
     window.addEventListener(
       "error",
       function (event) {
-        if (event && event.target && (event.target.tagName === "SCRIPT" || event.target.tagName === "LINK")) {
+        if (
+          event &&
+          event.target &&
+          (event.target.tagName === "SCRIPT" || event.target.tagName === "LINK")
+        ) {
           var src = event.target.src || event.target.href || "resource";
           console.warn("[JH Portfolio] Resource load timeout or failure:", src);
-          showReloadPrompt("An essential script or style resource failed to load. A reload will restore the full interactive experience.", true);
+          showReloadPrompt(
+            "An essential script or style resource failed to load. A reload will restore the full interactive experience.",
+            true,
+          );
         }
       },
-      true // Capture phase to intercept element-level error events
+      true, // Capture phase to intercept element-level error events
     );
 
     // Capture unhandled promise rejections
@@ -1789,11 +1980,12 @@
         try {
           document.execCommand("copy");
           var originalHTML = copyBtn.innerHTML;
-          copyBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied to Clipboard!';
-          copyBtn.style.background = '#059669';
+          copyBtn.innerHTML =
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied to Clipboard!';
+          copyBtn.style.background = "#059669";
           setTimeout(function () {
             copyBtn.innerHTML = originalHTML;
-            copyBtn.style.background = '';
+            copyBtn.style.background = "";
           }, 2400);
         } catch (err) {
           console.error("Copy failed", err);
@@ -1835,9 +2027,9 @@
       { name: "NestJS / Node", type: "logic", col: 0.12 },
       { name: "PostgreSQL / Redis", type: "logic", col: 0.28 },
       { name: "BullMQ Queues", type: "logic", col: 0.44 },
-      { name: "RAG & Vector Embeds", type: "ai", col: 0.60 },
+      { name: "RAG & Vector Embeds", type: "ai", col: 0.6 },
       { name: "Gemini / Claude / OpenAI", type: "ai", col: 0.76 },
-      { name: "3-Tier Fallback Engine", type: "ai", col: 0.90 }
+      { name: "3-Tier Fallback Engine", type: "ai", col: 0.9 },
     ];
 
     function initNodes() {
@@ -1849,13 +2041,15 @@
         var info = nodeLabels[i];
         nodes.push({
           x: w * info.col,
-          y: h * (0.35 + (i % 2 === 0 ? 0.25 : -0.1) + (Math.sin(i * 1.5) * 0.12)),
+          y:
+            h * (0.35 + (i % 2 === 0 ? 0.25 : -0.1) + Math.sin(i * 1.5) * 0.12),
           baseX: w * info.col,
-          baseY: h * (0.35 + (i % 2 === 0 ? 0.25 : -0.1) + (Math.sin(i * 1.5) * 0.12)),
+          baseY:
+            h * (0.35 + (i % 2 === 0 ? 0.25 : -0.1) + Math.sin(i * 1.5) * 0.12),
           name: info.name,
           type: info.type,
           radius: info.type === "ai" ? 5 : 4,
-          phase: Math.random() * Math.PI * 2
+          phase: Math.random() * Math.PI * 2,
         });
       }
     }
@@ -1869,8 +2063,10 @@
       if (nodes.length < 2) return;
       var fromIdx = Math.floor(Math.random() * (nodes.length - 1));
       var toIdx = fromIdx + 1;
-      var currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
-      var isLightMode = currentTheme === "light" || currentTheme === "ai-classic";
+      var currentTheme =
+        document.documentElement.getAttribute("data-theme") || "dark";
+      var isLightMode =
+        currentTheme === "light" || currentTheme === "ai-classic";
       var isAiNode = nodes[fromIdx].type === "ai" || nodes[toIdx].type === "ai";
 
       var pulseColor = isLightMode
@@ -1878,8 +2074,8 @@
           ? "#0284c7"
           : "#b9843f"
         : isAiNode
-        ? "#00f0ff"
-        : "#d4a574";
+          ? "#00f0ff"
+          : "#d4a574";
 
       pulses.push({
         from: nodes[fromIdx],
@@ -1910,7 +2106,8 @@
       frame++;
       ctx.clearRect(0, 0, width, height);
 
-      var currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
+      var currentTheme =
+        document.documentElement.getAttribute("data-theme") || "dark";
       var isLight = currentTheme === "light";
       var isAiClassic = currentTheme === "ai-classic";
       var isCyber = currentTheme === "cyber";
@@ -1923,11 +2120,31 @@
 
         var grad = ctx.createLinearGradient(n1.x, n1.y, n2.x, n2.y);
         if (isLightFamily) {
-          grad.addColorStop(0, n1.type === "ai" ? "rgba(2, 132, 199, 0.4)" : "rgba(185, 132, 63, 0.35)");
-          grad.addColorStop(1, n2.type === "ai" ? "rgba(2, 132, 199, 0.6)" : "rgba(185, 132, 63, 0.55)");
+          grad.addColorStop(
+            0,
+            n1.type === "ai"
+              ? "rgba(2, 132, 199, 0.4)"
+              : "rgba(185, 132, 63, 0.35)",
+          );
+          grad.addColorStop(
+            1,
+            n2.type === "ai"
+              ? "rgba(2, 132, 199, 0.6)"
+              : "rgba(185, 132, 63, 0.55)",
+          );
         } else {
-          grad.addColorStop(0, n1.type === "ai" ? "rgba(0, 240, 255, 0.45)" : "rgba(185, 132, 63, 0.35)");
-          grad.addColorStop(1, n2.type === "ai" ? "rgba(0, 240, 255, 0.6)" : "rgba(185, 132, 63, 0.5)");
+          grad.addColorStop(
+            0,
+            n1.type === "ai"
+              ? "rgba(0, 240, 255, 0.45)"
+              : "rgba(185, 132, 63, 0.35)",
+          );
+          grad.addColorStop(
+            1,
+            n2.type === "ai"
+              ? "rgba(0, 240, 255, 0.6)"
+              : "rgba(185, 132, 63, 0.5)",
+          );
         }
 
         ctx.beginPath();
@@ -1943,7 +2160,9 @@
           ctx.beginPath();
           ctx.moveTo(n1.x, n1.y);
           ctx.lineTo(n3.x, n3.y);
-          ctx.strokeStyle = isLightFamily ? "rgba(2, 132, 199, 0.14)" : "rgba(0, 240, 255, 0.12)";
+          ctx.strokeStyle = isLightFamily
+            ? "rgba(2, 132, 199, 0.14)"
+            : "rgba(0, 240, 255, 0.12)";
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
@@ -1979,9 +2198,15 @@
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius + 3, 0, Math.PI * 2);
         if (isLightFamily) {
-          ctx.fillStyle = node.type === "ai" ? "rgba(2, 132, 199, 0.18)" : "rgba(185, 132, 63, 0.18)";
+          ctx.fillStyle =
+            node.type === "ai"
+              ? "rgba(2, 132, 199, 0.18)"
+              : "rgba(185, 132, 63, 0.18)";
         } else {
-          ctx.fillStyle = node.type === "ai" ? "rgba(0, 240, 255, 0.18)" : "rgba(185, 132, 63, 0.18)";
+          ctx.fillStyle =
+            node.type === "ai"
+              ? "rgba(0, 240, 255, 0.18)"
+              : "rgba(185, 132, 63, 0.18)";
         }
         ctx.fill();
 
@@ -1993,8 +2218,8 @@
             ? "#0284c7"
             : "#b9843f"
           : node.type === "ai"
-          ? "#00f0ff"
-          : "#d4a574";
+            ? "#00f0ff"
+            : "#d4a574";
 
         ctx.fillStyle = dotColor;
         ctx.shadowColor = dotColor;
@@ -2102,9 +2327,24 @@
       normal: {
         name: "Providers Online (200 OK)",
         latency: "420ms",
-        llmState: { status: "Online", color: "#10b981", active: true, failed: false },
-        ragState: { status: "Standby", color: "#94a3b8", active: false, failed: false },
-        ruleState: { status: "Standby", color: "#94a3b8", active: false, failed: false },
+        llmState: {
+          status: "Online",
+          color: "#10b981",
+          active: true,
+          failed: false,
+        },
+        ragState: {
+          status: "Standby",
+          color: "#94a3b8",
+          active: false,
+          failed: false,
+        },
+        ruleState: {
+          status: "Standby",
+          color: "#94a3b8",
+          active: false,
+          failed: false,
+        },
         logs: [
           "[12:57:01.012] INFO [IngestionController] POST /v1/ai/parse-resume tenantId=ten_micro_9182 (202 Accepted, 8ms)",
           "[12:57:01.025] INFO [BullMQ:Worker] Picked up job #84102 payload='resume_sr_engineer.pdf'",
@@ -2117,9 +2357,24 @@
       "openai-fail": {
         name: "OpenAI 503 → Auto-Failover",
         latency: "780ms",
-        llmState: { status: "Failover (Claude 3.7)", color: "#10b981", active: true, failed: false },
-        ragState: { status: "Standby", color: "#94a3b8", active: false, failed: false },
-        ruleState: { status: "Standby", color: "#94a3b8", active: false, failed: false },
+        llmState: {
+          status: "Failover (Claude 3.7)",
+          color: "#10b981",
+          active: true,
+          failed: false,
+        },
+        ragState: {
+          status: "Standby",
+          color: "#94a3b8",
+          active: false,
+          failed: false,
+        },
+        ruleState: {
+          status: "Standby",
+          color: "#94a3b8",
+          active: false,
+          failed: false,
+        },
         logs: [
           "[12:57:02.100] INFO [IngestionController] POST /v1/ai/score-candidate tenantId=ten_apac_331 (202 Accepted, 10ms)",
           "[12:57:02.115] INFO [BullMQ:Worker] Job #84103 dispatched to OpenAI GPT-4o",
@@ -2132,9 +2387,24 @@
       "all-llm-down": {
         name: "All LLMs Down → Tier 2 RAG",
         latency: "185ms",
-        llmState: { status: "Outage (HTTP 503)", color: "#ef4444", active: false, failed: true },
-        ragState: { status: "Active Fallback", color: "#10b981", active: true, failed: false },
-        ruleState: { status: "Standby", color: "#94a3b8", active: false, failed: false },
+        llmState: {
+          status: "Outage (HTTP 503)",
+          color: "#ef4444",
+          active: false,
+          failed: true,
+        },
+        ragState: {
+          status: "Active Fallback",
+          color: "#10b981",
+          active: true,
+          failed: false,
+        },
+        ruleState: {
+          status: "Standby",
+          color: "#94a3b8",
+          active: false,
+          failed: false,
+        },
         logs: [
           "[12:57:03.010] INFO [IngestionController] POST /v1/ai/query-assistant tenantId=ten_eu_4910 (202 Accepted, 7ms)",
           "[12:57:03.025] ERROR [UnifiedAIService] All LLM providers offline (OpenAI 503, Gemini 429, Claude 504)",
@@ -2147,9 +2417,24 @@
       "empty-rag": {
         name: "Empty Vectors → Tier 3 Floor",
         latency: "45ms",
-        llmState: { status: "Outage (HTTP 503)", color: "#ef4444", active: false, failed: true },
-        ragState: { status: "Cold / No Match", color: "#f59e0b", active: false, failed: true },
-        ruleState: { status: "Active Heuristic Floor", color: "#10b981", active: true, failed: false },
+        llmState: {
+          status: "Outage (HTTP 503)",
+          color: "#ef4444",
+          active: false,
+          failed: true,
+        },
+        ragState: {
+          status: "Cold / No Match",
+          color: "#f59e0b",
+          active: false,
+          failed: true,
+        },
+        ruleState: {
+          status: "Active Heuristic Floor",
+          color: "#10b981",
+          active: true,
+          failed: false,
+        },
         logs: [
           "[12:57:04.005] INFO [IngestionController] POST /v1/ai/parse-resume tenantId=ten_new_0012 (202 Accepted, 5ms)",
           "[12:57:04.015] ERROR [UnifiedAIService] Provider outage (Tier-1 failed)",
@@ -2163,33 +2448,53 @@
 
     function runSimulation(scenarioKey) {
       var sc = SCENARIOS[scenarioKey] || SCENARIOS.normal;
-      if (simLatencyBadge) simLatencyBadge.textContent = "Latency: " + sc.latency;
+      if (simLatencyBadge)
+        simLatencyBadge.textContent = "Latency: " + sc.latency;
 
       // Update Step UI
       if (stepLLM) {
-        stepLLM.className = "rag-sim-step " + (sc.llmState.active ? "active" : sc.llmState.failed ? "failed" : "bypassed");
+        stepLLM.className =
+          "rag-sim-step " +
+          (sc.llmState.active
+            ? "active"
+            : sc.llmState.failed
+              ? "failed"
+              : "bypassed");
         if (llmBadge) {
           llmBadge.textContent = sc.llmState.status;
           llmBadge.style.color = sc.llmState.color;
-          llmBadge.style.background = sc.llmState.failed ? "rgba(239, 68, 68, 0.2)" : "rgba(16, 185, 129, 0.2)";
+          llmBadge.style.background = sc.llmState.failed
+            ? "rgba(239, 68, 68, 0.2)"
+            : "rgba(16, 185, 129, 0.2)";
         }
       }
 
       if (stepRAG) {
-        stepRAG.className = "rag-sim-step " + (sc.ragState.active ? "active" : sc.ragState.failed ? "failed" : "bypassed");
+        stepRAG.className =
+          "rag-sim-step " +
+          (sc.ragState.active
+            ? "active"
+            : sc.ragState.failed
+              ? "failed"
+              : "bypassed");
         if (ragBadge) {
           ragBadge.textContent = sc.ragState.status;
           ragBadge.style.color = sc.ragState.color;
-          ragBadge.style.background = sc.ragState.active ? "rgba(16, 185, 129, 0.2)" : "rgba(148, 163, 184, 0.2)";
+          ragBadge.style.background = sc.ragState.active
+            ? "rgba(16, 185, 129, 0.2)"
+            : "rgba(148, 163, 184, 0.2)";
         }
       }
 
       if (stepRule) {
-        stepRule.className = "rag-sim-step " + (sc.ruleState.active ? "active" : "bypassed");
+        stepRule.className =
+          "rag-sim-step " + (sc.ruleState.active ? "active" : "bypassed");
         if (ruleBadge) {
           ruleBadge.textContent = sc.ruleState.status;
           ruleBadge.style.color = sc.ruleState.color;
-          ruleBadge.style.background = sc.ruleState.active ? "rgba(16, 185, 129, 0.2)" : "rgba(148, 163, 184, 0.2)";
+          ruleBadge.style.background = sc.ruleState.active
+            ? "rgba(16, 185, 129, 0.2)"
+            : "rgba(148, 163, 184, 0.2)";
         }
       }
 
@@ -2205,11 +2510,20 @@
                 return '<span class="sim-log-success">' + m + "</span>";
               });
             } else if (line.includes("WARN")) {
-              logDiv.innerHTML = line.replace("WARN", '<span class="sim-log-warn">WARN</span>');
+              logDiv.innerHTML = line.replace(
+                "WARN",
+                '<span class="sim-log-warn">WARN</span>',
+              );
             } else if (line.includes("ERROR")) {
-              logDiv.innerHTML = line.replace("ERROR", '<span class="sim-log-error">ERROR</span>');
+              logDiv.innerHTML = line.replace(
+                "ERROR",
+                '<span class="sim-log-error">ERROR</span>',
+              );
             } else {
-              logDiv.innerHTML = line.replace("INFO", '<span class="sim-log-info">INFO</span>');
+              logDiv.innerHTML = line.replace(
+                "INFO",
+                '<span class="sim-log-info">INFO</span>',
+              );
             }
             simConsole.appendChild(logDiv);
             simConsole.scrollTop = simConsole.scrollHeight;
@@ -2220,7 +2534,9 @@
 
     simPresetButtons.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        simPresetButtons.forEach(function (b) { b.classList.remove("active"); });
+        simPresetButtons.forEach(function (b) {
+          b.classList.remove("active");
+        });
         btn.classList.add("active");
         currentScenario = btn.getAttribute("data-sim-scenario");
         runSimulation(currentScenario);
@@ -2300,7 +2616,9 @@
     slideButtons.forEach(function (btn) {
       btn.addEventListener("click", function () {
         var targetSlide = btn.getAttribute("data-slide");
-        slideButtons.forEach(function (b) { b.classList.remove("active"); });
+        slideButtons.forEach(function (b) {
+          b.classList.remove("active");
+        });
         btn.classList.add("active");
 
         Object.keys(modalSlides).forEach(function (k) {
@@ -2338,20 +2656,27 @@
         "2. Read path gracefully degrades to ranked vector snippets with citations if LLM providers are down or rate-limited.",
         "3. Atomic GDPR Right-to-Erasure cascades delete tenant vectors across all partitions upon candidate deletion.",
         "",
-        "Live Portfolio: https://jawadulhadiportfolio.vercel.app"
+        "Live Portfolio: https://jawadulhadi-portfolio.vercel.app",
       ].join("\n");
 
-      navigator.clipboard.writeText(summaryText).then(function () {
-        if (copyRagSpecsText) copyRagSpecsText.textContent = "Copied to Clipboard!";
-        if (copyRagBtnText) copyRagBtnText.textContent = "Copied to Clipboard!";
-        setTimeout(function () {
-          if (copyRagSpecsText) copyRagSpecsText.textContent = "Copy Architecture Specs";
-          if (copyRagBtnText) copyRagBtnText.textContent = "Copy Architecture Specs";
-        }, 2500);
-      }).catch(function () {
-        if (copyRagSpecsText) copyRagSpecsText.textContent = "Copied!";
-        if (copyRagBtnText) copyRagBtnText.textContent = "Copied!";
-      });
+      navigator.clipboard
+        .writeText(summaryText)
+        .then(function () {
+          if (copyRagSpecsText)
+            copyRagSpecsText.textContent = "Copied to Clipboard!";
+          if (copyRagBtnText)
+            copyRagBtnText.textContent = "Copied to Clipboard!";
+          setTimeout(function () {
+            if (copyRagSpecsText)
+              copyRagSpecsText.textContent = "Copy Architecture Specs";
+            if (copyRagBtnText)
+              copyRagBtnText.textContent = "Copy Architecture Specs";
+          }, 2500);
+        })
+        .catch(function () {
+          if (copyRagSpecsText) copyRagSpecsText.textContent = "Copied!";
+          if (copyRagBtnText) copyRagBtnText.textContent = "Copied!";
+        });
     }
 
     if (copyRagSpecsBtn) {
@@ -2445,33 +2770,47 @@
         if (!tooltipEl) return;
         var isWarning = d.latencyMs >= 50;
         var isFast = d.latencyMs < 25;
-        var valClass = isWarning ? "warning" : (isFast ? "fast" : "");
+        var valClass = isWarning ? "warning" : isFast ? "fast" : "";
         var statusBadge = isWarning
           ? '<span style="color:#f97316;font-weight:700;">Degraded (50ms+)</span>'
-          : '<span style="color:#10b981;font-weight:600;">' + escapeHtml(d.status || "200 OK") + '</span>';
+          : '<span style="color:#10b981;font-weight:600;">' +
+            escapeHtml(d.status || "200 OK") +
+            "</span>";
 
         var html =
           '<div class="tooltip-header">' +
-            '<span>Probe #' + d.seq + '</span>' +
-            '<span style="font-size:0.68rem;color:var(--text-muted);margin-left:auto;">' + escapeHtml(d.timeStr) + '</span>' +
-          '</div>' +
+          "<span>Probe #" +
+          d.seq +
+          "</span>" +
+          '<span style="font-size:0.68rem;color:var(--text-muted);margin-left:auto;">' +
+          escapeHtml(d.timeStr) +
+          "</span>" +
+          "</div>" +
           '<div class="tooltip-row">' +
-            '<span class="tooltip-label">Round-Trip Latency:</span>' +
-            '<span class="tooltip-val ' + valClass + '">' + d.latencyMs + ' ms</span>' +
-          '</div>' +
+          '<span class="tooltip-label">Round-Trip Latency:</span>' +
+          '<span class="tooltip-val ' +
+          valClass +
+          '">' +
+          d.latencyMs +
+          " ms</span>" +
+          "</div>" +
           '<div class="tooltip-row">' +
-            '<span class="tooltip-label">System Status:</span>' +
-            '<span>' + statusBadge + '</span>' +
-          '</div>';
+          '<span class="tooltip-label">System Status:</span>' +
+          "<span>" +
+          statusBadge +
+          "</span>" +
+          "</div>";
 
         tooltipEl.innerHTML = html;
 
-        var svgWrap = document.getElementById("apiD3SvgWrap") || apiLatencyD3Chart.parentElement;
+        var svgWrap =
+          document.getElementById("apiD3SvgWrap") ||
+          apiLatencyD3Chart.parentElement;
         var wrapRect = svgWrap.getBoundingClientRect();
         var pointTarget = event.currentTarget;
         var pointRect = pointTarget.getBoundingClientRect();
 
-        var relX = pointRect.left - wrapRect.left + (pointRect.width / 2);
+        var relX = pointRect.left - wrapRect.left + pointRect.width / 2;
         var relY = pointRect.top - wrapRect.top;
 
         tooltipEl.style.left = relX + "px";
@@ -2494,36 +2833,95 @@
         var padB = 25;
         var innerW = w - padL - padR;
         var innerH = h - padT - padB;
-        var maxLat = Math.max.apply(null, chartData.map(function (d) { return d.latencyMs; }));
+        var maxLat = Math.max.apply(
+          null,
+          chartData.map(function (d) {
+            return d.latencyMs;
+          }),
+        );
         maxLat = Math.max(30, maxLat * 1.25);
 
         var points = chartData.map(function (d, i) {
           var x = padL + (i / Math.max(1, chartData.length - 1)) * innerW;
           var y = padT + innerH - (d.latencyMs / maxLat) * innerH;
-          return { x: x, y: y, lat: d.latencyMs, seq: d.seq, timeStr: d.timeStr, data: d };
+          return {
+            x: x,
+            y: y,
+            lat: d.latencyMs,
+            seq: d.seq,
+            timeStr: d.timeStr,
+            data: d,
+          };
         });
 
-        var polylinePts = points.map(function (p) { return p.x + "," + p.y; }).join(" ");
-        var areaPts = padL + "," + (padT + innerH) + " " + polylinePts + " " + (padL + innerW) + "," + (padT + innerH);
+        var polylinePts = points
+          .map(function (p) {
+            return p.x + "," + p.y;
+          })
+          .join(" ");
+        var areaPts =
+          padL +
+          "," +
+          (padT + innerH) +
+          " " +
+          polylinePts +
+          " " +
+          (padL + innerW) +
+          "," +
+          (padT + innerH);
 
         var fallbackHtml =
-          '<defs>' +
-            '<linearGradient id="fallbackAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">' +
-              '<stop offset="0%" stop-color="#b9843f" stop-opacity="0.35"/>' +
-              '<stop offset="100%" stop-color="#b9843f" stop-opacity="0.0"/>' +
-            '</linearGradient>' +
-          '</defs>' +
-          '<polygon points="' + areaPts + '" fill="url(#fallbackAreaGrad)"/>' +
-          '<polyline points="' + polylinePts + '" fill="none" stroke="#b9843f" stroke-width="2.5" stroke-linecap="round"/>';
+          "<defs>" +
+          '<linearGradient id="fallbackAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">' +
+          '<stop offset="0%" stop-color="#b9843f" stop-opacity="0.35"/>' +
+          '<stop offset="100%" stop-color="#b9843f" stop-opacity="0.0"/>' +
+          "</linearGradient>" +
+          "</defs>" +
+          '<polygon points="' +
+          areaPts +
+          '" fill="url(#fallbackAreaGrad)"/>' +
+          '<polyline points="' +
+          polylinePts +
+          '" fill="none" stroke="#b9843f" stroke-width="2.5" stroke-linecap="round"/>';
 
         points.forEach(function (p, idx) {
           var isLast = idx === points.length - 1;
           var isWarning = p.lat >= 50;
-          var dotColor = isWarning ? "#f97316" : (isLast ? "#10b981" : "#b9843f");
-          var fillColor = isWarning ? "#f97316" : (isLast ? "#10b981" : "#0a1628");
+          var dotColor = isWarning ? "#f97316" : isLast ? "#10b981" : "#b9843f";
+          var fillColor = isWarning
+            ? "#f97316"
+            : isLast
+              ? "#10b981"
+              : "#0a1628";
           fallbackHtml +=
-            '<circle cx="' + p.x + '" cy="' + p.y + '" r="' + (isLast ? 5.5 : 4) + '" fill="' + fillColor + '" stroke="' + dotColor + '" stroke-width="2" class="d3-data-dot' + (isWarning ? " warning" : (isLast ? " latest" : "")) + '" title="Probe #' + p.seq + ' · ' + p.lat + 'ms · ' + p.timeStr + '"/>' +
-            '<text x="' + p.x + '" y="' + (p.y - 8) + '" class="d3-val-label' + (isWarning ? " warning" : (isLast ? " latest" : "")) + '">' + p.lat + 'ms</text>';
+            '<circle cx="' +
+            p.x +
+            '" cy="' +
+            p.y +
+            '" r="' +
+            (isLast ? 5.5 : 4) +
+            '" fill="' +
+            fillColor +
+            '" stroke="' +
+            dotColor +
+            '" stroke-width="2" class="d3-data-dot' +
+            (isWarning ? " warning" : isLast ? " latest" : "") +
+            '" title="Probe #' +
+            p.seq +
+            " · " +
+            p.lat +
+            "ms · " +
+            p.timeStr +
+            '"/>' +
+            '<text x="' +
+            p.x +
+            '" y="' +
+            (p.y - 8) +
+            '" class="d3-val-label' +
+            (isWarning ? " warning" : isLast ? " latest" : "") +
+            '">' +
+            p.lat +
+            "ms</text>";
         });
 
         apiLatencyD3Chart.innerHTML = fallbackHtml;
@@ -2539,67 +2937,87 @@
       svg.selectAll("*").remove();
 
       var defs = svg.append("defs");
-      var grad = defs.append("linearGradient")
+      var grad = defs
+        .append("linearGradient")
         .attr("id", "apiLatencyAreaGrad")
-        .attr("x1", "0%").attr("y1", "0%")
-        .attr("x2", "0%").attr("y2", "100%");
+        .attr("x1", "0%")
+        .attr("y1", "0%")
+        .attr("x2", "0%")
+        .attr("y2", "100%");
 
-      var isCyber = document.documentElement.getAttribute("data-theme") === "cyber";
+      var isCyber =
+        document.documentElement.getAttribute("data-theme") === "cyber";
       var strokeColor = isCyber ? "#00f0ff" : "#b9843f";
 
-      grad.append("stop")
+      grad
+        .append("stop")
         .attr("offset", "0%")
         .attr("stop-color", strokeColor)
         .attr("stop-opacity", isCyber ? 0.45 : 0.35);
 
-      grad.append("stop")
+      grad
+        .append("stop")
         .attr("offset", "100%")
         .attr("stop-color", strokeColor)
         .attr("stop-opacity", 0.0);
 
-      var g = svg.append("g")
+      var g = svg
+        .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-      var maxVal = d3.max(chartData, function (d) { return d.latencyMs; }) || 20;
+      var maxVal =
+        d3.max(chartData, function (d) {
+          return d.latencyMs;
+        }) || 20;
       var yCeil = Math.max(30, Math.ceil(maxVal * 1.35));
 
       var xScale;
       if (chartData.length === 1) {
-        xScale = function () { return innerWidth / 2; };
+        xScale = function () {
+          return innerWidth / 2;
+        };
       } else {
-        xScale = d3.scalePoint()
-          .domain(chartData.map(function (d) { return d.id; }))
+        xScale = d3
+          .scalePoint()
+          .domain(
+            chartData.map(function (d) {
+              return d.id;
+            }),
+          )
           .range([0, innerWidth]);
       }
 
-      var yScale = d3.scaleLinear()
-        .domain([0, yCeil])
-        .range([innerHeight, 0]);
+      var yScale = d3.scaleLinear().domain([0, yCeil]).range([innerHeight, 0]);
 
       // Subtle horizontal gridlines
-      var yGrid = d3.axisLeft(yScale)
+      var yGrid = d3
+        .axisLeft(yScale)
         .ticks(3)
         .tickSize(-innerWidth)
         .tickFormat("");
 
-      g.append("g")
-        .attr("class", "d3-chart-grid")
-        .call(yGrid);
+      g.append("g").attr("class", "d3-chart-grid").call(yGrid);
 
       // Y-Axis with ms labels
-      var yAxis = d3.axisLeft(yScale)
+      var yAxis = d3
+        .axisLeft(yScale)
         .ticks(3)
-        .tickFormat(function (d) { return d + "ms"; });
+        .tickFormat(function (d) {
+          return d + "ms";
+        });
 
-      g.append("g")
-        .attr("class", "d3-axis d3-y-axis")
-        .call(yAxis);
+      g.append("g").attr("class", "d3-axis d3-y-axis").call(yAxis);
 
       // Area generator
-      var areaGenerator = d3.area()
-        .x(function (d) { return xScale(d.id); })
+      var areaGenerator = d3
+        .area()
+        .x(function (d) {
+          return xScale(d.id);
+        })
         .y0(innerHeight)
-        .y1(function (d) { return yScale(d.latencyMs); })
+        .y1(function (d) {
+          return yScale(d.latencyMs);
+        })
         .curve(chartData.length > 2 ? d3.curveMonotoneX : d3.curveLinear);
 
       g.append("path")
@@ -2609,9 +3027,14 @@
         .attr("d", areaGenerator);
 
       // Line generator
-      var lineGenerator = d3.line()
-        .x(function (d) { return xScale(d.id); })
-        .y(function (d) { return yScale(d.latencyMs); })
+      var lineGenerator = d3
+        .line()
+        .x(function (d) {
+          return xScale(d.id);
+        })
+        .y(function (d) {
+          return yScale(d.latencyMs);
+        })
         .curve(chartData.length > 2 ? d3.curveMonotoneX : d3.curveLinear);
 
       g.append("path")
@@ -2636,8 +3059,13 @@
         }
 
         // Visible Circle
-        var dot = g.append("circle")
-          .attr("class", "d3-data-dot" + (isWarning ? " warning" : (isLatest ? " latest" : "")))
+        var dot = g
+          .append("circle")
+          .attr(
+            "class",
+            "d3-data-dot" +
+              (isWarning ? " warning" : isLatest ? " latest" : ""),
+          )
           .attr("cx", cx)
           .attr("cy", cy)
           .attr("r", isLatest ? 5.5 : 4);
@@ -2659,7 +3087,11 @@
 
         // Value text above dot
         g.append("text")
-          .attr("class", "d3-val-label" + (isWarning ? " warning" : (isLatest ? " latest" : "")))
+          .attr(
+            "class",
+            "d3-val-label" +
+              (isWarning ? " warning" : isLatest ? " latest" : ""),
+          )
           .attr("x", cx)
           .attr("y", cy - 9)
           .text(d.latencyMs + "ms");
@@ -2689,40 +3121,77 @@
 
         var dotClass = isWarning
           ? "warning"
-          : (probe.latencyMs <= 18 ? "fast" : (probe.latencyMs <= 35 ? "normal" : "elevated"));
+          : probe.latencyMs <= 18
+            ? "fast"
+            : probe.latencyMs <= 35
+              ? "normal"
+              : "elevated";
 
         var fillClass = isWarning
           ? "warning"
-          : (probe.latencyMs <= 18 ? "fast" : (probe.latencyMs <= 35 ? "normal" : ""));
+          : probe.latencyMs <= 18
+            ? "fast"
+            : probe.latencyMs <= 35
+              ? "normal"
+              : "";
 
         var pillClass = isWarning
           ? "warning"
-          : (probe.latencyMs <= 18 ? "fast" : (probe.latencyMs <= 35 ? "normal" : ""));
+          : probe.latencyMs <= 18
+            ? "fast"
+            : probe.latencyMs <= 35
+              ? "normal"
+              : "";
 
         var statusPillClass = isWarning ? "warning" : "";
 
-        var barWidth = Math.min(100, Math.max(15, Math.round((probe.latencyMs / 50) * 100)));
+        var barWidth = Math.min(
+          100,
+          Math.max(15, Math.round((probe.latencyMs / 50) * 100)),
+        );
         var labelPrefix = idx === 0 ? "Latest Probe" : "Probe #" + probe.seq;
 
         html +=
-          '<li class="api-history-item' + (isNew ? " is-new" : "") + (isWarning ? " is-warning" : "") + '">' +
-            '<div class="history-time">' +
-              '<span class="history-dot ' + dotClass + '"></span>' +
-              '<span><strong>' + labelPrefix + '</strong> · ' + escapeHtml(probe.timeStr) + '</span>' +
-            '</div>' +
-            '<div class="history-meta">' +
-              '<span class="history-latency-bar" title="Latency scale (50ms warning threshold)"><span class="history-latency-fill ' + fillClass + '" style="width: ' + barWidth + '%;"></span></span>' +
-              '<span class="history-latency-pill ' + pillClass + '">' + probe.latencyMs + 'ms</span>' +
-              '<span class="history-status-pill ' + statusPillClass + '">' + escapeHtml(isWarning ? "50ms+ Degraded" : probe.status) + '</span>' +
-            '</div>' +
-          '</li>';
+          '<li class="api-history-item' +
+          (isNew ? " is-new" : "") +
+          (isWarning ? " is-warning" : "") +
+          '">' +
+          '<div class="history-time">' +
+          '<span class="history-dot ' +
+          dotClass +
+          '"></span>' +
+          "<span><strong>" +
+          labelPrefix +
+          "</strong> · " +
+          escapeHtml(probe.timeStr) +
+          "</span>" +
+          "</div>" +
+          '<div class="history-meta">' +
+          '<span class="history-latency-bar" title="Latency scale (50ms warning threshold)"><span class="history-latency-fill ' +
+          fillClass +
+          '" style="width: ' +
+          barWidth +
+          '%;"></span></span>' +
+          '<span class="history-latency-pill ' +
+          pillClass +
+          '">' +
+          probe.latencyMs +
+          "ms</span>" +
+          '<span class="history-status-pill ' +
+          statusPillClass +
+          '">' +
+          escapeHtml(isWarning ? "50ms+ Degraded" : probe.status) +
+          "</span>" +
+          "</div>" +
+          "</li>";
       });
 
       apiHistoryList.innerHTML = html;
 
       if (apiHistoryCount) {
         var avg = Math.round(totalLat / pingHistory.length);
-        apiHistoryCount.textContent = pingHistory.length + "/5 Tracked (Avg: " + avg + "ms)";
+        apiHistoryCount.textContent =
+          pingHistory.length + "/5 Tracked (Avg: " + avg + "ms)";
       }
 
       // Render or update the D3.js line chart
@@ -2738,19 +3207,25 @@
 
       var csvRows = [];
       // CSV Header
-      csvRows.push([
-        "Probe Number",
-        "Timestamp (ISO)",
-        "Local Time",
-        "Average Round-Trip Latency (ms)",
-        "Overall Status",
-        "Chrome Suite Relay (ms)",
-        "AI Fallback Gateway (ms)",
-        "BullMQ Queue Spine (ms)",
-        "Qeloma Verdict (ms)",
-        "Qeloma OCR Vision (ms)",
-        "Qeloma Shift AST (ms)"
-      ].map(function (col) { return '"' + col.replace(/"/g, '""') + '"'; }).join(","));
+      csvRows.push(
+        [
+          "Probe Number",
+          "Timestamp (ISO)",
+          "Local Time",
+          "Average Round-Trip Latency (ms)",
+          "Overall Status",
+          "Chrome Suite Relay (ms)",
+          "AI Fallback Gateway (ms)",
+          "BullMQ Queue Spine (ms)",
+          "Qeloma Verdict (ms)",
+          "Qeloma OCR Vision (ms)",
+          "Qeloma Shift AST (ms)",
+        ]
+          .map(function (col) {
+            return '"' + col.replace(/"/g, '""') + '"';
+          })
+          .join(","),
+      );
 
       // Reverse to chronological order (Probe 1 first, latest probe last)
       var sortedProbes = pingHistory.slice().reverse();
@@ -2768,11 +3243,17 @@
           svc["queue-spine"] !== undefined ? svc["queue-spine"] : 9,
           svc["qeloma-verdict"] !== undefined ? svc["qeloma-verdict"] : 15,
           svc["qeloma-ocr"] !== undefined ? svc["qeloma-ocr"] : 21,
-          svc["qeloma-shift"] !== undefined ? svc["qeloma-shift"] : 16
+          svc["qeloma-shift"] !== undefined ? svc["qeloma-shift"] : 16,
         ];
-        csvRows.push(row.map(function (val) {
-          return typeof val === "string" ? '"' + val.replace(/"/g, '""') + '"' : val;
-        }).join(","));
+        csvRows.push(
+          row
+            .map(function (val) {
+              return typeof val === "string"
+                ? '"' + val.replace(/"/g, '""') + '"'
+                : val;
+            })
+            .join(","),
+        );
       });
 
       var csvString = csvRows.join("\r\n");
@@ -2816,7 +3297,7 @@
         timeStr: formatLocalTime(new Date(lastCheckTime)),
         latencyMs: latency,
         status: data.status === "operational" ? "200 OK" : "Degraded",
-        services: svcLatencyMap
+        services: svcLatencyMap,
       };
 
       pingHistory.unshift(newProbe);
@@ -2824,12 +3305,17 @@
         pingHistory.pop();
       }
       renderPingHistory(newProbe.id);
-      
+
       if (statusState) {
-        statusState.textContent = data.status === "operational" ? "Operational" : "Degraded";
+        statusState.textContent =
+          data.status === "operational" ? "Operational" : "Degraded";
       }
       if (statusPill) {
-        statusPill.textContent = (data.activeCount || 6) + "/" + (data.totalCount || 6) + " Services Active";
+        statusPill.textContent =
+          (data.activeCount || 6) +
+          "/" +
+          (data.totalCount || 6) +
+          " Services Active";
       }
       if (avgLatencyEl) {
         avgLatencyEl.textContent = latency + "ms avg latency";
@@ -2871,22 +3357,38 @@
             var statusLabel = isUp ? "UP" : "DOWN";
 
             html +=
-              '<div class="telemetry-item" data-service-telemetry="' + escapeHtml(srv.id) + '">' +
-                '<div class="telemetry-item-header">' +
-                  '<div class="telemetry-item-name">' +
-                    '<span class="service-status-dot ' + statusClass + '"></span>' +
-                    '<span>' + escapeHtml(srv.name) + '</span>' +
-                  '</div>' +
-                  '<div class="telemetry-badges">' +
-                    '<span class="service-status-pill ' + statusClass + '">' + statusLabel + '</span>' +
-                    '<span class="telemetry-item-pill">' + srv.statusCode + ' OK</span>' +
-                  '</div>' +
-                '</div>' +
-                '<div class="telemetry-item-meta">' +
-                  '<span class="telemetry-endpoint">' + escapeHtml(srv.endpoint) + '</span>' +
-                  '<span class="telemetry-latency">' + srv.latencyMs + 'ms</span>' +
-                '</div>' +
-              '</div>';
+              '<div class="telemetry-item" data-service-telemetry="' +
+              escapeHtml(srv.id) +
+              '">' +
+              '<div class="telemetry-item-header">' +
+              '<div class="telemetry-item-name">' +
+              '<span class="service-status-dot ' +
+              statusClass +
+              '"></span>' +
+              "<span>" +
+              escapeHtml(srv.name) +
+              "</span>" +
+              "</div>" +
+              '<div class="telemetry-badges">' +
+              '<span class="service-status-pill ' +
+              statusClass +
+              '">' +
+              statusLabel +
+              "</span>" +
+              '<span class="telemetry-item-pill">' +
+              srv.statusCode +
+              " OK</span>" +
+              "</div>" +
+              "</div>" +
+              '<div class="telemetry-item-meta">' +
+              '<span class="telemetry-endpoint">' +
+              escapeHtml(srv.endpoint) +
+              "</span>" +
+              '<span class="telemetry-latency">' +
+              srv.latencyMs +
+              "ms</span>" +
+              "</div>" +
+              "</div>";
           });
           telemetryGrid.innerHTML = html;
         }
@@ -2943,17 +3445,55 @@
             totalCount: 6,
             avgLatencyMs: simulatedLatency,
             services: [
-              { id: "chrome-suite", name: "Chrome Extension Suite Relay", statusCode: 200, latencyMs: simulatedLatency, endpoint: "/api/projects/chrome-suite/health" },
-              { id: "ai-gateway", name: "3-Tier AI Fallback Gateway", statusCode: 200, latencyMs: simulatedLatency + 4, endpoint: "/api/projects/ai-gateway/health" },
-              { id: "queue-spine", name: "BullMQ Queue Spine", statusCode: 200, latencyMs: simulatedLatency - 5, endpoint: "/api/projects/queue/health" },
-              { id: "qeloma-verdict", name: "Qeloma Verdict Crypto Engine", statusCode: 200, latencyMs: simulatedLatency + 2, endpoint: "/api/projects/qeloma-verdict/health" },
-              { id: "qeloma-ocr", name: "Qeloma OCR Vision API", statusCode: 200, latencyMs: simulatedLatency + 8, endpoint: "/api/projects/qeloma-ocr/health" },
-              { id: "qeloma-shift", name: "Qeloma Shift AST Diff API", statusCode: 200, latencyMs: simulatedLatency + 3, endpoint: "/api/projects/qeloma-shift/health" }
-            ]
+              {
+                id: "chrome-suite",
+                name: "Chrome Extension Suite Relay",
+                statusCode: 200,
+                latencyMs: simulatedLatency,
+                endpoint: "/api/projects/chrome-suite/health",
+              },
+              {
+                id: "ai-gateway",
+                name: "3-Tier AI Fallback Gateway",
+                statusCode: 200,
+                latencyMs: simulatedLatency + 4,
+                endpoint: "/api/projects/ai-gateway/health",
+              },
+              {
+                id: "queue-spine",
+                name: "BullMQ Queue Spine",
+                statusCode: 200,
+                latencyMs: simulatedLatency - 5,
+                endpoint: "/api/projects/queue/health",
+              },
+              {
+                id: "qeloma-verdict",
+                name: "Qeloma Verdict Crypto Engine",
+                statusCode: 200,
+                latencyMs: simulatedLatency + 2,
+                endpoint: "/api/projects/qeloma-verdict/health",
+              },
+              {
+                id: "qeloma-ocr",
+                name: "Qeloma OCR Vision API",
+                statusCode: 200,
+                latencyMs: simulatedLatency + 8,
+                endpoint: "/api/projects/qeloma-ocr/health",
+              },
+              {
+                id: "qeloma-shift",
+                name: "Qeloma Shift AST Diff API",
+                statusCode: 200,
+                latencyMs: simulatedLatency + 3,
+                endpoint: "/api/projects/qeloma-shift/health",
+              },
+            ],
           };
           updateUiWithStatus(mockData, simulatedLatency);
           if (btnPingText) {
-            btnPingText.textContent = isManual ? "Responsive (" + simulatedLatency + "ms)" : "Ping APIs";
+            btnPingText.textContent = isManual
+              ? "Responsive (" + simulatedLatency + "ms)"
+              : "Ping APIs";
             if (isManual) {
               setTimeout(function () {
                 btnPingText.textContent = "Ping APIs";
@@ -2976,7 +3516,10 @@
 
       if (saveToStorage) {
         try {
-          localStorage.setItem("jawad_api_ping_freq", String(autoPingFrequency));
+          localStorage.setItem(
+            "jawad_api_ping_freq",
+            String(autoPingFrequency),
+          );
         } catch (e) {}
       }
 
@@ -3009,7 +3552,9 @@
       } else {
         apiFreqCountdown.textContent = "Next ping: " + countdownRemaining + "s";
         if (apiCountdownDot) {
-          apiCountdownDot.className = isChecking ? "api-countdown-dot pinging" : "api-countdown-dot";
+          apiCountdownDot.className = isChecking
+            ? "api-countdown-dot pinging"
+            : "api-countdown-dot";
         }
       }
     }
@@ -3127,7 +3672,9 @@
     var docsListWrap = document.getElementById("docsListWrap");
 
     var docsViewerEmpty = document.getElementById("docsViewerEmpty");
-    var docsActiveDocContainer = document.getElementById("docsActiveDocContainer");
+    var docsActiveDocContainer = document.getElementById(
+      "docsActiveDocContainer",
+    );
     var docsActiveTitle = document.getElementById("docsActiveTitle");
     var docsActiveModified = document.getElementById("docsActiveModified");
     var docsActiveWordCount = document.getElementById("docsActiveWordCount");
@@ -3137,9 +3684,15 @@
     var docsOpenExternalBtn = document.getElementById("docsOpenExternalBtn");
     var docsDeleteBtn = document.getElementById("docsDeleteBtn");
     var docsContentPreview = document.getElementById("docsContentPreview");
-    var docsReadingProgressContainer = document.getElementById("docsReadingProgressContainer");
-    var docsReadingProgressBar = document.getElementById("docsReadingProgressBar");
-    var docsReadingProgressFill = document.getElementById("docsReadingProgressFill");
+    var docsReadingProgressContainer = document.getElementById(
+      "docsReadingProgressContainer",
+    );
+    var docsReadingProgressBar = document.getElementById(
+      "docsReadingProgressBar",
+    );
+    var docsReadingProgressFill = document.getElementById(
+      "docsReadingProgressFill",
+    );
     var docsReadingPct = document.getElementById("docsReadingPct");
     var docsAppendText = document.getElementById("docsAppendText");
     var docsAppendSubmitBtn = document.getElementById("docsAppendSubmitBtn");
@@ -3173,7 +3726,11 @@
       return activeDocFullData;
     };
     window.UnifiedVoiceDocsBridge.getActiveDocFullText = function () {
-      if (!activeDocFullData || !activeDocFullData.body || !activeDocFullData.body.content) {
+      if (
+        !activeDocFullData ||
+        !activeDocFullData.body ||
+        !activeDocFullData.body.content
+      ) {
         if (docsContentPreview && docsContentPreview.innerText) {
           return docsContentPreview.innerText.trim();
         }
@@ -3192,7 +3749,8 @@
       return full.trim();
     };
     window.UnifiedVoiceDocsBridge.executeAppend = async function (text) {
-      if (!activeDoc || !activeDoc.id) throw new Error("No active document selected.");
+      if (!activeDoc || !activeDoc.id)
+        throw new Error("No active document selected.");
       return await executeAppendText(activeDoc.id, text);
     };
     window.UnifiedVoiceDocsBridge.loadSingleDocument = function (id, name) {
@@ -3202,9 +3760,15 @@
     // Header Docs to Voice Read Aloud Trigger
     if (docsReadAloudBtn) {
       docsReadAloudBtn.addEventListener("click", function () {
-        if (window.UnifiedVoiceDocsBridge && typeof window.UnifiedVoiceDocsBridge.openVoiceDrawer === "function") {
+        if (
+          window.UnifiedVoiceDocsBridge &&
+          typeof window.UnifiedVoiceDocsBridge.openVoiceDrawer === "function"
+        ) {
           window.UnifiedVoiceDocsBridge.openVoiceDrawer("docs-to-voice");
-          if (typeof window.UnifiedVoiceDocsBridge.playDocumentAloud === "function") {
+          if (
+            typeof window.UnifiedVoiceDocsBridge.playDocumentAloud ===
+            "function"
+          ) {
             setTimeout(function () {
               window.UnifiedVoiceDocsBridge.playDocumentAloud();
             }, 300);
@@ -3216,14 +3780,18 @@
     // Append section Voice-to-Docs Dictation Trigger
     if (docsDictateBtn) {
       docsDictateBtn.addEventListener("click", function () {
-        if (window.UnifiedVoiceDocsBridge && typeof window.UnifiedVoiceDocsBridge.toggleDictation === "function") {
+        if (
+          window.UnifiedVoiceDocsBridge &&
+          typeof window.UnifiedVoiceDocsBridge.toggleDictation === "function"
+        ) {
           window.UnifiedVoiceDocsBridge.toggleDictation();
         }
       });
     }
 
     function updateReadingProgress() {
-      if (!docsContentPreview || !docsReadingProgressFill || !docsReadingPct) return;
+      if (!docsContentPreview || !docsReadingProgressFill || !docsReadingPct)
+        return;
       var scrollTop = docsContentPreview.scrollTop;
       var scrollHeight = docsContentPreview.scrollHeight;
       var clientHeight = docsContentPreview.clientHeight;
@@ -3232,7 +3800,10 @@
       if (maxScroll <= 4) {
         pct = 100;
       } else {
-        pct = Math.min(100, Math.max(0, Math.round((scrollTop / maxScroll) * 100)));
+        pct = Math.min(
+          100,
+          Math.max(0, Math.round((scrollTop / maxScroll) * 100)),
+        );
       }
       docsReadingProgressFill.style.width = pct + "%";
       docsReadingPct.textContent = pct + "%";
@@ -3270,7 +3841,9 @@
     function saveCurrentDraft(docId, text) {
       var key = getDraftKey(docId);
       if (!text || !text.trim()) {
-        try { localStorage.removeItem(key); } catch (e) {}
+        try {
+          localStorage.removeItem(key);
+        } catch (e) {}
         if (docsDiscardDraftBtn) docsDiscardDraftBtn.style.display = "none";
         updateDraftUI("idle", "Auto-save ready");
         return;
@@ -3278,8 +3851,12 @@
       try {
         localStorage.setItem(key, text);
         localStorage.setItem("jh_gdocs_last_active_doc", docId || "");
-        if (docsDiscardDraftBtn) docsDiscardDraftBtn.style.display = "inline-flex";
-        var nowStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        if (docsDiscardDraftBtn)
+          docsDiscardDraftBtn.style.display = "inline-flex";
+        var nowStr = new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
         updateDraftUI("saved", "Draft auto-saved (" + nowStr + ")");
       } catch (e) {
         console.warn("Could not write draft to localStorage", e);
@@ -3298,8 +3875,12 @@
 
       if (savedText && savedText.trim().length > 0) {
         if (docsAppendText) docsAppendText.value = savedText;
-        if (docsDiscardDraftBtn) docsDiscardDraftBtn.style.display = "inline-flex";
-        updateDraftUI("restored", "Draft restored (" + savedText.length + " chars)");
+        if (docsDiscardDraftBtn)
+          docsDiscardDraftBtn.style.display = "inline-flex";
+        updateDraftUI(
+          "restored",
+          "Draft restored (" + savedText.length + " chars)",
+        );
       } else {
         if (docsAppendText) docsAppendText.value = "";
         if (docsDiscardDraftBtn) docsDiscardDraftBtn.style.display = "none";
@@ -3344,8 +3925,10 @@
 
     var TEMPLATES = {
       "rag-rfc": {
-        defaultTitle: "RFC-082: Provider-Agnostic AI Gateway & 3-Tier Resilience Spec",
-        content: "RFC-082: Provider-Agnostic AI Gateway with 3-Tier Fallback Resilience\n" +
+        defaultTitle:
+          "RFC-082: Provider-Agnostic AI Gateway & 3-Tier Resilience Spec",
+        content:
+          "RFC-082: Provider-Agnostic AI Gateway with 3-Tier Fallback Resilience\n" +
           "Author: Jawad Ul Hadi (Senior Backend Engineer & Solutions Architect)\n" +
           "Status: PRODUCTION SPECIFICATION\n\n" +
           "1. Executive Summary\n" +
@@ -3355,32 +3938,39 @@
           "- Tier 2 (Dynamic RAG): Contextual vector lookup caching previous verified generations.\n" +
           "- Tier 3 (Deterministic Rule Engine): Static validation heuristics ensuring 100% operational uptime.\n\n" +
           "3. Async Telemetry & Queue Worker\n" +
-          "BullMQ Redis workers handle post-execution audit logging, token consumption analytics, and cryptographic provenance checks asynchronously.\n"
+          "BullMQ Redis workers handle post-execution audit logging, token consumption analytics, and cryptographic provenance checks asynchronously.\n",
       },
       "saas-spec": {
-        defaultTitle: "SPEC-104: High-Throughput Multi-Tenant SaaS Isolation Architecture",
-        content: "SPEC-104: High-Throughput Multi-Tenant SaaS Isolation Architecture\n" +
+        defaultTitle:
+          "SPEC-104: High-Throughput Multi-Tenant SaaS Isolation Architecture",
+        content:
+          "SPEC-104: High-Throughput Multi-Tenant SaaS Isolation Architecture\n" +
           "Author: Jawad Ul Hadi (Senior Backend Engineer & Solutions Architect)\n" +
           "Status: ARCHITECTURAL REVIEW\n\n" +
           "1. Tenancy Model\n" +
           "Hybrid database isolation combining shared schema tenant ID scoping for standard tenants and isolated Postgres schemas for enterprise compliance.\n\n" +
           "2. Performance & Connection Pooling\n" +
-          "PgBouncer transactional pooling with Redis tenant-keyed token bucket rate limiting (10,000 req/min/tenant).\n"
+          "PgBouncer transactional pooling with Redis tenant-keyed token bucket rate limiting (10,000 req/min/tenant).\n",
       },
       "queue-guide": {
-        defaultTitle: "GUIDE-042: BullMQ Idempotent Queue Spine & Dead-Letter Recovery",
-        content: "GUIDE-042: BullMQ Idempotent Queue Spine & Dead-Letter Recovery\n" +
+        defaultTitle:
+          "GUIDE-042: BullMQ Idempotent Queue Spine & Dead-Letter Recovery",
+        content:
+          "GUIDE-042: BullMQ Idempotent Queue Spine & Dead-Letter Recovery\n" +
           "Author: Jawad Ul Hadi (Senior Backend Engineer & Solutions Architect)\n" +
           "Status: PRODUCTION STANDARD\n\n" +
           "1. Idempotency Guarantees\n" +
           "Redis SETNX lock keys with 24-hour TTL ensure that asynchronous tasks are never processed more than once during network partitions.\n\n" +
           "2. Dead-Letter Queue (DLQ) Auto-Remediation\n" +
-          "Failed jobs undergo 3 automated backoff retries before triage into the DLQ with Slack/PagerDuty alerts.\n"
+          "Failed jobs undergo 3 automated backoff retries before triage into the DLQ with Slack/PagerDuty alerts.\n",
       },
-      "blank": {
+      blank: {
         defaultTitle: "RFC: Custom System Architectural Document",
-        content: "Architectural RFC Document\nAuthor: System Architect\nDate: " + new Date().toLocaleDateString() + "\n\n1. Overview\nEnter system design overview here...\n"
-      }
+        content:
+          "Architectural RFC Document\nAuthor: System Architect\nDate: " +
+          new Date().toLocaleDateString() +
+          "\n\n1. Overview\nEnter system design overview here...\n",
+      },
     };
 
     function escapeHtml(str) {
@@ -3393,11 +3983,18 @@
         .replace(/'/g, "&#039;");
     }
 
-    function openConfirmModal(title, message, previewText, onConfirm, actionBtnLabel, isDanger) {
+    function openConfirmModal(
+      title,
+      message,
+      previewText,
+      onConfirm,
+      actionBtnLabel,
+      isDanger,
+    ) {
       if (!docsConfirmModal) return;
       if (docsConfirmTitle) docsConfirmTitle.textContent = title;
       if (docsConfirmMessage) docsConfirmMessage.textContent = message;
-      
+
       var iconWrap = document.getElementById("docsConfirmIcon");
       if (iconWrap) {
         if (isDanger) {
@@ -3536,7 +4133,9 @@
     // Create Document trigger
     if (docsCreateBtn) {
       docsCreateBtn.addEventListener("click", async function () {
-        var token = window.GoogleDocsAuth ? window.GoogleDocsAuth.getAccessToken() : null;
+        var token = window.GoogleDocsAuth
+          ? window.GoogleDocsAuth.getAccessToken()
+          : null;
         if (!token) {
           alert("Please sign in with Google to create documents.");
           return;
@@ -3544,25 +4143,36 @@
 
         var tplKey = docsTemplateSelect ? docsTemplateSelect.value : "blank";
         var tpl = TEMPLATES[tplKey] || TEMPLATES["blank"];
-        var title = (docsNewTitleInput && docsNewTitleInput.value.trim()) ? docsNewTitleInput.value.trim() : tpl.defaultTitle;
+        var title =
+          docsNewTitleInput && docsNewTitleInput.value.trim()
+            ? docsNewTitleInput.value.trim()
+            : tpl.defaultTitle;
 
         docsCreateBtn.disabled = true;
-        docsCreateBtn.innerHTML = '<span class="loading-spinner" style="width:12px;height:12px;display:inline-block;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 0.6s linear infinite;margin-right:6px;"></span> Creating...';
+        docsCreateBtn.innerHTML =
+          '<span class="loading-spinner" style="width:12px;height:12px;display:inline-block;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 0.6s linear infinite;margin-right:6px;"></span> Creating...';
 
         try {
           // 1. Create blank document with Docs API
-          var createRes = await fetch("https://docs.googleapis.com/v1/documents", {
-            method: "POST",
-            headers: {
-              "Authorization": "Bearer " + token,
-              "Content-Type": "application/json"
+          var createRes = await fetch(
+            "https://docs.googleapis.com/v1/documents",
+            {
+              method: "POST",
+              headers: {
+                Authorization: "Bearer " + token,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ title: title }),
             },
-            body: JSON.stringify({ title: title })
-          });
+          );
 
           if (!createRes.ok) {
             var errJson = await createRes.json();
-            throw new Error(errJson.error ? errJson.error.message : "Failed to create Google Doc");
+            throw new Error(
+              errJson.error
+                ? errJson.error.message
+                : "Failed to create Google Doc",
+            );
           }
 
           var docData = await createRes.json();
@@ -3570,23 +4180,28 @@
 
           // 2. Insert Template Content via batchUpdate
           if (tpl.content && newDocId) {
-            await fetch("https://docs.googleapis.com/v1/documents/" + newDocId + ":batchUpdate", {
-              method: "POST",
-              headers: {
-                "Authorization": "Bearer " + token,
-                "Content-Type": "application/json"
+            await fetch(
+              "https://docs.googleapis.com/v1/documents/" +
+                newDocId +
+                ":batchUpdate",
+              {
+                method: "POST",
+                headers: {
+                  Authorization: "Bearer " + token,
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  requests: [
+                    {
+                      insertText: {
+                        location: { index: 1 },
+                        text: tpl.content,
+                      },
+                    },
+                  ],
+                }),
               },
-              body: JSON.stringify({
-                requests: [
-                  {
-                    insertText: {
-                      location: { index: 1 },
-                      text: tpl.content
-                    }
-                  }
-                ]
-              })
-            });
+            );
           }
 
           // Refresh list and open new doc
@@ -3597,7 +4212,8 @@
           alert("Could not create Google Doc: " + err.message);
         } finally {
           docsCreateBtn.disabled = false;
-          docsCreateBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Create Google Doc';
+          docsCreateBtn.innerHTML =
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Create Google Doc';
         }
       });
     }
@@ -3619,19 +4235,23 @@
 
         openConfirmModal(
           "Confirm Append to Google Doc",
-          'You are about to append a new technical section to "' + docName + '". This will modify the document directly in Google Drive.',
+          'You are about to append a new technical section to "' +
+            docName +
+            '". This will modify the document directly in Google Drive.',
           textToAppend,
           async function () {
             await executeAppendText(activeDoc.id, textToAppend);
           },
           "Append Content",
-          false
+          false,
         );
       });
     }
 
     async function executeAppendText(docId, text) {
-      var token = window.GoogleDocsAuth ? window.GoogleDocsAuth.getAccessToken() : null;
+      var token = window.GoogleDocsAuth
+        ? window.GoogleDocsAuth.getAccessToken()
+        : null;
       if (!token) return;
 
       docsAppendSubmitBtn.disabled = true;
@@ -3639,13 +4259,18 @@
 
       try {
         // Fetch current doc to determine end index
-        var getRes = await fetch("https://docs.googleapis.com/v1/documents/" + docId, {
-          headers: { "Authorization": "Bearer " + token }
-        });
-        if (!getRes.ok) throw new Error("Could not retrieve document structure.");
+        var getRes = await fetch(
+          "https://docs.googleapis.com/v1/documents/" + docId,
+          {
+            headers: { Authorization: "Bearer " + token },
+          },
+        );
+        if (!getRes.ok)
+          throw new Error("Could not retrieve document structure.");
         var docJson = await getRes.json();
 
-        var bodyContent = docJson.body && docJson.body.content ? docJson.body.content : [];
+        var bodyContent =
+          docJson.body && docJson.body.content ? docJson.body.content : [];
         var endIndex = 1;
         if (bodyContent.length > 0) {
           var lastElement = bodyContent[bodyContent.length - 1];
@@ -3656,27 +4281,32 @@
 
         var formattedText = "\n\n" + text + "\n";
 
-        var updateRes = await fetch("https://docs.googleapis.com/v1/documents/" + docId + ":batchUpdate", {
-          method: "POST",
-          headers: {
-            "Authorization": "Bearer " + token,
-            "Content-Type": "application/json"
+        var updateRes = await fetch(
+          "https://docs.googleapis.com/v1/documents/" + docId + ":batchUpdate",
+          {
+            method: "POST",
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              requests: [
+                {
+                  insertText: {
+                    location: { index: endIndex },
+                    text: formattedText,
+                  },
+                },
+              ],
+            }),
           },
-          body: JSON.stringify({
-            requests: [
-              {
-                insertText: {
-                  location: { index: endIndex },
-                  text: formattedText
-                }
-              }
-            ]
-          })
-        });
+        );
 
         if (!updateRes.ok) {
           var errJson = await updateRes.json();
-          throw new Error(errJson.error ? errJson.error.message : "Failed to append content.");
+          throw new Error(
+            errJson.error ? errJson.error.message : "Failed to append content.",
+          );
         }
 
         // Successfully updated Google Doc - clear local draft
@@ -3688,7 +4318,8 @@
         alert("Error appending content to Google Doc: " + err.message);
       } finally {
         docsAppendSubmitBtn.disabled = false;
-        docsAppendSubmitBtn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> Append to Google Doc';
+        docsAppendSubmitBtn.innerHTML =
+          '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg> Append to Google Doc';
       }
     }
 
@@ -3700,7 +4331,9 @@
           return;
         }
 
-        var token = window.GoogleDocsAuth ? window.GoogleDocsAuth.getAccessToken() : null;
+        var token = window.GoogleDocsAuth
+          ? window.GoogleDocsAuth.getAccessToken()
+          : null;
         if (!token) {
           alert("Please sign in with Google to download this document.");
           return;
@@ -3708,20 +4341,32 @@
 
         var originalHtml = docsDownloadPdfBtn.innerHTML;
         docsDownloadPdfBtn.disabled = true;
-        docsDownloadPdfBtn.innerHTML = '<span style="display:inline-block;animation:spin 0.6s linear infinite;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;width:12px;height:12px;margin-right:6px;"></span> Generating PDF...';
+        docsDownloadPdfBtn.innerHTML =
+          '<span style="display:inline-block;animation:spin 0.6s linear infinite;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;width:12px;height:12px;margin-right:6px;"></span> Generating PDF...';
 
         try {
-          var exportUrl = "https://www.googleapis.com/drive/v3/files/" + encodeURIComponent(activeDoc.id) + "/export?mimeType=application%2Fpdf";
+          var exportUrl =
+            "https://www.googleapis.com/drive/v3/files/" +
+            encodeURIComponent(activeDoc.id) +
+            "/export?mimeType=application%2Fpdf";
           var res = await fetch(exportUrl, {
             headers: {
-              "Authorization": "Bearer " + token
-            }
+              Authorization: "Bearer " + token,
+            },
           });
 
           if (!res.ok) {
             var errJson = {};
-            try { errJson = await res.json(); } catch (e) {}
-            throw new Error(errJson.error ? errJson.error.message : ("HTTP " + res.status + ": Failed to export PDF from Google Drive"));
+            try {
+              errJson = await res.json();
+            } catch (e) {}
+            throw new Error(
+              errJson.error
+                ? errJson.error.message
+                : "HTTP " +
+                    res.status +
+                    ": Failed to export PDF from Google Drive",
+            );
           }
 
           var blob = await res.blob();
@@ -3746,8 +4391,15 @@
         } catch (err) {
           console.error("PDF export error:", err);
           // Fallback to Google Docs direct web export
-          var fallbackUrl = "https://docs.google.com/document/d/" + encodeURIComponent(activeDoc.id) + "/export?format=pdf";
-          var userChoice = confirm("Drive API export error: " + err.message + "\n\nWould you like to open Google Docs direct web export in a new tab?");
+          var fallbackUrl =
+            "https://docs.google.com/document/d/" +
+            encodeURIComponent(activeDoc.id) +
+            "/export?format=pdf";
+          var userChoice = confirm(
+            "Drive API export error: " +
+              err.message +
+              "\n\nWould you like to open Google Docs direct web export in a new tab?",
+          );
           if (userChoice) {
             window.open(fallbackUrl, "_blank", "noopener,noreferrer");
           }
@@ -3766,36 +4418,48 @@
 
         openConfirmModal(
           "Move Document to Trash?",
-          'Are you sure you want to move "' + docName + '" to Google Drive trash? You can restore it from Drive trash later.',
+          'Are you sure you want to move "' +
+            docName +
+            '" to Google Drive trash? You can restore it from Drive trash later.',
           null,
           async function () {
             await executeDeleteDoc(activeDoc.id);
           },
           "Move to Trash",
-          true
+          true,
         );
       });
     }
 
     async function executeDeleteDoc(docId) {
-      var token = window.GoogleDocsAuth ? window.GoogleDocsAuth.getAccessToken() : null;
+      var token = window.GoogleDocsAuth
+        ? window.GoogleDocsAuth.getAccessToken()
+        : null;
       if (!token) return;
 
       try {
-        var res = await fetch("https://www.googleapis.com/drive/v3/files/" + docId, {
-          method: "DELETE",
-          headers: { "Authorization": "Bearer " + token }
-        });
+        var res = await fetch(
+          "https://www.googleapis.com/drive/v3/files/" + docId,
+          {
+            method: "DELETE",
+            headers: { Authorization: "Bearer " + token },
+          },
+        );
 
         if (res.ok || res.status === 204) {
           activeDoc = null;
           activeDocFullData = null;
-          if (docsActiveDocContainer) docsActiveDocContainer.style.display = "none";
+          if (docsActiveDocContainer)
+            docsActiveDocContainer.style.display = "none";
           if (docsViewerEmpty) docsViewerEmpty.style.display = "flex";
           await loadGoogleDocsList(false);
         } else {
           var errJson = await res.json();
-          throw new Error(errJson.error ? errJson.error.message : "Failed to delete document.");
+          throw new Error(
+            errJson.error
+              ? errJson.error.message
+              : "Failed to delete document.",
+          );
         }
       } catch (err) {
         console.error("Delete error:", err);
@@ -3805,29 +4469,43 @@
 
     // Fetch and display single document content
     async function loadSingleDocument(docId, docName) {
-      var token = window.GoogleDocsAuth ? window.GoogleDocsAuth.getAccessToken() : null;
+      var token = window.GoogleDocsAuth
+        ? window.GoogleDocsAuth.getAccessToken()
+        : null;
       if (!token) return;
 
       activeDoc = { id: docId, name: docName };
 
       if (docsViewerEmpty) docsViewerEmpty.style.display = "none";
-      if (docsActiveDocContainer) docsActiveDocContainer.style.display = "block";
+      if (docsActiveDocContainer)
+        docsActiveDocContainer.style.display = "block";
 
-      if (docsActiveTitle) docsActiveTitle.textContent = docName || "Loading Document...";
+      if (docsActiveTitle)
+        docsActiveTitle.textContent = docName || "Loading Document...";
       if (docsActiveId) docsActiveId.textContent = "ID: " + docId;
-      if (docsOpenExternalBtn) docsOpenExternalBtn.href = "https://docs.google.com/document/d/" + docId + "/edit";
+      if (docsOpenExternalBtn)
+        docsOpenExternalBtn.href =
+          "https://docs.google.com/document/d/" + docId + "/edit";
       if (docsContentPreview) {
-        docsContentPreview.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-muted);"><span style="display:inline-block;animation:spin 0.6s linear infinite;border:2px solid var(--text-muted);border-top-color:transparent;border-radius:50%;width:16px;height:16px;margin-right:8px;"></span> Loading content from Google Docs API...</div>';
+        docsContentPreview.innerHTML =
+          '<div style="text-align:center;padding:2rem;color:var(--text-muted);"><span style="display:inline-block;animation:spin 0.6s linear infinite;border:2px solid var(--text-muted);border-top-color:transparent;border-radius:50%;width:16px;height:16px;margin-right:8px;"></span> Loading content from Google Docs API...</div>';
       }
 
       try {
-        var res = await fetch("https://docs.googleapis.com/v1/documents/" + docId, {
-          headers: { "Authorization": "Bearer " + token }
-        });
+        var res = await fetch(
+          "https://docs.googleapis.com/v1/documents/" + docId,
+          {
+            headers: { Authorization: "Bearer " + token },
+          },
+        );
 
         if (!res.ok) {
           var errJson = await res.json();
-          throw new Error(errJson.error ? errJson.error.message : "Failed to load document content.");
+          throw new Error(
+            errJson.error
+              ? errJson.error.message
+              : "Failed to load document content.",
+          );
         }
 
         var docJson = await res.json();
@@ -3841,7 +4519,9 @@
             if (elem.paragraph && elem.paragraph.elements) {
               var paragraphText = "";
               var isHeading = false;
-              var headingType = elem.paragraph.paragraphStyle ? elem.paragraph.paragraphStyle.namedStyleType : "";
+              var headingType = elem.paragraph.paragraphStyle
+                ? elem.paragraph.paragraphStyle.namedStyleType
+                : "";
 
               elem.paragraph.elements.forEach(function (pe) {
                 if (pe.textRun && pe.textRun.content) {
@@ -3867,14 +4547,22 @@
           });
         }
 
-        var wordCount = fullText.trim() ? fullText.trim().split(/\s+/).length : 0;
-        if (docsActiveWordCount) docsActiveWordCount.textContent = wordCount + " words (" + fullText.length + " chars)";
+        var wordCount = fullText.trim()
+          ? fullText.trim().split(/\s+/).length
+          : 0;
+        if (docsActiveWordCount)
+          docsActiveWordCount.textContent =
+            wordCount + " words (" + fullText.length + " chars)";
         if (docsActiveModified) {
-          docsActiveModified.textContent = "Revision: " + (docJson.revisionId ? "v" + docJson.revisionId : "Live");
+          docsActiveModified.textContent =
+            "Revision: " +
+            (docJson.revisionId ? "v" + docJson.revisionId : "Live");
         }
 
         if (docsContentPreview) {
-          docsContentPreview.innerHTML = htmlContent || '<p style="color:var(--text-muted);font-style:italic;">This document is currently empty. Use the form below to append architectural sections.</p>';
+          docsContentPreview.innerHTML =
+            htmlContent ||
+            '<p style="color:var(--text-muted);font-style:italic;">This document is currently empty. Use the form below to append architectural sections.</p>';
           docsContentPreview.scrollTop = 0;
           setTimeout(updateReadingProgress, 50);
         }
@@ -3889,13 +4577,20 @@
         loadDraftForDoc(docId);
 
         // Sync with Unified Voice Drawer (Docs to Voice & Voice to Docs)
-        if (window.UnifiedVoiceDocsBridge && typeof window.UnifiedVoiceDocsBridge.syncActiveDocTargetDisplay === "function") {
+        if (
+          window.UnifiedVoiceDocsBridge &&
+          typeof window.UnifiedVoiceDocsBridge.syncActiveDocTargetDisplay ===
+            "function"
+        ) {
           window.UnifiedVoiceDocsBridge.syncActiveDocTargetDisplay();
         }
       } catch (err) {
         console.error("Error reading doc:", err);
         if (docsContentPreview) {
-          docsContentPreview.innerHTML = '<div style="color:#ef4444;padding:1rem;">Error loading document content: ' + escapeHtml(err.message) + '</div>';
+          docsContentPreview.innerHTML =
+            '<div style="color:#ef4444;padding:1rem;">Error loading document content: ' +
+            escapeHtml(err.message) +
+            "</div>";
         }
         if (docsReadingProgressFill) docsReadingProgressFill.style.width = "0%";
         if (docsReadingPct) docsReadingPct.textContent = "0%";
@@ -3904,34 +4599,53 @@
 
     // Fetch list of documents from Google Drive
     async function loadGoogleDocsList(isManualRefresh) {
-      var token = window.GoogleDocsAuth ? window.GoogleDocsAuth.getAccessToken() : null;
+      var token = window.GoogleDocsAuth
+        ? window.GoogleDocsAuth.getAccessToken()
+        : null;
       if (!token) return;
 
       if (docsListWrap) {
-        docsListWrap.innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:0.8rem;"><span style="display:inline-block;animation:spin 0.6s linear infinite;border:2px solid var(--text-muted);border-top-color:transparent;border-radius:50%;width:14px;height:14px;margin-right:6px;"></span> Fetching Google Docs...</div>';
+        docsListWrap.innerHTML =
+          '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:0.8rem;"><span style="display:inline-block;animation:spin 0.6s linear infinite;border:2px solid var(--text-muted);border-top-color:transparent;border-radius:50%;width:14px;height:14px;margin-right:6px;"></span> Fetching Google Docs...</div>';
       }
 
       try {
-        var query = "mimeType='application/vnd.google-apps.document' and trashed=false";
-        var fields = "files(id,name,createdTime,modifiedTime,webViewLink,owners,description)";
-        var url = "https://www.googleapis.com/drive/v3/files?q=" + encodeURIComponent(query) + "&fields=" + encodeURIComponent(fields) + "&pageSize=25&orderBy=modifiedTime desc";
+        var query =
+          "mimeType='application/vnd.google-apps.document' and trashed=false";
+        var fields =
+          "files(id,name,createdTime,modifiedTime,webViewLink,owners,description)";
+        var url =
+          "https://www.googleapis.com/drive/v3/files?q=" +
+          encodeURIComponent(query) +
+          "&fields=" +
+          encodeURIComponent(fields) +
+          "&pageSize=25&orderBy=modifiedTime desc";
 
         var res = await fetch(url, {
-          headers: { "Authorization": "Bearer " + token }
+          headers: { Authorization: "Bearer " + token },
         });
 
         if (!res.ok) {
           var errJson = await res.json();
-          throw new Error(errJson.error ? errJson.error.message : "Failed to load Google Docs");
+          throw new Error(
+            errJson.error
+              ? errJson.error.message
+              : "Failed to load Google Docs",
+          );
         }
 
         var data = await res.json();
         currentDocsList = data.files || [];
-        renderDocsList(docsSearchInput ? docsSearchInput.value.trim().toLowerCase() : "");
+        renderDocsList(
+          docsSearchInput ? docsSearchInput.value.trim().toLowerCase() : "",
+        );
       } catch (err) {
         console.error("Failed to list docs:", err);
         if (docsListWrap) {
-          docsListWrap.innerHTML = '<div style="text-align:center;padding:1.5rem 1rem;color:#ef4444;font-size:0.8rem;">Could not load docs: ' + escapeHtml(err.message) + '</div>';
+          docsListWrap.innerHTML =
+            '<div style="text-align:center;padding:1.5rem 1rem;color:#ef4444;font-size:0.8rem;">Could not load docs: ' +
+            escapeHtml(err.message) +
+            "</div>";
         }
       }
     }
@@ -3951,41 +4665,66 @@
       }
 
       if (filtered.length === 0) {
-        docsListWrap.innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:0.8rem;">No documents found. Draft your first architectural doc using the form above.</div>';
+        docsListWrap.innerHTML =
+          '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:0.8rem;">No documents found. Draft your first architectural doc using the form above.</div>';
         return;
       }
 
       var html = "";
       filtered.forEach(function (doc) {
         var isSelected = activeDoc && activeDoc.id === doc.id;
-        var modDate = doc.modifiedTime ? new Date(doc.modifiedTime).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" }) : "";
-        var ownerName = doc.owners && doc.owners[0] ? doc.owners[0].displayName : "";
+        var modDate = doc.modifiedTime
+          ? new Date(doc.modifiedTime).toLocaleDateString(undefined, {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })
+          : "";
+        var ownerName =
+          doc.owners && doc.owners[0] ? doc.owners[0].displayName : "";
 
         html +=
-          '<div class="docs-list-item' + (isSelected ? " active" : "") + '" data-doc-id="' + escapeHtml(doc.id) + '" data-doc-name="' + escapeHtml(doc.name) + '">' +
-            '<div class="docs-item-info">' +
-              '<span class="docs-item-icon">' +
-                '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-                  '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>' +
-                  '<polyline points="14 2 14 8 20 8"></polyline>' +
-                  '<line x1="16" y1="13" x2="8" y2="13"></line>' +
-                  '<line x1="16" y1="17" x2="8" y2="17"></line>' +
-                  '<polyline points="10 9 9 9 8 9"></polyline>' +
-                '</svg>' +
-              '</span>' +
-              '<div class="docs-item-text">' +
-                '<div class="docs-item-name" title="' + escapeHtml(doc.name) + '">' + escapeHtml(doc.name) + '</div>' +
-                '<div class="docs-item-date">' + escapeHtml(modDate) + (ownerName ? " · " + escapeHtml(ownerName) : "") + '</div>' +
-              '</div>' +
-            '</div>' +
-            '<a class="docs-item-link-btn" href="' + escapeHtml(doc.webViewLink || "https://docs.google.com/document/d/" + doc.id) + '" target="_blank" rel="noopener noreferrer" title="Open in Google Docs in new tab" onclick="event.stopPropagation();">' +
-              '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-                '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>' +
-                '<polyline points="15 3 21 3 21 9"></polyline>' +
-                '<line x1="10" y1="14" x2="21" y2="3"></line>' +
-              '</svg>' +
-            '</a>' +
-          '</div>';
+          '<div class="docs-list-item' +
+          (isSelected ? " active" : "") +
+          '" data-doc-id="' +
+          escapeHtml(doc.id) +
+          '" data-doc-name="' +
+          escapeHtml(doc.name) +
+          '">' +
+          '<div class="docs-item-info">' +
+          '<span class="docs-item-icon">' +
+          '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+          '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>' +
+          '<polyline points="14 2 14 8 20 8"></polyline>' +
+          '<line x1="16" y1="13" x2="8" y2="13"></line>' +
+          '<line x1="16" y1="17" x2="8" y2="17"></line>' +
+          '<polyline points="10 9 9 9 8 9"></polyline>' +
+          "</svg>" +
+          "</span>" +
+          '<div class="docs-item-text">' +
+          '<div class="docs-item-name" title="' +
+          escapeHtml(doc.name) +
+          '">' +
+          escapeHtml(doc.name) +
+          "</div>" +
+          '<div class="docs-item-date">' +
+          escapeHtml(modDate) +
+          (ownerName ? " · " + escapeHtml(ownerName) : "") +
+          "</div>" +
+          "</div>" +
+          "</div>" +
+          '<a class="docs-item-link-btn" href="' +
+          escapeHtml(
+            doc.webViewLink || "https://docs.google.com/document/d/" + doc.id,
+          ) +
+          '" target="_blank" rel="noopener noreferrer" title="Open in Google Docs in new tab" onclick="event.stopPropagation();">' +
+          '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+          '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>' +
+          '<polyline points="15 3 21 3 21 9"></polyline>' +
+          '<line x1="10" y1="14" x2="21" y2="3"></line>' +
+          "</svg>" +
+          "</a>" +
+          "</div>";
       });
 
       docsListWrap.innerHTML = html;
@@ -4003,7 +4742,10 @@
 
     // Subscribe to Auth changes
     function setupAuthListener() {
-      if (window.GoogleDocsAuth && typeof window.GoogleDocsAuth.initAuth === "function") {
+      if (
+        window.GoogleDocsAuth &&
+        typeof window.GoogleDocsAuth.initAuth === "function"
+      ) {
         window.GoogleDocsAuth.initAuth(function (user, token) {
           if (user && token) {
             if (docsUnauthBox) docsUnauthBox.style.display = "none";
@@ -4011,7 +4753,9 @@
             if (docsUserActions) docsUserActions.style.display = "flex";
 
             if (docsUserName) {
-              docsUserName.innerHTML = escapeHtml(user.displayName || "Google Account") + ' <span class="docs-status-indicator">● Docs API Ready</span>';
+              docsUserName.innerHTML =
+                escapeHtml(user.displayName || "Google Account") +
+                ' <span class="docs-status-indicator">● Docs API Ready</span>';
             }
             if (docsUserEmail) docsUserEmail.textContent = user.email || "";
             if (docsUserAvatar && user.photoURL) {
@@ -4027,15 +4771,21 @@
             currentDocsList = [];
             activeDoc = null;
             activeDocFullData = null;
-            if (window.UnifiedVoiceDocsBridge && typeof window.UnifiedVoiceDocsBridge.syncActiveDocTargetDisplay === "function") {
+            if (
+              window.UnifiedVoiceDocsBridge &&
+              typeof window.UnifiedVoiceDocsBridge
+                .syncActiveDocTargetDisplay === "function"
+            ) {
               window.UnifiedVoiceDocsBridge.syncActiveDocTargetDisplay();
             }
             if (docsCountBadge) docsCountBadge.textContent = "0 Docs";
             if (docsListWrap) {
-              docsListWrap.innerHTML = '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:0.8rem;">Sign in with Google to load your Google Docs collection.</div>';
+              docsListWrap.innerHTML =
+                '<div style="text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:0.8rem;">Sign in with Google to load your Google Docs collection.</div>';
             }
             if (docsViewerEmpty) docsViewerEmpty.style.display = "flex";
-            if (docsActiveDocContainer) docsActiveDocContainer.style.display = "none";
+            if (docsActiveDocContainer)
+              docsActiveDocContainer.style.display = "none";
           }
         });
       } else {
@@ -4068,37 +4818,37 @@
 
     // Authentic Year Data Sets matching Jawad's profile & screenshot
     var githubDataByYear = {
-      "2026": {
+      2026: {
         total: 636,
         breakdown: { prs: 70, commits: 23, reviews: 7, issues: 0 },
         // Distribution weights across 52 weeks (Aug current year)
         activeWeeks: 34,
-        baseActivity: 3.2
+        baseActivity: 3.2,
       },
-      "2025": {
+      2025: {
         total: 1248,
         breakdown: { prs: 68, commits: 24, reviews: 8, issues: 0 },
         activeWeeks: 52,
-        baseActivity: 3.5
+        baseActivity: 3.5,
       },
-      "2024": {
+      2024: {
         total: 984,
         breakdown: { prs: 62, commits: 31, reviews: 7, issues: 0 },
         activeWeeks: 52,
-        baseActivity: 2.8
+        baseActivity: 2.8,
       },
-      "2023": {
+      2023: {
         total: 742,
         breakdown: { prs: 55, commits: 38, reviews: 7, issues: 0 },
         activeWeeks: 52,
-        baseActivity: 2.1
+        baseActivity: 2.1,
       },
-      "2022": {
+      2022: {
         total: 512,
         breakdown: { prs: 48, commits: 45, reviews: 7, issues: 0 },
         activeWeeks: 52,
-        baseActivity: 1.5
-      }
+        baseActivity: 1.5,
+      },
     };
 
     var currentYear = "2026";
@@ -4122,7 +4872,12 @@
 
           if (tileIndex < activeTilesCount) {
             // Seeded distribution to match authentic GitHub activity graph
-            var seed = (Math.sin(tileIndex * 12.9898 + col * 78.233 + (year === "2026" ? 14 : 7)) * 43758.5453) % 1;
+            var seed =
+              (Math.sin(
+                tileIndex * 12.9898 + col * 78.233 + (year === "2026" ? 14 : 7),
+              ) *
+                43758.5453) %
+              1;
             seed = Math.abs(seed);
 
             // Weekend dampening
@@ -4156,11 +4911,31 @@
           tile.classList.add("lvl-" + level);
 
           // Build date label
-          var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+          var monthNames = [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ];
           var monthIdx = Math.min(11, Math.floor((col / 52) * 12));
           var dayOfMonth = ((col * 7 + row) % 28) + 1;
           var dateStr = monthNames[monthIdx] + " " + dayOfMonth + ", " + year;
-          var tooltipText = count > 0 ? (count + " contribution" + (count > 1 ? "s" : "") + " on " + dateStr) : ("No contributions on " + dateStr);
+          var tooltipText =
+            count > 0
+              ? count +
+                " contribution" +
+                (count > 1 ? "s" : "") +
+                " on " +
+                dateStr
+              : "No contributions on " + dateStr;
 
           tile.setAttribute("title", tooltipText);
           tile.setAttribute("data-count", count);
@@ -4207,7 +4982,7 @@
         xReview.toFixed(1) + "," + yReview.toFixed(1),
         xIssues.toFixed(1) + "," + yIssues.toFixed(1),
         xPrs.toFixed(1) + "," + yPrs.toFixed(1),
-        xCommits.toFixed(1) + "," + yCommits.toFixed(1)
+        xCommits.toFixed(1) + "," + yCommits.toFixed(1),
       ].join(" ");
 
       if (radarPolygon) {
@@ -4274,5 +5049,3 @@
     selectYear("2026");
   })();
 })();
-
-

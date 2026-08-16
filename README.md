@@ -18,7 +18,7 @@
   <a href="https://wa.me/923467248414"><img src="https://img.shields.io/badge/%2B92%20346%207248414-10B981?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp" /></a>
   <a href="https://linkedin.com/in/jawad-ul-hadi"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
   <a href="https://github.com/JawadulHadi"><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
-  <a href="https://jawadulhadiportfolio.vercel.app"><img src="https://img.shields.io/badge/Live_Portfolio-B9843F?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Portfolio" /></a>
+  <a href="https://jawadulhadi-portfolio.vercel.app"><img src="https://img.shields.io/badge/Live_Portfolio-B9843F?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Portfolio" /></a>
 </p>
 
 <p align="center">
@@ -53,33 +53,37 @@ With **7+ years** of professional experience spanning multi-tenant SaaS backends
 
 ## 🏛️ Operational Principles & Architecture Philosophy
 
-| Aspect | Engineering Approach |
-| :--- | :--- |
-| **Problem Solving** | Business outcome first, technical implementation second. |
-| **Architecture** | Pragmatic, scalable, and customizable. Multi-tenant isolation at database & API layers. |
-| **AI Integration** | Provider-agnostic, resilient, and fallback-ready. **3-Tier Fallback (Retry → RAG → Rule-based)** so AI features never hard-fail. |
-| **Code Quality** | Clean enough to maintain, pragmatic enough to ship. Zero unnecessary rewrite debt. |
-| **Team Culture** | Autonomous, psychologically safe, and knowledge-sharing. |
-| **Communication** | Direct, clear, and structured. *(Just call me Bro).* |
+| Aspect              | Engineering Approach                                                                                                              |
+| :-------------------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| **Problem Solving** | Business outcome first, technical implementation second.                                                                          |
+| **Architecture**    | Pragmatic, scalable, and customizable. Multi-tenant isolation at database & API layers.                                           |
+| **AI Integration**  | Provider-agnostic, resilient, and fallback-ready.**3-Tier Fallback (Retry → RAG → Rule-based)** so AI features never hard-fail. |
+| **Code Quality**    | Clean enough to maintain, pragmatic enough to ship. Zero unnecessary rewrite debt.                                                |
+| **Team Culture**    | Autonomous, psychologically safe, and knowledge-sharing.                                                                          |
+| **Communication**   | Direct, clear, and structured.*(Just call me Bro).*                                                                               |
 
 ---
 
 ## 🛠️ Technical Competency Stack
 
 ### ⚡ Backend & Core Services
+
 - **Languages & Frameworks:** TypeScript, Node.js (v18-v22), NestJS, Python 3.11+, FastAPI, Django, Django REST Framework (DRF), Express.js.
 - **Architecture Paradigms:** Multi-Tenant SaaS (Shared DB/Isolated Schema), Event-Driven Architecture, Microservices, RESTful & GraphQL APIs, Domain-Driven Design (DDD).
 
 ### 🤖 AI Engineering & LLM Orchestration
+
 - **LLM Integrations:** Google Gemini (1.5 Flash/Pro, Live API, Structured Output), OpenAI (GPT-4o), Anthropic Claude 3.5 Sonnet.
 - **Pipelines & Grounding:** RAG (Retrieval-Augmented Generation), Vector Databases (Pinecone, ChromaDB), LangChain, LlamaIndex, Deterministic Rule-Based Fallback Engines.
 
 ### 🗄️ Databases & Caching
+
 - **Primary Engines:** PostgreSQL, MySQL, MongoDB, Redis (In-memory caching, Pub/Sub, Rate limiting).
 - **Search & Vector:** MeiliSearch, ElasticSearch, pgvector.
 - **ORM / ODM:** Prisma, TypeORM, Mongoose, Drizzle.
 
 ### ⚙️ Async Queues, DevOps & Cloud
+
 - **Queues & Scheduling:** BullMQ, Celery, Redis Streams, Kafka/RabbitMQ concepts.
 - **Cloud Infrastructure:** Google Cloud Platform (Cloud Run, Cloud Build, GCS), AWS (Lambda, ECS, API Gateway, S3, SQS), Azure.
 - **DevOps & Containers:** Docker, Docker Compose, GitHub Actions CI/CD, Terraform (IaC).
@@ -90,17 +94,17 @@ With **7+ years** of professional experience spanning multi-tenant SaaS backends
 
 > 📌 **Note on Confidentiality:** Major enterprise systems (e.g. Talentnix Multi-Tenant ATS with 22 modules, APAC HRMS, iAgility platform) are active in production under private NDA-protected repositories. Live architecture walkthroughs and code samples are available on request.
 
-### Open-Source Developer Suite & Personal Studio builds:
+### Open-Source Developer Suite & Personal Studio builds
 
-| Project | Core Capability & Architecture | Repository |
-| :--- | :--- | :--- |
-| **Qeloma Verdict** | Tamper-evident decision engine with cryptographic audit trails for regulatory compliance | [GitHub ↗](https://github.com/Qeloma/qeloma-verdict) |
-| **Qeloma OCR** | Client-side hybrid OCR with per-word confidence scoring (Tesseract + Gemini Vision) | [GitHub ↗](https://github.com/Qeloma/qeloma-ocr) |
-| **Qeloma Lens Studio** | Multimodal document intelligence & comparative summarization pipeline | [GitHub ↗](https://github.com/Qeloma/qeloma_lens_studio) |
-| **Qeloma Voice Studio** | Real-time voice analyst grounded in uploaded enterprise knowledge bases | [GitHub ↗](https://github.com/Qeloma/qeloma_voice_studio) |
-| **Qeloma Shift** | Semantic change-intelligence engine with meaning-level diffing & materiality scoring | [GitHub ↗](https://github.com/Qeloma/qeloma_shift) |
-| **Qeloma Cover Studio** | Browser-based LinkedIn banner studio with automated AI vector composition | [GitHub ↗](https://github.com/Qeloma/qeloma-cover-studio) |
-| **Room Booking Engine** | High-concurrency resource management & scheduling backplane | [GitHub ↗](https://github.com/Qeloma/qeloma_room_booking_app) |
+| Project                 | Core Capability & Architecture                                                           | Repository                                                     |
+| :------------------------ | :----------------------------------------------------------------------------------------- | :--------------------------------------------------------------- |
+| **Qeloma Verdict**      | Tamper-evident decision engine with cryptographic audit trails for regulatory compliance | [GitHub ↗](https://github.com/Qeloma/qeloma-verdict)          |
+| **Qeloma OCR**          | Client-side hybrid OCR with per-word confidence scoring (Tesseract + Gemini Vision)      | [GitHub ↗](https://github.com/Qeloma/qeloma-ocr)              |
+| **Qeloma Lens Studio**  | Multimodal document intelligence & comparative summarization pipeline                    | [GitHub ↗](https://github.com/Qeloma/qeloma_lens_studio)      |
+| **Qeloma Voice Studio** | Real-time voice analyst grounded in uploaded enterprise knowledge bases                  | [GitHub ↗](https://github.com/Qeloma/qeloma_voice_studio)     |
+| **Qeloma Shift**        | Semantic change-intelligence engine with meaning-level diffing & materiality scoring     | [GitHub ↗](https://github.com/Qeloma/qeloma_shift)            |
+| **Qeloma Cover Studio** | Browser-based LinkedIn banner studio with automated AI vector composition                | [GitHub ↗](https://github.com/Qeloma/qeloma-cover-studio)     |
+| **Room Booking Engine** | High-concurrency resource management & scheduling backplane                              | [GitHub ↗](https://github.com/Qeloma/qeloma_room_booking_app) |
 
 ---
 
@@ -133,6 +137,7 @@ With **7+ years** of professional experience spanning multi-tenant SaaS backends
 To achieve 100% uptime with zero cold-start delay, consistent caching, and global edge routing without Vercel's initial loading screen nuances, this application includes an optimized multi-stage `Dockerfile`.
 
 ### 1. Local Container Build & Test
+
 ```bash
 # Clone the repository
 git clone https://github.com/JawadulHadi/portfolio.git
@@ -148,6 +153,7 @@ docker run -d -p 8080:8080 --name jawad-portfolio jawad-portfolio:latest
 ```
 
 ### 2. Deploy to Google Cloud Run (One-Command via Google Cloud SDK)
+
 Ensure you have the [Google Cloud CLI (`gcloud`)](https://cloud.google.com/sdk) authenticated:
 
 ```bash
@@ -169,7 +175,9 @@ gcloud run deploy jawad-portfolio \
 > Setting `min-instances 1` guarantees the container remains warm 24/7, completely eliminating cold-start latency, favicon delivery delays, and intermittent edge loading spinners.
 
 ### 3. Automated CI/CD via GitHub Actions (Optional)
+
 Add this workflow to `.github/workflows/deploy-cloud-run.yml`:
+
 ```yaml
 name: Deploy to Google Cloud Run
 
@@ -215,7 +223,7 @@ jobs:
 
 - 💼 **LinkedIn:** [linkedin.com/in/jawad-ul-hadi](https://linkedin.com/in/jawad-ul-hadi)
 - 🐙 **GitHub:** [github.com/JawadulHadi](https://github.com/JawadulHadi)
-- 🌐 **Live Portfolio:** [jawadulhadiportfolio.vercel.app](https://jawadulhadiportfolio.vercel.app)
-- 📄 **Interactive Résumé:** [jawadulhadiportfolio.vercel.app/source/resume.html](https://jawadulhadiportfolio.vercel.app/source/resume.html)
+- 🌐 **Live Portfolio:** [jawadulhadi-portfolio.vercel.app](https://jawadulhadi-portfolio.vercel.app)
+- 📄 **Interactive Résumé:** [jawadulhadi-portfolio.vercel.app/source/resume.html](https://jawadulhadi-portfolio.vercel.app/source/resume.html)
 - ✉️ **Direct Email:** [jawadulhadicc@gmail.com](mailto:jawadulhadicc@gmail.com)
 - 📱 **WhatsApp / Direct:** [+92 346 7248414](https://wa.me/923467248414)
