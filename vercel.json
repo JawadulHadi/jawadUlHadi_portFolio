@@ -3,11 +3,6 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "outputDirectory": "public",
-  "functions": {
-    "api/index.js": {
-      "runtime": "nodejs22.x"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/(.*)",

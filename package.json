@@ -10,7 +10,7 @@
     "serve": "node server.js"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=24"
   },
   "dependencies": {
     "express": "^4.21.2"
