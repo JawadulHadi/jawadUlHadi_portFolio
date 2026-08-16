@@ -1,0 +1,29 @@
+{
+  "@context": "https://w3id.org/openbadges/v2",
+  "id": "https://e-smartdata.org",
+  "type": "Assertion",
+  "recipient": {
+    "type": "email",
+    "identity": "jawadulhadicc@gmail.com"
+  },
+  "issuedOn": "2025-10-14T00:00:00Z",
+  "verification": {
+    "type": "hosted"
+  },
+  "badge": {
+    "id": "https://e-smartdata.org",
+    "type": "BadgeClass",
+    "name": "Certified Django Developer",
+    "description": "Successfully completed the Certified Django Developer program via e-smartdata.org.",
+    "image": "https://e-smartdata.org",
+    "criteria": {
+      "id": "https://e-smartdata.org"
+    },
+    "issuer": {
+      "id": "https://e-smartdata.org",
+      "type": "Issuer",
+      "name": "e-smartdata.org",
+      "url": "https://e-smartdata.org"
+    }
+  }
+}

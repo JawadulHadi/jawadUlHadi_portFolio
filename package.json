@@ -4,7 +4,7 @@
   "private": true,
   "description": "Personal portfolio — static site with Express dev server",
   "scripts": {
-    "build": "echo 'No build step required'",
+    "build": "node scripts/build.js",
     "dev": "node server.js",
     "start": "node server.js",
     "serve": "node server.js"

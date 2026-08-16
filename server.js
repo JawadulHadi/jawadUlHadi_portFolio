@@ -3,7 +3,7 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const HOST = '0.0.0.0';
+const HOST = 'localhost';
 const startTime = Date.now();
 
 // Serve static assets from project root
