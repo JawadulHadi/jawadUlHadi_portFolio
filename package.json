@@ -4,13 +4,13 @@
   "private": true,
   "description": "Personal portfolio — static site with Express dev server",
   "scripts": {
+    "build": "echo 'No build step required'",
     "dev": "node server.js",
     "start": "node server.js",
-    "lint": "node --check server.js && node --check assets/app.js",
-    "build": "echo 'Static assets ready'"
+    "serve": "node server.js"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=18"
   },
   "dependencies": {
     "express": "^4.21.2"

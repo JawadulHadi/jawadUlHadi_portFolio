@@ -1,6 +1,9 @@
 # Vercel
 .vercel
 node_modules/
+firebase-applet-config/
+firebase.json/
+netlify.toml/
 
 # Env — never commit real values
 .env
@@ -19,3 +22,6 @@ Desktop.ini
 # Logs
 *.log
 npm-debug.log*
+
+.vercel
+.env*

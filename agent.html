@@ -58,6 +58,20 @@
     .layout {
       position: relative;
       z-index: 1;
+    }
+
+    /* Inline style replacements */
+    .cert-note {
+      margin-top: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .cert-link {
+      color: var(--accent);
+      text-decoration: none;
+
       display: grid;
       grid-template-columns: 300px 1fr;
       min-height: 100vh;
@@ -895,7 +909,7 @@
         <div class="input-row">
           <textarea class="chat-input" id="chat-input" placeholder="Ask Jawad anything..." rows="1"
             onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-          <button class="send-btn" id="send-btn" onclick="sendMessage()">
+          <button class="send-btn" id="send-btn" type="button" title="Send message" onclick="sendMessage()">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"
               stroke-linecap="round" stroke-linejoin="round">
               <line x1="22" y1="2" x2="11" y2="13" />
@@ -986,92 +1000,93 @@
               </div>
             </div>
             <div style="margin-top:12px; font-family:var(--mono); font-size:11px; color:var(--text-dim);">
-              * For verified certs, visit <a href="https://www.linkedin.com/in/jawad-ul-hadi-5316b1261/" target="_blank"
-                style="color:var(--accent); text-decoration:none;">LinkedIn profile</a>
-            </div>
+              * For verified certs, visit </div>
+          </div><a href="https://www.linkedin.com/in/jawad-ul-hadi-5316b1261/" target="_blank"
+            style="color:var(--accent); text-decoration:none;">LinkedIn profile</>
+        </div>
+      </div>
+  </div>
+  </div>
+
+  <!-- PROJECTS PANEL -->
+  <div class="panel" id="panel-projects">
+    <div class="projects-content">
+      <div class="section-head">
+        <div class="section-eyebrow">// project_types.map()</div>
+        <div class="section-title">What <span>I Build</span></div>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-type">Backend Architecture</div>
+          <div class="project-name">Enterprise Microservices Platforms</div>
+          <div class="project-desc">Design and implementation of scalable, distributed backend systems with
+            event-driven architecture, service mesh, and API gateways.</div>
+          <div class="project-tags">
+            <span class="ptag">NestJS</span><span class="ptag">Docker</span><span class="ptag">AWS</span><span
+              class="ptag">RabbitMQ</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-type">AI / LLM Engineering</div>
+          <div class="project-name">AI-Powered Business Agents</div>
+          <div class="project-desc">Integration of LLMs (GPT-4, Claude, custom models) into enterprise workflows —
+            RAG pipelines, AI agents, and intelligent automation backends.</div>
+          <div class="project-tags">
+            <span class="ptag">LangChain</span><span class="ptag">OpenAI</span><span class="ptag">RAG</span><span
+              class="ptag">Vector DBs</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-type">Cloud &amp; DevOps</div>
+          <div class="project-name">AWS Cloud Infrastructure</div>
+          <div class="project-desc">Full cloud architecture design: serverless functions, ECS/EKS deployments, CI/CD
+            pipelines, cost-optimized infrastructure-as-code.</div>
+          <div class="project-tags">
+            <span class="ptag">AWS</span><span class="ptag">Terraform</span><span class="ptag">GitHub
+              Actions</span><span class="ptag">Lambda</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-type">API &amp; Integration</div>
+          <div class="project-name">High-Performance REST &amp; GraphQL APIs</div>
+          <div class="project-desc">Production-grade APIs with authentication, rate limiting, caching layers, and
+            third-party integrations built for scale and maintainability.</div>
+          <div class="project-tags">
+            <span class="ptag">REST</span><span class="ptag">GraphQL</span><span class="ptag">JWT</span><span
+              class="ptag">Redis</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-type">Database Engineering</div>
+          <div class="project-name">Database Architecture &amp; Optimization</div>
+          <div class="project-desc">Schema design, query optimization, replication strategies, and migration
+            planning for PostgreSQL, MongoDB, and multi-database systems.</div>
+          <div class="project-tags">
+            <span class="ptag">PostgreSQL</span><span class="ptag">MongoDB</span><span class="ptag">Redis</span><span
+              class="ptag">Prisma</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-type">Python / Django</div>
+          <div class="project-name">Python Backend Systems &amp; Automation</div>
+          <div class="project-desc">Django REST framework APIs, data processing pipelines, automation scripts, and
+            ML model serving backends with Python.</div>
+          <div class="project-tags">
+            <span class="ptag">Django</span><span class="ptag">FastAPI</span><span class="ptag">Celery</span><span
+              class="ptag">Pandas</span>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- PROJECTS PANEL -->
-      <div class="panel" id="panel-projects">
-        <div class="projects-content">
-          <div class="section-head">
-            <div class="section-eyebrow">// project_types.map()</div>
-            <div class="section-title">What <span>I Build</span></div>
-          </div>
-
-          <div class="projects-grid">
-            <div class="project-card">
-              <div class="project-type">Backend Architecture</div>
-              <div class="project-name">Enterprise Microservices Platforms</div>
-              <div class="project-desc">Design and implementation of scalable, distributed backend systems with
-                event-driven architecture, service mesh, and API gateways.</div>
-              <div class="project-tags">
-                <span class="ptag">NestJS</span><span class="ptag">Docker</span><span class="ptag">AWS</span><span
-                  class="ptag">RabbitMQ</span>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-type">AI / LLM Engineering</div>
-              <div class="project-name">AI-Powered Business Agents</div>
-              <div class="project-desc">Integration of LLMs (GPT-4, Claude, custom models) into enterprise workflows —
-                RAG pipelines, AI agents, and intelligent automation backends.</div>
-              <div class="project-tags">
-                <span class="ptag">LangChain</span><span class="ptag">OpenAI</span><span class="ptag">RAG</span><span
-                  class="ptag">Vector DBs</span>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-type">Cloud &amp; DevOps</div>
-              <div class="project-name">AWS Cloud Infrastructure</div>
-              <div class="project-desc">Full cloud architecture design: serverless functions, ECS/EKS deployments, CI/CD
-                pipelines, cost-optimized infrastructure-as-code.</div>
-              <div class="project-tags">
-                <span class="ptag">AWS</span><span class="ptag">Terraform</span><span class="ptag">GitHub
-                  Actions</span><span class="ptag">Lambda</span>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-type">API &amp; Integration</div>
-              <div class="project-name">High-Performance REST &amp; GraphQL APIs</div>
-              <div class="project-desc">Production-grade APIs with authentication, rate limiting, caching layers, and
-                third-party integrations built for scale and maintainability.</div>
-              <div class="project-tags">
-                <span class="ptag">REST</span><span class="ptag">GraphQL</span><span class="ptag">JWT</span><span
-                  class="ptag">Redis</span>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-type">Database Engineering</div>
-              <div class="project-name">Database Architecture &amp; Optimization</div>
-              <div class="project-desc">Schema design, query optimization, replication strategies, and migration
-                planning for PostgreSQL, MongoDB, and multi-database systems.</div>
-              <div class="project-tags">
-                <span class="ptag">PostgreSQL</span><span class="ptag">MongoDB</span><span
-                  class="ptag">Redis</span><span class="ptag">Prisma</span>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-type">Python / Django</div>
-              <div class="project-name">Python Backend Systems &amp; Automation</div>
-              <div class="project-desc">Django REST framework APIs, data processing pipelines, automation scripts, and
-                ML model serving backends with Python.</div>
-              <div class="project-tags">
-                <span class="ptag">Django</span><span class="ptag">FastAPI</span><span class="ptag">Celery</span><span
-                  class="ptag">Pandas</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </main>
+  </main>
   </div>
 
   <script>
