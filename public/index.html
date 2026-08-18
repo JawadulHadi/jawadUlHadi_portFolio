@@ -5,12 +5,14 @@
   <script>
     (function () {
       try {
+        var validThemes = ["light", "dark", "ai-classic", "cyber"];
         var stored = localStorage.getItem("jh-theme");
-        var theme = stored || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        if (theme !== "light" && theme !== "dark" && theme !== "cyber") theme = "dark";
+        var theme = (stored && validThemes.indexOf(stored) !== -1)
+          ? stored
+          : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
         document.documentElement.setAttribute("data-theme", theme);
       } catch (e) {
-        document.documentElement.setAttribute("data-theme", "dark");
+        document.documentElement.setAttribute("data-theme", "light");
       }
     })();
   </script>
@@ -47,23 +49,32 @@
   <!-- Critical Anti-FOUC Paint Stylesheet -->
   <style>
     :root {
-      color-scheme: dark light;
+      color-scheme: light dark;
+    }
+
+    html[data-theme="light"],
+    html:not([data-theme="dark"]):not([data-theme="cyber"]):not([data-theme="ai-classic"]) {
+      background-color: #f5f3f0;
+      color: #0a1628;
+      color-scheme: light;
     }
 
     html[data-theme="dark"] {
       background-color: #0a1628;
-      color: #e2e8f0;
+      color: #f5f3f0;
+      color-scheme: dark;
+    }
+
+    html[data-theme="ai-classic"] {
+      background-color: #f8fafc;
+      color: #0f172a;
+      color-scheme: light;
     }
 
     html[data-theme="cyber"] {
       background-color: #050814;
       color: #e2f1ff;
-    }
-
-    html[data-theme="light"],
-    html:not([data-theme="dark"]):not([data-theme="cyber"]) {
-      background-color: #f5f3f0;
-      color: #1a202c;
+      color-scheme: dark;
     }
 
     body {
@@ -131,36 +142,98 @@
         <a href="#skills">Skills</a>
         <a href="#services">Services</a>
         <a href="#work">Work</a>
+        <a href="#github-stats">GitHub</a>
         <a href="#certifications">Certifications</a>
-        <a href="#docs-hub">Google Docs</a>
         <a href="#contact">Contact</a>
       </nav>
       <div class="header-actions">
+        <a class="btn btn-outline" href="certifications.html" title="Explore Professional Certifications Gallery (31 Verified)">Certifications Gallery ↗</a>
         <a class="btn btn-outline" href="#rag-architecture-showcase"
           title="Case Study: Designing for AI Failure (RAG + 3-Tier Fallback)">RAG Case Study</a>
         <a class="btn btn-outline js-resume-download" href="resume.pdf" target="_blank"
           download="Jawad_Ul_Hadi_Resume.pdf" title="Download & View PDF Résumé">Resume</a>
-        <button class="theme-toggle" type="button"
-          aria-label="Toggle Theme (Classic Light, Slate Dark, AI White-Blue, Cyber Synth)"
-          title="Theme: Click to cycle Light / Dark / AI White-Blue / Cyber Synth">
-          <svg class="icon-sun" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="4.4"></circle>
-            <path
-              d="M12 2v2.4M12 19.6V22M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2 12h2.4M19.6 12H22M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7">
-            </path>
-          </svg>
-          <svg class="icon-moon" viewBox="0 0 24 24">
-            <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 6.8 6.8 0 0 0 20 14.5Z"></path>
-          </svg>
-          <svg class="icon-sparkle" viewBox="0 0 24 24">
-            <path
-              d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z">
-            </path>
-          </svg>
-          <svg class="icon-bolt" viewBox="0 0 24 24">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-          </svg>
-        </button>
+
+        <!-- PROPER THEME SWITCHER DROPDOWN -->
+        <div class="theme-selector" id="themeSelector">
+          <button class="theme-selector-trigger" type="button" id="themeSelectorBtn"
+            aria-haspopup="true" aria-expanded="false" aria-controls="themeDropdownMenu"
+            aria-label="Select Color Theme" title="Switch visual theme">
+            <span class="theme-trigger-icon" id="themeTriggerIcon" aria-hidden="true">
+              <!-- Default Icon -->
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.4"></circle><path d="M12 2v2.4M12 19.6V22M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2 12h2.4M19.6 12H22M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"></path></svg>
+            </span>
+            <span class="theme-trigger-label" id="themeTriggerLabel">Theme</span>
+            <svg class="theme-trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+
+          <div class="theme-dropdown" id="themeDropdownMenu" role="menu" aria-labelledby="themeSelectorBtn">
+            <div class="theme-dropdown-header">Visual Palette</div>
+            <div class="theme-options-list">
+              <button type="button" class="theme-opt-btn" data-theme-value="light" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-light" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">Classic Light</span>
+                    <span class="theme-opt-desc">Warm cream &amp; gold</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+
+              <button type="button" class="theme-opt-btn" data-theme-value="dark" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-dark" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">Slate Dark</span>
+                    <span class="theme-opt-desc">Deep navy &amp; gold</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+
+              <button type="button" class="theme-opt-btn" data-theme-value="ai-classic" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-ai" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">AI White &amp; Azure</span>
+                    <span class="theme-opt-desc">Slate white &amp; blue</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+
+              <button type="button" class="theme-opt-btn" data-theme-value="cyber" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-cyber" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">Cyber Synth</span>
+                    <span class="theme-opt-desc">Midnight &amp; neon cyan</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </header>
@@ -262,7 +335,7 @@
   <div class="plaque-band">
     <div class="plaque-in">
       <span class="eyebrow">Production Verified</span>
-      <span class="plaque-facts"><b>22</b> modules · <b>200+</b> REST endpoints · <b>3-tier</b> AI fallback · <b>26</b>
+      <span class="plaque-facts"><b>Modular Micro-Services</b> · <b>High-Scale API Ecosystem</b> · <b>3-tier</b> AI fallback · <b>26</b>
         verified credentials</span>
     </div>
   </div>
@@ -1928,7 +2001,7 @@
               verified JWT scopes across the entire query layer. Async resume ingestion on BullMQ/Redis with idempotent
               workers and rule-based fallbacks; recruiter email over self-hosted Postal SMTP; per-tenant career-page
               domains, customizable hiring pipelines, scorecards, and a tenant-scoped MeiliSearch engine.</p>
-            <div class="stat-strip"><span><b>22</b> modules</span><span><b>200+</b> endpoints</span><span><b>3</b>-tier
+            <div class="stat-strip"><span><b>Modular</b> Micro-Services</span><span><b>High-Scale</b> API Ecosystem</span><span><b>3</b>-tier
                 tenancy</span></div>
             <div class="chip-row"><span class="tag">NestJS</span><span class="tag">MongoDB</span><span
                 class="tag">Gemini</span><span class="tag">MeiliSearch</span><span class="tag">BullMQ</span><span
@@ -1974,841 +2047,237 @@
     </div>
   </section>
 
-  <!-- CERTIFICATIONS (ALL 26 VERIFIED CREDENTIALS) -->
+  <!-- 06. GITHUB -->
+  <section class="section section-band github-stats-section" id="github-stats">
+    <div class="container">
+      <div class="section-head" data-reveal="">
+        <div>
+          <h2 class="section-title"><span class="idx">06</span>GitHub</h2>
+          <p class="eyebrow" style="margin-top: 0.4rem;">Open-source engineering velocity, repositories &amp; verified live activity</p>
+        </div>
+        <p class="section-note">Live sync from <a href="https://github.com/JawadulHadi" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: underline;">@JawadulHadi on GitHub</a></p>
+      </div>
+
+      <!-- Live Account Overview Counters -->
+      <div class="github-live-metrics" data-reveal="">
+        <div class="github-metric-box">
+          <span class="github-metric-val" id="ghReposCount">25+</span>
+          <span class="github-metric-label">Public Repositories</span>
+        </div>
+        <div class="github-metric-box">
+          <span class="github-metric-val" id="ghFollowersCount">20+</span>
+          <span class="github-metric-label">GitHub Followers</span>
+        </div>
+        <div class="github-metric-box">
+          <span class="github-metric-val">100%</span>
+          <span class="github-metric-label">Python &amp; TS Dominance</span>
+        </div>
+        <div class="github-metric-box">
+          <span class="github-metric-val" style="color: var(--teal);">Active</span>
+          <span class="github-metric-label">Live Developer Status</span>
+        </div>
+      </div>
+
+      <!-- Dynamic GitHub Profile Stats & Live Contribution Graph Row -->
+      <div class="github-cards-row" data-reveal="">
+        <!-- Overall Stats Card -->
+        <div class="github-card-frame">
+          <img id="ghStatsCardImg" 
+               src="https://github-readme-stats.vercel.app/api?username=JawadulHadi&show_icons=true&theme=tokyonight&count_private=true&hide_border=true&bg_color=0f1e2e&title_color=d4a574&text_color=f5f3f0&icon_color=d4a574" 
+               alt="Jawad Ul Hadi GitHub Stats" 
+               loading="lazy">
+        </div>
+
+        <!-- Streak Stats Card -->
+        <div class="github-card-frame">
+          <img id="ghStreakCardImg" 
+               src="https://github-readme-streak-stats.herokuapp.com/?user=JawadulHadi&theme=tokyonight&hide_border=true&background=0f1e2e&ring=d4a574&fire=d4a574&currStreakLabel=d4a574" 
+               alt="Jawad Ul Hadi GitHub Streak" 
+               loading="lazy">
+        </div>
+
+        <!-- Activity Graph Card (Connected for Live Demonstration) -->
+        <div class="github-card-frame github-activity-wide">
+          <a href="https://github.com/JawadulHadi" target="_blank" rel="noopener noreferrer" title="View live interactive contributions on GitHub" style="display: block; width: 100%;">
+            <img id="ghActivityGraphImg" 
+                 src="https://github-readme-activity-graph.vercel.app/graph?username=JawadulHadi&theme=tokyo-night&bg_color=0f1e2e&color=d4a574&line=7db3a0&point=d4a574&hide_border=true" 
+                 alt="Jawad Ul Hadi GitHub Contribution Activity Graph (Live)" 
+                 loading="lazy">
+          </a>
+        </div>
+      </div>
+
+      <!-- Live Open Source Production Repositories -->
+      <div class="github-live-repos-header" data-reveal="">
+        <div>
+          <h3 style="font-size: 1.15rem; font-weight: 600; color: var(--text);">Featured Open-Source Repositories</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Production SDKs, microservices, and AI toolchains architected by Jawad</p>
+        </div>
+        <a href="https://github.com/JawadulHadi?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size: 0.8rem; padding: 6px 14px;">
+          View All on GitHub ↗
+        </a>
+      </div>
+
+      <div class="github-repos-grid" data-reveal="" id="githubReposGrid">
+        <div class="github-repo-item">
+          <div>
+            <h4 class="github-repo-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              qeloma-verdict
+            </h4>
+            <p class="github-repo-desc">Provider-agnostic LLM orchestration and 3-tier fallback engine (Retry → RAG → Rule-based).</p>
+          </div>
+          <div class="github-repo-meta">
+            <span class="github-lang-pill"><span class="github-lang-dot python"></span> Python</span>
+            <a href="https://github.com/JawadulHadi/qeloma-verdict" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: none; font-weight: 600;">Repository ↗</a>
+          </div>
+        </div>
+
+        <div class="github-repo-item">
+          <div>
+            <h4 class="github-repo-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              qeloma-ocr
+            </h4>
+            <p class="github-repo-desc">Document processing and multimodal vision ingestion pipeline with high-scale async queue handling.</p>
+          </div>
+          <div class="github-repo-meta">
+            <span class="github-lang-pill"><span class="github-lang-dot python"></span> Python</span>
+            <a href="https://github.com/JawadulHadi/qeloma-ocr" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: none; font-weight: 600;">Repository ↗</a>
+          </div>
+        </div>
+
+        <div class="github-repo-item">
+          <div>
+            <h4 class="github-repo-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              qeloma_shift
+            </h4>
+            <p class="github-repo-desc">Shift and schedule automation service supporting complex constraint solving and multi-tenant isolation.</p>
+          </div>
+          <div class="github-repo-meta">
+            <span class="github-lang-pill"><span class="github-lang-dot python"></span> Python / Django</span>
+            <a href="https://github.com/JawadulHadi/qeloma_shift" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: none; font-weight: 600;">Repository ↗</a>
+          </div>
+        </div>
+
+        <div class="github-repo-item">
+          <div>
+            <h4 class="github-repo-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              qeloma_voice_studio
+            </h4>
+            <p class="github-repo-desc">Real-time voice intelligence and streaming speech orchestration interface.</p>
+          </div>
+          <div class="github-repo-meta">
+            <span class="github-lang-pill"><span class="github-lang-dot typescript"></span> TypeScript / Python</span>
+            <a href="https://github.com/JawadulHadi/qeloma_voice_studio" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: none; font-weight: 600;">Repository ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07. PROFESSIONAL CERTIFICATIONS EXECUTIVE OVERVIEW -->
   <section class="section section-band" id="certifications">
     <div class="container">
       <div class="section-head" data-reveal="">
         <div>
-          <h2 class="section-title"><span class="idx">06</span>Certifications &amp; Credentials</h2>
-          <p class="eyebrow" style="margin-top: 0.4rem;">26 Verified Professional Licenses &amp; Badges</p>
+          <h2 class="section-title"><span class="idx">07</span>Professional Certifications</h2>
+          <p class="eyebrow" style="margin-top: 0.4rem;">31 Verified Industry Credentials Across AI, Cloud &amp; Full-Stack Systems</p>
         </div>
-        <p class="section-note">Credentials across Google Cloud, LinkedIn Learning AI, IBM SkillsBuild, and e-smartdata
-          Django</p>
-      </div>
-
-      <!-- Controls: Category Filters & Search Bar -->
-      <div class="cert-controls" data-reveal="">
-        <div class="cert-filters" id="certFilters">
-          <button class="cert-filter-btn active" type="button" data-filter="all">All (26)</button>
-          <button class="cert-filter-btn" type="button" data-filter="ai">Agentic AI &amp; LLMs (13)</button>
-          <button class="cert-filter-btn" type="button" data-filter="cloud">Cloud &amp; Architecture (4)</button>
-          <button class="cert-filter-btn" type="button" data-filter="ibm">IBM Professional (9)</button>
-          <button class="cert-filter-btn" type="button" data-filter="django">Django &amp; Full-Stack (2)</button>
-        </div>
-        <div class="cert-search-box">
-          <svg class="cert-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input type="text" class="cert-search-input" id="certSearch" placeholder="Search certifications..."
-            aria-label="Search certifications">
+        <div style="display: flex; gap: 0.6rem; align-items: center;">
+          <a href="certifications.html" class="btn btn-primary" style="font-size: 0.85rem; padding: 7px 16px;">
+            Open Certifications Gallery (31) ↗
+          </a>
         </div>
       </div>
 
-      <!-- 26 Certifications Grid -->
-      <div class="cert-grid-26" id="certGrid">
-
-        <!-- 1. Google Cloud - Introduction to Generative AI -->
-        <div class="cert-card-item" data-category="ai cloud" data-title="Introduction to Generative AI"
-          data-issuer="Google Cloud" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-google">Google Cloud</span>
-              <span class="cert-date">Jan 2024</span>
-            </div>
-            <h3 class="cert-card-title">Introduction to Generative AI</h3>
+      <!-- Executive Credential Domains Grid -->
+      <div class="cert-exec-grid" data-reveal="">
+        <div class="cert-exec-card">
+          <div class="cert-exec-head">
+            <span class="cert-exec-badge">16 Verified Credentials</span>
+            <h3 class="cert-exec-title">Agentic AI, MCP &amp; LLM Systems</h3>
           </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">License: G3A7L84CRV82</span>
-            <a class="cert-verify-link" href="https://www.coursera.org/account/accomplishments/verify/G3A7L84CRV82"
-              target="_blank" rel="noopener noreferrer">Verify ↗</a>
+          <p class="cert-exec-desc">Production AI agent architectures, Anthropic Model Context Protocol (MCP) &amp; Agent Skills, Microsoft Press AI Agents with Copilot, Google Cloud GenAI, and multi-agent coordination.</p>
+          <div class="cert-exec-tags">
+            <span class="tag">Anthropic MCP</span>
+            <span class="tag">Agent Skills</span>
+            <span class="tag">Microsoft Press</span>
+            <span class="tag">Google GenAI</span>
+            <span class="tag">RAG Fallbacks</span>
           </div>
         </div>
 
-        <!-- 2. IBM - Information Technology Fundamentals -->
-        <div class="cert-card-item" data-category="ibm" data-title="Information Technology Fundamentals"
-          data-issuer="IBM" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
-              <span class="cert-date">Feb 2024</span>
-            </div>
-            <h3 class="cert-card-title">Information Technology Fundamentals</h3>
+        <div class="cert-exec-card">
+          <div class="cert-exec-head">
+            <span class="cert-exec-badge">9 Credly Badges</span>
+            <h3 class="cert-exec-title">IBM SkillsBuild Credentials</h3>
           </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Credly Verified</span>
-            <a class="cert-verify-link"
-              href="https://www.credly.com/badges/fb520a68-f279-4351-b67e-5dddea39b21e/linked_in_profile"
-              target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          <p class="cert-exec-desc">Comprehensive IBM Credly-issued credentials spanning Cloud Computing, Cybersecurity, Enterprise AI Fundamentals, Data Architecture, and professional workplace problem-solving.</p>
+          <div class="cert-exec-tags">
+            <span class="tag">Cloud Architecture</span>
+            <span class="tag">Cybersecurity</span>
+            <span class="tag">Enterprise AI</span>
+            <span class="tag">Data Platforms</span>
           </div>
         </div>
 
-        <!-- 3. IBM - Web Development Fundamentals -->
-        <div class="cert-card-item" data-category="ibm django" data-title="Web Development Fundamentals"
-          data-issuer="IBM" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
-              <span class="cert-date">Feb 2024</span>
-            </div>
-            <h3 class="cert-card-title">Web Development Fundamentals</h3>
+        <div class="cert-exec-card">
+          <div class="cert-exec-head">
+            <span class="cert-exec-badge">4 Certified Licenses</span>
+            <h3 class="cert-exec-title">Django &amp; Full-Stack Systems</h3>
           </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Credly Verified</span>
-            <a class="cert-verify-link"
-              href="https://www.credly.com/badges/8200cfe4-fd0b-4f9f-b31d-06569ab8f445/linked_in_profile"
-              target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          <p class="cert-exec-desc">Formal certification as Certified Django Developer (e-smartdata License: ESD-037/10/2025), Python Machine Learning pipelines, and scalable API systems engineering.</p>
+          <div class="cert-exec-tags">
+            <span class="tag">Certified Django Dev</span>
+            <span class="tag">Python ML</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">System Design</span>
           </div>
         </div>
 
-        <!-- 4. IBM - Artificial Intelligence Fundamentals -->
-        <div class="cert-card-item" data-category="ibm ai" data-title="Artificial Intelligence Fundamentals"
-          data-issuer="IBM" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
-              <span class="cert-date">Feb 2024</span>
-            </div>
-            <h3 class="cert-card-title">Artificial Intelligence Fundamentals</h3>
+        <div class="cert-exec-card">
+          <div class="cert-exec-head">
+            <span class="cert-exec-badge">2 Certificates</span>
+            <h3 class="cert-exec-title">Responsible AI &amp; Engineering Mastery</h3>
           </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Credly Verified</span>
-            <a class="cert-verify-link"
-              href="https://www.credly.com/badges/37f8ca56-518e-4ffc-8b70-dd29db910bab/linked_in_profile"
-              target="_blank" rel="noopener noreferrer">Badge ↗</a>
+          <p class="cert-exec-desc">Responsible AI engineering governance, ethics in production LLMs, and high-impact critical problem-solving frameworks for engineering teams.</p>
+          <div class="cert-exec-tags">
+            <span class="tag">Responsible AI</span>
+            <span class="tag">Critical Problem-Solving</span>
+            <span class="tag">Leadership</span>
           </div>
         </div>
-
-        <!-- 5. IBM - Working in a Digital World -->
-        <div class="cert-card-item" data-category="ibm" data-title="Working in a Digital World: Professional Skills"
-          data-issuer="IBM" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
-              <span class="cert-date">Feb 2024</span>
-            </div>
-            <h3 class="cert-card-title">Working in a Digital World: Professional Skills</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Credly Verified</span>
-            <a class="cert-verify-link"
-              href="https://www.credly.com/badges/056c5fb0-f12b-4d81-ba66-68eba97b211b/linked_in_profile"
-              target="_blank" rel="noopener noreferrer">Badge ↗</a>
-          </div>
-        </div>
-
-        <!-- 6. IBM - Cloud Computing Fundamentals -->
-        <div class="cert-card-item" data-category="ibm cloud" data-title="Cloud Computing Fundamentals"
-          data-issuer="IBM" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
-              <span class="cert-date">Feb 2024</span>
-            </div>
-            <h3 class="cert-card-title">Cloud Computing Fundamentals</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Credly Verified</span>
-            <a class="cert-verify-link"
-              href="https://www.credly.com/badges/1da9246d-550e-4463-8926-4dd9b0661602/linked_in_profile"
-              target="_blank" rel="noopener noreferrer">Badge ↗</a>
-          </div>
-        </div>
-
-        <!-- 7. IBM - Cybersecurity Fundamentals -->
-        <div class="cert-card-item" data-category="ibm" data-title="Cybersecurity Fundamentals" data-issuer="IBM"
-          data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
-              <span class="cert-date">Feb 2024</span>
-            </div>
-            <h3 class="cert-card-title">Cybersecurity Fundamentals</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Credly Verified</span>
-            <a class="cert-verify-link"
-              href="https://www.credly.com/badges/50af0df4-e762-4d0e-8e0a-71eb809c9588/linked_in_profile"
-              target="_blank" rel="noopener noreferrer">Badge ↗</a>
-          </div>
-        </div>
-
-        <!-- 8. IBM - Explore Emerging Tech -->
-        <div class="cert-card-item" data-category="ibm ai" data-title="Explore Emerging Tech" data-issuer="IBM"
-          data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
-              <span class="cert-date">Mar 2024</span>
-            </div>
-            <h3 class="cert-card-title">Explore Emerging Tech</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Credly Verified</span>
-            <a class="cert-verify-link"
-              href="https://www.credly.com/badges/6ed16143-e785-413f-8b7e-77b7466b3c09/linked_in_profile"
-              target="_blank" rel="noopener noreferrer">Badge ↗</a>
-          </div>
-        </div>
-
-        <!-- 9. IBM - Data Fundamentals -->
-        <div class="cert-card-item" data-category="ibm" data-title="Data Fundamentals" data-issuer="IBM" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
-              <span class="cert-date">Mar 2024</span>
-            </div>
-            <h3 class="cert-card-title">Data Fundamentals</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Credly Verified</span>
-            <a class="cert-verify-link"
-              href="https://www.credly.com/badges/dc86df62-aa4b-4aba-96b0-eb15d734e6d0/linked_in_profile"
-              target="_blank" rel="noopener noreferrer">Badge ↗</a>
-          </div>
-        </div>
-
-        <!-- 10. IBM - Job Application Essentials -->
-        <div class="cert-card-item" data-category="ibm" data-title="Job Application Essentials" data-issuer="IBM"
-          data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-ibm">IBM SkillsBuild</span>
-              <span class="cert-date">Mar 2024</span>
-            </div>
-            <h3 class="cert-card-title">Job Application Essentials</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Credly Verified</span>
-            <a class="cert-verify-link"
-              href="https://www.credly.com/badges/a074c7cf-3c79-434f-bacb-4d3473525a31/linked_in_profile"
-              target="_blank" rel="noopener noreferrer">Badge ↗</a>
-          </div>
-        </div>
-
-        <!-- 11. e-smartdata - Certified Django Developer -->
-        <div class="cert-card-item" data-category="django" data-title="Certified Django Developer"
-          data-issuer="e-smartdata.org" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-django">e-smartdata.org</span>
-              <span class="cert-date">Oct 2025</span>
-            </div>
-            <h3 class="cert-card-title">Certified Django Developer</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">ESD-037/10/2025</span>
-            <a class="cert-verify-link" href="https://e-smartdata.org" target="_blank" rel="noopener noreferrer">Verify
-              ↗</a>
-          </div>
-        </div>
-
-        <!-- 12. LinkedIn - Build AI Agents with GitHub Copilot -->
-        <div class="cert-card-item" data-category="ai"
-          data-title="Build AI Agents with GitHub Copilot by Microsoft Press" data-issuer="LinkedIn" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">Build AI Agents with GitHub Copilot (Microsoft Press)</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Agentic AI</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/9f08ea367800cebf6c82e9487d7257f0bbc4016fc859559e84c86509fae19c91"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 13. LinkedIn - Claude Code 4: Agentic Coding -->
-        <div class="cert-card-item" data-category="ai"
-          data-title="Claude Code 4: Agentic Coding for Professional Developers" data-issuer="LinkedIn" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">Claude Code 4: Agentic Coding for Professional Developers</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Agentic Coding</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/0d8eecc5082ca07af8f771083ea29d4c274033e6b3bdc7ef6e7512e35c1a8a85"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 14. LinkedIn - AI Solution Design Patterns -->
-        <div class="cert-card-item" data-category="ai cloud"
-          data-title="AI Solution Design Patterns: Data, Model Training, and Application Architectures"
-          data-issuer="LinkedIn" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">AI Solution Design Patterns: Data, Model &amp; Architectures</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">AI Architecture</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/5153e8eb222a84ac8db4d0b35df23426e222f370fc51d77124ca896e77178853"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 15. LinkedIn - Build with AI: Claude Code Subagents -->
-        <div class="cert-card-item" data-category="ai"
-          data-title="Build with AI: Leverage Claude Code Subagents in Software Projects" data-issuer="LinkedIn"
-          data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">Build with AI: Leverage Claude Code Subagents</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Subagent Systems</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/686155a8b791ce682068645f7623330b27ad95f43c049727ef9af7420d99a560"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 16. LinkedIn - Open to Work in Age of AI -->
-        <div class="cert-card-item" data-category="ai"
-          data-title="Open to Work: Building Key Career Skills in the Age of AI" data-issuer="LinkedIn" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">Open to Work: Career Skills in the Age of AI</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Career Mastery</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/760b77c72122181307e3333fe28bcaf5af9aa4c99d874730252860020e79583e"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 17. LinkedIn - AI Foundations: Machine Learning -->
-        <div class="cert-card-item" data-category="ai"
-          data-title="Artificial Intelligence Foundations: Machine Learning" data-issuer="LinkedIn" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">AI Foundations: Machine Learning</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">ML Fundamentals</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/67a724f3ca88244c58ab3cc24e540138b817e0ef20ecbbb607dafb7c4bfa62bf"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 18. LinkedIn - AI Foundations: Neural Networks -->
-        <div class="cert-card-item" data-category="ai" data-title="Artificial Intelligence Foundations: Neural Networks"
-          data-issuer="LinkedIn" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">AI Foundations: Neural Networks</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Deep Learning</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/c2bceee32e9f413d8546a2b3eab43d53902c487ffab8c8b3ce79e0650cd83632"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 19. LinkedIn - Building AI Products: Implementing Responsible AI -->
-        <div class="cert-card-item" data-category="ai" data-title="Building AI Products: Implementing Responsible AI"
-          data-issuer="LinkedIn" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">Building AI Products: Responsible AI</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Product Governance</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/24016fe8759c43e6b2997a9f0c0059fe524647f5a9c892de7b3a229323c35833"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 20. LinkedIn - Introduction to Multimodal Prompting -->
-        <div class="cert-card-item" data-category="ai"
-          data-title="Introduction to Multimodal Prompting for Generative AI" data-issuer="LinkedIn" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">Introduction to Multimodal Prompting for GenAI</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Multimodal AI</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/d7bd1ec1c8e2eb1c1a1c2d103d0bf2c4c4a9bb23b080132b2b21a92d600f3ab8"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 21. LinkedIn - Machine Learning with Python: Foundations -->
-        <div class="cert-card-item" data-category="ai django" data-title="Machine Learning with Python: Foundations"
-          data-issuer="LinkedIn" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">Machine Learning with Python: Foundations</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Python &amp; ML</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/cbf2a10d5df1e56235b6176b95457be6d671de6cc09ff18d9548c0fcb88d0eb7"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 22. LinkedIn - Introduction to Prompt Engineering -->
-        <div class="cert-card-item" data-category="ai" data-title="Introduction to Prompt Engineering for Generative AI"
-          data-issuer="LinkedIn" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">Introduction to Prompt Engineering for GenAI</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Prompt Engineering</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/b7156a3b1d734660c446d32481ca978a7c2c8b40bb319d16e9927a4891f5af41"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 23. LinkedIn - Introduction to AI Orchestration with LangChain & LlamaIndex -->
-        <div class="cert-card-item" data-category="ai"
-          data-title="Introduction to AI Orchestration with LangChain and LlamaIndex" data-issuer="LinkedIn"
-          data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">AI Orchestration with LangChain &amp; LlamaIndex</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">LangChain / RAG</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/b31067a6d48eff91faac35512ec9eafefafb76da400cc3355d28708d2ce24245"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 24. LinkedIn - Building a Personalized Chatbot with OpenAI and LangChain -->
-        <div class="cert-card-item" data-category="ai"
-          data-title="Building a Personalized Chatbot with OpenAI and LangChain" data-issuer="LinkedIn" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">Building a Chatbot with OpenAI &amp; LangChain</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">OpenAI &amp; RAG</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/d76ecea6a0c9ae6d9eac1143c0023d574aa648ee35d2d074c7d93eec8b18c00e"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
-        <!-- 25. Google Cloud - Generative AI Specialist Fundamentals -->
-        <div class="cert-card-item" data-category="cloud ai" data-title="Google Cloud Generative AI Fundamentals"
-          data-issuer="Google Cloud" data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-google">Google Cloud</span>
-              <span class="cert-date">Jan 2024</span>
-            </div>
-            <h3 class="cert-card-title">Generative AI Fundamentals (Google Cloud)</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">GCP AI Verified</span>
-            <a class="cert-verify-link" href="https://www.coursera.org/account/accomplishments/verify/G3A7L84CRV82"
-              target="_blank" rel="noopener noreferrer">Verify ↗</a>
-          </div>
-        </div>
-
-        <!-- 26. LinkedIn - Agentic AI Architecture Foundations -->
-        <div class="cert-card-item" data-category="ai"
-          data-title="Agentic AI Architecture Foundations: Designing Autonomous AI Systems" data-issuer="LinkedIn"
-          data-reveal="">
-          <div class="cert-card-top">
-            <div class="cert-issuer-row">
-              <span class="cert-issuer-badge issuer-linkedin">LinkedIn Learning</span>
-              <span class="cert-date">Aug 2026</span>
-            </div>
-            <h3 class="cert-card-title">Agentic AI Architecture Foundations: Autonomous AI Systems</h3>
-          </div>
-          <div class="cert-card-bottom">
-            <span class="cert-license-tag">Autonomous Systems</span>
-            <a class="cert-verify-link"
-              href="https://www.linkedin.com/learning/certificates/a7eb686b16f072c55ca832682ca0467ed7235f364d272e8f937813cce050cdc6"
-              target="_blank" rel="noopener noreferrer">Certificate ↗</a>
-          </div>
-        </div>
-
       </div>
-    </div>
-  </section>
 
-  <!-- GOOGLE DOCS ARCHITECTURAL WORKSPACE -->
-  <section class="section docs-hub-section" id="docs-hub">
-    <div class="container">
-      <div class="docs-hub-header" data-reveal="">
-        <div class="docs-hub-title-group">
-          <span class="docs-badge-tag">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-            Google Workspace Integration
-          </span>
-          <h2>Google Docs Architectural Workspace</h2>
-          <p class="section-lead">
-            Live Google Docs and Drive integration for drafting, browsing, reviewing, and appending technical
-            specifications, architectural RFCs, and engineering notes directly to your Google account.
+      <!-- Executive Gateway Card to Dedicated Gallery -->
+      <div class="cert-portal-card" data-reveal="">
+        <div class="cert-portal-content">
+          <div class="cert-portal-badge">Interactive Verification Ledger</div>
+          <h3 class="cert-portal-title">Professional Certifications Gallery</h3>
+          <p class="cert-portal-desc">
+            Access the full dedicated verification hub featuring real-time category filtering, direct verification links, Credly badge views, and authenticated license IDs for all 31 credentials.
           </p>
-        </div>
-        <div class="docs-hub-actions">
-          <a class="btn btn-outline btn-sm" href="https://docs.google.com" target="_blank"
-            rel="noopener noreferrer">Open Google Docs ↗</a>
-        </div>
-      </div>
-
-      <!-- Authentication Bar / Status Card -->
-      <div class="docs-auth-card" id="docsAuthCard" data-reveal="">
-        <!-- Unauthenticated State -->
-        <div class="docs-auth-unauth-box" id="docsUnauthBox">
-          <div class="docs-auth-unauth-info">
-            <h4>Connect Your Google Account</h4>
-            <p>
-              Sign in to browse, create, and edit architectural RFC documents in Google Docs. Accesses documents with
-              explicit user permissions and in-memory access token security.
-            </p>
-          </div>
-          <div>
-            <button class="gsi-material-button" id="googleSignInBtn" type="button">
-              <div class="gsi-material-button-state"></div>
-              <div class="gsi-material-button-content-wrapper">
-                <div class="gsi-material-button-icon">
-                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" style="display: block;">
-                    <path fill="#EA4335"
-                      d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z">
-                    </path>
-                    <path fill="#4285F4"
-                      d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z">
-                    </path>
-                    <path fill="#FBBC05"
-                      d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z">
-                    </path>
-                    <path fill="#34A853"
-                      d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z">
-                    </path>
-                    <path fill="none" d="M0 0h48v48H0z"></path>
-                  </svg>
-                </div>
-                <span class="gsi-material-button-contents">Sign in with Google</span>
-              </div>
-            </button>
+          <div class="cert-portal-issuers">
+            <span class="cert-issuer-pill">Anthropic</span>
+            <span class="cert-issuer-pill">Google Cloud</span>
+            <span class="cert-issuer-pill">IBM SkillsBuild</span>
+            <span class="cert-issuer-pill">Microsoft Press</span>
+            <span class="cert-issuer-pill">e-smartdata</span>
+            <span class="cert-issuer-pill">LinkedIn Learning</span>
           </div>
         </div>
-
-        <!-- Authenticated State (Hidden by Default) -->
-        <div class="docs-user-profile" id="docsUserProfile" style="display: none;">
-          <img class="docs-user-avatar" id="docsUserAvatar" src="assets/portrait-placeholder.svg"
-            alt="Google Account Avatar">
-          <div class="docs-user-details">
-            <h4 id="docsUserName">Google User <span class="docs-status-indicator">● Docs API Ready</span></h4>
-            <p id="docsUserEmail">user@gmail.com</p>
-          </div>
-        </div>
-        <div class="docs-auth-actions" id="docsUserActions" style="display: none;">
-          <button class="btn btn-outline btn-xs" type="button" id="docsRefreshBtn"
-            title="Reload Google Docs list from Google Drive">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="23 4 23 10 17 10"></polyline>
-              <polyline points="1 20 1 14 7 14"></polyline>
-              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-            </svg>
-            Refresh Docs
-          </button>
-          <button class="btn btn-outline btn-xs" type="button" id="googleSignOutBtn">
-            Sign Out
-          </button>
+        <div class="cert-portal-action">
+          <a href="certifications.html" class="btn btn-primary btn-portal">
+            Explore 31 Verified Credentials Gallery ↗
+          </a>
         </div>
       </div>
 
-      <!-- Main Docs Studio Interface -->
-      <div class="docs-studio-grid" id="docsStudioGrid" data-reveal="">
-
-        <!-- Left Column: Explorer & Creator -->
-        <div class="docs-explorer-panel">
-          <div class="docs-panel-head">
-            <div class="docs-panel-title">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" style="color:#4285F4;">
-                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-              </svg>
-              Google Docs Explorer
-            </div>
-            <span class="docs-count-badge" id="docsCountBadge">0 Docs</span>
-          </div>
-
-          <!-- Search Filter -->
-          <input type="text" class="docs-search-input" id="docsSearchInput" placeholder="Filter documents by title..."
-            autocomplete="off">
-
-          <!-- New RFC / Doc Creator -->
-          <div class="docs-create-box">
-            <label for="docsTemplateSelect">Draft Architectural Document</label>
-            <select class="docs-template-select" id="docsTemplateSelect">
-              <option value="rag-rfc">Template: 3-Tier AI Fallback RFC</option>
-              <option value="saas-spec">Template: Multi-Tenant SaaS Isolation Spec</option>
-              <option value="queue-guide">Template: BullMQ Idempotent Queue Spec</option>
-              <option value="blank">Template: Custom Blank RFC Document</option>
-            </select>
-            <input type="text" class="docs-title-input" id="docsNewTitleInput"
-              placeholder="Document Title (e.g. RFC-104: Vector Search Architecture)">
-            <button class="btn-create-doc" type="button" id="docsCreateBtn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-              </svg>
-              Create Google Doc
-            </button>
-          </div>
-
-          <!-- Document List Wrap -->
-          <div class="docs-list-wrap" id="docsListWrap">
-            <div style="text-align:center; padding: 2rem 1rem; color: var(--text-muted); font-size: 0.8rem;"
-              id="docsListPlaceholder">
-              Sign in with Google to load your Google Docs collection.
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Interactive Document Viewer & Section Appender -->
-        <div class="docs-viewer-panel" id="docsViewerPanel">
-          <!-- Empty / Initial State -->
-          <div class="docs-viewer-empty" id="docsViewerEmpty">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-              <line x1="16" y1="13" x2="8" y2="13"></line>
-              <line x1="16" y1="17" x2="8" y2="17"></line>
-              <polyline points="10 9 9 9 8 9"></polyline>
-            </svg>
-            <h3>Google Docs Live Reader &amp; Spec Editor</h3>
-            <p>
-              Select a Google Doc from the explorer or draft a new architectural RFC template to preview its structural
-              paragraphs, word count, and append new technical design sections.
-            </p>
-          </div>
-
-          <!-- Active Document Container (Hidden when no doc selected) -->
-          <div id="docsActiveDocContainer" style="display: none;">
-            <div class="docs-active-header">
-              <div class="docs-active-title-group">
-                <h3 id="docsActiveTitle">Document Title</h3>
-                <div class="docs-active-meta">
-                  <span id="docsActiveModified">Modified: --</span>
-                  <span>·</span>
-                  <span id="docsActiveWordCount">0 words</span>
-                  <span>·</span>
-                  <span id="docsActiveId" style="font-size:0.68rem;opacity:0.8;">ID: --</span>
-                </div>
-              </div>
-              <div class="docs-active-actions">
-                <button class="btn-docs-action btn-docs-voice" type="button" id="docsReadAloudBtn"
-                  title="Listen to document content aloud (Docs to Voice TTS)">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                  </svg>
-                  <span id="docsReadAloudText">Docs to Voice</span>
-                </button>
-                <button class="btn-docs-action btn-docs-pdf" type="button" id="docsDownloadPdfBtn"
-                  title="Export document as PDF via Google Drive API">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                  </svg>
-                  <span id="docsDownloadPdfText">Download as PDF</span>
-                </button>
-                <a class="btn-docs-action" id="docsOpenExternalBtn" href="#" target="_blank" rel="noopener noreferrer">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                    <polyline points="15 3 21 3 21 9"></polyline>
-                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                  </svg>
-                  Open in Google Docs
-                </a>
-                <button class="btn-docs-action btn-docs-delete" type="button" id="docsDeleteBtn"
-                  title="Remove document from Drive">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="3 6 5 6 21 6"></polyline>
-                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                  </svg>
-                  Trash
-                </button>
-              </div>
-            </div>
-
-            <!-- Dynamic Reading Progress Bar -->
-            <div class="docs-reading-progress-container" id="docsReadingProgressContainer"
-              aria-label="Reading progress">
-              <div class="docs-reading-progress-meta">
-                <span class="docs-reading-label">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                  </svg>
-                  <span>RFC Reading Progress</span>
-                </span>
-                <span class="docs-reading-pct" id="docsReadingPct">0%</span>
-              </div>
-              <div class="docs-reading-progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                aria-valuemax="100" id="docsReadingProgressBar">
-                <div class="docs-reading-progress-fill" id="docsReadingProgressFill" style="width: 0%;"></div>
-              </div>
-            </div>
-
-            <!-- Formatted Content Preview -->
-            <div class="docs-content-preview-wrap" id="docsContentPreview" tabindex="0"
-              aria-label="Google Doc Content Viewer">
-              <p>Loading document content via Google Docs API v1...</p>
-            </div>
-
-            <!-- Append Section Form -->
-            <div class="docs-append-box">
-              <div class="docs-append-head">
-                <div class="docs-append-label-group">
-                  <label for="docsAppendText">Append Architectural Section / Note</label>
-                  <span class="docs-draft-indicator" id="docsDraftStatus">
-                    <span class="draft-dot"></span>
-                    <span id="docsDraftStatusText">Auto-save active</span>
-                  </span>
-                </div>
-                <div class="docs-append-tools">
-                  <button type="button" class="btn-docs-dictate" id="docsDictateBtn"
-                    title="Dictate note via microphone (Voice to Docs STT)">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                      <line x1="12" y1="19" x2="12" y2="23"></line>
-                      <line x1="8" y1="23" x2="16" y2="23"></line>
-                    </svg>
-                    <span id="docsDictateBtnText">Dictate by Voice</span>
-                  </button>
-                  <button type="button" class="btn-discard-draft" id="docsDiscardDraftBtn" style="display: none;"
-                    title="Discard locally saved draft">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                    Discard Draft
-                  </button>
-                  <span style="font-size:0.7rem; color:var(--text-muted); font-family:var(--font-mono);">Docs API
-                    batchUpdate</span>
-                </div>
-              </div>
-              <textarea class="docs-append-textarea" id="docsAppendText"
-                placeholder="Enter new architectural decision, system requirement, or benchmark note to append to this Google Doc..."></textarea>
-              <div class="docs-append-actions">
-                <span class="docs-safety-note">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" style="color:#10b981;">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                  </svg>
-                  Safe execution: Prompted with confirmation dialog before document mutation.
-                </span>
-                <button class="btn btn-primary btn-sm" type="button" id="docsAppendSubmitBtn">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                  </svg>
-                  Append to Google Doc
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
   </section>
-
-  <!-- CUSTOM CONFIRMATION MODAL FOR DESTRUCTIVE / MUTATING WORKSPACE ACTIONS -->
-  <div class="docs-modal-backdrop" id="docsConfirmModal" role="dialog" aria-modal="true"
-    aria-labelledby="docsConfirmTitle" hidden>
-    <div class="docs-modal-card">
-      <div class="docs-modal-header">
-        <div class="docs-modal-icon-warn" id="docsConfirmIcon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-          </svg>
-        </div>
-        <h3 class="docs-modal-title" id="docsConfirmTitle">Confirm Google Docs Action</h3>
-      </div>
-      <div class="docs-modal-body">
-        <p id="docsConfirmMessage">Are you sure you want to perform this operation on your Google Doc?</p>
-        <div class="docs-modal-preview-box" id="docsConfirmPreview" style="display: none;"></div>
-      </div>
-      <div class="docs-modal-footer">
-        <button class="btn btn-outline btn-sm" type="button" id="docsConfirmCancelBtn">Cancel</button>
-        <button class="btn btn-primary btn-sm" type="button" id="docsConfirmActionBtn">Confirm Action</button>
-      </div>
-    </div>
-  </div>
 
   <!-- CONTACT & CHANNELS -->
   <section class="section contact" id="contact">
@@ -3393,7 +2862,7 @@
                   NDA) and Open Source Developer Suite (10 Chrome Extensions).</p>
                 <div class="figma-node-tags">
                   <span class="figma-node-tag">10 Chrome Extensions</span>
-                  <span class="figma-node-tag">ATS 22 Modules</span>
+                  <span class="figma-node-tag">Modular Micro-Services ATS</span>
                   <span class="figma-node-tag">Animated Tab Pill</span>
                 </div>
                 <a class="figma-jump-btn js-sitemap-nav" href="#work">Jump to Work →</a>
@@ -3651,112 +3120,6 @@
 
   <!-- D3.js for Real-Time Latency Curve Visualization -->
   <script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
-
-  <!-- Google Firebase Auth & Workspace Provider Module -->
-  <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js';
-    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js';
-
-    let app = null;
-    let auth = null;
-    let cachedAccessToken = null;
-    let currentUser = null;
-    let authChangeListeners = [];
-
-    const SCOPES = [
-      'https://www.googleapis.com/auth/documents',
-      'https://www.googleapis.com/auth/documents.readonly',
-      'https://www.googleapis.com/auth/drive',
-      'https://www.googleapis.com/auth/drive.file',
-      'https://www.googleapis.com/auth/drive.readonly'
-    ];
-
-    const provider = new GoogleAuthProvider();
-    SCOPES.forEach(scope => provider.addScope(scope));
-    provider.setCustomParameters({ prompt: 'select_account' });
-
-    async function initFirebase() {
-      try {
-        let config;
-        try {
-          const res = await fetch('/firebase-applet-config.json');
-          if (res.ok) {
-            config = await res.json();
-          }
-        } catch (e) {
-          console.warn('Could not fetch config from file, using fallback');
-        }
-
-        if (!config) {
-          config = {
-            projectId: "bamboo-axis-6c9s2",
-            appId: "1:27149464943:web:b46724483fed08aef5a49a",
-            apiKey: "AIzaSyCS6tZP8OX1QNptOWHqh62HTLyJ8awpVnU",
-            authDomain: "bamboo-axis-6c9s2.firebaseapp.com",
-            storageBucket: "bamboo-axis-6c9s2.firebasestorage.app",
-            messagingSenderId: "27149464943"
-          };
-        }
-
-        app = initializeApp(config);
-        auth = getAuth(app);
-
-        onAuthStateChanged(auth, (user) => {
-          currentUser = user;
-          if (!user) {
-            cachedAccessToken = null;
-          }
-          authChangeListeners.forEach(fn => fn(user, cachedAccessToken));
-        });
-      } catch (err) {
-        console.error('Firebase Auth initialization error:', err);
-      }
-    }
-
-    window.GoogleDocsAuth = {
-      initAuth(callback) {
-        if (typeof callback === 'function') {
-          authChangeListeners.push(callback);
-          if (auth && currentUser !== undefined) {
-            callback(currentUser, cachedAccessToken);
-          }
-        }
-      },
-      async googleSignIn() {
-        if (!auth) await initFirebase();
-        try {
-          const result = await signInWithPopup(auth, provider);
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          if (credential && credential.accessToken) {
-            cachedAccessToken = credential.accessToken;
-          }
-          currentUser = result.user;
-          authChangeListeners.forEach(fn => fn(currentUser, cachedAccessToken));
-          return { user: result.user, accessToken: cachedAccessToken };
-        } catch (err) {
-          console.error('Google Sign In failed:', err);
-          throw err;
-        }
-      },
-      async logout() {
-        if (auth) {
-          await signOut(auth);
-        }
-        currentUser = null;
-        cachedAccessToken = null;
-        authChangeListeners.forEach(fn => fn(null, null));
-      },
-      getAccessToken() {
-        return cachedAccessToken;
-      },
-      getUser() {
-        return currentUser;
-      }
-    };
-
-    // Auto-init on page load
-    initFirebase();
-  </script>
 
   <script src="assets/app.js" defer></script>
 </body>

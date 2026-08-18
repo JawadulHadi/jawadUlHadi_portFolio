@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Certifications Gallery (31 Verified) — Jawad Ul Hadi</title>
+  <meta name="description" content="31 Verified Professional Licenses & Badges in Agentic AI, LLM Orchestration, Cloud Architecture, IBM Professional Skills, and Django Full-Stack Systems.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    .cert-hero {
+      padding: 5rem 0 3rem;
+      border-bottom: 1px solid var(--border);
+      background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--gold) 8%, transparent), transparent 70%);
+    }
+    .cert-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      font-size: 0.75rem;
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 9999px;
+      background: color-mix(in srgb, var(--gold) 15%, transparent);
+      color: var(--gold);
+      border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+      margin-bottom: 1.2rem;
+    }
+    .cert-hero-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .cert-hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .cert-stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .cert-stat-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .cert-stat-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+    }
+    .cert-stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .cert-stat-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-family: var(--font-display);
+    }
+    .cert-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 60px;
+      background: var(--bg);
+      z-index: 40;
+    }
+    .cert-filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .cert-tab-btn {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-family: var(--font-display);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .cert-tab-btn:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
+    .cert-tab-btn.active {
+      background: var(--gold);
+      color: #0a1628;
+      border-color: var(--gold);
+      font-weight: 700;
+    }
+    .cert-search-bar {
+      position: relative;
+      min-width: 260px;
+      flex: 1;
+      max-width: 380px;
+    }
+    .cert-search-bar input {
+      width: 100%;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 12px 8px 36px;
+      font-size: 0.85rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s ease;
+      font-family: var(--font-body);
+    }
+    .cert-search-bar input:focus {
+      border-color: var(--gold);
+    }
+    .cert-search-bar svg {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    .view-toggle-btns {
+      display: flex;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2px;
+      gap: 2px;
+    }
+    .view-toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-family: var(--font-display);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+    .view-toggle-btn.active {
+      background: var(--bg);
+      color: var(--gold);
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .cert-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+      padding: 2.5rem 0;
+    }
+    .cert-card-box {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+    .cert-card-box:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      box-shadow: var(--shadow);
+    }
+    .cert-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+      gap: 0.5rem;
+    }
+    .cert-issuer-tag {
+      font-size: 0.72rem;
+      font-family: var(--font-display);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .issuer-anthropic { background: rgba(217, 119, 6, 0.15); color: #f59e0b; border: 1px solid rgba(217, 119, 6, 0.3); }
+    .issuer-google { background: rgba(66, 133, 244, 0.15); color: #60a5fa; border: 1px solid rgba(66, 133, 244, 0.3); }
+    .issuer-ibm { background: rgba(15, 98, 254, 0.15); color: #38bdf8; border: 1px solid rgba(15, 98, 254, 0.3); }
+    .issuer-linkedin { background: rgba(10, 102, 194, 0.15); color: #38bdf8; border: 1px solid rgba(10, 102, 194, 0.3); }
+    .issuer-django { background: rgba(68, 183, 139, 0.15); color: #10b981; border: 1px solid rgba(68, 183, 139, 0.3); }
+    .cert-card-date {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-family: var(--font-display);
+    }
+    .cert-card-heading {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 0.8rem;
+    }
+    .cert-card-id {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: var(--bg-sunk);
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      word-break: break-all;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .cert-card-id span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .cert-copy-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 2px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .cert-copy-btn:hover {
+      color: var(--gold);
+    }
+    .cert-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 0.8rem;
+      margin-top: auto;
+    }
+    .cert-category-badge {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-family: var(--font-display);
+    }
+    .cert-action-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.8rem;
+      font-family: var(--font-display);
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: gap 0.2s ease;
+    }
+    .cert-action-link:hover {
+      text-decoration: underline;
+      gap: 6px;
+    }
+    /* Table View */
+    .cert-table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin: 2.5rem 0;
+    }
+    .cert-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      text-align: left;
+    }
+    .cert-table th {
+      background: var(--bg-sunk);
+      padding: 12px 16px;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .cert-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .cert-table tr:last-child td {
+      border-bottom: none;
+    }
+    .cert-table tr:hover td {
+      background: color-mix(in srgb, var(--gold) 4%, transparent);
+    }
+    /* Badge Showcase View */
+    .badge-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      padding: 2.5rem 0;
+    }
+    .badge-gallery-item {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .badge-gallery-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+    }
+    .badge-gallery-img {
+      width: 110px;
+      height: 110px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+    }
+    .badge-gallery-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+    .badge-gallery-issuer {
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-family: var(--font-display);
+      margin-bottom: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-bracket">&lt;</span>
+        <span class="brand-name">Jawad Ul Hadi</span>
+        <span class="brand-role">/ Senior Backend &amp; Solutions Architect</span>
+        <span class="brand-bracket">&gt;</span>
+      </a>
+
+      <div class="header-right">
+        <nav class="nav-links">
+          <a class="nav-link" href="index.html#work">Work</a>
+          <a class="nav-link" href="index.html#rag-study">Case Study</a>
+          <a class="nav-link" href="index.html#github-stats">GitHub</a>
+          <a class="nav-link active" href="certifications.html" style="color: var(--gold); font-weight: 600;">Certifications Gallery (31)</a>
+          <a class="nav-link" href="index.html#contact">Contact</a>
+        </nav>
+
+        <!-- THEME SELECTOR -->
+        <div class="theme-selector" id="themeSelector">
+          <button class="theme-selector-trigger" type="button" id="themeSelectorBtn" aria-label="Select Theme">
+            <span class="theme-trigger-icon" id="themeTriggerIcon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.4"></circle><path d="M12 2v2.4M12 19.6V22M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2 12h2.4M19.6 12H22M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"></path></svg>
+            </span>
+            <span class="theme-trigger-label" id="themeTriggerLabel">Theme</span>
+          </button>
+          <div class="theme-dropdown" id="themeDropdownMenu">
+            <button type="button" class="theme-opt-btn" data-theme-value="dark">Slate Dark</button>
+            <button type="button" class="theme-opt-btn" data-theme-value="light">Classic Light</button>
+            <button type="button" class="theme-opt-btn" data-theme-value="ai-classic">AI Azure</button>
+            <button type="button" class="theme-opt-btn" data-theme-value="cyber">Cyber Synth</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN HERO -->
+  <section class="cert-hero">
+    <div class="container">
+      <div class="cert-hero-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+        </svg>
+        Official Verification Directory
+      </div>
+      <h1 class="cert-hero-title">Professional Certifications Gallery</h1>
+      <p class="cert-hero-subtitle">
+        A curated, verified showcase and interactive audit ledger of 31 professional licenses and industry credentials across Agentic AI architectures, Anthropic MCP, Google Cloud, IBM SkillsBuild, and enterprise full-stack systems.
+      </p>
+
+      <div class="cert-stats-row">
+        <div class="cert-stat-card">
+          <div class="cert-stat-num">31</div>
+          <div class="cert-stat-label">Total Credentials</div>
+        </div>
+        <div class="cert-stat-card">
+          <div class="cert-stat-num">16</div>
+          <div class="cert-stat-label">Agentic AI &amp; LLMs</div>
+        </div>
+        <div class="cert-stat-card">
+          <div class="cert-stat-num">9</div>
+          <div class="cert-stat-label">IBM Credly Badges</div>
+        </div>
+        <div class="cert-stat-card">
+          <div class="cert-stat-num">4</div>
+          <div class="cert-stat-label">Django &amp; Full-Stack</div>
+        </div>
+        <div class="cert-stat-card">
+          <div class="cert-stat-num">100%</div>
+          <div class="cert-stat-label">Verifiable Proof</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="container">
+    <!-- TOOLBAR CONTROLS -->
+    <div class="cert-toolbar">
+      <div class="cert-filter-group" id="filterGroup">
+        <button class="cert-tab-btn active" data-filter="all">All (31)</button>
+        <button class="cert-tab-btn" data-filter="ai">Agentic AI &amp; LLMs (16)</button>
+        <button class="cert-tab-btn" data-filter="ibm">IBM SkillsBuild (9)</button>
+        <button class="cert-tab-btn" data-filter="django">Django &amp; Full-Stack (4)</button>
+        <button class="cert-tab-btn" data-filter="leadership">Professional Mastery (2)</button>
+      </div>
+
+      <div class="cert-search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="certSearchInput" placeholder="Search by title, issuer, or ID..." aria-label="Search certifications">
+      </div>
+
+      <div class="view-toggle-btns">
+        <button class="view-toggle-btn active" id="btnViewGrid" title="Card Grid View">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          Cards
+        </button>
+        <button class="view-toggle-btn" id="btnViewBadges" title="Badge Showcase View">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          Badges
+        </button>
+        <button class="view-toggle-btn" id="btnViewTable" title="Tabular Ledger View">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          Table
+        </button>
+      </div>
+    </div>
+
+    <!-- VIEW 1: CARDS GRID -->
+    <div class="cert-cards-container" id="cardsGrid">
+      <!-- Injected via JavaScript from data array below for maximum fidelity and lightning fast search -->
+    </div>
+
+    <!-- VIEW 2: BADGE GALLERY -->
+    <div class="badge-gallery-grid" id="badgeGallery" style="display: none;">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- VIEW 3: TABLE VIEW -->
+    <div class="cert-table-wrap" id="tableView" style="display: none;">
+      <table class="cert-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Certification Title</th>
+            <th>Issuer</th>
+            <th>Issued</th>
+            <th>Credential / Badge ID</th>
+            <th>Category</th>
+            <th>Verification</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Injected via JavaScript -->
+        </tbody>
+      </table>
+    </div>
+
+    <div id="noResultsMsg" style="display: none; text-align: center; padding: 4rem 1rem;">
+      <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1rem;">No certifications found matching your query.</p>
+      <button class="btn btn-outline" id="resetSearchBtn">Clear Search &amp; Filters</button>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid var(--border); padding: 3rem 0; margin-top: 4rem; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+    <div class="container">
+      <p>Jawad Ul Hadi &copy; 2026 · Senior Backend Engineer &amp; Solutions Architect</p>
+      <p style="margin-top: 0.5rem;">
+        <a href="index.html" style="color: var(--gold); text-decoration: none;">← Return to Main Portfolio</a> · 
+        <a href="certifications.csv" download="Jawad_Ul_Hadi_Certifications.csv" style="color: var(--gold); text-decoration: none;">Download certifications.csv</a> · 
+        <a href="certifications.md" style="color: var(--gold); text-decoration: none;">View certifications.md</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Complete 31 Verified Certifications Dataset
+    const CERT_DATA = [
+      {
+        id: 1,
+        title: "Information Technology Fundamentals",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Feb 2024",
+        badge: "badges/information-technology-fundamentals.png",
+        credentialId: "fb520a68-f279-4351-b67e-5dddea39b21e",
+        url: "https://www.credly.com/badges/fb520a68-f279-4351-b67e-5dddea39b21e/linked_in_profile",
+        category: "ibm",
+        categoryLabel: "IBM Professional",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 2,
+        title: "Web Development Fundamentals",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Feb 2024",
+        badge: "badges/web-development-fundamentals.png",
+        credentialId: "8200cfe4-fd0b-4f9f-b31d-06569ab8f445",
+        url: "https://www.credly.com/badges/8200cfe4-fd0b-4f9f-b31d-06569ab8f445/linked_in_profile",
+        category: "ibm django",
+        categoryLabel: "IBM Professional / Web",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 3,
+        title: "Artificial Intelligence Fundamentals",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Feb 2024",
+        badge: "badges/artificial-intelligence-fundamentals.png",
+        credentialId: "37f8ca56-518e-4ffc-8b70-dd29db910bab",
+        url: "https://www.credly.com/badges/37f8ca56-518e-4ffc-8b70-dd29db910bab/linked_in_profile",
+        category: "ibm ai",
+        categoryLabel: "IBM Professional / AI",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 4,
+        title: "Working in a Digital World Professional Skills",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Feb 2024",
+        badge: "badges/working-in-a-digital-world-professional-skills.png",
+        credentialId: "056c5fb0-f12b-4d81-ba66-68eba97b211b",
+        url: "https://www.credly.com/badges/056c5fb0-f12b-4d81-ba66-68eba97b211b/linked_in_profile",
+        category: "ibm",
+        categoryLabel: "IBM Professional",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 5,
+        title: "Cloud Computing Fundamentals",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Feb 2024",
+        badge: "badges/cloud-computing-fundamentals.png",
+        credentialId: "1da9246d-550e-4463-8926-4dd9b0661602",
+        url: "https://www.credly.com/badges/1da9246d-550e-4463-8926-4dd9b0661602/linked_in_profile",
+        category: "ibm",
+        categoryLabel: "IBM Professional / Cloud",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 6,
+        title: "Cybersecurity Fundamentals",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Feb 2024",
+        badge: "badges/cybersecurity-fundamentals.png",
+        credentialId: "50af0df4-e762-4d0e-8e0a-71eb809c9588",
+        url: "https://www.credly.com/badges/50af0df4-e762-4d0e-8e0a-71eb809c9588/linked_in_profile",
+        category: "ibm",
+        categoryLabel: "IBM Professional / Security",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 7,
+        title: "Explore Emerging Tech",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Mar 2024",
+        badge: "badges/explore-emerging-tech.png",
+        credentialId: "6ed16143-e785-413f-8b7e-77b7466b3c09",
+        url: "https://www.credly.com/badges/6ed16143-e785-413f-8b7e-77b7466b3c09/linked_in_profile",
+        category: "ibm ai",
+        categoryLabel: "IBM Professional / AI",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 8,
+        title: "Data Fundamentals",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Mar 2024",
+        badge: "badges/data-fundamentals.png",
+        credentialId: "dc86df62-aa4b-4aba-96b0-eb15d734e6d0",
+        url: "https://www.credly.com/badges/dc86df62-aa4b-4aba-96b0-eb15d734e6d0/linked_in_profile",
+        category: "ibm",
+        categoryLabel: "IBM Professional / Data",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 9,
+        title: "Job Application Essentials",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Mar 2024",
+        badge: "badges/job-application-essentials.png",
+        credentialId: "a074c7cf-3c79-434f-bacb-4d3473525a31",
+        url: "https://www.credly.com/badges/a074c7cf-3c79-434f-bacb-4d3473525a31/linked_in_profile",
+        category: "ibm",
+        categoryLabel: "IBM Professional",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 10,
+        title: "Certified Django Developer",
+        issuer: "e-smartdata.org / Udemy",
+        issuerClass: "issuer-django",
+        date: "Oct 2025",
+        badge: "badges/certified-django-developer.png",
+        credentialId: "ESD-037/10/2025",
+        url: "https://e-smartdata.org",
+        category: "django",
+        categoryLabel: "Django & Full-Stack",
+        badgeType: "Verified License"
+      },
+      {
+        id: 11,
+        title: "Build AI Agents with GitHub Copilot by Microsoft Press",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "9f08ea367800cebf6c82e9487d7257f0bbc4016fc859559e84c86509fae19c91",
+        url: "https://www.linkedin.com/learning/certificates/9f08ea367800cebf6c82e9487d7257f0bbc4016fc859559e84c86509fae19c91",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 12,
+        title: "Claude Code 4: Agentic Coding for Professional Developers",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "0d8eecc5082ca07af8f771083ea29d4c274033e6b3bdc7ef6e7512e35c1a8a85",
+        url: "https://www.linkedin.com/learning/certificates/0d8eecc5082ca07af8f771083ea29d4c274033e6b3bdc7ef6e7512e35c1a8a85",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 13,
+        title: "AI Solution Design Patterns: Data, Model Training & Architectures",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "5153e8eb222a84ac8db4d0b35df23426e222f370fc51d77124ca896e77178853",
+        url: "https://www.linkedin.com/learning/certificates/5153e8eb222a84ac8db4d0b35df23426e222f370fc51d77124ca896e77178853",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 14,
+        title: "Build with AI: Leverage Claude Code Subagents in Software Projects",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "686155a8b791ce682068645f7623330b27ad95f43c049727ef9af7420d99a560",
+        url: "https://www.linkedin.com/learning/certificates/686155a8b791ce682068645f7623330b27ad95f43c049727ef9af7420d99a560",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 15,
+        title: "Open to Work: Building Key Career Skills in the Age of AI",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "760b77c72122181307e3333fe28bcaf5af9aa4c99d874730252860020e79583e",
+        url: "https://www.linkedin.com/learning/certificates/760b77c72122181307e3333fe28bcaf5af9aa4c99d874730252860020e79583e",
+        category: "leadership",
+        categoryLabel: "Professional Mastery",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 16,
+        title: "Artificial Intelligence Foundations: Machine Learning",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "67a724f3ca88244c58ab3cc24e540138b817e0ef20ecbbb607dafb7c4bfa62bf",
+        url: "https://www.linkedin.com/learning/certificates/67a724f3ca88244c58ab3cc24e540138b817e0ef20ecbbb607dafb7c4bfa62bf",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 17,
+        title: "Artificial Intelligence Foundations: Neural Networks",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "c2bceee32e9f413d8546a2b3eab43d53902c487ffab8c8b3ce79e0650cd83632",
+        url: "https://www.linkedin.com/learning/certificates/c2bceee32e9f413d8546a2b3eab43d53902c487ffab8c8b3ce79e0650cd83632",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 18,
+        title: "Building AI Products: Implementing Responsible AI Professional Certificate",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "24016fe8759c43e6b2997a9f0c0059fe524647f5a9c892de7b3a229323c35833",
+        url: "https://www.linkedin.com/learning/certificates/24016fe8759c43e6b2997a9f0c0059fe524647f5a9c892de7b3a229323c35833",
+        category: "ai leadership",
+        categoryLabel: "Responsible AI",
+        badgeType: "Professional Certificate"
+      },
+      {
+        id: 19,
+        title: "Introduction to Multimodal Prompting for Generative AI",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "d7bd1ec1c8e2eb1c1a1c2d103d0bf2c4c4a9bb23b080132b2b21a92d600f3ab8",
+        url: "https://www.linkedin.com/learning/certificates/d7bd1ec1c8e2eb1c1a1c2d103d0bf2c4c4a9bb23b080132b2b21a92d600f3ab8",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 20,
+        title: "Machine Learning with Python: Foundations",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "cbf2a10d5df1e56235b6176b95457be6d671de6cc09ff18d9548c0fcb88d0eb7",
+        url: "https://www.linkedin.com/learning/certificates/cbf2a10d5df1e56235b6176b95457be6d671de6cc09ff18d9548c0fcb88d0eb7",
+        category: "django ai",
+        categoryLabel: "Python & Machine Learning",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 21,
+        title: "Introduction to Prompt Engineering for Generative AI",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "b7156a3b1d734660c446d32481ca978a7c2c8b40bb319d16e9927a4891f5af41",
+        url: "https://www.linkedin.com/learning/certificates/b7156a3b1d734660c446d32481ca978a7c2c8b40bb319d16e9927a4891f5af41",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 22,
+        title: "Introduction to AI Orchestration with LangChain and LlamaIndex",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "b31067a6d48eff91faac35512ec9eafefafb76da400cc3355d28708d2ce24245",
+        url: "https://www.linkedin.com/learning/certificates/b31067a6d48eff91faac35512ec9eafefafb76da400cc3355d28708d2ce24245",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 23,
+        title: "Building a Personalized Chatbot with OpenAI and LangChain",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "d76ecea6a0c9ae6d9eac1143c0023d574aa648ee35d2d074c7d93eec8b18c00e",
+        url: "https://www.linkedin.com/learning/certificates/d76ecea6a0c9ae6d9eac1143c0023d574aa648ee35d2d074c7d93eec8b18c00e",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 24,
+        title: "Introduction to Generative AI",
+        issuer: "Google Cloud / Coursera",
+        issuerClass: "issuer-google",
+        date: "Jan 2024",
+        badge: "badges/introduction-to-generative-ai-certificate.jpg",
+        credentialId: "G3A7L84CRV82",
+        url: "https://www.coursera.org/account/accomplishments/verify/G3A7L84CRV82",
+        category: "ai",
+        categoryLabel: "Google Cloud AI",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 25,
+        title: "Agentic AI Solution Design Patterns",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "418db3170c778c6dd6faffc8aaa20934974fdde3790b23579f98e37f3dd464da",
+        url: "https://www.linkedin.com/learning/certificates/418db3170c778c6dd6faffc8aaa20934974fdde3790b23579f98e37f3dd464da",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 26,
+        title: "Agentic AI Architecture Foundations: Autonomous AI Systems",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "a7eb686b16f072c55ca832682ca0467ed7235f364d272e8f937813cce050cdc6",
+        url: "https://www.linkedin.com/learning/certificates/a7eb686b16f072c55ca832682ca0467ed7235f364d272e8f937813cce050cdc6",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 27,
+        title: "Create a Website for Online Burger Orders Using React.js",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "c64dce7dfd4e3428b7076230c539848725efbfbb27caae97e7918bc7a4932d56",
+        url: "https://www.linkedin.com/learning/certificates/c64dce7dfd4e3428b7076230c539848725efbfbb27caae97e7918bc7a4932d56",
+        category: "django",
+        categoryLabel: "Django & Full-Stack",
+        badgeType: "Verified Project"
+      },
+      {
+        id: 28,
+        title: "Advanced Quantization Techniques for Large Language Models",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "4d7d15d666e33fffc0484d434341dc4f8ad4bceddd8d6cdacdcdf278ebc7241c",
+        url: "https://www.linkedin.com/learning/certificates/4d7d15d666e33fffc0484d434341dc4f8ad4bceddd8d6cdacdcdf278ebc7241c",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 29,
+        title: "Be the Problem-Solver No Team Can Afford to Lose",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "b34b223c9bb5f875173f923d94f0c20c979b8562783b16cf67e5435024dd82a8",
+        url: "https://www.linkedin.com/learning/certificates/b34b223c9bb5f875173f923d94f0c20c979b8562783b16cf67e5435024dd82a8",
+        category: "leadership",
+        categoryLabel: "Professional Mastery",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 30,
+        title: "Introduction to Model Context Protocol by Anthropic",
+        issuer: "Anthropic / LinkedIn",
+        issuerClass: "issuer-anthropic",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "7cc20704d76cef05f35241624338f0c3a88b522c69266e3b3536e7ecc43490f1",
+        url: "https://www.linkedin.com/learning/certificates/7cc20704d76cef05f35241624338f0c3a88b522c69266e3b3536e7ecc43490f1",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 31,
+        title: "Introduction to Agent Skills by Anthropic",
+        issuer: "Anthropic / LinkedIn",
+        issuerClass: "issuer-anthropic",
+        date: "Aug 2026",
+        badge: "assets/portrait.png",
+        credentialId: "3d52b14114566e0fdb14d584c77ea28aebb8268c712a9e66165787f10cfb3207",
+        url: "https://www.linkedin.com/learning/certificates/3d52b14114566e0fdb14d584c77ea28aebb8268c712a9e66165787f10cfb3207",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      }
+    ];
+
+    let currentFilter = "all";
+    let currentSearch = "";
+
+    function renderCertifications() {
+      const cardsGrid = document.getElementById("cardsGrid");
+      const badgeGallery = document.getElementById("badgeGallery");
+      const tableBody = document.getElementById("tableBody");
+      const noResults = document.getElementById("noResultsMsg");
+
+      const filtered = CERT_DATA.filter(item => {
+        const matchesFilter = (currentFilter === "all") || 
+          item.category.includes(currentFilter) ||
+          (currentFilter === "ai" && item.category.includes("ai")) ||
+          (currentFilter === "ibm" && item.category.includes("ibm")) ||
+          (currentFilter === "django" && item.category.includes("django")) ||
+          (currentFilter === "leadership" && item.category.includes("leadership"));
+
+        const searchLow = currentSearch.toLowerCase().trim();
+        const matchesSearch = !searchLow || 
+          item.title.toLowerCase().includes(searchLow) ||
+          item.issuer.toLowerCase().includes(searchLow) ||
+          item.credentialId.toLowerCase().includes(searchLow) ||
+          item.categoryLabel.toLowerCase().includes(searchLow);
+
+        return matchesFilter && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        cardsGrid.style.display = "none";
+        badgeGallery.style.display = "none";
+        document.getElementById("tableView").style.display = "none";
+        noResults.style.display = "block";
+        return;
+      }
+
+      noResults.style.display = "none";
+
+      // Render Cards
+      cardsGrid.innerHTML = filtered.map(item => `
+        <div class="cert-card-box">
+          <div>
+            <div class="cert-card-header">
+              <span class="cert-issuer-tag ${item.issuerClass}">${item.issuer}</span>
+              <span class="cert-card-date">${item.date}</span>
+            </div>
+            <h3 class="cert-card-heading">${item.title}</h3>
+          </div>
+          <div>
+            <div class="cert-card-id" title="${item.credentialId}">
+              <span>ID: ${item.credentialId}</span>
+              <button class="cert-copy-btn" onclick="navigator.clipboard.writeText('${item.credentialId}'); alert('Copied ID: ${item.credentialId}');" title="Copy ID">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
+            </div>
+            <div class="cert-card-footer">
+              <span class="cert-category-badge">${item.categoryLabel}</span>
+              <a class="cert-action-link" href="${item.url}" target="_blank" rel="noopener noreferrer">
+                Verify ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      // Render Badges
+      badgeGallery.innerHTML = filtered.map(item => `
+        <div class="badge-gallery-item">
+          <img src="${item.badge}" alt="${item.title}" class="badge-gallery-img" onerror="this.src='favicon.svg'">
+          <h4 class="badge-gallery-title">${item.title}</h4>
+          <span class="badge-gallery-issuer">${item.issuer}</span>
+          <a class="cert-action-link" href="${item.url}" target="_blank" rel="noopener noreferrer" style="font-size: 0.78rem;">
+            Verify Badge ↗
+          </a>
+        </div>
+      `).join("");
+
+      // Render Table
+      tableBody.innerHTML = filtered.map((item, idx) => `
+        <tr>
+          <td><span style="font-family: var(--font-display); color: var(--gold); font-size: 0.78rem;">${idx + 1}</span></td>
+          <td><strong>${item.title}</strong></td>
+          <td><span class="cert-issuer-tag ${item.issuerClass}">${item.issuer}</span></td>
+          <td style="font-family: var(--font-display); font-size: 0.78rem;">${item.date}</td>
+          <td><code style="font-size: 0.75rem; background: var(--bg-sunk); padding: 2px 6px; border-radius: 4px;">${item.credentialId}</code></td>
+          <td><span style="font-size: 0.78rem; color: var(--text-muted);">${item.categoryLabel}</span></td>
+          <td><a href="${item.url}" target="_blank" rel="noopener noreferrer" class="cert-action-link">Verify ↗</a></td>
+        </tr>
+      `).join("");
+    }
+
+    // View Switching
+    const btnCards = document.getElementById("btnViewGrid");
+    const btnBadges = document.getElementById("btnViewBadges");
+    const btnTable = document.getElementById("btnViewTable");
+    const cardsGrid = document.getElementById("cardsGrid");
+    const badgeGallery = document.getElementById("badgeGallery");
+    const tableView = document.getElementById("tableView");
+
+    function setActiveView(view) {
+      btnCards.classList.remove("active");
+      btnBadges.classList.remove("active");
+      btnTable.classList.remove("active");
+      cardsGrid.style.display = "none";
+      badgeGallery.style.display = "none";
+      tableView.style.display = "none";
+
+      if (view === "cards") {
+        btnCards.classList.add("active");
+        cardsGrid.style.display = "grid";
+      } else if (view === "badges") {
+        btnBadges.classList.add("active");
+        badgeGallery.style.display = "grid";
+      } else if (view === "table") {
+        btnTable.classList.add("active");
+        tableView.style.display = "block";
+      }
+    }
+
+    btnCards.addEventListener("click", () => setActiveView("cards"));
+    btnBadges.addEventListener("click", () => setActiveView("badges"));
+    btnTable.addEventListener("click", () => setActiveView("table"));
+
+    // Filter Buttons
+    document.querySelectorAll(".cert-tab-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        document.querySelectorAll(".cert-tab-btn").forEach(b => b.classList.remove("active"));
+        e.target.classList.add("active");
+        currentFilter = e.target.getAttribute("data-filter");
+        renderCertifications();
+      });
+    });
+
+    // Search Input
+    const searchInput = document.getElementById("certSearchInput");
+    searchInput.addEventListener("input", (e) => {
+      currentSearch = e.target.value;
+      renderCertifications();
+    });
+
+    document.getElementById("resetSearchBtn").addEventListener("click", () => {
+      searchInput.value = "";
+      currentSearch = "";
+      currentFilter = "all";
+      document.querySelectorAll(".cert-tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelector('.cert-tab-btn[data-filter="all"]').classList.add("active");
+      renderCertifications();
+    });
+
+    // Theme Switcher Sync with LocalStorage
+    const rootEl = document.documentElement;
+    const savedTheme = localStorage.getItem("jawad_theme") || "dark";
+    rootEl.setAttribute("data-theme", savedTheme);
+
+    const themeSelectorBtn = document.getElementById("themeSelectorBtn");
+    const themeDropdownMenu = document.getElementById("themeDropdownMenu");
+
+    if (themeSelectorBtn && themeDropdownMenu) {
+      themeSelectorBtn.addEventListener("click", () => {
+        themeDropdownMenu.classList.toggle("open");
+      });
+
+      document.querySelectorAll(".theme-opt-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          const theme = e.target.getAttribute("data-theme-value");
+          rootEl.setAttribute("data-theme", theme);
+          localStorage.setItem("jawad_theme", theme);
+          themeDropdownMenu.classList.remove("open");
+        });
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!e.target.closest("#themeSelector")) {
+          themeDropdownMenu.classList.remove("open");
+        }
+      });
+    }
+
+    // Initial render
+    renderCertifications();
+  </script>
+</body>
+</html>

@@ -6,6 +6,11 @@ const out = path.join(root, 'public');
 
 const entries = [
   'index.html',
+  'resume.html',
+  'certifications.html',
+  'certifications.csv',
+  'certifications.md',
+  'source',
   'assets',
   'badges',
   'favicon.svg',

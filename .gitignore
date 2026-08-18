@@ -25,3 +25,6 @@ npm-debug.log*
 
 .vercel
 .env*
+
+.vercel
+.env*

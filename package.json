@@ -4,17 +4,17 @@
   "private": true,
   "description": "Personal portfolio — static site with Express dev server",
   "scripts": {
-    "generate-resume-pdf": "node generate-resume-pdf.js",
-    "build": "npm run generate-resume-pdf && node scripts/build.js",
+    "build": "node scripts/build.js",
+    "lint": "node --check scripts/build.js server.js assets/app.js",
     "dev": "node server.js",
     "start": "node server.js",
     "serve": "node server.js"
   },
   "engines": {
-    "node": ">=24"
+    "node": ">=20"
   },
   "dependencies": {
     "express": "^4.21.2",
-    "puppeteer": "^21.0.0"
+    "puppeteer": "^25.8.0"
   }
 }

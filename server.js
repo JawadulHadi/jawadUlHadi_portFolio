@@ -3,11 +3,12 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const HOST = 'localhost';
+const HOST = '0.0.0.0';
 const startTime = Date.now();
 
-// Serve static assets from project root
+// Serve static assets from project root and public folder
 app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Project APIs Health Check & Real-time Telemetry Status Endpoint
 app.get('/api/projects/status', (req, res) => {

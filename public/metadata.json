@@ -1,6 +1,6 @@
 {
   "name": "Jawad Ul Hadi - Portfolio",
-  "description": "Personal portfolio website and architectural workspace for Jawad Ul Hadi, Senior Backend Engineer and Solutions Architect featuring real-time API telemetry, 3-tier fallback AI systems, and Google Docs Workspace integration.",
+  "description": "Personal portfolio website for Jawad Ul Hadi, Senior Backend Engineer & Solutions Architect architecting scalable SaaS platforms, 3-tier AI fallback systems, and resilient cloud architectures.",
   "requestFramePermissions": ["microphone"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

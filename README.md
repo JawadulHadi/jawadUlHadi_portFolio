@@ -47,7 +47,7 @@ I wear three distinct hats that blend into one seamless skillset:
 2. **Solutions Architect:** I design systems that solve real business problems, not just technical puzzles.
 3. **AI/LLM Integrator:** I bridge the gap between cutting-edge AI and practical applications — making LLMs work reliably in production with deterministic fallback guarantees.
 
-With **7+ years** of professional experience spanning multi-tenant SaaS backends (22+ modules), provider-agnostic AI gateways, and high-throughput async processing engines, I don't just build systems — I build intelligent capabilities that enable businesses to scale safely.
+With **7+ years** of professional experience spanning multi-tenant SaaS backends with modular micro-service architectures and high-scale API ecosystems, provider-agnostic AI gateways, and high-throughput async processing engines, I don't just build systems — I build intelligent capabilities that enable businesses to scale safely.
 
 ---
 
@@ -92,7 +92,7 @@ With **7+ years** of professional experience spanning multi-tenant SaaS backends
 
 ## 🚀 Signature Work & Capability Demonstrations
 
-> 📌 **Note on Confidentiality:** Major enterprise systems (e.g. Talentnix Multi-Tenant ATS with 22 modules, APAC HRMS, iAgility platform) are active in production under private NDA-protected repositories. Live architecture walkthroughs and code samples are available on request.
+> 📌 **Note on Confidentiality:** Major enterprise systems (e.g. Talentnix Multi-Tenant ATS with modular micro-service architecture and high-scale API ecosystem, APAC HRMS, iAgility platform) are active in production under private NDA-protected repositories. Live architecture walkthroughs and code samples are available on request.
 
 ### Open-Source Developer Suite & Personal Studio builds
 
@@ -108,12 +108,15 @@ With **7+ years** of professional experience spanning multi-tenant SaaS backends
 
 ---
 
-## 📜 26 Verified Certifications
+## 📜 31 Verified Professional Certifications
 
-- **Google Cloud:** Generative AI Fundamentals · Cloud Computing Foundations
-- **Certified Django Developer:** e-smartdata.org (2025)
-- **IBM SkillsBuild (9 Badges):** Artificial Intelligence Fundamentals · Cloud Computing Fundamentals · Cybersecurity Fundamentals · Data Fundamentals · IT Fundamentals · Web Development Fundamentals · Emerging Tech · Professional Skills · Job Application Essentials
-- **LinkedIn Learning (15 Badges):** Building Agentic AI with LangChain · Prompt Engineering · Advanced Backend Architecture · AWS Cloud Solutions
+- **Anthropic & Agentic AI:** Introduction to Agent Skills · Model Context Protocol (MCP) · Agentic AI Architecture Foundations · Solution Design Patterns · LLM Quantization · Claude Code Subagents · Copilot Agents
+- **Google Cloud:** Generative AI Fundamentals (License: `G3A7L84CRV82`)
+- **Certified Django Developer:** e-smartdata.org (License: `ESD-037/10/2025`)
+- **IBM SkillsBuild (9 Verified Credly Badges):** Artificial Intelligence Fundamentals · Cloud Computing Fundamentals · Cybersecurity Fundamentals · Data Fundamentals · IT Fundamentals · Web Development Fundamentals · Emerging Tech · Professional Skills · Job Application Essentials
+- **LinkedIn Learning AI & Architecture:** LangChain & LlamaIndex AI Orchestration · Building Chatbots with OpenAI & LangChain · Multimodal Prompting · Machine Learning with Python · Neural Networks · Responsible AI
+
+> 📄 **Complete Directory & Verification Ledger:** See [certifications.md](certifications.md) and the downloadable [certifications.csv](certifications.csv) for full license URLs and credential IDs.
 
 <p align="center">
   <img src="badges/artificial-intelligence-fundamentals.png" alt="AI Fundamentals" height="90" />

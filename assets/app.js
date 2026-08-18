@@ -12,49 +12,177 @@
       .replace(/'/g, "&#039;");
   }
 
-  // Multi-variant Theme toggle: light -> dark -> ai-classic -> cyber -> light
-  (function () {
+  // ===========================================================================
+  // Comprehensive Theme Switcher & Visual Palette Controller
+  // ===========================================================================
+  function initThemeSwitcher() {
     var root = document.documentElement;
-    var toggle = document.querySelector(".theme-toggle");
-    if (!toggle) return;
+    var selector = document.getElementById("themeSelector");
+    var triggerBtn = document.getElementById("themeSelectorBtn");
+    var dropdown = document.getElementById("themeDropdownMenu");
+    var triggerIcon = document.getElementById("themeTriggerIcon");
+    var triggerLabel = document.getElementById("themeTriggerLabel");
+    var optionBtns = document.querySelectorAll(".theme-opt-btn");
 
-    var themes = ["light", "dark", "ai-classic", "cyber"];
+    var themeMeta = {
+      light: {
+        name: "Classic Light",
+        metaColor: "#f5f3f0",
+        iconSvg: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.4"></circle><path d="M12 2v2.4M12 19.6V22M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2 12h2.4M19.6 12H22M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"></path></svg>'
+      },
+      dark: {
+        name: "Slate Dark",
+        metaColor: "#0a1628",
+        iconSvg: '<svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4 6.8 6.8 0 0 0 20 14.5Z"></path></svg>'
+      },
+      "ai-classic": {
+        name: "AI White & Azure",
+        metaColor: "#f8fafc",
+        iconSvg: '<svg viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>'
+      },
+      cyber: {
+        name: "Cyber Synth",
+        metaColor: "#050814",
+        iconSvg: '<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>'
+      }
+    };
 
-    function updateTitle(theme) {
-      var label =
-        theme === "light"
-          ? "Classic Warm Light"
-          : theme === "dark"
-            ? "Slate Dark"
-            : theme === "ai-classic"
-              ? "AI White & Blue"
-              : "AI Cyber Synth";
-      toggle.setAttribute(
-        "title",
-        "Active: " + label + " (Click to cycle next theme)",
-      );
+    var validThemes = Object.keys(themeMeta);
+
+    function applyTheme(themeKey, saveToStorage) {
+      if (validThemes.indexOf(themeKey) === -1) {
+        themeKey = "light";
+      }
+
+      root.setAttribute("data-theme", themeKey);
+
+      var meta = themeMeta[themeKey] || themeMeta.light;
+
+      if (triggerLabel) triggerLabel.textContent = meta.name;
+      if (triggerIcon) triggerIcon.innerHTML = meta.iconSvg;
+      if (triggerBtn) {
+        triggerBtn.setAttribute("title", "Theme: " + meta.name + " (Click to change)");
+      }
+
+      // Update active state in dropdown
+      optionBtns.forEach(function (btn) {
+        var btnTheme = btn.getAttribute("data-theme-value");
+        var isCurrent = btnTheme === themeKey;
+        btn.classList.toggle("active", isCurrent);
+        btn.setAttribute("aria-checked", String(isCurrent));
+      });
+
+      // Update meta theme-color tag
+      var metaThemeColor = document.querySelector('meta[name="theme-color"]');
+      if (metaThemeColor) {
+        metaThemeColor.setAttribute("content", meta.metaColor);
+      }
+
+      if (saveToStorage !== false) {
+        try {
+          localStorage.setItem("jh-theme", themeKey);
+        } catch (e) {
+          /* private mode fallback */
+        }
+      }
+
+      // Broadcast custom theme change event for reactive canvas/charts
+      try {
+        window.dispatchEvent(
+          new CustomEvent("jh-theme-change", { detail: { theme: themeKey } })
+        );
+      } catch (e) {}
     }
 
-    var initial = root.getAttribute("data-theme") || "dark";
-    updateTitle(initial);
+    function closeDropdown() {
+      if (!dropdown) return;
+      dropdown.classList.remove("open");
+      if (triggerBtn) triggerBtn.setAttribute("aria-expanded", "false");
+    }
 
-    toggle.addEventListener("click", function () {
-      var current = root.getAttribute("data-theme") || "dark";
-      var currentIndex = themes.indexOf(current);
-      if (currentIndex === -1) currentIndex = 1;
-      var nextIndex = (currentIndex + 1) % themes.length;
-      var nextTheme = themes[nextIndex];
+    function openDropdown() {
+      if (!dropdown) return;
+      dropdown.classList.add("open");
+      if (triggerBtn) triggerBtn.setAttribute("aria-expanded", "true");
+    }
 
-      root.setAttribute("data-theme", nextTheme);
-      updateTitle(nextTheme);
+    function toggleDropdown() {
+      if (!dropdown) return;
+      var isOpen = dropdown.classList.contains("open");
+      if (isOpen) {
+        closeDropdown();
+      } else {
+        openDropdown();
+      }
+    }
 
-      try {
-        localStorage.setItem("jh-theme", nextTheme);
-      } catch (e) {
-        /* private mode */
+    if (triggerBtn && !triggerBtn._hasThemeListener) {
+      triggerBtn._hasThemeListener = true;
+      triggerBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleDropdown();
+      });
+    }
+
+    optionBtns.forEach(function (btn) {
+      if (btn._hasThemeListener) return;
+      btn._hasThemeListener = true;
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var selected = btn.getAttribute("data-theme-value");
+        if (selected) {
+          applyTheme(selected, true);
+        }
+        closeDropdown();
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener("click", function (e) {
+      if (selector && !selector.contains(e.target)) {
+        closeDropdown();
       }
     });
-  })();
+
+    // Close on Escape key
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" || e.keyCode === 27) {
+        closeDropdown();
+      }
+    });
+
+    // Initialize with stored or current DOM theme
+    var currentTheme = root.getAttribute("data-theme") || "light";
+    try {
+      var stored = localStorage.getItem("jh-theme");
+      if (stored && validThemes.indexOf(stored) !== -1) {
+        currentTheme = stored;
+      }
+    } catch (e) {}
+
+    applyTheme(currentTheme, false);
+
+    // Fallback support for any legacy .theme-toggle buttons
+    var legacyToggle = document.querySelector(".theme-toggle");
+    if (legacyToggle && !legacyToggle._hasThemeListener) {
+      legacyToggle._hasThemeListener = true;
+      legacyToggle.addEventListener("click", function () {
+        var cur = root.getAttribute("data-theme") || "light";
+        var idx = validThemes.indexOf(cur);
+        if (idx === -1) idx = 0;
+        var nextTheme = validThemes[(idx + 1) % validThemes.length];
+        applyTheme(nextTheme, true);
+      });
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initThemeSwitcher);
+  } else {
+    initThemeSwitcher();
+  }
 
   // Footer year
   var yearEl = document.getElementById("year");
@@ -400,7 +528,7 @@
           '  <span class="out-highlight">skills</span>        - Summary of core backend, AI & cloud stack',
           '  <span class="out-highlight">experience</span>    - Overview of production engineering track record',
           '  <span class="out-highlight">projects</span>      - 10-Extension Chrome Suite & AI architectures',
-          '  <span class="out-highlight">certifications</span>- 26 Verified credentials (Google Cloud, IBM, LinkedIn)',
+          '  <span class="out-highlight">certifications</span>- 31 Verified credentials (Anthropic MCP, Google Cloud, IBM, LinkedIn)',
           '  <span class="out-highlight">services</span>      - Backend architecture & AI consulting offerings',
           '  <span class="out-highlight">contact</span>       - Direct Gmail, WhatsApp & LinkedIn channels',
           '  <span class="out-highlight">resume</span>        - Launch modal HTML/PDF previewer directly',
@@ -470,12 +598,13 @@
 
       certifications: function () {
         return [
-          '<span class="out-heading">📜 VERIFIED CERTIFICATIONS (26 CREDENTIALS):</span>',
+          '<span class="out-heading">📜 VERIFIED CERTIFICATIONS (31 CREDENTIALS):</span>',
+          "  • Anthropic: Agent Skills & Model Context Protocol (MCP)",
           "  • Google Cloud: Generative AI Fundamentals (License: G3A7L84CRV82)",
           "  • e-smartdata: Certified Django Developer (License: ESD-037/10/2025)",
           "  • IBM SkillsBuild (9 badges): AI, Cloud, Cybersecurity, Data, Web Dev, IT, Digital Skills",
-          "  • LinkedIn Learning (15 certs): Agentic AI, GitHub Copilot Agents, Claude Code Subagents, LangChain, RAG",
-          '<br><a href="#certifications" class="out-link">Browse all 26 credentials ↓</a>',
+          "  • LinkedIn Learning (19 certs): Agentic AI, GitHub Copilot Agents, Claude Code Subagents, Quantization, LangChain, RAG",
+          '<br><a href="certifications.html" class="out-link">Open Full 31 Certifications Page ↗</a> | <a href="#certifications" class="out-link">Browse section ↓</a>',
         ].join("<br>");
       },
 
@@ -487,7 +616,7 @@
         return [
           '<span class="out-heading">💼 PRODUCTION TRACK RECORD (7+ YEARS):</span>',
           '  <span class="out-highlight">1. MicroAgility (Jan 2024 — August 2026):</span> Backend Lead & Solutions Architect',
-          "     • Multi-tenant ATS (22 modules, 200+ REST endpoints, 3-tier tenancy).",
+          "     • Multi-tenant ATS (Modular micro-service architecture, high-scale API ecosystem, 3-tier tenancy).",
           "     • Async BullMQ resume ingestion with OCR & provider-agnostic AI fallback.",
           "     • Zero cross-tenant data bleed, custom self-hosted Postal email engine.",
           '  <span class="out-highlight">2. MicroAgility (Feb 2022 — Jan 2024):</span> Backend Software Engineer',
@@ -1045,8 +1174,8 @@
     var AI_KNOWLEDGE = {
       greeting: {
         spoken:
-          "Welcome to Jawad Ul Hadi's portfolio! Jawad is a Senior Backend Engineer and Solutions Architect with over 7 years of experience architecting multi-tenant SaaS platforms, resilient 3-tier fallback AI systems, and high-throughput BullMQ async queues. How can I assist you today? You can ask me about his work at MicroAgility, his AI fallback resilience, his 26 verified certifications, his 10 Chrome extensions, or how to contact him.",
-        text: "👋 <strong>Welcome to Jawad Ul Hadi's Portfolio!</strong><br><br>Jawad is a <strong>Senior Backend Engineer &amp; Solutions Architect</strong> with 7+ years of experience in multi-tenant SaaS, 3-tier AI fallback systems, and high-throughput async queues.<br><br>Feel free to ask me anything about his experience, AI architecture, 26 verified certifications, or how to get in touch!",
+          "Welcome to Jawad Ul Hadi's portfolio! Jawad is a Senior Backend Engineer and Solutions Architect with over 7 years of experience architecting multi-tenant SaaS platforms, resilient 3-tier fallback AI systems, and high-throughput BullMQ async queues. How can I assist you today? You can ask me about his work at MicroAgility, his AI fallback resilience, his 31 verified certifications, his 10 Chrome extensions, or how to contact him.",
+        text: "👋 <strong>Welcome to Jawad Ul Hadi's Portfolio!</strong><br><br>Jawad is a <strong>Senior Backend Engineer &amp; Solutions Architect</strong> with 7+ years of experience in multi-tenant SaaS, 3-tier AI fallback systems, and high-throughput async queues.<br><br>Feel free to ask me anything about his experience, AI architecture, 31 verified certifications, or how to get in touch!",
       },
       fallback: {
         spoken:
@@ -1055,13 +1184,13 @@
       },
       experience: {
         spoken:
-          "Jawad brings over 7 years of production backend leadership. At MicroAgility from 2024 to 2026, he led backend architecture for an enterprise ATS with 22 modules and over 200 REST endpoints, implementing BullMQ resume parsing and self-hosted Postal email delivery. Previously, he engineered APAC HRMS with 9 roles and 31 permission grants, slashing query latencies by over 90 percent.",
-        text: "💼 <strong>Production Track Record (7+ Years):</strong><br><br>• <strong>MicroAgility (2024–2026):</strong> Backend Lead &amp; Architect for Multi-Tenant ATS (22 modules, 200+ endpoints, 3-tier tenancy, BullMQ queues).<br>• <strong>MicroAgility (2022–2024):</strong> Backend Engineer for APAC HRMS (9 roles, 31 RBAC permissions, 90%+ query latency reduction).<br>• <strong>Market Icon (2018–2022):</strong> Serverless APIs with AWS Lambda and API Gateway.",
+          "Jawad brings over 7 years of production backend leadership. At MicroAgility from 2024 to 2026, he led backend architecture for an enterprise ATS featuring a modular micro-service architecture and high-scale API ecosystem, implementing BullMQ resume parsing and self-hosted Postal email delivery. Previously, he engineered APAC HRMS with 9 roles and 31 permission grants, slashing query latencies by over 90 percent.",
+        text: "💼 <strong>Production Track Record (7+ Years):</strong><br><br>• <strong>MicroAgility (2024–2026):</strong> Backend Lead &amp; Architect for Multi-Tenant ATS (Modular micro-service architecture, high-scale API ecosystem, 3-tier tenancy, BullMQ queues).<br>• <strong>MicroAgility (2022–2024):</strong> Backend Engineer for APAC HRMS (9 roles, 31 RBAC permissions, 90%+ query latency reduction).<br>• <strong>Market Icon (2018–2022):</strong> Serverless APIs with AWS Lambda and API Gateway.",
       },
       certifications: {
         spoken:
-          "Jawad holds 26 verified professional credentials. These include Google Cloud Generative AI Fundamentals, Certified Django Developer from e-smartdata, 9 IBM SkillsBuild certifications across AI, Cloud, and Cybersecurity, and 15 advanced LinkedIn Learning credentials specializing in Agentic AI, GitHub Copilot Agents, and LangChain.",
-        text: "📜 <strong>26 Verified Certifications:</strong><br><br>• <strong>Google Cloud:</strong> Generative AI Fundamentals (License: G3A7L84CRV82)<br>• <strong>e-smartdata:</strong> Certified Django Developer (License: ESD-037/10/2025)<br>• <strong>IBM SkillsBuild (9 Badges):</strong> Artificial Intelligence, Cloud Computing, Cybersecurity, Data, Web Dev<br>• <strong>LinkedIn Learning (15 Credentials):</strong> Agentic AI, Claude Code Subagents, GitHub Copilot Agents, LangChain, RAG",
+          "Jawad holds 31 verified professional credentials. These include Anthropic Agent Skills & MCP, Google Cloud Generative AI Fundamentals, Certified Django Developer from e-smartdata, 9 IBM SkillsBuild certifications across AI, Cloud, and Cybersecurity, and 19 advanced LinkedIn Learning credentials specializing in Agentic AI, Quantization, GitHub Copilot Agents, and LangChain.",
+        text: "📜 <strong>31 Verified Certifications:</strong><br><br>• <strong>Anthropic:</strong> Agent Skills &amp; Model Context Protocol (MCP)<br>• <strong>Google Cloud:</strong> Generative AI Fundamentals (License: G3A7L84CRV82)<br>• <strong>e-smartdata:</strong> Certified Django Developer (License: ESD-037/10/2025)<br>• <strong>IBM SkillsBuild (9 Badges):</strong> Artificial Intelligence, Cloud Computing, Cybersecurity, Data, Web Dev<br>• <strong>LinkedIn Learning (19 Credentials):</strong> Agentic AI, Quantization, Claude Code Subagents, GitHub Copilot Agents, LangChain, RAG",
       },
       extensions: {
         spoken:
@@ -1386,7 +1515,7 @@
       } else {
         match = {
           spoken:
-            "Jawad Ul Hadi is a Senior Backend Engineer and Solutions Architect with 7+ years of experience specializing in resilient AI backends, multi-tenant SaaS, and 26 verified credentials. Would you like to hear about his 3-tier AI fallback, his work experience, or his contact information?",
+            "Jawad Ul Hadi is a Senior Backend Engineer and Solutions Architect with 7+ years of experience specializing in resilient AI backends, multi-tenant SaaS, and 31 verified credentials. Would you like to hear about his 3-tier AI fallback, his work experience, or his contact information?",
           text: "💡 Jawad specializes in <strong>Scalable SaaS</strong>, <strong>3-Tier AI Fallback Ladders</strong>, and <strong>BullMQ Queue Architectures</strong>.<br><br>Ask me about his <strong>Experience</strong>, <strong>Certifications</strong>, <strong>AI Architecture</strong>, or <strong>Direct Contact Channels</strong>!",
         };
       }
@@ -3655,6 +3784,9 @@
      ========================================================================== */
   (function initGoogleDocsStudio() {
     var googleSignInBtn = document.getElementById("googleSignInBtn");
+    var docsListWrap = document.getElementById("docsListWrap");
+    if (!googleSignInBtn && !docsListWrap) return;
+
     var googleSignOutBtn = document.getElementById("googleSignOutBtn");
     var docsRefreshBtn = document.getElementById("docsRefreshBtn");
     var docsUnauthBox = document.getElementById("docsUnauthBox");
@@ -5047,5 +5179,76 @@
 
     // Initial render with default 2026 authentic data
     selectYear("2026");
+  })();
+
+  // 17. Live GitHub Telemetry & Dynamic Stats Card Theme Synchronization
+  (function () {
+    var ghReposCount = document.getElementById("ghReposCount");
+    var ghFollowersCount = document.getElementById("ghFollowersCount");
+    var statsCardImg = document.getElementById("ghStatsCardImg");
+    var topLangsImg = document.getElementById("ghTopLangsCardImg");
+    var streakImg = document.getElementById("ghStreakCardImg");
+    var activityGraphImg = document.getElementById("ghActivityGraphImg");
+
+    // Fetch real-time live GitHub API data
+    if (window.fetch) {
+      fetch("https://api.github.com/users/JawadulHadi", {
+        headers: { "Accept": "application/vnd.github.v3+json" }
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data && typeof data.public_repos === "number" && ghReposCount) {
+            ghReposCount.textContent = data.public_repos;
+          }
+          if (data && typeof data.followers === "number" && ghFollowersCount) {
+            ghFollowersCount.textContent = data.followers;
+          }
+        })
+        .catch(function () {
+          // Graceful fallback to cached values
+        });
+    }
+
+    // Adapt stats cards to theme changes
+    function updateGitHubCardThemes() {
+      var isLight = document.documentElement.getAttribute("data-theme") === "light";
+      var bg = isLight ? "ffffff" : "0f1e2e";
+      var title = isLight ? "996515" : "d4a574";
+      var text = isLight ? "1b2a4a" : "f5f3f0";
+      var icon = isLight ? "996515" : "d4a574";
+      var theme = isLight ? "default" : "tokyonight";
+
+      if (statsCardImg) {
+        statsCardImg.src = "https://github-readme-stats.vercel.app/api?username=JawadulHadi&show_icons=true&theme=" + theme + "&count_private=true&hide_border=true&bg_color=" + bg + "&title_color=" + title + "&text_color=" + text + "&icon_color=" + icon;
+      }
+      if (topLangsImg) {
+        topLangsImg.src = "https://github-readme-stats.vercel.app/api/top-langs/?username=JawadulHadi&layout=compact&theme=" + theme + "&hide_border=true&bg_color=" + bg + "&title_color=" + title + "&text_color=" + text;
+      }
+      if (streakImg) {
+        streakImg.src = "https://github-readme-streak-stats.herokuapp.com/?user=JawadulHadi&theme=" + theme + "&hide_border=true&background=" + bg + "&ring=" + title + "&fire=" + title + "&currStreakLabel=" + title;
+      }
+      if (activityGraphImg) {
+        activityGraphImg.src = "https://github-readme-activity-graph.vercel.app/graph?username=JawadulHadi&theme=" + (isLight ? "github-light" : "tokyo-night") + "&bg_color=" + bg + "&color=" + title + "&line=7db3a0&point=" + title + "&hide_border=true";
+      }
+    }
+
+    var themeToggles = document.querySelectorAll(".theme-toggle, [data-action='toggle-theme'], #themeToggleBtn");
+    themeToggles.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        setTimeout(updateGitHubCardThemes, 100);
+      });
+    });
+
+    // Also observe data-theme attribute mutations on html/body
+    if (window.MutationObserver) {
+      var themeObserver = new MutationObserver(function (mutations) {
+        mutations.forEach(function (m) {
+          if (m.attributeName === "data-theme") {
+            updateGitHubCardThemes();
+          }
+        });
+      });
+      themeObserver.observe(document.documentElement, { attributes: true });
+    }
   })();
 })();
