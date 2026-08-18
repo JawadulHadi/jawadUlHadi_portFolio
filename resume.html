@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jawad Ul Hadi — Résumé | Senior Backend Engineer</title>
-  <meta name="description" content="Official Résumé of Jawad Ul Hadi — Senior Backend Engineer specializing in NestJS, Node.js, TypeScript, Python, and Multi-Tenant SaaS & Provider-Agnostic LLM Engines.">
+  <meta name="description"
+    content="Official Résumé of Jawad Ul Hadi — Senior Backend Engineer specializing in NestJS, Node.js, TypeScript, Python, and Multi-Tenant SaaS & Provider-Agnostic LLM Engines.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>
     :root {
@@ -25,7 +27,11 @@
       --radius: 8px;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       background-color: var(--page-bg);
@@ -187,20 +193,23 @@
       text-align: justify;
     }
 
-    .competency-list, .service-list {
+    .competency-list,
+    .service-list {
       display: grid;
       gap: 0.5rem;
       list-style: none;
     }
 
-    .competency-list li, .service-list li {
+    .competency-list li,
+    .service-list li {
       position: relative;
       padding-left: 1.2rem;
       color: var(--text);
       line-height: 1.55;
     }
 
-    .competency-list li::before, .service-list li::before {
+    .competency-list li::before,
+    .service-list li::before {
       content: "•";
       position: absolute;
       left: 0;
@@ -209,7 +218,8 @@
       line-height: 1.4;
     }
 
-    .competency-list strong, .service-list strong {
+    .competency-list strong,
+    .service-list strong {
       color: var(--text);
       font-weight: 600;
     }
@@ -439,20 +449,28 @@
         font-size: 11.5px !important;
         line-height: 1.4 !important;
       }
-      .resume-nav { display: none !important; }
+
+      .resume-nav {
+        display: none !important;
+      }
+
       .resume-paper {
         border: none !important;
         box-shadow: none !important;
         padding: 0 !important;
         max-width: 100% !important;
       }
+
       .section-block {
         margin-bottom: 1.1rem !important;
       }
-      .job-entry, .cert-group {
+
+      .job-entry,
+      .cert-group {
         page-break-inside: avoid;
         margin-bottom: 0.9rem !important;
       }
+
       a {
         text-decoration: none !important;
         color: var(--text) !important;
@@ -460,20 +478,34 @@
     }
 
     @media (max-width: 640px) {
-      body { padding: 1rem 0.5rem; }
-      .resume-paper { padding: 1.5rem 1rem; }
-      .name-title h1 { font-size: 1.6rem; }
-      .contact-bar { flex-direction: column; gap: 0.35rem; }
+      body {
+        padding: 1rem 0.5rem;
+      }
+
+      .resume-paper {
+        padding: 1.5rem 1rem;
+      }
+
+      .name-title h1 {
+        font-size: 1.8rem;
+      }
+
+      .contact-bar {
+        flex-direction: column;
+        gap: 0.35rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Top Navigation & Print Controls -->
   <nav class="resume-nav" aria-label="Résumé actions">
     <div class="nav-left">
       <a href="/index.html">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
@@ -482,15 +514,19 @@
     </div>
     <div class="nav-actions">
       <button class="btn btn-outline" onclick="window.print()" type="button">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
           <polyline points="6 9 6 2 18 2 18 9"></polyline>
           <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
           <rect x="6" y="14" width="12" height="8"></rect>
         </svg>
         Print / Save as PDF
       </button>
-      <a class="btn btn-primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20from%20Portfolio%20-%20Jawad%20Ul%20Hadi" target="_blank" rel="noopener noreferrer">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <a class="btn btn-primary"
+        href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20from%20Portfolio%20-%20Jawad%20Ul%20Hadi"
+        target="_blank" rel="noopener noreferrer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
           <polyline points="22,6 12,13 2,6"></polyline>
         </svg>
@@ -505,21 +541,29 @@
     <!-- HEADER -->
     <header class="resume-header">
       <div class="name-title">
-        <h1>Jawad Ul Hadi</h1>
-        <div class="role-headline">Senior Backend Engineer | NestJS, Node.js, TypeScript &amp; Python | Multi-Tenant SaaS &amp; Provider-Agnostic LLM Engines</div>
+        <h1><strong>Jawad Ul Hadi</strong></h1>
+        <div class="role-headline">Senior Backend Engineer<br>
+          NestJS, Node.js, TypeScript &amp; Python | Multi-Tenant SaaS &amp; Provider-Agnostic LLM Engines</div>
       </div>
       <div class="contact-bar">
         <span>Islamabad, Pakistan</span>
         <span>•</span>
-        <span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20-%20Jawad%20Ul%20Hadi" target="_blank" rel="noopener noreferrer">jawadulhadicc@gmail.com</a></span>
+        <span><a
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20-%20Jawad%20Ul%20Hadi"
+            target="_blank" rel="noopener noreferrer">jawadulhadicc@gmail.com</a></span>
         <span>•</span>
-        <span><a href="https://wa.me/923467248414?text=Hi%20Jawad,%20I%20reviewed%20your%20resume%20and%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer">+92 346 7248414</a></span>
+        <span><a
+            href="https://wa.me/923467248414?text=Hi%20Jawad,%20I%20reviewed%20your%20resume%20and%20would%20like%20to%20connect."
+            target="_blank" rel="noopener noreferrer">+92 346 7248414</a></span>
         <span>•</span>
-        <span><a href="https://linkedin.com/in/jawad-ul-hadi" target="_blank" rel="noopener noreferrer">linkedin.com/in/jawad-ul-hadi</a></span>
+        <span><a href="https://linkedin.com/in/jawad-ul-hadi" target="_blank"
+            rel="noopener noreferrer">linkedin.com/in/jawad-ul-hadi</a></span>
         <span>•</span>
-        <span><a href="https://github.com/JawadulHadi" target="_blank" rel="noopener noreferrer">github.com/JawadulHadi</a></span>
+        <span><a href="https://github.com/JawadulHadi" target="_blank"
+            rel="noopener noreferrer">github.com/JawadulHadi</a></span>
         <span>•</span>
-        <span><a href="https://jawadulhadi-portfolio.vercel.app" target="_blank" rel="noopener noreferrer">jawadulhadi-portfolio.vercel.app</a></span>
+        <span><a href="https://jawadulhadi-portfolio.vercel.app" target="_blank"
+            rel="noopener noreferrer">jawadulhadi-portfolio.vercel.app</a></span>
       </div>
     </header>
 
@@ -527,7 +571,15 @@
     <section class="section-block">
       <h2 class="section-title">Professional Summary</h2>
       <p class="summary-text">
-        <strong>Senior Backend Engineer</strong> with 7+ years of experience architecting production-grade, multi-tenant SaaS platforms where AI acts as a value multiplier, not a fragile dependency. Built resilient systems around a custom <strong>3-tier fallback architecture (Retry → RAG-grounded retrieval → deterministic rule-based floor)</strong> that guarantees business continuity through provider outages. Background spans high-volume data optimization/cutting query latency by <strong>90%+</strong> and event-driven backbones on BullMQ/Redis. Combines engineering rigor with a business-first mindset to deliver measurable revenue and operational impact. Proficient across the full stack with expertise in modern backend frameworks (<strong>Node.js, NestJS, Django</strong>) and hands-on experience with frontend technologies (<strong>React.js</strong>) and PHP ecosystems (<strong>Laravel</strong>). Daily practitioner of AI-assisted development tools (<strong>Cursor, GitHub Copilot, Claude Code</strong>) for accelerating delivery without compromising quality.
+        <strong>Senior Backend Engineer</strong> with 7+ years of experience architecting production-grade, multi-tenant
+        SaaS platforms where AI acts as a value multiplier, not a fragile dependency. Built resilient systems around a
+        custom <strong>3-tier fallback architecture (Retry → RAG-grounded retrieval → deterministic rule-based
+          floor)</strong> that guarantees business continuity through provider outages. Background spans high-volume
+        data optimization/cutting query latency by <strong>90%+</strong> and event-driven backbones on BullMQ/Redis.
+        Combines engineering rigor with a business-first mindset to deliver measurable revenue and operational impact.
+        Proficient across the expertise in modern backend frameworks: Node.js, NestJS, Django, PHP, Laravel. Daily
+        practitioner of AI-assisted development tools (<strong>Cursor, GitHub Copilot, Claude Code</strong>) for
+        accelerating delivery without compromising quality.
       </p>
     </section>
 
@@ -535,14 +587,22 @@
     <section class="section-block">
       <h2 class="section-title">Core Competencies</h2>
       <ul class="competency-list">
-        <li><strong>Languages &amp; Frameworks:</strong> TypeScript, Node.js, NestJS, JavaScript, Python, FastAPI, Django, Django REST Framework</li>
-        <li><strong>AI &amp; LLM Engineering:</strong> 3-Tier Fallback Architectures, RAG Pipelines, OpenAI, Google Gemini, Anthropic Claude, Structured Output, LLM Observability</li>
-        <li><strong>Data, Search &amp; Performance:</strong> PostgreSQL, MongoDB, MySQL, Redis, MeiliSearch, Query Optimization, Indexing, Bulk ETL, Full-Text &amp; Semantic Search</li>
-        <li><strong>Async &amp; Event-Driven:</strong> BullMQ + Redis Queues, Idempotent Workers, Custom Webhooks, n8n Workflows, HMAC Request Signing</li>
-        <li><strong>Cloud, DevOps &amp; Infrastructure:</strong> GCP, AWS (Lambda, API Gateway), Docker, CI/CD (GitHub Actions), Zero-Downtime Migrations, DNS/TLS, Serverless</li>
-        <li><strong>Integrations &amp; Security:</strong> Stripe, Twilio (WhatsApp), Microsoft Graph, Postal SMTP, Microservices, JWT/OAuth 2.0, Tenant Isolation, Audit Logging</li>
-        <li><strong>Assisted Development:</strong> GitHub Copilot, Cursor, Claude Code daily use for code generation, refactoring, test automation, documentation, and deployment script optimization</li>
-        <li><strong>Admin &amp; Tooling:</strong> Django Admin Customization, OCR/PDF Extraction, Script-Based ETL, Document Engineering, PDF Generation</li>
+        <li><strong>Languages &amp; Frameworks:</strong> TypeScript, Node.js, NestJS, JavaScript, Python, FastAPI,
+          Django, Django REST Framework</li>
+        <li><strong>AI &amp; LLM Engineering:</strong> 3-Tier Fallback Architectures, RAG Pipelines, OpenAI, Google
+          Gemini, Anthropic Claude, Structured Output, LLM Observability</li>
+        <li><strong>Data, Search &amp; Performance:</strong> PostgreSQL, MongoDB, MySQL, Redis, MeiliSearch, Query
+          Optimization, Indexing, Bulk ETL, Full-Text &amp; Semantic Search</li>
+        <li><strong>Async &amp; Event-Driven:</strong> BullMQ + Redis Queues, Idempotent Workers, Custom Webhooks, n8n
+          Workflows, HMAC Request Signing</li>
+        <li><strong>Cloud, DevOps &amp; Infrastructure:</strong> GCP, AWS (Lambda, API Gateway), Docker, CI/CD (GitHub
+          Actions), Zero-Downtime Migrations, DNS/TLS, Serverless</li>
+        <li><strong>Integrations &amp; Security:</strong> Stripe, Twilio (WhatsApp), Microsoft Graph, Postal SMTP,
+          Microservices, JWT/OAuth 2.0, Tenant Isolation, Audit Logging</li>
+        <li><strong>Assisted Development:</strong> GitHub Copilot, Cursor, Claude Code daily use for code generation,
+          refactoring, test automation, documentation, and deployment script optimization</li>
+        <li><strong>Admin &amp; Tooling:</strong> Django Admin Customization, OCR/PDF Extraction, Script-Based ETL,
+          Document Engineering, PDF Generation</li>
       </ul>
     </section>
 
@@ -550,13 +610,21 @@
     <section class="section-block">
       <h2 class="section-title">Services</h2>
       <ul class="service-list">
-        <li><strong>AI &amp; LLM Reliability Engineering:</strong> Multi-model AI gateways (OpenAI, Gemini, Anthropic) with automatic failover and 3-tier resilience for uninterrupted production performance.</li>
-        <li><strong>Data Architecture &amp; Performance Optimization:</strong> Query restructuring, indexing, and automated ETL pipelines that cut load times by 90%+ across PostgreSQL, MongoDB, and MySQL.</li>
-        <li><strong>Async &amp; Event-Driven System Design:</strong> High-throughput async pipelines on BullMQ/Redis with idempotent worker pools that eliminate duplicate execution.</li>
-        <li><strong>Cloud-Native Infrastructure &amp; Zero-Downtime Delivery:</strong> Scalable AWS/GCP architectures via Docker and CI/CD, with zero-downtime database and server migrations.</li>
-        <li><strong>Workflow Automation &amp; Internal Tooling:</strong> Admin ecosystems, RBAC engines, and custom Django interfaces that automate manual spreadsheet processes.</li>
-        <li><strong>Enterprise Integrations &amp; Secure Multi-Tenancy:</strong> Strict tenant isolation at the query/server level, integrated with Stripe, Twilio, Microsoft Graph, and custom SMTP.</li>
-        <li><strong>AI-Assisted Software Development:</strong> Leveraging Cursor, GitHub Copilot, and Claude Code to accelerate development, generate unit tests, automate documentation, optimize deployment scripts, and enhance engineering productivity.</li>
+        <li><strong>AI &amp; LLM Reliability Engineering:</strong> Multi-model AI gateways (OpenAI, Gemini, Anthropic)
+          with automatic failover and 3-tier resilience for uninterrupted production performance.</li>
+        <li><strong>Data Architecture &amp; Performance Optimization:</strong> Query restructuring, indexing, and
+          automated ETL pipelines that cut load times by 90%+ across PostgreSQL, MongoDB, and MySQL.</li>
+        <li><strong>Async &amp; Event-Driven System Design:</strong> High-throughput async pipelines on BullMQ/Redis
+          with idempotent worker pools that eliminate duplicate execution.</li>
+        <li><strong>Cloud-Native Infrastructure &amp; Zero-Downtime Delivery:</strong> Scalable AWS/GCP architectures
+          via Docker and CI/CD, with zero-downtime database and server migrations.</li>
+        <li><strong>Workflow Automation &amp; Internal Tooling:</strong> Admin ecosystems, RBAC engines, and custom
+          Django interfaces that automate manual spreadsheet processes.</li>
+        <li><strong>Enterprise Integrations &amp; Secure Multi-Tenancy:</strong> Strict tenant isolation at the
+          query/server level, integrated with Stripe, Twilio, Microsoft Graph, and custom SMTP.</li>
+        <li><strong>AI-Assisted Software Development:</strong> Leveraging Cursor, GitHub Copilot, and Claude Code to
+          accelerate development, generate unit tests, automate documentation, optimize deployment scripts, and enhance
+          engineering productivity.</li>
       </ul>
     </section>
 
@@ -572,12 +640,18 @@
         </div>
         <div class="job-org">MicroAgility Services (Pvt) Ltd. · Islamabad, Pakistan</div>
         <ul class="job-bullets">
-          <li>Spearheaded architecture of a multi-tenant, AI-assisted recruitment platform, unifying OpenAI, Gemini, and Anthropic into one abstraction layer, cutting AI integration surface area ~60%.</li>
-          <li>Deployed a proprietary 3-tier resilience methodology, eliminating user-facing hard failures via automatic fallback to RAG context or deterministic rule-sets during LLM downtime.</li>
-          <li>Built an async processing spine on BullMQ/Redis, offloading parsing, OCR, and vector embedding into idempotent workers to keep API response times instant.</li>
-          <li>Combined MeiliSearch with semantic RAG retrieval and optimized PostgreSQL/MongoDB query plans, cutting dashboard load times from 8–12s to under 2s.</li>
-          <li>Integrated Stripe, Twilio, Microsoft Graph, and self-hosted Postal SMTP while enforcing server-level JWT tenant isolation to eliminate cross-tenant data leaks.</li>
-          <li>Reduced infrastructure costs to near-zero per tenant via serverless tiers and self-hosted orchestration (n8n, Postal).</li>
+          <li>Spearheaded architecture of a multi-tenant, AI-assisted recruitment platform, unifying OpenAI, Gemini, and
+            Anthropic into one abstraction layer, cutting AI integration surface area ~60%.</li>
+          <li>Deployed a proprietary 3-tier resilience methodology, eliminating user-facing hard failures via automatic
+            fallback to RAG context or deterministic rule-sets during LLM downtime.</li>
+          <li>Built an async processing spine on BullMQ/Redis, offloading parsing, OCR, and vector embedding into
+            idempotent workers to keep API response times instant.</li>
+          <li>Combined MeiliSearch with semantic RAG retrieval and optimized PostgreSQL/MongoDB query plans, cutting
+            dashboard load times from 8–12s to under 2s.</li>
+          <li>Integrated Stripe, Twilio, Microsoft Graph, and self-hosted Postal SMTP while enforcing server-level JWT
+            tenant isolation to eliminate cross-tenant data leaks.</li>
+          <li>Reduced infrastructure costs to near-zero per tenant via serverless tiers and self-hosted orchestration
+            (n8n, Postal).</li>
         </ul>
       </article>
 
@@ -589,10 +663,14 @@
         </div>
         <div class="job-org">MicroAgility Services (Pvt) Ltd. · Islamabad, Pakistan</div>
         <ul class="job-bullets">
-          <li>Developed core backend infrastructure for a multi-country HRMS, payroll, and project-management SaaS suite handling complex enterprise logic.</li>
-          <li>Administered high-volume PostgreSQL/MySQL clusters, authoring automated disaster-recovery backups and migration scripts for seamless bulk tenant onboarding.</li>
-          <li>Built real-time collaboration channels with Socket.io and Mongoose, wired Twilio event triggers, and customized Django Admin panels to speed internal operations.</li>
-          <li>Executed zero-downtime schema migrations across relational and document databases, maintaining 99.9% uptime via structured Git pipelines on AWS/GCP.</li>
+          <li>Developed core backend infrastructure for a multi-country HRMS, payroll, and project-management SaaS suite
+            handling complex enterprise logic.</li>
+          <li>Administered high-volume PostgreSQL/MySQL clusters, authoring automated disaster-recovery backups and
+            migration scripts for seamless bulk tenant onboarding.</li>
+          <li>Built real-time collaboration channels with Socket.io and Mongoose, wired Twilio event triggers, and
+            customized Django Admin panels to speed internal operations.</li>
+          <li>Executed zero-downtime schema migrations across relational and document databases, maintaining 99.9%
+            uptime via structured Git pipelines on AWS/GCP.</li>
           <li>Refactored RESTful and GraphQL API endpoints, boosting production data retrieval speed ~40%.</li>
         </ul>
       </article>
@@ -605,10 +683,14 @@
         </div>
         <div class="job-org">Market Icon · Rawalpindi, Pakistan</div>
         <ul class="job-bullets">
-          <li>Designed serverless AWS Lambda/API Gateway microservices bridging SaaS platforms with third-party CRMs and payment processors, eliminating idle server costs.</li>
-          <li>Authored secure, documented APIs across Express.js, FastAPI, and Django REST Framework, protected by JWT and OAuth 2.0 authorization flows.</li>
-          <li>Delivered Django applications with custom ORM modeling, admin tooling, and structured data exposure via DRF to streamline client workflows.</li>
-          <li>Gained foundational experience building full-stack applications, working with modern frontend frameworks and backend systems.</li>
+          <li>Designed serverless AWS Lambda/API Gateway microservices bridging SaaS platforms with third-party CRMs and
+            payment processors, eliminating idle server costs.</li>
+          <li>Authored secure, documented APIs across Express.js, FastAPI, and Django REST Framework, protected by JWT
+            and OAuth 2.0 authorization flows.</li>
+          <li>Delivered Django applications with custom ORM modeling, admin tooling, and structured data exposure via
+            DRF to streamline client workflows.</li>
+          <li>Gained foundational experience building full-stack applications, working with modern frontend frameworks
+            and backend systems.</li>
         </ul>
       </article>
     </section>
@@ -616,10 +698,10 @@
     <!-- EDUCATION & CERTIFICATIONS -->
     <section class="section-block">
       <h2 class="section-title">Education &amp; Certifications (31 Verified Credentials)</h2>
-      
+
       <div class="edu-item">
         <div>
-          <span class="edu-degree">B.S. in Computer Science</span> — 
+          <span class="edu-degree">B.S. in Computer Science</span> —
           <span class="edu-school">Government College University, Faisalabad</span>
         </div>
         <div class="edu-date">Dec 2017</div>
@@ -633,100 +715,132 @@
         </div>
         <ul class="cert-list-detailed">
           <li>
-            <span class="cert-name">Introduction to Agent Skills</span> 
+            <span class="cert-name">Introduction to Agent Skills</span>
             <span class="cert-meta">· Anthropic / LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: 3d52b141</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/3d52b14114566e0fdb14d584c77ea28aebb8268c712a9e66165787f10cfb3207" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/3d52b14114566e0fdb14d584c77ea28aebb8268c712a9e66165787f10cfb3207"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Introduction to Model Context Protocol (MCP)</span> 
+            <span class="cert-name">Introduction to Model Context Protocol (MCP)</span>
             <span class="cert-meta">· Anthropic / LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: 7cc20704</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/7cc20704d76cef05f35241624338f0c3a88b522c69266e3b3536e7ecc43490f1" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/7cc20704d76cef05f35241624338f0c3a88b522c69266e3b3536e7ecc43490f1"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Agentic AI Architecture Foundations: Designing Autonomous AI Systems</span> 
+            <span class="cert-name">Agentic AI Architecture Foundations: Designing Autonomous AI Systems</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: a7eb686b</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/a7eb686b16f072c55ca832682ca0467ed7235f364d272e8f937813cce050cdc6" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/a7eb686b16f072c55ca832682ca0467ed7235f364d272e8f937813cce050cdc6"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Agentic AI Solution Design Patterns</span> 
+            <span class="cert-name">Agentic AI Solution Design Patterns</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: 418db317</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/418db3170c778c6dd6faffc8aaa20934974fdde3790b23579f98e37f3dd464da" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/418db3170c778c6dd6faffc8aaa20934974fdde3790b23579f98e37f3dd464da"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Advanced Quantization Techniques for Large Language Models</span> 
+            <span class="cert-name">Advanced Quantization Techniques for Large Language Models</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: 4d7d15d6</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/4d7d15d666e33fffc0484d434341dc4f8ad4bceddd8d6cdacdcdf278ebc7241c" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/4d7d15d666e33fffc0484d434341dc4f8ad4bceddd8d6cdacdcdf278ebc7241c"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Build AI Agents with GitHub Copilot</span> 
+            <span class="cert-name">Build AI Agents with GitHub Copilot</span>
             <span class="cert-meta">· Microsoft Press / LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: 9f08ea36</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/9f08ea367800cebf6c82e9487d7257f0bbc4016fc859559e84c86509fae19c91" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/9f08ea367800cebf6c82e9487d7257f0bbc4016fc859559e84c86509fae19c91"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Claude Code 4: Agentic Coding for Professional Developers</span> 
+            <span class="cert-name">Claude Code 4: Agentic Coding for Professional Developers</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: 0d8eecc5</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/0d8eecc5082ca07af8f771083ea29d4c274033e6b3bdc7ef6e7512e35c1a8a85" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/0d8eecc5082ca07af8f771083ea29d4c274033e6b3bdc7ef6e7512e35c1a8a85"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">AI Solution Design Patterns: Data, Model Training &amp; Application Architectures</span> 
+            <span class="cert-name">AI Solution Design Patterns: Data, Model Training &amp; Application
+              Architectures</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: 5153e8eb</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/5153e8eb222a84ac8db4d0b35df23426e222f370fc51d77124ca896e77178853" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/5153e8eb222a84ac8db4d0b35df23426e222f370fc51d77124ca896e77178853"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Build with AI: Leverage Claude Code Subagents in Software Projects</span> 
+            <span class="cert-name">Build with AI: Leverage Claude Code Subagents in Software Projects</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: 686155a8</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/686155a8b791ce682068645f7623330b27ad95f43c049727ef9af7420d99a560" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/686155a8b791ce682068645f7623330b27ad95f43c049727ef9af7420d99a560"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Introduction to AI Orchestration with LangChain and LlamaIndex</span> 
+            <span class="cert-name">Introduction to AI Orchestration with LangChain and LlamaIndex</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: b31067a6</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/b31067a6d48eff91faac35512ec9eafefafb76da400cc3355d28708d2ce24245" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/b31067a6d48eff91faac35512ec9eafefafb76da400cc3355d28708d2ce24245"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Building a Personalized Chatbot with OpenAI and LangChain</span> 
+            <span class="cert-name">Building a Personalized Chatbot with OpenAI and LangChain</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: d76ecea6</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/d76ecea6a0c9ae6d9eac1143c0023d574aa648ee35d2d074c7d93eec8b18c00e" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/d76ecea6a0c9ae6d9eac1143c0023d574aa648ee35d2d074c7d93eec8b18c00e"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Introduction to Generative AI</span> 
+            <span class="cert-name">Introduction to Generative AI</span>
             <span class="cert-meta">· Google Cloud / Coursera (Jan 2024)</span>
             <span class="cert-id">ID: G3A7L84CRV82</span>
-            <a class="cert-verify-link" href="https://www.coursera.org/account/accomplishments/verify/G3A7L84CRV82" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link" href="https://www.coursera.org/account/accomplishments/verify/G3A7L84CRV82"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Introduction to Multimodal Prompting for Generative AI</span> 
+            <span class="cert-name">Introduction to Multimodal Prompting for Generative AI</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: d7bd1ec1</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/d7bd1ec1c8e2eb1c1a1c2d103d0bf2c4c4a9bb23b080132b2b21a92d600f3ab8" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/d7bd1ec1c8e2eb1c1a1c2d103d0bf2c4c4a9bb23b080132b2b21a92d600f3ab8"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Introduction to Prompt Engineering for Generative AI</span> 
+            <span class="cert-name">Introduction to Prompt Engineering for Generative AI</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: b7156a3b</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/b7156a3b1d734660c446d32481ca978a7c2c8b40bb319d16e9927a4891f5af41" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/b7156a3b1d734660c446d32481ca978a7c2c8b40bb319d16e9927a4891f5af41"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Artificial Intelligence Foundations: Machine Learning</span> 
+            <span class="cert-name">Artificial Intelligence Foundations: Machine Learning</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: 67a724f3</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/67a724f3ca88244c58ab3cc24e540138b817e0ef20ecbbb607dafb7c4bfa62bf" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/67a724f3ca88244c58ab3cc24e540138b817e0ef20ecbbb607dafb7c4bfa62bf"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Artificial Intelligence Foundations: Neural Networks</span> 
+            <span class="cert-name">Artificial Intelligence Foundations: Neural Networks</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: c2bceee3</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/c2bceee32e9f413d8546a2b3eab43d53902c487ffab8c8b3ce79e0650cd83632" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/c2bceee32e9f413d8546a2b3eab43d53902c487ffab8c8b3ce79e0650cd83632"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
         </ul>
       </div>
@@ -739,58 +853,76 @@
         </div>
         <ul class="cert-list-detailed">
           <li>
-            <span class="cert-name">Information Technology Fundamentals</span> 
+            <span class="cert-name">Information Technology Fundamentals</span>
             <span class="cert-meta">· IBM SkillsBuild (Feb 2024)</span>
             <span class="cert-id">Badge: fb520a68</span>
-            <a class="cert-verify-link" href="https://www.credly.com/badges/fb520a68-f279-4351-b67e-5dddea39b21e/linked_in_profile" target="_blank" rel="noopener">Credly ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.credly.com/badges/fb520a68-f279-4351-b67e-5dddea39b21e/linked_in_profile"
+              target="_blank" rel="noopener">Credly ↗</a>
           </li>
           <li>
-            <span class="cert-name">Web Development Fundamentals</span> 
+            <span class="cert-name">Web Development Fundamentals</span>
             <span class="cert-meta">· IBM SkillsBuild (Feb 2024)</span>
             <span class="cert-id">Badge: 8200cfe4</span>
-            <a class="cert-verify-link" href="https://www.credly.com/badges/8200cfe4-fd0b-4f9f-b31d-06569ab8f445/linked_in_profile" target="_blank" rel="noopener">Credly ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.credly.com/badges/8200cfe4-fd0b-4f9f-b31d-06569ab8f445/linked_in_profile"
+              target="_blank" rel="noopener">Credly ↗</a>
           </li>
           <li>
-            <span class="cert-name">Artificial Intelligence Fundamentals</span> 
+            <span class="cert-name">Artificial Intelligence Fundamentals</span>
             <span class="cert-meta">· IBM SkillsBuild (Feb 2024)</span>
             <span class="cert-id">Badge: 37f8ca56</span>
-            <a class="cert-verify-link" href="https://www.credly.com/badges/37f8ca56-518e-4ffc-8b70-dd29db910bab/linked_in_profile" target="_blank" rel="noopener">Credly ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.credly.com/badges/37f8ca56-518e-4ffc-8b70-dd29db910bab/linked_in_profile"
+              target="_blank" rel="noopener">Credly ↗</a>
           </li>
           <li>
-            <span class="cert-name">Working in a Digital World: Professional Skills</span> 
+            <span class="cert-name">Working in a Digital World: Professional Skills</span>
             <span class="cert-meta">· IBM SkillsBuild (Feb 2024)</span>
             <span class="cert-id">Badge: 056c5fb0</span>
-            <a class="cert-verify-link" href="https://www.credly.com/badges/056c5fb0-f12b-4d81-ba66-68eba97b211b/linked_in_profile" target="_blank" rel="noopener">Credly ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.credly.com/badges/056c5fb0-f12b-4d81-ba66-68eba97b211b/linked_in_profile"
+              target="_blank" rel="noopener">Credly ↗</a>
           </li>
           <li>
-            <span class="cert-name">Cloud Computing Fundamentals</span> 
+            <span class="cert-name">Cloud Computing Fundamentals</span>
             <span class="cert-meta">· IBM SkillsBuild (Feb 2024)</span>
             <span class="cert-id">Badge: 1da9246d</span>
-            <a class="cert-verify-link" href="https://www.credly.com/badges/1da9246d-550e-4463-8926-4dd9b0661602/linked_in_profile" target="_blank" rel="noopener">Credly ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.credly.com/badges/1da9246d-550e-4463-8926-4dd9b0661602/linked_in_profile"
+              target="_blank" rel="noopener">Credly ↗</a>
           </li>
           <li>
-            <span class="cert-name">Cybersecurity Fundamentals</span> 
+            <span class="cert-name">Cybersecurity Fundamentals</span>
             <span class="cert-meta">· IBM SkillsBuild (Feb 2024)</span>
             <span class="cert-id">Badge: 50af0df4</span>
-            <a class="cert-verify-link" href="https://www.credly.com/badges/50af0df4-e762-4d0e-8e0a-71eb809c9588/linked_in_profile" target="_blank" rel="noopener">Credly ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.credly.com/badges/50af0df4-e762-4d0e-8e0a-71eb809c9588/linked_in_profile"
+              target="_blank" rel="noopener">Credly ↗</a>
           </li>
           <li>
-            <span class="cert-name">Explore Emerging Tech</span> 
+            <span class="cert-name">Explore Emerging Tech</span>
             <span class="cert-meta">· IBM SkillsBuild (Mar 2024)</span>
             <span class="cert-id">Badge: 6ed16143</span>
-            <a class="cert-verify-link" href="https://www.credly.com/badges/6ed16143-e785-413f-8b7e-77b7466b3c09/linked_in_profile" target="_blank" rel="noopener">Credly ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.credly.com/badges/6ed16143-e785-413f-8b7e-77b7466b3c09/linked_in_profile"
+              target="_blank" rel="noopener">Credly ↗</a>
           </li>
           <li>
-            <span class="cert-name">Data Fundamentals</span> 
+            <span class="cert-name">Data Fundamentals</span>
             <span class="cert-meta">· IBM SkillsBuild (Mar 2024)</span>
             <span class="cert-id">Badge: dc86df62</span>
-            <a class="cert-verify-link" href="https://www.credly.com/badges/dc86df62-aa4b-4aba-96b0-eb15d734e6d0/linked_in_profile" target="_blank" rel="noopener">Credly ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.credly.com/badges/dc86df62-aa4b-4aba-96b0-eb15d734e6d0/linked_in_profile"
+              target="_blank" rel="noopener">Credly ↗</a>
           </li>
           <li>
-            <span class="cert-name">Job Application Essentials</span> 
+            <span class="cert-name">Job Application Essentials</span>
             <span class="cert-meta">· IBM SkillsBuild (Mar 2024)</span>
             <span class="cert-id">Badge: a074c7cf</span>
-            <a class="cert-verify-link" href="https://www.credly.com/badges/a074c7cf-3c79-434f-bacb-4d3473525a31/linked_in_profile" target="_blank" rel="noopener">Credly ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.credly.com/badges/a074c7cf-3c79-434f-bacb-4d3473525a31/linked_in_profile"
+              target="_blank" rel="noopener">Credly ↗</a>
           </li>
         </ul>
       </div>
@@ -803,40 +935,50 @@
         </div>
         <ul class="cert-list-detailed">
           <li>
-            <span class="cert-name">Certified Django Developer</span> 
+            <span class="cert-name">Certified Django Developer</span>
             <span class="cert-meta">· e-smartdata.org / Udemy (Oct 2025)</span>
             <span class="cert-id">License: ESD-037/10/2025</span>
             <a class="cert-verify-link" href="https://e-smartdata.org" target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Machine Learning with Python: Foundations</span> 
+            <span class="cert-name">Machine Learning with Python: Foundations</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: cbf2a10d</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/cbf2a10d5df1e56235b6176b95457be6d671de6cc09ff18d9548c0fcb88d0eb7" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/cbf2a10d5df1e56235b6176b95457be6d671de6cc09ff18d9548c0fcb88d0eb7"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Building AI Products: Implementing Responsible AI Professional Certificate</span> 
+            <span class="cert-name">Building AI Products: Implementing Responsible AI Professional Certificate</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: 24016fe8</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/24016fe8759c43e6b2997a9f0c0059fe524647f5a9c892de7b3a229323c35833" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/24016fe8759c43e6b2997a9f0c0059fe524647f5a9c892de7b3a229323c35833"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Open to Work: Building Key Career Skills in the Age of AI</span> 
+            <span class="cert-name">Open to Work: Building Key Career Skills in the Age of AI</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: 760b77c7</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/760b77c72122181307e3333fe28bcaf5af9aa4c99d874730252860020e79583e" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/760b77c72122181307e3333fe28bcaf5af9aa4c99d874730252860020e79583e"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Be the Problem-Solver No Team Can Afford to Lose</span> 
+            <span class="cert-name">Be the Problem-Solver No Team Can Afford to Lose</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: b34b223c</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/b34b223c9bb5f875173f923d94f0c20c979b8562783b16cf67e5435024dd82a8" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/b34b223c9bb5f875173f923d94f0c20c979b8562783b16cf67e5435024dd82a8"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
           <li>
-            <span class="cert-name">Create a Website for Online Orders Using React.js</span> 
+            <span class="cert-name">Create a Website for Online Orders Using React.js</span>
             <span class="cert-meta">· LinkedIn Learning (Aug 2026)</span>
             <span class="cert-id">ID: c64dce7d</span>
-            <a class="cert-verify-link" href="https://www.linkedin.com/learning/certificates/c64dce7dfd4e3428b7076230c539848725efbfbb27caae97e7918bc7a4932d56" target="_blank" rel="noopener">Verify ↗</a>
+            <a class="cert-verify-link"
+              href="https://www.linkedin.com/learning/certificates/c64dce7dfd4e3428b7076230c539848725efbfbb27caae97e7918bc7a4932d56"
+              target="_blank" rel="noopener">Verify ↗</a>
           </li>
         </ul>
       </div>
@@ -852,11 +994,13 @@
       <h2 class="section-title">Additional Information</h2>
       <ul class="info-list">
         <li><strong>Languages:</strong> English (Professional working proficiency), Urdu (Native)</li>
-        <li><strong>Availability:</strong> Open to remote, hybrid, or relocation roles (US/EU/APAC overlap) — full-time or contract</li>
+        <li><strong>Availability:</strong> Open to remote, hybrid, or relocation roles (US/EU/APAC overlap) — full-time
+          or contract</li>
       </ul>
     </section>
 
   </main>
 
 </body>
+
 </html>
