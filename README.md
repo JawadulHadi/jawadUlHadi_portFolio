@@ -2,8 +2,8 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="banners/repo-banner-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="banners/repo-banner-light.png">
+    <source media="(prefers-color-scheme: dark)" srcset="banners/banner-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="banners/banner-light.png">
     <img alt="Jawad Ul Hadi — Senior Backend Engineer | Architecting Scalable SaaS & AI Platforms" src="banners/repo-banner-light.png" width="100%">
   </picture>
 </p>
