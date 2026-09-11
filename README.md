@@ -1,4 +1,4 @@
-# **Jawad Ul Hadi — Senior Backend Engineer & Solutions Architect**
+# **Jawad Ul Hadi — Backend Lead / Architect - AI-First Systems**
 
 <p align="center">
   <picture>
