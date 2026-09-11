@@ -214,6 +214,8 @@
     .issuer-ibm { background: rgba(15, 98, 254, 0.15); color: #38bdf8; border: 1px solid rgba(15, 98, 254, 0.3); }
     .issuer-linkedin { background: rgba(10, 102, 194, 0.15); color: #38bdf8; border: 1px solid rgba(10, 102, 194, 0.3); }
     .issuer-django { background: rgba(68, 183, 139, 0.15); color: #10b981; border: 1px solid rgba(68, 183, 139, 0.3); }
+    .issuer-microsoft { background: rgba(0, 164, 239, 0.15); color: #00a4ef; border: 1px solid rgba(0, 164, 239, 0.3); }
+    .issuer-cognitiveclass { background: rgba(148, 163, 184, 0.15); color: #94a3b8; border: 1px solid rgba(148, 163, 184, 0.3); }
     .cert-card-date {
       font-size: 0.76rem;
       color: var(--text-muted);
@@ -383,7 +385,7 @@
           <a class="nav-link" href="case-study.html">Case Study</a>
           <a class="nav-link" href="projects.html">Projects</a>
           <a class="nav-link" href="index.html#github-stats">GitHub</a>
-          <a class="nav-link active" href="certifications.html" style="color: var(--gold); font-weight: 600;">Certifications Gallery (31)</a>
+          <a class="nav-link active" href="certifications.html" style="color: var(--gold); font-weight: 600;">Certifications Gallery (54)</a>
           <a class="nav-link" href="index.html#contact">Contact</a>
         </nav>
 
@@ -422,16 +424,20 @@
 
       <div class="cert-stats-row">
         <div class="cert-stat-card">
-          <div class="cert-stat-num">31</div>
+          <div class="cert-stat-num">54</div>
           <div class="cert-stat-label">Total Credentials</div>
         </div>
         <div class="cert-stat-card">
-          <div class="cert-stat-num">16</div>
+          <div class="cert-stat-num">35</div>
           <div class="cert-stat-label">Agentic AI &amp; LLMs</div>
         </div>
         <div class="cert-stat-card">
-          <div class="cert-stat-num">9</div>
-          <div class="cert-stat-label">IBM Credly Badges</div>
+          <div class="cert-stat-num">14</div>
+          <div class="cert-stat-label">IBM SkillsBuild</div>
+        </div>
+        <div class="cert-stat-card">
+          <div class="cert-stat-num">8</div>
+          <div class="cert-stat-label">Cloud &amp; DevOps</div>
         </div>
         <div class="cert-stat-card">
           <div class="cert-stat-num">4</div>
@@ -450,11 +456,12 @@
     <!-- TOOLBAR CONTROLS -->
     <div class="cert-toolbar">
       <div class="cert-filter-group" id="filterGroup">
-        <button class="cert-tab-btn active" data-filter="all">All (31)</button>
-        <button class="cert-tab-btn" data-filter="ai">Agentic AI &amp; LLMs (16)</button>
-        <button class="cert-tab-btn" data-filter="ibm">IBM SkillsBuild (9)</button>
+        <button class="cert-tab-btn active" data-filter="all">All (54)</button>
+        <button class="cert-tab-btn" data-filter="ai">Agentic AI &amp; LLMs (35)</button>
+        <button class="cert-tab-btn" data-filter="ibm">IBM SkillsBuild (14)</button>
+        <button class="cert-tab-btn" data-filter="cloud">Cloud &amp; DevOps (8)</button>
         <button class="cert-tab-btn" data-filter="django">Django &amp; Full-Stack (4)</button>
-        <button class="cert-tab-btn" data-filter="leadership">Professional Mastery (2)</button>
+        <button class="cert-tab-btn" data-filter="leadership">Professional Mastery (4)</button>
       </div>
 
       <div class="cert-search-bar">
@@ -948,6 +955,305 @@
         category: "ai",
         categoryLabel: "Agentic AI & LLMs",
         badgeType: "Verified Certificate"
+      },
+      {
+        id: 32,
+        title: "Gen AI: Beyond the Chatbot",
+        issuer: "Google",
+        issuerClass: "issuer-google",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "26965991",
+        url: "https://www.skills.google/public_profiles/e7e2ac08-758d-47f5-af65-589153c6b873/badges/26965991",
+        category: "ai",
+        categoryLabel: "Google / GenAI",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 33,
+        title: "How to Build Your First AI Agent with ChatGPT",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "891cea008560a7a74abc4396055f64a5a4e96cb2f1a96bd064f32dff4e00f73a",
+        url: "https://www.linkedin.com/learning/certificates/891cea008560a7a74abc4396055f64a5a4e96cb2f1a96bd064f32dff4e00f73a",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 34,
+        title: "AI for Senior Leaders: Driving Strategy, Innovation, and Business Transformation",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "795b0f97dc40ba040309f80025937a970ff3e33eb9183052d362ee7061bab974",
+        url: "https://www.linkedin.com/learning/certificates/795b0f97dc40ba040309f80025937a970ff3e33eb9183052d362ee7061bab974",
+        category: "ai leadership",
+        categoryLabel: "Professional Mastery",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 35,
+        title: "What Is Microsoft Copilot? An Overview of Microsoft's AI Tools",
+        issuer: "LinkedIn Learning",
+        issuerClass: "issuer-linkedin",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "58904718f5d955ce64f2f56f0b6118b7eff6961d328e1a73e09bd7be08771c19",
+        url: "https://www.linkedin.com/learning/certificates/58904718f5d955ce64f2f56f0b6118b7eff6961d328e1a73e09bd7be08771c19",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 36,
+        title: "Claude Academy: Claude 101",
+        issuer: "Anthropic",
+        issuerClass: "issuer-anthropic",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "172ea8fbee8244e56077f6eb5015b998",
+        url: "https://academy.claude.com/verify/172ea8fbee8244e56077f6eb5015b998",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 37,
+        title: "Claude Academy: Introduction to Claude Cowork",
+        issuer: "Anthropic",
+        issuerClass: "issuer-anthropic",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "16e3962cbe28431a9e8bf03e4968ad60",
+        url: "https://academy.claude.com/verify/16e3962cbe28431a9e8bf03e4968ad60",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 38,
+        title: "Create Your First Gemini Enterprise Application",
+        issuer: "Google",
+        issuerClass: "issuer-google",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "f158ced5-5067-46a0-9f9c-2479bf31cff6",
+        url: "https://www.credly.com/badges/f158ced5-5067-46a0-9f9c-2479bf31cff6/linked_in_profile",
+        category: "ai",
+        categoryLabel: "Google / GenAI",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 39,
+        title: "Big Data Foundations - Level 1",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "dcfadd4e-959b-4e1d-b17d-b2f9f0467a18",
+        url: "https://www.credly.com/badges/dcfadd4e-959b-4e1d-b17d-b2f9f0467a18/linked_in_profile",
+        category: "ibm",
+        categoryLabel: "IBM Professional / Data",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 40,
+        title: "Python for Data Science",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "96c841b8-592c-4d0e-9756-ac37bbaa431d",
+        url: "https://www.credly.com/badges/96c841b8-592c-4d0e-9756-ac37bbaa431d/linked_in_profile",
+        category: "ibm",
+        categoryLabel: "IBM Professional / Data",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 41,
+        title: "Claude Academy: Claude Code in Action",
+        issuer: "Anthropic",
+        issuerClass: "issuer-anthropic",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "ff1b2c578e9794408a0ba9c5beedc928",
+        url: "https://academy.claude.com/verify/ff1b2c578e9794408a0ba9c5beedc928",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 42,
+        title: "Claude Academy: AI Fluency: Framework & Foundations",
+        issuer: "Anthropic",
+        issuerClass: "issuer-anthropic",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "c89048831817ea71a606cafefec2b778",
+        url: "https://academy.claude.com/verify/c89048831817ea71a606cafefec2b778",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 43,
+        title: "Claude Academy: Claude Code 101",
+        issuer: "Anthropic",
+        issuerClass: "issuer-anthropic",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "f0b999570f254c062dbba8fb880ab4fe",
+        url: "https://academy.claude.com/verify/f0b999570f254c062dbba8fb880ab4fe",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 44,
+        title: "Claude Academy: Claude Platform 101",
+        issuer: "Anthropic",
+        issuerClass: "issuer-anthropic",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "a46195050c356de763f41c151bee30d1",
+        url: "https://academy.claude.com/verify/a46195050c356de763f41c151bee30d1",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 45,
+        title: "Claude Academy: AI Capabilities and Limitations",
+        issuer: "Anthropic",
+        issuerClass: "issuer-anthropic",
+        date: "Aug 2026",
+        badge: "favicon.svg",
+        credentialId: "6599e678fb2dfe18b544458d8581d23c",
+        url: "https://academy.claude.com/verify/6599e678fb2dfe18b544458d8581d23c",
+        category: "ai",
+        categoryLabel: "Agentic AI & LLMs",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 46,
+        title: "Introduction to AI Concepts",
+        issuer: "Microsoft Learning",
+        issuerClass: "issuer-microsoft",
+        date: "Sep 2026",
+        badge: "favicon.svg",
+        credentialId: "JawadUlHadi-0198/WM5FRA6N",
+        url: "https://learn.microsoft.com/api/achievements/share/en-us/JawadUlHadi-0198/WM5FRA6N",
+        category: "ai cloud",
+        categoryLabel: "Microsoft Learning / Cloud",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 47,
+        title: "Introduction to Natural Language Processing Concepts",
+        issuer: "Microsoft Learning",
+        issuerClass: "issuer-microsoft",
+        date: "Sep 2026",
+        badge: "favicon.svg",
+        credentialId: "JawadUlHadi-0198/8VSNEQTW",
+        url: "https://learn.microsoft.com/api/achievements/share/en-us/JawadUlHadi-0198/8VSNEQTW",
+        category: "ai cloud",
+        categoryLabel: "Microsoft Learning / Cloud",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 48,
+        title: "Introduction to AI Speech Concepts",
+        issuer: "Microsoft Learning",
+        issuerClass: "issuer-microsoft",
+        date: "Sep 2026",
+        badge: "favicon.svg",
+        credentialId: "JawadUlHadi-0198/NQLXKEEF",
+        url: "https://learn.microsoft.com/api/achievements/share/en-us/JawadUlHadi-0198/NQLXKEEF",
+        category: "ai cloud",
+        categoryLabel: "Microsoft Learning / Cloud",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 49,
+        title: "Data Science Foundations - Level 1",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Sep 2026",
+        badge: "favicon.svg",
+        credentialId: "c010bf5b-e655-4a5a-b203-25ccf1db87aa",
+        url: "https://www.credly.com/badges/c010bf5b-e655-4a5a-b203-25ccf1db87aa/linked_in_profile",
+        category: "ibm",
+        categoryLabel: "IBM Professional / Data",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 50,
+        title: "Introduction to the Microsoft Azure Well-Architected Framework",
+        issuer: "Microsoft Learning",
+        issuerClass: "issuer-microsoft",
+        date: "Sep 2026",
+        badge: "favicon.svg",
+        credentialId: "JawadUlHadi-0198/H2TBFAA8",
+        url: "https://learn.microsoft.com/en-us/users/jawadulhadi-0198/achievements/h2tbfaa8",
+        category: "cloud",
+        categoryLabel: "Cloud & DevOps",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 51,
+        title: "Microsoft Azure Well-Architected Framework - Reliability",
+        issuer: "Microsoft Learning",
+        issuerClass: "issuer-microsoft",
+        date: "Sep 2026",
+        badge: "favicon.svg",
+        credentialId: "JawadUlHadi-0198/EGXWB6CP",
+        url: "https://learn.microsoft.com/en-us/users/jawadulhadi-0198/achievements/egxwb6cp",
+        category: "cloud",
+        categoryLabel: "Cloud & DevOps",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 52,
+        title: "Introduction to Containers, Kubernetes, and OpenShift",
+        issuer: "Cognitive Class",
+        issuerClass: "issuer-cognitiveclass",
+        date: "Sep 2026",
+        badge: "favicon.svg",
+        credentialId: "7e5838e4e64d4f96b129f7a79d5671a9",
+        url: "https://courses.cognitiveclass.ai/certificates/7e5838e4e64d4f96b129f7a79d5671a9",
+        category: "cloud",
+        categoryLabel: "Cloud & DevOps",
+        badgeType: "Verified Certificate"
+      },
+      {
+        id: 53,
+        title: "Containers & Kubernetes Essentials",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Sep 2026",
+        badge: "favicon.svg",
+        credentialId: "13300660-220e-4a01-ad7e-c4be671babf4",
+        url: "https://www.credly.com/badges/13300660-220e-4a01-ad7e-c4be671babf4/linked_in_profile",
+        category: "ibm cloud",
+        categoryLabel: "IBM Professional / Cloud",
+        badgeType: "Credly Badge"
+      },
+      {
+        id: 54,
+        title: "Getting Started with Microservices with Istio and IBM Cloud Kubernetes Service",
+        issuer: "IBM SkillsBuild",
+        issuerClass: "issuer-ibm",
+        date: "Sep 2026",
+        badge: "favicon.svg",
+        credentialId: "ba36cf99-6006-4ad8-a43a-f5a479ae4024",
+        url: "https://www.credly.com/badges/ba36cf99-6006-4ad8-a43a-f5a479ae4024/linked_in_profile",
+        category: "ibm cloud",
+        categoryLabel: "IBM Professional / Cloud",
+        badgeType: "Credly Badge"
       }
     ];
 
