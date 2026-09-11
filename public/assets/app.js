@@ -188,6 +188,40 @@
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  // Mobile nav toggle (hamburger)
+  (function initMobileNav() {
+    var toggle = document.getElementById("navToggle");
+    var nav = document.getElementById("mainNav");
+    if (!toggle || !nav) return;
+
+    function closeNav() {
+      nav.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+    function openNav() {
+      nav.classList.add("is-open");
+      toggle.setAttribute("aria-expanded", "true");
+    }
+
+    toggle.addEventListener("click", function () {
+      if (nav.classList.contains("is-open")) closeNav();
+      else openNav();
+    });
+
+    // Close after choosing a link, and on outside click
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeNav);
+    });
+    document.addEventListener("click", function (e) {
+      if (!nav.classList.contains("is-open")) return;
+      if (nav.contains(e.target) || toggle.contains(e.target)) return;
+      closeNav();
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 900) closeNav();
+    });
+  })();
+
   // Scroll reveal
   (function () {
     var els = document.querySelectorAll("[data-reveal]");
@@ -1011,8 +1045,17 @@
           isConciergeListening = false;
           if (voiceMicBtn) voiceMicBtn.classList.remove("is-recording");
           voiceWidgetContainer.classList.remove("is-listening");
-          if (voiceStatusText)
-            voiceStatusText.textContent = "Ready to speak or listen";
+          var msg = "Ready to speak or listen";
+          if (e && e.error === "not-allowed") {
+            msg = "Microphone access is blocked — allow it in your browser's site settings and try again.";
+          } else if (e && e.error === "no-speech") {
+            msg = "Didn't catch that — try speaking again.";
+          } else if (e && e.error === "audio-capture") {
+            msg = "No microphone found — check that one is connected.";
+          } else if (e && e.error === "network") {
+            msg = "Speech recognition needs an internet connection.";
+          }
+          if (voiceStatusText) voiceStatusText.textContent = msg;
         };
 
         conciergeRecognition.onend = function () {
@@ -1427,28 +1470,24 @@
         q.indexOf("docs to voice") !== -1 ||
         q.indexOf("read document") !== -1
       ) {
-        switchVoiceMode("docs-to-voice");
-        openVoiceDrawer();
+        showDocsNotConnected("Docs to Voice");
         match = {
           spoken:
-            "Switching to Docs to Voice mode. I am loading your active Google Doc and preparing to read it aloud.",
-          text: "🔊 <strong>Docs to Voice Activated</strong><br><br>Ready to read your active Google Doc aloud at your customized playback speed.",
+            "Docs to Voice isn't connected yet — no Google account is linked.",
+          text: "🔊 <strong>Docs to Voice</strong> isn't connected yet — no Google account is linked to this session.",
         };
-        setTimeout(playDocumentAloud, 1000);
       } else if (
         q.indexOf("dictate") !== -1 ||
         q.indexOf("voice to docs") !== -1 ||
         q.indexOf("record note") !== -1 ||
         q.indexOf("write to doc") !== -1
       ) {
-        switchVoiceMode("voice-to-docs");
-        openVoiceDrawer();
+        showDocsNotConnected("Voice to Docs");
         match = {
           spoken:
-            "Switching to Voice to Docs mode. Ready for your voice dictation.",
-          text: "🎙️ <strong>Voice to Docs Activated</strong><br><br>Speak your architectural notes or sections to stream directly into Google Docs.",
+            "Voice to Docs isn't connected yet — no Google account is linked.",
+          text: "🎙️ <strong>Voice to Docs</strong> isn't connected yet — no Google account is linked to this session.",
         };
-        setTimeout(toggleDictation, 1000);
       } else if (
         q.indexOf("fallback") !== -1 ||
         q.indexOf("3-tier") !== -1 ||
@@ -1556,14 +1595,23 @@
         switchVoiceMode("concierge");
       });
     }
+    // Docs-to-Voice / Voice-to-Docs require a connected Google account (OAuth),
+    // which this site does not have configured. Rather than open a picker UI
+    // that can never load a real document, tell the visitor honestly.
+    function showDocsNotConnected(featureLabel) {
+      switchVoiceMode("concierge");
+      if (voiceStatusText) {
+        voiceStatusText.textContent = featureLabel + " isn't connected yet — no Google account is linked.";
+      }
+    }
     if (voiceTabDocsToVoice) {
       voiceTabDocsToVoice.addEventListener("click", function () {
-        switchVoiceMode("docs-to-voice");
+        showDocsNotConnected("Docs to Voice");
       });
     }
     if (voiceTabVoiceToDocs) {
       voiceTabVoiceToDocs.addEventListener("click", function () {
-        switchVoiceMode("voice-to-docs");
+        showDocsNotConnected("Voice to Docs");
       });
     }
 
@@ -1727,6 +1775,7 @@
             conciergeRecognition.start();
           } catch (e) {
             console.warn("Recognition start error:", e);
+            if (voiceStatusText) voiceStatusText.textContent = "Couldn't start the microphone — try again in a moment.";
           }
         }
       });
@@ -5185,12 +5234,22 @@
   (function () {
     var ghReposCount = document.getElementById("ghReposCount");
     var ghFollowersCount = document.getElementById("ghFollowersCount");
+    var ghPublicGistsCount = document.getElementById("ghPublicGistsCount");
+    var ghMemberSinceCount = document.getElementById("ghMemberSinceCount");
+    var ghReposGrid = document.getElementById("githubReposGrid");
     var statsCardImg = document.getElementById("ghStatsCardImg");
     var topLangsImg = document.getElementById("ghTopLangsCardImg");
     var streakImg = document.getElementById("ghStreakCardImg");
     var activityGraphImg = document.getElementById("ghActivityGraphImg");
 
-    // Fetch real-time live GitHub API data
+    function escapeHtmlGh(str) {
+      var div = document.createElement("div");
+      div.textContent = str == null ? "" : String(str);
+      return div.innerHTML;
+    }
+
+    // Fetch real-time live GitHub profile data — every number below comes from this
+    // response; nothing on this section is hardcoded.
     if (window.fetch) {
       fetch("https://api.github.com/users/JawadulHadi", {
         headers: { "Accept": "application/vnd.github.v3+json" }
@@ -5203,10 +5262,63 @@
           if (data && typeof data.followers === "number" && ghFollowersCount) {
             ghFollowersCount.textContent = data.followers;
           }
+          if (data && typeof data.public_gists === "number" && ghPublicGistsCount) {
+            ghPublicGistsCount.textContent = data.public_gists;
+          }
+          if (data && data.created_at && ghMemberSinceCount) {
+            ghMemberSinceCount.textContent = new Date(data.created_at).getFullYear();
+          }
         })
         .catch(function () {
-          // Graceful fallback to cached values
+          if (ghReposCount) ghReposCount.textContent = "—";
+          if (ghFollowersCount) ghFollowersCount.textContent = "—";
+          if (ghPublicGistsCount) ghPublicGistsCount.textContent = "—";
+          if (ghMemberSinceCount) ghMemberSinceCount.textContent = "—";
         });
+
+      // Fetch real, live repository list — replaces any static/hardcoded repo cards.
+      if (ghReposGrid) {
+        fetch("https://api.github.com/users/JawadulHadi/repos?sort=updated&per_page=6", {
+          headers: { "Accept": "application/vnd.github.v3+json" }
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (repos) {
+            if (!Array.isArray(repos) || !repos.length) {
+              ghReposGrid.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">No public repositories returned by GitHub right now.</p>';
+              return;
+            }
+            var langDotClass = function (lang) {
+              if (!lang) return "";
+              var l = lang.toLowerCase();
+              if (l === "python") return "python";
+              if (l === "typescript" || l === "javascript") return "typescript";
+              return "";
+            };
+            var html = repos.map(function (repo) {
+              var desc = repo.description ? escapeHtmlGh(repo.description) : "No description provided.";
+              var lang = repo.language ? escapeHtmlGh(repo.language) : "N/A";
+              return (
+                '<div class="github-repo-item">' +
+                  '<div>' +
+                    '<h4 class="github-repo-title">' +
+                      '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>' +
+                      escapeHtmlGh(repo.name) +
+                    '</h4>' +
+                    '<p class="github-repo-desc">' + desc + '</p>' +
+                  '</div>' +
+                  '<div class="github-repo-meta">' +
+                    '<span class="github-lang-pill"><span class="github-lang-dot ' + langDotClass(repo.language) + '"></span> ' + lang + '</span>' +
+                    '<a href="' + repo.html_url + '" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: none; font-weight: 600;">Repository &#8599;</a>' +
+                  '</div>' +
+                '</div>'
+              );
+            }).join("");
+            ghReposGrid.innerHTML = html;
+          })
+          .catch(function () {
+            ghReposGrid.innerHTML = '<p style="color: var(--text-muted); font-size: 0.85rem;">Could not load repositories from GitHub right now — <a href="https://github.com/JawadulHadi?tab=repositories" target="_blank" rel="noopener noreferrer" style="color: var(--gold);">view them directly on GitHub</a>.</p>';
+          });
+      }
     }
 
     // Adapt stats cards to theme changes

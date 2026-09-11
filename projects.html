@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    (function () {
+      try {
+        var validThemes = ["light", "dark", "ai-classic", "cyber"];
+        var stored = localStorage.getItem("jh-theme");
+        var theme = (stored && validThemes.indexOf(stored) !== -1)
+          ? stored
+          : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Jawad Ul Hadi</title>
+  <meta name="description"
+    content="Personal flagship projects, the Chrome extension suite, and the full Qeloma open-source product line built by Jawad Ul Hadi.">
+  <meta name="author" content="Jawad Ul Hadi">
+
+  <!-- Immediate Zero-Latency Favicon (Inline Data-URI + Preloaded SVG) -->
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230a1628'/%3E%3Ctext x='50' y='64' font-family='sans-serif' font-weight='800' font-size='32' fill='%23b9843f' text-anchor='middle' letter-spacing='1'%3EJUH%3C/text%3E%3C/svg%3E"
+    type="image/svg+xml">
+  <link rel="alternate icon" href="favicon.svg" type="image/svg+xml" fetchpriority="high">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="preload" href="favicon.svg" as="image" type="image/svg+xml">
+
+  <meta name="theme-color" content="#f5f3f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://jawadulhadi-portfolio.vercel.app/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jawad Ul Hadi — Senior Backend Engineer | Scalable SaaS &amp; AI Platforms">
+  <meta property="og:description"
+    content="Personal flagship projects, the Chrome extension suite, and the full Qeloma open-source product line built by Jawad Ul Hadi.">
+  <meta property="og:url" content="https://jawadulhadi-portfolio.vercel.app/">
+  <meta property="og:image" content="https://jawadulhadi-portfolio.vercel.app/banners/repo-banner-dark.png">
+  <meta property="og:image:width" content="2560">
+  <meta property="og:image:height" content="1280">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jawadulhadi-portfolio.vercel.app/banners/repo-banner-dark.png">
+
+  <!-- Critical Anti-FOUC Paint Stylesheet -->
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+
+    html[data-theme="light"],
+    html:not([data-theme="dark"]):not([data-theme="cyber"]):not([data-theme="ai-classic"]) {
+      background-color: #f5f3f0;
+      color: #0a1628;
+      color-scheme: light;
+    }
+
+    html[data-theme="dark"] {
+      background-color: #0a1628;
+      color: #f5f3f0;
+      color-scheme: dark;
+    }
+
+    html[data-theme="ai-classic"] {
+      background-color: #f8fafc;
+      color: #0f172a;
+      color-scheme: light;
+    }
+
+    html[data-theme="cyber"] {
+      background-color: #050814;
+      color: #e2f1ff;
+      color-scheme: dark;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background-color: inherit;
+      color: inherit;
+    }
+
+    @keyframes jhSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jawad Ul Hadi",
+  "jobTitle": "Senior Backend Engineer",
+  "description": "Senior Backend Engineer | Architecting Scalable SaaS & AI Platforms",
+  "url": "https://jawadulhadi-portfolio.vercel.app/",
+  "email": "jawadulhadicc@gmail.com",
+  "telephone": "+923467248414",
+  "address": { "@type": "PostalAddress", "addressLocality": "Islamabad", "addressCountry": "PK" },
+  "worksFor": { "@type": "Organization", "name": "MicroAgility Services (Pvt) Ltd." },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Government College University, Faisalabad" },
+  "sameAs": [
+    "https://www.linkedin.com/in/jawad-ul-hadi",
+    "https://github.com/JawadulHadi",
+    "https://orcid.org/0009-0007-1317-4615"
+  ]
+}
+</script>
+
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+<span id="top"></span>
+<header class="header">
+    <div class="header-in">
+      <a class="brand" href="index.html#top" aria-label="Jawad Ul Hadi — home">
+        <span class="monogram" aria-hidden="true">JUH</span>
+        <span>Jawad Ul Hadi</span>
+      </a>
+      <nav class="main-nav" aria-label="Primary" id="mainNav">
+        <a href="index.html#about">About</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="case-study.html">Case Study</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#services">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#github-stats">GitHub</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="header-actions">
+        <a class="btn btn-outline" href="certifications.html" title="Explore Professional Certifications Gallery (54 Verified)">Certifications Gallery ↗</a>
+        <a class="btn btn-outline js-resume-download" href="resume.pdf" target="_blank"
+          download="Jawad_Ul_Hadi_Resume.pdf" title="Download & View PDF Résumé">Resume</a>
+
+        <!-- PROPER THEME SWITCHER DROPDOWN -->
+        <div class="theme-selector" id="themeSelector">
+          <button class="theme-selector-trigger" type="button" id="themeSelectorBtn"
+            aria-haspopup="true" aria-expanded="false" aria-controls="themeDropdownMenu"
+            aria-label="Select Color Theme" title="Switch visual theme">
+            <span class="theme-trigger-icon" id="themeTriggerIcon" aria-hidden="true">
+              <!-- Default Icon -->
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.4"></circle><path d="M12 2v2.4M12 19.6V22M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2 12h2.4M19.6 12H22M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"></path></svg>
+            </span>
+            <span class="theme-trigger-label" id="themeTriggerLabel">Theme</span>
+            <svg class="theme-trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+
+          <div class="theme-dropdown" id="themeDropdownMenu" role="menu" aria-labelledby="themeSelectorBtn">
+            <div class="theme-dropdown-header">Visual Palette</div>
+            <div class="theme-options-list">
+              <button type="button" class="theme-opt-btn" data-theme-value="light" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-light" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">Classic Light</span>
+                    <span class="theme-opt-desc">Warm cream &amp; gold</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+
+              <button type="button" class="theme-opt-btn" data-theme-value="dark" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-dark" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">Slate Dark</span>
+                    <span class="theme-opt-desc">Deep navy &amp; gold</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+
+              <button type="button" class="theme-opt-btn" data-theme-value="ai-classic" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-ai" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">AI White &amp; Azure</span>
+                    <span class="theme-opt-desc">Slate white &amp; blue</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+
+              <button type="button" class="theme-opt-btn" data-theme-value="cyber" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-cyber" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">Cyber Synth</span>
+                    <span class="theme-opt-desc">Midnight &amp; neon cyan</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+<main>
+  <section class="section" style="padding-top: 2.5rem;">
+    <div class="container">
+      <a href="index.html" style="color: var(--text-muted); font-size: 0.85rem;">&larr; Back to Portfolio</a>
+      <div class="section-head" data-reveal="" style="margin-top: 1.5rem;">
+        <h2 class="section-title">Personal Projects &amp; Qeloma Suite</h2>
+        <p class="section-note">Chrome extension suite, AI gateway experiments, and the full Qeloma product line</p>
+      </div>
+<div class="work-grid">
+
+          <!-- Flagship Initiative: 10 Google Chrome Extensions -->
+          <article class="work-card" style="border-color: var(--gold);">
+            <div
+              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag"
+                style="background: color-mix(in srgb, var(--gold) 20%, transparent); color: var(--gold); border-color: var(--gold); margin-bottom: 0;">Flagship
+                Initiative · In Active Build</span>
+              <div class="work-card-api-status" data-card-api="chrome-suite">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Relay: 200 OK</span>
+                <span class="card-api-latency">14ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Google Chrome Extension Pack <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="kicker">10-Extension AI &amp; Developer Productivity Suite</p>
+            <p class="desc">A coordinated suite of <strong>10 purpose-built Google Chrome extensions</strong> targeting
+              developer and AI workflows: (1) Agentic Context Extractor, (2) Live API Request Interceptor &amp; Mock
+              Sandbox, (3) Schema &amp; JWT Decoder HUD, (4) Prompt Engineering Workbench &amp; Diff Lab, (5) Token
+              &amp; Cost Estimator HUD, (6) Smart Document/PDF Scraper, (7) Quick LLM Model Switcher
+              (OpenAI/Gemini/Claude), (8) Webhook Dispatcher &amp; Relay, (9) Cookie &amp; Session Isolation Switcher,
+              and (10) Automated Browser Workflow Recorder.</p>
+            <div class="stat-strip">
+              <span><b>10</b> Extensions</span>
+              <span><b>Manifest V3</b></span>
+              <span><b>Cross-LLM</b> Engine</span>
+            </div>
+            <div class="chip-row">
+              <span class="tag">Chrome Extension API</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Manifest V3</span>
+              <span class="tag">Gemini API</span>
+              <span class="tag">WebSockets</span>
+              <span class="tag">IndexedDB</span>
+            </div>
+          </article>
+
+          <!-- 3-Tier AI Fallback Architecture -->
+          <article class="work-card">
+            <div
+              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Personal Reference Architecture</span>
+              <div class="work-card-api-status" data-card-api="ai-gateway">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Gateway: 200 OK</span>
+                <span class="card-api-latency">18ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">3-Tier Fallback AI Gateway <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="kicker">Provider-Agnostic LLM Engine</p>
+            <p class="desc">High-reliability AI orchestration engine implementing automatic tier fallbacks: Level 1
+              (Exponential backoff &amp; multi-provider retries across OpenAI/Gemini/Claude), Level 2 (RAG grounding
+              with indexed embeddings), and Level 3 (Deterministic rule-based heuristics) ensuring zero hard failures in
+              critical production loops.</p>
+            <div class="chip-row">
+              <span class="tag">Node.js</span>
+              <span class="tag">Gemini Flash</span>
+              <span class="tag">OpenAI</span>
+              <span class="tag">Claude 3.7</span>
+              <span class="tag">LangChain</span>
+            </div>
+          </article>
+
+          <!-- Idempotent Queue Spine -->
+          <article class="work-card">
+            <div
+              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Distributed Systems</span>
+              <div class="work-card-api-status" data-card-api="queue-spine">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Worker: 200 OK</span>
+                <span class="card-api-latency">9ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Idempotent Queue Spine <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="kicker">BullMQ + Redis Background Backbone</p>
+            <p class="desc">Robust asynchronous task orchestrator handling heavy OCR extraction, batch email delivery,
+              and multi-tenant webhook dispatches with HMAC signature verification, dead-letter queues, and guaranteed
+              exactly-once processing semantics.</p>
+            <div class="chip-row">
+              <span class="tag">BullMQ</span>
+              <span class="tag">Redis</span>
+              <span class="tag">NestJS</span>
+              <span class="tag">Postal SMTP</span>
+              <span class="tag">HMAC</span>
+            </div>
+          </article>
+
+          <!-- Qeloma Suite items -->
+          <a class="work-card" href="https://github.com/Qeloma/qeloma-verdict" target="_blank"
+            rel="noopener noreferrer">
+            <div
+              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+              <div class="work-card-api-status" data-card-api="qeloma-verdict">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Audit API: 200 OK</span>
+                <span class="card-api-latency">15ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Qeloma Verdict <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="desc">Tamper-evident decision engine generating reasoning receipts with cryptographic audit trails
+              — built for EU AI Act transparency and record-keeping.</p>
+            <div class="chip-row"><span class="tag">Node.js</span><span class="tag">Crypto</span><span
+                class="tag">Audit</span></div>
+          </a>
+
+          <a class="work-card" href="https://github.com/Qeloma/qeloma-ocr" target="_blank" rel="noopener noreferrer">
+            <div
+              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+              <div class="work-card-api-status" data-card-api="qeloma-ocr">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Vision API: 200 OK</span>
+                <span class="card-api-latency">21ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Qeloma OCR <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="desc">Client-side OCR with per-word confidence scores — Tesseract.js, Gemini vision, or a hybrid
+              of both for intelligent document processing.</p>
+            <div class="chip-row"><span class="tag">OCR</span><span class="tag">Gemini</span><span
+                class="tag">Tesseract.js</span></div>
+          </a>
+
+          <a class="work-card" href="https://qelomalens.vercel.app/" target="_blank"
+            rel="noopener noreferrer">
+            <div
+              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+              <div class="work-card-api-status" data-card-api="qeloma-ocr">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Lens RAG: 200 OK</span>
+                <span class="card-api-latency">24ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Qeloma Lens Studio <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="desc">AI-powered document analysis — summarize, extract, and compare over PDFs, DOCX, and images,
+              powered by Gemini with rule-based fallbacks.</p>
+            <div class="chip-row"><span class="tag">Gemini</span><span class="tag">RAG</span><span
+                class="tag">Fallbacks</span></div>
+          </a>
+
+          <a class="work-card" href="https://qeloma-voice.vercel.app/" target="_blank"
+            rel="noopener noreferrer">
+            <div
+              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+              <div class="work-card-api-status" data-card-api="ai-gateway">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">Live Audio: 200 OK</span>
+                <span class="card-api-latency">29ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Qeloma Voice Studio <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="desc">Real-time voice analyst that answers questions grounded in your own documents via the Gemini
+              Live API with streaming audio.</p>
+            <div class="chip-row"><span class="tag">Gemini Live</span><span class="tag">Voice</span><span
+                class="tag">RAG</span></div>
+          </a>
+
+          <a class="work-card" href="https://qeloma-shift.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <div
+              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+              <div class="work-card-api-status" data-card-api="qeloma-shift">
+                <span class="mini-dot"></span>
+                <span class="card-api-label">AST Diff: 200 OK</span>
+                <span class="card-api-latency">16ms</span>
+              </div>
+            </div>
+            <h3 style="margin-top: 0.8rem;">Qeloma Shift <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="desc">Semantic change-intelligence engine — diffs contracts and configs at the meaning level,
+              ranks changes by severity, and explains business impact.</p>
+            <div class="chip-row"><span class="tag">NLP</span><span class="tag">Diffing</span><span
+                class="tag">Scoring</span></div>
+          </a>
+
+          <a class="work-card" href="https://github.com/Qeloma/qeloma-cover-studio" target="_blank" rel="noopener noreferrer">
+            <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+            <h3 style="margin-top: 0.8rem;">Qeloma Cover Studio <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="desc">Browser-based LinkedIn banner studio with automated AI vector composition — generates
+              on-brand cover art from a short prompt, no design tools required.</p>
+            <div class="chip-row"><span class="tag">AI Vector Art</span><span class="tag">Browser-Based</span><span
+                class="tag">Automation</span></div>
+          </a>
+
+          <a class="work-card" href="https://github.com/Qeloma/qeloma_room_booking_app" target="_blank" rel="noopener noreferrer">
+            <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
+            <h3 style="margin-top: 0.8rem;">Room Booking Engine <svg viewBox="0 0 24 24">
+                <path d="M7 17 17 7M8 7h9v9"></path>
+              </svg></h3>
+            <p class="desc">High-concurrency resource management and scheduling backplane — handles overlapping
+              booking requests with conflict-safe reservation locking.</p>
+            <div class="chip-row"><span class="tag">Scheduling</span><span class="tag">Concurrency</span><span
+                class="tag">Backend</span></div>
+          </a>
+
+        </div>
+    </div>
+  </section>
+
+</main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span class="monogram" aria-hidden="true">JUH</span>
+      <p>Jawad Ul Hadi — Backend Lead / Architect. <a href="index.html" style="color: var(--gold);">Back to Portfolio</a></p>
+      <p class="copyright">&copy; 2026 Jawad Ul Hadi. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js" defer></script>
+</body>
+
+</html>
