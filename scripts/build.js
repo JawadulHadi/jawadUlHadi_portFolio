@@ -6,6 +6,8 @@ const out = path.join(root, 'public');
 
 const entries = [
   'index.html',
+  'case-study.html',
+  'projects.html',
   'resume.html',
   'certifications.html',
   'certifications.csv',

@@ -43,6 +43,18 @@
     <priority>0.90</priority>
   </url>
   <url>
+    <loc>https://jawadulhadi-portfolio.vercel.app/case-study.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://jawadulhadi-portfolio.vercel.app/projects.html</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://jawadulhadi-portfolio.vercel.app/#certifications</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>

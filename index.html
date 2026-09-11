@@ -136,17 +136,21 @@
         <span class="monogram" aria-hidden="true">JUH</span>
         <span>Jawad Ul Hadi</span>
       </a>
-      <nav class="main-nav" aria-label="Primary">
+      <nav class="main-nav" aria-label="Primary" id="mainNav">
         <a href="#about">About</a>
         <a href="#experience">Experience</a>
-        <a href="#case-study">Case Study</a>
+        <a href="case-study.html">Case Study</a>
         <a href="#skills">Skills</a>
         <a href="#services">Services</a>
+        <a href="projects.html">Projects</a>
         <a href="#work">Work</a>
         <a href="#github-stats">GitHub</a>
-        <a href="#certifications">Certifications</a>
+        <a href="certifications.html">Certifications</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
       <div class="header-actions">
         <a class="btn btn-outline" href="certifications.html" title="Explore Professional Certifications Gallery (31 Verified)">Certifications Gallery ↗</a>
         <a class="btn btn-outline js-resume-download" href="resume.pdf" target="_blank"
@@ -334,7 +338,7 @@
   <div class="plaque-band">
     <div class="plaque-in">
       <span class="eyebrow">Production Verified</span>
-      <span class="plaque-facts"><b>Modular Micro-Services</b> · <b>High-Scale API Ecosystem</b> · <b>3-tier</b> AI fallback · <b>26</b>
+      <span class="plaque-facts"><b>Modular Micro-Services</b> · <b>High-Scale API Ecosystem</b> · <b>3-tier</b> AI fallback · <b>31</b>
         verified credentials</span>
     </div>
   </div>
@@ -498,615 +502,11 @@
     </div>
   </section>
 
-  <!-- CASE STUDY -->
-  <section class="section section-band" id="case-study">
-    <div class="container">
-      <div class="section-head" data-reveal="">
-        <h2 class="section-title"><span class="idx">03</span>Case Study</h2>
-        <p class="section-note">Architecture ownership, proven in production — not a slide, a running system</p>
-      </div>
-        <section class="rag-case-study-card" id="rag-architecture-showcase" data-reveal="">
-          <div class="rag-case-study-header">
-            <div>
-              <div class="rag-badge-group">
-                <span class="rag-badge">Engineering / AI Systems · Architecture Case Study</span>
-                <span class="rag-badge"
-                  style="border-color: #10b981; color: #10b981; background: rgba(16, 185, 129, 0.1);">Verified
-                  Production Proof</span>
-              </div>
-              <h3 class="rag-case-study-title">Designing for AI Failure: RAG + BullMQ Fallback Architecture</h3>
-              <p class="rag-case-study-subtitle">
-                Inside the provider-agnostic, 3-tier fallback architecture that keeps enterprise AI workflows running
-                with zero downtime when models falter.
-              </p>
-            </div>
-            <div class="rag-header-cta">
-              <button class="btn btn-outline btn-sm" id="copyRagSpecsBtn" type="button"
-                title="Copy Architecture Specs &amp; Key Metrics to Clipboard">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                </svg>
-                <span id="copyRagSpecsText">Copy Architecture Specs</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Executive Outcome Metrics from Slide 5 -->
-          <div class="rag-metrics-grid">
-            <div class="rag-metric-box">
-              <div class="rag-metric-num">~60%</div>
-              <div class="rag-metric-desc">reduction in AI codebase surface area after unifying 5 provider integrations
-                behind one service.</div>
-            </div>
-            <div class="rag-metric-box">
-              <div class="rag-metric-num">5</div>
-              <div class="rag-metric-desc">production AI workflows running on one shared reliability pattern across
-                enterprise tenants.</div>
-            </div>
-            <div class="rag-metric-box">
-              <div class="rag-metric-num">0</div>
-              <div class="rag-metric-desc">new infrastructure needed to ship v1 of the RAG fallback tier using existing
-                BullMQ + Redis + pgvector.</div>
-            </div>
-            <div class="rag-metric-box">
-              <div class="rag-metric-num">3</div>
-              <div class="rag-metric-desc">tiers of fallback: retry inside queue → RAG-grounded answer → deterministic
-                rule-based floor.</div>
-            </div>
-          </div>
-
-          <div class="rag-quote-callout">
-            &ldquo;The AI makes the system smart; the fallback ladder makes it something you can depend on during
-            business hours, every day.&rdquo;
-          </div>
-
-          <!-- Interactive Architecture Figure Tabs -->
-          <div class="rag-fig-nav" role="tablist" aria-label="RAG Architecture Figures">
-            <button class="rag-fig-btn active" type="button" data-fig="fig1" role="tab" aria-selected="true">
-              <span>Figure 1:</span> Unified AI Service
-            </button>
-            <button class="rag-fig-btn" type="button" data-fig="fig2" role="tab" aria-selected="false">
-              <span>Figure 2:</span> Indexing &amp; Retrieval Flow
-            </button>
-            <button class="rag-fig-btn" type="button" data-fig="fig3" role="tab" aria-selected="false">
-              <span>Figure 3:</span> The Resilience Ladder
-            </button>
-            <button class="rag-fig-btn" type="button" data-fig="fig4" role="tab" aria-selected="false">
-              <span>⚡ Live Simulator:</span> Resilience Playground
-            </button>
-            <button class="rag-fig-btn" type="button" data-fig="fig5" role="tab" aria-selected="false">
-              <span>📄 Case Study:</span> Problem &amp; Architecture
-            </button>
-            <button class="rag-fig-btn" type="button" data-fig="fig6" role="tab" aria-selected="false">
-              <span>💻 Code:</span> NestJS &amp; BullMQ Pattern
-            </button>
-            <button class="rag-fig-btn" type="button" data-fig="fig7" role="tab" aria-selected="false">
-              <span>📊 Outcomes:</span> Verification &amp; Proof
-            </button>
-          </div>
-
-          <!-- Figure 1 Panel: System Overview -->
-          <div class="rag-fig-view active" id="rag-fig1-panel" role="tabpanel">
-            <div class="rag-diagram-wrap">
-              <div
-                style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
-                Figure 1 · System Overview: The Unified AI Service (One entry point for every AI request — five
-                capabilities, one reliability ladder)
-              </div>
-
-              <!-- Upstream Clients -->
-              <div class="arch-row">
-                <div class="arch-node">Recruiter Console</div>
-                <div class="arch-node">ATS / HRMS System</div>
-                <div class="arch-node">Careers Portal</div>
-                <div class="arch-node">Partner APIs</div>
-              </div>
-              <div class="arch-arrow">▼ &nbsp; Single Provider Contract (NestJS Guard &amp; Ingestion Controller)</div>
-
-              <!-- Unified AI Service -->
-              <div class="arch-row">
-                <div class="arch-node primary" style="width: 100%; max-width: 760px;">
-                  <strong>UNIFIED AI SERVICE</strong>
-                  <span class="arch-node sub">Single entry point for every AI request — one provider contract &amp;
-                    telemetry hub</span>
-                </div>
-              </div>
-              <div class="arch-arrow">▼ &nbsp; Async Task Offload</div>
-
-              <!-- Async Work Queue -->
-              <div class="arch-row">
-                <div class="arch-node queue" style="width: 100%; max-width: 760px;">
-                  <strong>ASYNC WORK QUEUE (BullMQ + Redis)</strong>
-                  <span class="arch-node sub">Idempotent, retry-safe background workers with exponential backoff
-                    buffers</span>
-                </div>
-              </div>
-              <div class="arch-arrow">▼ &nbsp; Dispatched into 5 Shared Capabilities</div>
-
-              <!-- 5 Capabilities -->
-              <div class="arch-row">
-                <div class="arch-node ai-cap">
-                  <strong>Smart Parsing</strong>
-                  <span class="arch-node sub">docs + OCR</span>
-                </div>
-                <div class="arch-node ai-cap">
-                  <strong>Candidate Scoring</strong>
-                  <span class="arch-node sub">explainable fit</span>
-                </div>
-                <div class="arch-node ai-cap">
-                  <strong>Interview Questions</strong>
-                  <span class="arch-node sub">role-aware</span>
-                </div>
-                <div class="arch-node ai-cap">
-                  <strong>Hiring Verdict</strong>
-                  <span class="arch-node sub">evidence-backed</span>
-                </div>
-                <div class="arch-node ai-cap">
-                  <strong>Conversational Assistant</strong>
-                  <span class="arch-node sub">grounded chat</span>
-                </div>
-              </div>
-              <div class="arch-arrow">▼ &nbsp; Inherits Uniform Reliability Pipeline</div>
-
-              <!-- Reliability Ladder -->
-              <div class="arch-row">
-                <div class="arch-node ladder" style="max-width: 760px;">
-                  <strong>RELIABILITY LADDER</strong>
-                  <span class="arch-node sub">AI Answer → Confidence &amp; Latency Check → RAG Grounded Fallback →
-                    Deterministic Rule-Based Floor</span>
-                </div>
-              </div>
-              <div class="arch-arrow">▼ &nbsp; Dynamic Failover &amp; Retrieval Grounding</div>
-
-              <!-- Grounded Knowledge vs Model Providers -->
-              <div class="arch-row">
-                <div class="arch-node rag-box" style="flex: 1; max-width: 370px;">
-                  <strong>GROUNDED KNOWLEDGE (RAG)</strong>
-                  <span class="arch-node sub">Deterministic vector retrieval over the tenant's own jobs &amp; candidate
-                    corpus</span>
-                </div>
-                <div class="arch-node"
-                  style="flex: 1; max-width: 370px; border-color: #6366f1; background: rgba(99, 102, 241, 0.12); color: #c7d2fe;">
-                  <strong>MODEL PROVIDERS (ABSTRACTED)</strong>
-                  <span class="arch-node sub">Google Gemini &bull; OpenAI &bull; Anthropic Claude (automatic runtime
-                    failover)</span>
-                </div>
-              </div>
-              <div class="arch-arrow">▼ &nbsp; Strict Multi-Tenant Isolation &amp; Governance</div>
-
-              <!-- Multi-Tenant Security & Privacy -->
-              <div class="arch-row">
-                <div class="arch-node"
-                  style="width: 100%; max-width: 760px; background: #0a101d; border-color: #334155; color: #94a3b8; font-size: 0.78rem;">
-                  <strong>MULTI-TENANT SECURITY &amp; PRIVACY</strong>: Vaulted API Secrets &bull; Tenant-Scoped Vector
-                  Queries &bull; Audit Logging &bull; GDPR Right to Erasure Cascade
-                </div>
-              </div>
-            </div>
-            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; margin-top: 0.8rem;">
-              <strong>Key Architectural Guarantee:</strong> Every client talks to one service. Every heavy task runs on
-              one queue. Every AI-backed capability inherits the same reliability ladder.
-            </p>
-          </div>
-
-          <!-- Figure 2 Panel: Indexing & Retrieval -->
-          <div class="rag-fig-view" id="rag-fig2-panel" role="tabpanel">
-            <div class="rag-diagram-wrap">
-              <div
-                style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
-                Figure 2 · Request Flow: Indexing &amp; Retrieval (Write path builds the index async · read path
-                degrades to grounded snippets, never an error)
-              </div>
-
-              <!-- Write Path -->
-              <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px dashed var(--border);">
-                <span
-                  style="font-family: var(--font-display); font-size: 0.75rem; color: #38bdf8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">
-                  WRITE PATH — INDEXING (Async, BullMQ Worker Pool)
-                </span>
-                <div class="arch-row" style="justify-content: flex-start; margin-top: 0.6rem;">
-                  <div class="arch-node">1. Document Parsed &amp; Stored<span class="arch-node sub">tenant-scoped</span>
-                  </div>
-                  <div class="arch-arrow">→</div>
-                  <div class="arch-node queue">2. Enqueue Embedding Job<span class="arch-node sub">BullMQ + Redis</span>
-                  </div>
-                  <div class="arch-arrow">→</div>
-                  <div class="arch-node">3. Chunk Text<span class="arch-node sub">deterministic (no AI)</span></div>
-                  <div class="arch-arrow">→</div>
-                  <div class="arch-node"
-                    style="border-color: #6366f1; background: rgba(99, 102, 241, 0.12); color: #c7d2fe;">4. Embed
-                    Chunks<span class="arch-node sub">AI service &bull; 768-dim</span></div>
-                  <div class="arch-arrow">→</div>
-                  <div class="arch-node rag-box">5. Vector Store<span class="arch-node sub">upsert, tenant-tagged</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Read Path -->
-              <div style="margin-bottom: 1.4rem;">
-                <span
-                  style="font-family: var(--font-display); font-size: 0.75rem; color: #10b981; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">
-                  READ PATH — RETRIEVAL + GROUNDED GENERATION (With Graceful Fallback)
-                </span>
-                <div class="arch-row" style="justify-content: flex-start; margin-top: 0.6rem;">
-                  <div class="arch-node">1. Recruiter Asks Question<span class="arch-node sub">prompt input</span></div>
-                  <div class="arch-arrow">→</div>
-                  <div class="arch-node"
-                    style="border-color: #6366f1; background: rgba(99, 102, 241, 0.12); color: #c7d2fe;">2. Embed
-                    Query<span class="arch-node sub">AI Service</span></div>
-                  <div class="arch-arrow">→</div>
-                  <div class="arch-node rag-box">3. Tenant-Scoped Vector Search<span class="arch-node sub">cosine
-                      similarity</span></div>
-                  <div class="arch-arrow">→</div>
-                  <div class="arch-node primary">4. Grounded Prompt + Gen<span class="arch-node sub">context
-                      injection</span></div>
-                  <div class="arch-arrow">→</div>
-                  <div class="arch-node"
-                    style="border-color: #10b981; background: rgba(16, 185, 129, 0.15); color: #6ee7b7;">5. Answer +
-                    Citations<span class="arch-node sub">evidence-backed</span></div>
-                </div>
-
-                <!-- Fallback branch if AI down -->
-                <div
-                  style="margin-top: 0.8rem; margin-left: 280px; padding: 0.6rem 1rem; border-left: 2px solid #f59e0b; background: rgba(245, 158, 11, 0.08); border-radius: 0 6px 6px 0;">
-                  <span style="font-size: 0.78rem; color: #f59e0b; font-weight: 600;">⚡ If Model Provider Down /
-                    Disabled:</span>
-                  <span style="font-size: 0.78rem; color: var(--text-muted); margin-left: 6px;">
-                    Degrades directly to <strong>Ranked Snippets</strong> (no LLM generation required, still 100%
-                    grounded and cited).
-                  </span>
-                </div>
-              </div>
-
-              <!-- Right to Erasure -->
-              <div style="background: #080c16; border: 1px solid #1e293b; border-radius: 6px; padding: 0.8rem 1rem;">
-                <span
-                  style="font-family: var(--font-display); font-size: 0.75rem; color: #f87171; font-weight: 600; text-transform: uppercase;">
-                  GDPR / PRIVACY: RIGHT TO ERASURE
-                </span>
-                <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 4px;">
-                  Deleting a candidate or tenant record triggers an atomic cascade that purges their relational record,
-                  MeiliSearch index entry, raw S3/GCS payloads, and every derived 768-dim vector embedding from the
-                  vector store.
-                </p>
-              </div>
-            </div>
-            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; margin-top: 0.8rem;">
-              <strong>Key Architectural Guarantee:</strong> The read path degrades to ranked, grounded snippets instead
-              of an error whenever generation is unavailable.
-            </p>
-          </div>
-
-          <!-- Figure 3 Panel: The Resilience Ladder -->
-          <div class="rag-fig-view" id="rag-fig3-panel" role="tabpanel">
-            <div class="rag-diagram-wrap">
-              <div
-                style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
-                Figure 3 · The Resilience Ladder: Retry → RAG Fallback → Rule-Based Floor (Never a hard failure)
-              </div>
-
-              <div class="arch-row" style="justify-content: flex-start;">
-                <div class="arch-node" style="border-color: #38bdf8;">Ingestion Controller<span
-                    class="arch-node sub">returns 202 immediately</span></div>
-                <div class="arch-arrow">→</div>
-                <div class="arch-node">Document Service<span class="arch-node sub">validate + enqueue</span></div>
-                <div class="arch-arrow">→</div>
-                <div class="arch-node queue">BullMQ Queue<span class="arch-node sub">Redis-backed</span></div>
-                <div class="arch-arrow">→</div>
-                <div class="arch-node">Parsing Worker<span class="arch-node sub">idempotent</span></div>
-                <div class="arch-arrow">→</div>
-                <div class="arch-node primary">Unified AI Service<span class="arch-node sub">Gemini → OpenAI →
-                    Claude</span></div>
-              </div>
-
-              <!-- Ladder Execution Branches -->
-              <div
-                style="margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; margin-left: 40px; border-left: 2px dashed var(--border); padding-left: 1.2rem;">
-
-                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-                  <span
-                    style="font-family: var(--font-display); font-size: 0.76rem; color: #10b981; font-weight: 600; min-width: 140px;">
-                    [Tier 1: Success]
-                  </span>
-                  <div class="arch-node"
-                    style="border-color: #10b981; background: rgba(16, 185, 129, 0.12); color: #6ee7b7;">
-                    Parsed Successfully → Document Repository (tenant-scoped store)
-                  </div>
-                </div>
-
-                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-                  <span
-                    style="font-family: var(--font-display); font-size: 0.76rem; color: #f59e0b; font-weight: 600; min-width: 140px;">
-                    [Tier 2: On Provider Fail]
-                  </span>
-                  <div class="arch-node rag-box">
-                    RAG Fallback → Grounded Vector Retrieval → Document Repository
-                  </div>
-                </div>
-
-                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-                  <span
-                    style="font-family: var(--font-display); font-size: 0.76rem; color: #ef4444; font-weight: 600; min-width: 140px;">
-                    [Tier 3: Retrieval Empty]
-                  </span>
-                  <div class="arch-node rule-box">
-                    Rule-Based Extractor → OCR / Regex Pattern Match → Document Repository
-                  </div>
-                </div>
-
-              </div>
-            </div>
-            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; margin-top: 0.8rem;">
-              <strong>Key Architectural Guarantee:</strong> The same ladder at the module level: retry stays inside the
-              queue, RAG catches provider failure, and rule-based logic catches the rare case where retrieval comes up
-              empty.
-            </p>
-          </div>
-
-          <!-- Figure 4 Panel: Live Resilience Simulator -->
-          <div class="rag-fig-view" id="rag-fig4-panel" role="tabpanel">
-            <div class="rag-sim-box">
-              <div class="rag-sim-header">
-                <div>
-                  <span
-                    style="font-family: var(--font-display); font-size: 0.76rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em;">
-                    Live Interactive Resilience Simulator
-                  </span>
-                  <h4 style="font-size: 1.05rem; color: var(--text); margin-top: 2px;">
-                    Simulate Real-Time Failure Scenarios &amp; Verify Fallback Transitions
-                  </h4>
-                </div>
-                <div class="rag-sim-presets">
-                  <button class="rag-sim-preset-btn active" type="button" data-sim-scenario="normal">1. Providers Online
-                    (200 OK)</button>
-                  <button class="rag-sim-preset-btn" type="button" data-sim-scenario="openai-fail">2. OpenAI 503 →
-                    Auto-Failover</button>
-                  <button class="rag-sim-preset-btn" type="button" data-sim-scenario="all-llm-down">3. All LLMs Down →
-                    Tier 2 RAG</button>
-                  <button class="rag-sim-preset-btn" type="button" data-sim-scenario="empty-rag">4. Empty Vectors → Tier
-                    3 Floor</button>
-                </div>
-              </div>
-
-              <div class="rag-sim-grid">
-                <!-- Ladder Step Visualizer -->
-                <div class="rag-sim-ladder-display">
-                  <div
-                    style="font-size: 0.78rem; font-family: var(--font-display); color: var(--text-muted); margin-bottom: 0.2rem;">
-                    ACTIVE RESILIENCE LADDER STATE:
-                  </div>
-
-                  <div class="rag-sim-step active" id="simStepQueue">
-                    <div class="rag-sim-step-title">
-                      <span>Queue &amp; Idempotency Layer</span>
-                      <span class="rag-sim-step-badge"
-                        style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">BullMQ</span>
-                    </div>
-                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;">
-                      Job enqueued with HMAC tenant token; 202 Accepted returned in 8ms.
-                    </div>
-                  </div>
-
-                  <div class="rag-sim-step active" id="simStepLLM">
-                    <div class="rag-sim-step-title">
-                      <span>Tier 1: Multi-Provider LLM Engine</span>
-                      <span class="rag-sim-step-badge" id="simLLMBadge"
-                        style="background: rgba(16, 185, 129, 0.2); color: #10b981;">Online</span>
-                    </div>
-                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;" id="simLLMDesc">
-                      Gemini 2.5 Flash / Claude 3.7 / OpenAI GPT-4o with automatic circuit breaker.
-                    </div>
-                  </div>
-
-                  <div class="rag-sim-step" id="simStepRAG">
-                    <div class="rag-sim-step-title">
-                      <span>Tier 2: RAG Grounded Vector Fallback</span>
-                      <span class="rag-sim-step-badge" id="simRAGBadge"
-                        style="background: rgba(148, 163, 184, 0.2); color: #94a3b8;">Standby</span>
-                    </div>
-                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;" id="simRAGDesc">
-                      Deterministic 768-dim embeddings over tenant candidate corpus (no LLM generation needed).
-                    </div>
-                  </div>
-
-                  <div class="rag-sim-step" id="simStepRule">
-                    <div class="rag-sim-step-title">
-                      <span>Tier 3: Rule-Based Floor Extractor</span>
-                      <span class="rag-sim-step-badge" id="simRuleBadge"
-                        style="background: rgba(148, 163, 184, 0.2); color: #94a3b8;">Standby</span>
-                    </div>
-                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;" id="simRuleDesc">
-                      OCR layout heuristic &amp; regex structural pattern matcher guarantee reliable fallback payload.
-                    </div>
-                  </div>
-
-                  <button class="btn btn-primary btn-sm" type="button" id="simRunBtn"
-                    style="margin-top: 0.4rem; justify-content: center;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                      stroke-width="2.5">
-                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                    </svg>
-                    Re-Run Selected Scenario Simulation
-                  </button>
-                </div>
-
-                <!-- Live Stream Console -->
-                <div>
-                  <div
-                    style="font-size: 0.78rem; font-family: var(--font-display); color: var(--text-muted); margin-bottom: 0.4rem; display: flex; justify-content: space-between;">
-                    <span>TELEMETRY CONSOLE STREAM:</span>
-                    <span id="simLatencyBadge" style="color: #4ade80;">Latency: 420ms</span>
-                  </div>
-                  <div class="rag-sim-console" id="simConsoleOutput">
-                    <div class="sim-log-time">[12:57:01.012] <span class="sim-log-info">INFO</span>
-                      [IngestionController] POST /v1/ai/parse-resume tenantId=ten_micro_9182 (202 Accepted, 8ms)</div>
-                    <div class="sim-log-time">[12:57:01.025] <span class="sim-log-info">INFO</span> [BullMQ:Worker]
-                      Picked up job #84102 payload="resume_sr_engineer.pdf"</div>
-                    <div class="sim-log-time">[12:57:01.080] <span class="sim-log-info">INFO</span> [UnifiedAIService]
-                      Dispatching to Primary Provider (Google Gemini 2.5 Flash)</div>
-                    <div class="sim-log-time">[12:57:01.430] <span class="sim-log-success">SUCCESS</span>
-                      [UnifiedAIService] Parsed 18 skill entities, 3 job roles, confidence=0.97</div>
-                    <div class="sim-log-time">[12:57:01.442] <span class="sim-log-info">INFO</span> [VectorStore]
-                      Upserted 4 chunks (768-dim) into tenant pgvector partition</div>
-                    <div class="sim-log-time">[12:57:01.445] <span class="sim-log-success">RESULT</span> [JobComplete]
-                      Status: 200 OK | Reliability Tier: TIER-1 (Primary LLM)</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Figure 5 Panel: Full Case Study & Problem Analysis -->
-          <div class="rag-fig-view" id="rag-fig5-panel" role="tabpanel">
-            <div class="rag-diagram-wrap">
-              <div
-                style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
-                Engineering Deep Dive · Problem Statement &amp; Architecture Specs
-              </div>
-
-              <div
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; margin-bottom: 1.4rem;">
-                <div
-                  style="background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 1.3rem;">
-                  <h4
-                    style="color: #dc2626; font-size: 0.95rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 6px;">
-                    <span>⚠️</span> The Enterprise Reality of LLMs in Production
-                  </h4>
-                  <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
-                    Third-party LLM APIs suffer from unpredictable rate-limits (HTTP 429), regional outages (HTTP 503),
-                    latency spikes (10s+ pauses), and strict token budget constraints. If an enterprise platform couples
-                    core operations directly to raw LLM calls, a single upstream outage brings hiring pipelines and
-                    recruiter consoles to a hard stop.
-                  </p>
-                </div>
-
-                <div
-                  style="background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 1.3rem;">
-                  <h4
-                    style="color: #059669; font-size: 0.95rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 6px;">
-                    <span>🛡️</span> The Architectural Solution
-                  </h4>
-                  <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
-                    A single Unified AI Service backed by BullMQ/Redis idempotent queues and a strict 3-tier resilience
-                    ladder: Tier 1 (automatic multi-provider retry/failover) &rarr; Tier 2 (tenant-scoped RAG grounded
-                    vector retrieval) &rarr; Tier 3 (deterministic rule-based OCR &amp; pattern floor). The system never
-                    returns a 500 error to users.
-                  </p>
-                </div>
-              </div>
-
-              <div
-                style="background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 1.3rem;">
-                <h4 style="font-size: 0.95rem; color: var(--text); margin-bottom: 0.6rem;">Core Architecture
-                  Specifications &amp; Design Guarantees</h4>
-                <ul
-                  style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.7; list-style: disc; padding-left: 1.4rem;">
-                  <li><strong>Provider Agnosticism:</strong> Dynamic switching between Google Gemini, OpenAI GPT-4o, and
-                    Anthropic Claude 3.7 with no downstream caller code modification.</li>
-                  <li><strong>Multi-Tenant Isolation:</strong> Vaulted per-tenant API keys and metadata-filtered vector
-                    queries ensuring zero cross-tenant data leakage.</li>
-                  <li><strong>Idempotent Processing:</strong> BullMQ queue workers with deterministic job IDs prevent
-                    duplicate billing or token consumption during retries.</li>
-                  <li><strong>Zero Cold-Start Lag:</strong> Lightweight pre-computed vector indices allow instant
-                    snippet fallback when upstream LLMs experience transient spikes.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <!-- Figure 6 Panel: NestJS & BullMQ Code Implementation -->
-          <div class="rag-fig-view" id="rag-fig6-panel" role="tabpanel">
-            <div class="rag-diagram-wrap" style="padding: 1.2rem;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
-                <span
-                  style="font-family: var(--font-display); font-size: 0.78rem; color: var(--gold); text-transform: uppercase;">
-                  UnifiedAIService.ts — Production Provider Abstraction &amp; 3-Tier Fallback Ladder
-                </span>
-                <span style="font-size: 0.72rem; font-family: var(--font-display); color: #0284c7;">TypeScript /
-                  NestJS</span>
-              </div>
-              <pre class="rag-code-block"
-                style="background: #090e18; border: 1px solid #1e293b; border-radius: 8px; padding: 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: #e2e8f0; line-height: 1.6; overflow-x: auto; margin: 0;"><code><span style="color: #c084fc;">export class</span> <span style="color: #38bdf8;">UnifiedAIService</span> {
-  <span style="color: #c084fc;">async</span> <span style="color: #60a5fa;">executeWithReliabilityLadder</span>&lt;T&gt;(
-    req: <span style="color: #facc15;">AIRequestPayload</span>,
-    tenantContext: <span style="color: #facc15;">TenantSecurityContext</span>
-  ): <span style="color: #38bdf8;">Promise</span>&lt;<span style="color: #facc15;">AIResponse</span>&lt;T&gt;&gt; {
-    <span style="color: #64748b;">// Tier 1: Multi-Provider LLM with Exponential Retry</span>
-    <span style="color: #c084fc;">try</span> {
-      <span style="color: #c084fc;">return await</span> <span style="color: #38bdf8;">this</span>.<span style="color: #60a5fa;">dispatchPrimaryLLM</span>(req, tenantContext);
-    } <span style="color: #c084fc;">catch</span> (llmErr) {
-      <span style="color: #38bdf8;">this</span>.logger.<span style="color: #f87171;">warn</span>(<span style="color: #4ade80;">`Tier-1 LLM failed: ${llmErr.message}. Escalating to Tier-2 RAG.`</span>);
-    }
-
-    <span style="color: #64748b;">// Tier 2: Tenant-Scoped Grounded Vector Retrieval (RAG Fallback)</span>
-    <span style="color: #c084fc;">try</span> {
-      <span style="color: #c084fc;">const</span> vectorMatches = <span style="color: #c084fc;">await</span> <span style="color: #38bdf8;">this</span>.vectorStore.<span style="color: #60a5fa;">searchByTenant</span>({
-        tenantId: tenantContext.tenantId,
-        query: req.queryText,
-        threshold: 0.78
-      });
-      <span style="color: #c084fc;">if</span> (vectorMatches.length &gt; 0) {
-        <span style="color: #c084fc;">return</span> <span style="color: #38bdf8;">this</span>.<span style="color: #60a5fa;">formatGroundedSnippets</span>(vectorMatches, <span style="color: #4ade80;">'TIER_2_RAG'</span>);
-      }
-    } <span style="color: #c084fc;">catch</span> (ragErr) {
-      <span style="color: #38bdf8;">this</span>.logger.<span style="color: #f87171;">warn</span>(<span style="color: #4ade80;">`Tier-2 RAG empty/failed: ${ragErr.message}. Escalating to Tier-3 Floor.`</span>);
-    }
-
-    <span style="color: #64748b;">// Tier 3: Deterministic Rule-Based Heuristics &amp; OCR Floor</span>
-    <span style="color: #c084fc;">return</span> <span style="color: #38bdf8;">this</span>.ruleEngine.<span style="color: #60a5fa;">extractHeuristicData</span>(req.rawDocument, <span style="color: #4ade80;">'TIER_3_RULE_FLOOR'</span>);
-  }
-}</code></pre>
-            </div>
-          </div>
-
-          <!-- Figure 7 Panel: Outcomes & Verification Proof -->
-          <div class="rag-fig-view" id="rag-fig7-panel" role="tabpanel">
-            <div class="rag-diagram-wrap">
-              <div
-                style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
-                Verified Production Outcomes &amp; Architectural Proof
-              </div>
-
-              <div class="rag-metrics-grid">
-                <div class="rag-metric-box">
-                  <div class="rag-metric-num">~60%</div>
-                  <div class="rag-metric-desc">reduction in AI codebase surface area after unifying 5 provider
-                    integrations behind one service.</div>
-                </div>
-                <div class="rag-metric-box">
-                  <div class="rag-metric-num">5</div>
-                  <div class="rag-metric-desc">production AI workflows running on one shared reliability pattern across
-                    enterprise tenants.</div>
-                </div>
-                <div class="rag-metric-box">
-                  <div class="rag-metric-num">0</div>
-                  <div class="rag-metric-desc">new infrastructure needed to ship v1 of the RAG fallback tier using
-                    existing BullMQ + Redis + pgvector.</div>
-                </div>
-                <div class="rag-metric-box">
-                  <div class="rag-metric-num">3</div>
-                  <div class="rag-metric-desc">tiers of fallback: retry inside queue → RAG-grounded answer →
-                    deterministic rule-based floor.</div>
-                </div>
-              </div>
-
-              <div class="rag-quote-callout" style="font-size: 0.95rem; margin-top: 1rem;">
-                &ldquo;The best code is never rewritten not because it’s perfect, but because it’s flexible enough to
-                evolve with the business.&rdquo;
-              </div>
-            </div>
-          </div>
-
-        </section>
-    </div>
-  </section>
-
   <!-- SKILLS -->
   <section class="section" id="skills">
     <div class="container">
       <div class="section-head" data-reveal="">
-        <h2 class="section-title"><span class="idx">04</span>Core Competencies</h2>
+        <h2 class="section-title"><span class="idx">03</span>Core Competencies</h2>
         <p class="section-note">8 competency areas backed by real production delivery and verified credentials</p>
       </div>
       <div class="skills-grid">
@@ -1220,7 +620,7 @@
   <section class="section section-band" id="services">
     <div class="container">
       <div class="section-head" data-reveal="">
-        <h2 class="section-title"><span class="idx">05</span>Services</h2>
+        <h2 class="section-title"><span class="idx">04</span>Services</h2>
         <p class="section-note">8 core engineering offerings tailored for high-growth SaaS and AI platforms</p>
       </div>
       <div class="services-grid">
@@ -1280,715 +680,10 @@
   <section class="section" id="work">
     <div class="container">
       <div class="section-head" data-reveal="">
-        <h2 class="section-title"><span class="idx">06</span>Selected Work</h2>
-        <p class="section-note">Personal Flagships &amp; Chrome Suite · Enterprise Client Systems (under NDA)</p>
+        <h2 class="section-title"><span class="idx">05</span>Enterprise Work</h2>
+        <p class="section-note">Client &amp; enterprise systems under NDA · personal projects and the Qeloma suite now live on the <a href="projects.html" style="color: var(--gold);">Projects page</a></p>
       </div>
 
-      <!-- Real-Time Personal Project API Status Bar -->
-      <div class="project-api-status-bar" id="projectApiStatusBar" data-reveal="">
-        <div class="api-status-main">
-          <div class="api-status-indicator">
-            <span class="status-pulse-ring" id="apiStatusRing"></span>
-            <span class="status-dot online" id="apiStatusDot"></span>
-          </div>
-          <div class="api-status-meta">
-            <div class="api-status-headline">
-              <span class="api-status-title">Personal Project APIs: <strong
-                  id="apiStatusState">Operational</strong></span>
-              <span class="api-status-pill" id="apiStatusPill">6/6 Services Active</span>
-            </div>
-            <div class="api-status-subline">
-              <span class="api-latency-badge"><svg viewBox="0 0 24 24">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg> <span id="apiAvgLatency">16ms avg latency</span></span>
-              <span class="api-dot-sep">·</span>
-              <span class="api-time-badge" id="apiLastChecked">Live: Just now</span>
-              <span class="api-dot-sep">·</span>
-              <span class="api-uptime-badge">Uptime: 99.98%</span>
-            </div>
-          </div>
-        </div>
-        <div class="api-status-actions">
-          <button type="button" class="btn-api-ping" id="btnPingApis"
-            title="Ping personal project APIs for live latency & health check">
-            <svg class="icon-ping" viewBox="0 0 24 24">
-              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
-            </svg>
-            <span id="btnPingText">Ping APIs</span>
-          </button>
-          <button type="button" class="btn-api-details" id="btnToggleApiTelemetry" aria-expanded="false"
-            title="Toggle detailed service telemetry & endpoints">
-            <span>Telemetry</span>
-            <svg class="icon-chevron" viewBox="0 0 24 24">
-              <path d="m6 9 6 6 6-6"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Expandable API Telemetry Tray -->
-      <div class="api-telemetry-tray" id="apiTelemetryTray" hidden>
-        <!-- Telemetry Controls & Ping Frequency Selector -->
-        <div class="api-telemetry-toolbar">
-          <div class="api-telemetry-toolbar-left">
-            <div class="api-toolbar-label">
-              <svg class="icon-gear" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path
-                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
-                </path>
-              </svg>
-              <span>Auto-Ping Interval:</span>
-            </div>
-            <div class="api-freq-pills" role="radiogroup" aria-label="Auto health-check ping frequency">
-              <button type="button" class="api-freq-pill" data-freq="5" role="radio" aria-checked="false"
-                title="Auto ping every 5 seconds">5s</button>
-              <button type="button" class="api-freq-pill active" data-freq="15" role="radio" aria-checked="true"
-                title="Auto ping every 15 seconds">15s</button>
-              <button type="button" class="api-freq-pill" data-freq="30" role="radio" aria-checked="false"
-                title="Auto ping every 30 seconds">30s</button>
-              <button type="button" class="api-freq-pill" data-freq="0" role="radio" aria-checked="false"
-                title="Pause automatic pings">Manual</button>
-            </div>
-          </div>
-          <div class="api-telemetry-toolbar-right">
-            <div class="api-freq-dropdown-wrap">
-              <label for="apiFreqSelect" class="sr-only">Select health check interval</label>
-              <select id="apiFreqSelect" class="api-freq-select" aria-label="Select automatic health check interval">
-                <option value="5">Every 5s (Fast)</option>
-                <option value="15" selected>Every 15s (Standard)</option>
-                <option value="30">Every 30s (Balanced)</option>
-                <option value="60">Every 60s (Relaxed)</option>
-                <option value="0">Manual (Off)</option>
-              </select>
-            </div>
-            <div class="api-freq-status" id="apiFreqStatusBadge">
-              <span class="api-countdown-dot" id="apiCountdownDot"></span>
-              <span id="apiFreqCountdown">Next probe: 15s</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 6 Monitored Services Grid with Individual UP/DOWN Status & Latency -->
-        <div class="api-telemetry-grid" id="apiTelemetryGrid">
-          <!-- Service 1: Chrome Extension Relay -->
-          <div class="telemetry-item" data-service-telemetry="chrome-suite">
-            <div class="telemetry-item-header">
-              <div class="telemetry-item-name">
-                <span class="service-status-dot up"></span>
-                <span>Chrome Extension Relay</span>
-              </div>
-              <div class="telemetry-badges">
-                <span class="service-status-pill up">UP</span>
-                <span class="telemetry-item-pill">200 OK</span>
-              </div>
-            </div>
-            <div class="telemetry-item-meta">
-              <span class="telemetry-endpoint">/api/projects/chrome-suite/health</span>
-              <span class="telemetry-latency">14ms</span>
-            </div>
-          </div>
-
-          <!-- Service 2: 3-Tier AI Fallback Gateway -->
-          <div class="telemetry-item" data-service-telemetry="ai-gateway">
-            <div class="telemetry-item-header">
-              <div class="telemetry-item-name">
-                <span class="service-status-dot up"></span>
-                <span>3-Tier AI Fallback Gateway</span>
-              </div>
-              <div class="telemetry-badges">
-                <span class="service-status-pill up">UP</span>
-                <span class="telemetry-item-pill">200 OK</span>
-              </div>
-            </div>
-            <div class="telemetry-item-meta">
-              <span class="telemetry-endpoint">/api/projects/ai-gateway/health</span>
-              <span class="telemetry-latency">18ms</span>
-            </div>
-          </div>
-
-          <!-- Service 3: BullMQ Queue Spine -->
-          <div class="telemetry-item" data-service-telemetry="queue-spine">
-            <div class="telemetry-item-header">
-              <div class="telemetry-item-name">
-                <span class="service-status-dot up"></span>
-                <span>BullMQ Queue Spine</span>
-              </div>
-              <div class="telemetry-badges">
-                <span class="service-status-pill up">UP</span>
-                <span class="telemetry-item-pill">200 OK</span>
-              </div>
-            </div>
-            <div class="telemetry-item-meta">
-              <span class="telemetry-endpoint">/api/projects/queue/health</span>
-              <span class="telemetry-latency">9ms</span>
-            </div>
-          </div>
-
-          <!-- Service 4: Qeloma Verdict Crypto API -->
-          <div class="telemetry-item" data-service-telemetry="qeloma-verdict">
-            <div class="telemetry-item-header">
-              <div class="telemetry-item-name">
-                <span class="service-status-dot up"></span>
-                <span>Qeloma Verdict Crypto API</span>
-              </div>
-              <div class="telemetry-badges">
-                <span class="service-status-pill up">UP</span>
-                <span class="telemetry-item-pill">200 OK</span>
-              </div>
-            </div>
-            <div class="telemetry-item-meta">
-              <span class="telemetry-endpoint">/api/projects/qeloma-verdict/health</span>
-              <span class="telemetry-latency">15ms</span>
-            </div>
-          </div>
-
-          <!-- Service 5: Qeloma OCR & Vision API -->
-          <div class="telemetry-item" data-service-telemetry="qeloma-ocr">
-            <div class="telemetry-item-header">
-              <div class="telemetry-item-name">
-                <span class="service-status-dot up"></span>
-                <span>Qeloma OCR &amp; Vision API</span>
-              </div>
-              <div class="telemetry-badges">
-                <span class="service-status-pill up">UP</span>
-                <span class="telemetry-item-pill">200 OK</span>
-              </div>
-            </div>
-            <div class="telemetry-item-meta">
-              <span class="telemetry-endpoint">/api/projects/qeloma-ocr/health</span>
-              <span class="telemetry-latency">21ms</span>
-            </div>
-          </div>
-
-          <!-- Service 6: Qeloma Shift AST Diff API -->
-          <div class="telemetry-item" data-service-telemetry="qeloma-shift">
-            <div class="telemetry-item-header">
-              <div class="telemetry-item-name">
-                <span class="service-status-dot up"></span>
-                <span>Qeloma Shift AST Diff API</span>
-              </div>
-              <div class="telemetry-badges">
-                <span class="service-status-pill up">UP</span>
-                <span class="telemetry-item-pill">200 OK</span>
-              </div>
-            </div>
-            <div class="telemetry-item-meta">
-              <span class="telemetry-endpoint">/api/projects/qeloma-shift/health</span>
-              <span class="telemetry-latency">16ms</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Latency Trend Visualization & Ping History Section -->
-        <div class="api-history-section">
-          <div class="api-history-header">
-            <div class="api-history-title">
-              <svg class="icon-trend" viewBox="0 0 24 24">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-              </svg>
-              <span>Latency Trend &amp; Ping History (Last 5 Probes)</span>
-            </div>
-            <div class="api-history-actions">
-              <span class="api-history-badge" id="apiHistoryCount">5/5 Tracked</span>
-              <button type="button" class="btn-api-csv" id="btnExportCsv"
-                title="Export recorded probe latency history as CSV file">
-                <svg class="icon-csv" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-                <span>Download CSV</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- D3.js Interactive Latency Line Chart -->
-          <div class="api-d3-chart-card">
-            <div class="api-chart-top">
-              <span class="chart-title-sub">D3.js Real-Time Latency Curve</span>
-              <div class="chart-legend-wrap">
-                <span class="chart-legend-item"><span class="chart-legend-line"></span> Round-Trip Latency (ms)</span>
-              </div>
-            </div>
-            <div class="api-d3-svg-wrap" id="apiD3SvgWrap">
-              <svg id="apiLatencyD3Chart" class="api-d3-chart" viewBox="0 0 560 140"
-                preserveAspectRatio="xMidYMid meet"></svg>
-              <!-- Interactive D3 Hover Tooltip -->
-              <div id="d3ChartTooltip" class="d3-chart-tooltip" role="tooltip" aria-hidden="true"></div>
-            </div>
-          </div>
-
-          <!-- Supplementing Scrollable Ping History List -->
-          <div class="api-history-scroll" id="apiHistoryScroll" role="region" aria-label="API Ping Latency History">
-            <ul class="api-history-list" id="apiHistoryList">
-              <!-- Dynamically populated and maintained by JS with the last 5 ping records -->
-              <li class="api-history-item">
-                <div class="history-time">
-                  <span class="history-dot fast"></span>
-                  <span><strong>Latest Probe</strong> · Just now</span>
-                </div>
-                <div class="history-meta">
-                  <span class="history-latency-bar"><span class="history-latency-fill"
-                      style="width: 32%;"></span></span>
-                  <span class="history-latency-pill">16ms</span>
-                  <span class="history-status-pill">200 OK</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Real Authentic GitHub Activity & Contribution Intelligence Card -->
-      <div class="gh-contribution-card" id="ghContributionCard" data-reveal="">
-        <div class="gh-card-header">
-          <div class="gh-header-left">
-            <div class="gh-title-row">
-              <svg class="gh-octocat-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                <path
-                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-              <h2 class="gh-main-heading">GitHub Engineering Velocity &amp; Activity</h2>
-              <span class="gh-verified-badge">
-                <span class="gh-live-dot"></span>
-                <span>Authentic Verified Data</span>
-              </span>
-            </div>
-            <p class="gh-sub-kicker">Multi-repo contributions, high-leverage Pull Request velocity, and architectural
-              commits</p>
-          </div>
-
-          <div class="gh-header-actions">
-            <a href="https://github.com/JawadulHadi" target="_blank" rel="noopener noreferrer" class="gh-profile-btn"
-              title="View Jawad on GitHub">
-              <span>github.com/JawadulHadi</span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- Heatmap & Year Switcher Top Grid -->
-        <div class="gh-heatmap-wrapper">
-          <div class="gh-heatmap-main">
-            <div class="gh-heatmap-header">
-              <div class="gh-count-title">
-                <span class="gh-count-num" id="ghContributionsCount">636</span> contributions in <span
-                  id="ghActiveYear">2026</span>
-              </div>
-              <div class="gh-settings-wrap">
-                <span class="gh-settings-label">Contribution settings</span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </div>
-            </div>
-
-            <!-- Heatmap Scrollable Frame -->
-            <div class="gh-heatmap-scroll" id="ghHeatmapScroll">
-              <div class="gh-heatmap-grid" id="ghHeatmapGrid">
-                <!-- Months row -->
-                <div class="gh-months-row">
-                  <span></span> <!-- offset for day label -->
-                  <span>Jan</span>
-                  <span>Feb</span>
-                  <span>Mar</span>
-                  <span>Apr</span>
-                  <span>May</span>
-                  <span>Jun</span>
-                  <span>Jul</span>
-                  <span>Aug</span>
-                  <span>Sep</span>
-                  <span>Oct</span>
-                  <span>Nov</span>
-                  <span>Dec</span>
-                </div>
-
-                <!-- Heatmap SVG Calendar Matrix -->
-                <div class="gh-calendar-body">
-                  <div class="gh-days-col">
-                    <span>Mon</span>
-                    <span>Wed</span>
-                    <span>Fri</span>
-                  </div>
-                  <div class="gh-matrix-container" id="ghMatrixContainer">
-                    <!-- Populated dynamically with 52 weeks x 7 days -->
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Heatmap Footer: Documentation Link and Color Scale -->
-            <div class="gh-heatmap-footer">
-              <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile"
-                target="_blank" rel="noopener noreferrer" class="gh-learn-link">
-                Learn how we count contributions
-              </a>
-              <div class="gh-legend-scale">
-                <span>Less</span>
-                <span class="gh-legend-cell lvl-0"></span>
-                <span class="gh-legend-cell lvl-1"></span>
-                <span class="gh-legend-cell lvl-2"></span>
-                <span class="gh-legend-cell lvl-3"></span>
-                <span class="gh-legend-cell lvl-4"></span>
-                <span>More</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Vertical Year Selectors (Matching GitHub UI) -->
-          <div class="gh-years-list" role="tablist" aria-label="Contribution Years">
-            <button class="gh-year-btn active" type="button" data-year="2026" role="tab"
-              aria-selected="true">2026</button>
-            <button class="gh-year-btn" type="button" data-year="2025" role="tab" aria-selected="false">2025</button>
-            <button class="gh-year-btn" type="button" data-year="2024" role="tab" aria-selected="false">2024</button>
-            <button class="gh-year-btn" type="button" data-year="2023" role="tab" aria-selected="false">2023</button>
-            <button class="gh-year-btn" type="button" data-year="2022" role="tab" aria-selected="false">2022</button>
-          </div>
-        </div>
-
-        <!-- Activity Overview & Radar Chart Card -->
-        <div class="gh-activity-overview-card">
-          <div class="gh-org-pill">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <span>@Qeloma</span>
-          </div>
-
-          <div class="gh-overview-layout">
-            <!-- Left Side: Repositories Summary -->
-            <div class="gh-repos-summary">
-              <h3 class="gh-overview-title">Activity overview</h3>
-
-              <div class="gh-repos-item">
-                <svg class="gh-repo-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                </svg>
-                <div class="gh-repos-text">
-                  Contributed to <a href="https://github.com/microagility/ats-be" target="_blank"
-                    rel="noopener noreferrer" class="gh-repo-link">microagility/ats-be</a>,
-                  <a href="https://github.com/microagility/APAC-BE" target="_blank" rel="noopener noreferrer"
-                    class="gh-repo-link">microagility/APAC-BE</a>,
-                  <a href="https://github.com/JawadulHadi/portfolio" target="_blank" rel="noopener noreferrer"
-                    class="gh-repo-link">JawadulHadi/portfolio</a>
-                  and <span class="gh-repo-more">32 other repositories</span>
-                </div>
-              </div>
-
-              <!-- High-Leverage Delivery Note -->
-              <div class="gh-delivery-insight">
-                <div class="gh-insight-badge">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Production Delivery Profile</span>
-                </div>
-                <p>
-                  <strong>70% of engineering output is delivered via Pull Requests</strong>, reflecting rigorous modular
-                  architecture, PR review discipline, automated CI/CD pipeline checks, and clean branch integration over
-                  direct commits.
-                </p>
-              </div>
-            </div>
-
-            <!-- Right Side: Architectural Radar (Spider) Chart -->
-            <div class="gh-radar-wrapper">
-              <div class="gh-radar-chart-box">
-                <!-- SVG Radar Chart Container -->
-                <svg class="gh-radar-svg" id="ghRadarSvg" viewBox="0 0 280 240" preserveAspectRatio="xMidYMid meet">
-                  <!-- Axes and coordinate grid lines -->
-                  <g class="radar-axes-grid" id="radarAxesGrid">
-                    <!-- Crosshair Axes -->
-                    <line x1="140" y1="35" x2="140" y2="205" stroke="var(--border)" stroke-width="1.2" />
-                    <line x1="45" y1="120" x2="235" y2="120" stroke="var(--border)" stroke-width="1.2" />
-
-                    <!-- Circular Level Rings -->
-                    <circle cx="140" cy="120" r="22" fill="none" stroke="var(--border)" stroke-width="0.8"
-                      stroke-dasharray="2 3" opacity="0.6" />
-                    <circle cx="140" cy="120" r="48" fill="none" stroke="var(--border)" stroke-width="0.8"
-                      stroke-dasharray="2 3" opacity="0.6" />
-                    <circle cx="140" cy="120" r="75" fill="none" stroke="var(--border)" stroke-width="0.8"
-                      opacity="0.8" />
-                  </g>
-
-                  <!-- Radar Filled Polygon (70% PRs, 23% Commits, 7% Review, 0% Issues) -->
-                  <polygon id="radarPolygon" class="radar-poly" points="140,114 140,120 140,180 120,120" />
-
-                  <!-- Radar Data Nodes -->
-                  <g id="radarNodes">
-                    <!-- Top: Review (7%) -> (140, 114) -->
-                    <circle id="nodeReview" cx="140" cy="114" r="3.5" class="radar-node-circle" />
-                    <!-- Right: Issues (0%) -> (140, 120) -->
-                    <circle id="nodeIssues" cx="140" cy="120" r="3" class="radar-node-circle" />
-                    <!-- Bottom: PRs (70%) -> (140, 180) -->
-                    <circle id="nodePrs" cx="140" cy="180" r="4.5" class="radar-node-circle active" />
-                    <!-- Left: Commits (23%) -> (120, 120) -->
-                    <circle id="nodeCommits" cx="120" cy="120" r="3.5" class="radar-node-circle" />
-                  </g>
-
-                  <!-- Chart Labels (Top, Right, Bottom, Left) -->
-                  <text x="140" y="18" text-anchor="middle" class="radar-axis-label" id="lblReview">7%</text>
-                  <text x="140" y="29" text-anchor="middle" class="radar-axis-sub">Code review</text>
-
-                  <text x="242" y="123" text-anchor="start" class="radar-axis-sub" id="lblIssues">Issues</text>
-
-                  <text x="140" y="218" text-anchor="middle" class="radar-axis-label" id="lblPrs">70%</text>
-                  <text x="140" y="230" text-anchor="middle" class="radar-axis-sub">Pull requests</text>
-
-                  <text x="38" y="113" text-anchor="end" class="radar-axis-label" id="lblCommits">23%</text>
-                  <text x="38" y="125" text-anchor="end" class="radar-axis-sub">Commits</text>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Work Tabs: Flagships vs Enterprise NDA -->
-      <div class="tabs" role="tablist" aria-label="Work categories" data-reveal="">
-        <span class="tab-pill" aria-hidden="true"></span>
-        <button class="tab" role="tab" id="tab-oss" aria-controls="panel-oss" aria-selected="true">Personal Flagships
-          &amp; Chrome Suite</button>
-        <button class="tab" role="tab" id="tab-ent" aria-controls="panel-ent" aria-selected="false">Enterprise Systems
-          (Strict NDA)</button>
-      </div>
-
-      <!-- Tab 1: Personal Projects, Chrome Extensions, and Qeloma Showcase -->
-      <div class="tabpanel active" id="panel-oss" role="tabpanel" aria-labelledby="tab-oss">
-
-        <!-- Synth AI & Neural Architecture Showcase -->
-        <div class="synth-neural-banner" data-reveal="">
-          <div class="synth-neural-header">
-            <div>
-              <span class="synth-badge">AI / Synth Neural Engine</span>
-              <h3 style="font-family: var(--font-display); font-size: 1.28rem; margin-top: 6px; color: var(--text);">
-                From Raw Logic To Real Intelligence
-              </h3>
-            </div>
-            <span
-              style="font-family: var(--font-display); font-size: 0.78rem; color: var(--gold); background: rgba(0, 240, 255, 0.08); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px;">
-              Live Interactive Neural Synapse
-            </span>
-          </div>
-          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; max-width: 78ch;">
-            Deploying production-grade AI agents and robust software systems engineered for the modern digital
-            landscape. Bridging deterministic backend backbones (NestJS, PostgreSQL, Redis, BullMQ) with generative
-            multimodal intelligence (Google Gemini, OpenAI, Claude, RAG, and 3-tier fallback guarantees).
-          </p>
-          <canvas id="synthSynapseCanvas" class="synth-synapse-canvas"
-            title="Move your cursor / touch to trigger neural synaptic pulses"></canvas>
-        </div>
-
-        <!-- RAG MULTI-TIER ARCHITECTURE & CASE STUDY SHOWCASE -->
-        <div class="work-grid">
-
-          <!-- Flagship Initiative: 10 Google Chrome Extensions -->
-          <article class="work-card" style="border-color: var(--gold);">
-            <div
-              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
-              <span class="role-tag"
-                style="background: color-mix(in srgb, var(--gold) 20%, transparent); color: var(--gold); border-color: var(--gold); margin-bottom: 0;">Flagship
-                Initiative · In Active Build</span>
-              <div class="work-card-api-status" data-card-api="chrome-suite">
-                <span class="mini-dot"></span>
-                <span class="card-api-label">Relay: 200 OK</span>
-                <span class="card-api-latency">14ms</span>
-              </div>
-            </div>
-            <h3 style="margin-top: 0.8rem;">Google Chrome Extension Pack <svg viewBox="0 0 24 24">
-                <path d="M7 17 17 7M8 7h9v9"></path>
-              </svg></h3>
-            <p class="kicker">10-Extension AI &amp; Developer Productivity Suite</p>
-            <p class="desc">A coordinated suite of <strong>10 purpose-built Google Chrome extensions</strong> targeting
-              developer and AI workflows: (1) Agentic Context Extractor, (2) Live API Request Interceptor &amp; Mock
-              Sandbox, (3) Schema &amp; JWT Decoder HUD, (4) Prompt Engineering Workbench &amp; Diff Lab, (5) Token
-              &amp; Cost Estimator HUD, (6) Smart Document/PDF Scraper, (7) Quick LLM Model Switcher
-              (OpenAI/Gemini/Claude), (8) Webhook Dispatcher &amp; Relay, (9) Cookie &amp; Session Isolation Switcher,
-              and (10) Automated Browser Workflow Recorder.</p>
-            <div class="stat-strip">
-              <span><b>10</b> Extensions</span>
-              <span><b>Manifest V3</b></span>
-              <span><b>Cross-LLM</b> Engine</span>
-            </div>
-            <div class="chip-row">
-              <span class="tag">Chrome Extension API</span>
-              <span class="tag">TypeScript</span>
-              <span class="tag">Manifest V3</span>
-              <span class="tag">Gemini API</span>
-              <span class="tag">WebSockets</span>
-              <span class="tag">IndexedDB</span>
-            </div>
-          </article>
-
-          <!-- 3-Tier AI Fallback Architecture -->
-          <article class="work-card">
-            <div
-              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
-              <span class="role-tag" style="margin-bottom: 0;">Personal Reference Architecture</span>
-              <div class="work-card-api-status" data-card-api="ai-gateway">
-                <span class="mini-dot"></span>
-                <span class="card-api-label">Gateway: 200 OK</span>
-                <span class="card-api-latency">18ms</span>
-              </div>
-            </div>
-            <h3 style="margin-top: 0.8rem;">3-Tier Fallback AI Gateway <svg viewBox="0 0 24 24">
-                <path d="M7 17 17 7M8 7h9v9"></path>
-              </svg></h3>
-            <p class="kicker">Provider-Agnostic LLM Engine</p>
-            <p class="desc">High-reliability AI orchestration engine implementing automatic tier fallbacks: Level 1
-              (Exponential backoff &amp; multi-provider retries across OpenAI/Gemini/Claude), Level 2 (RAG grounding
-              with indexed embeddings), and Level 3 (Deterministic rule-based heuristics) ensuring zero hard failures in
-              critical production loops.</p>
-            <div class="chip-row">
-              <span class="tag">Node.js</span>
-              <span class="tag">Gemini Flash</span>
-              <span class="tag">OpenAI</span>
-              <span class="tag">Claude 3.7</span>
-              <span class="tag">LangChain</span>
-            </div>
-          </article>
-
-          <!-- Idempotent Queue Spine -->
-          <article class="work-card">
-            <div
-              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
-              <span class="role-tag" style="margin-bottom: 0;">Distributed Systems</span>
-              <div class="work-card-api-status" data-card-api="queue-spine">
-                <span class="mini-dot"></span>
-                <span class="card-api-label">Worker: 200 OK</span>
-                <span class="card-api-latency">9ms</span>
-              </div>
-            </div>
-            <h3 style="margin-top: 0.8rem;">Idempotent Queue Spine <svg viewBox="0 0 24 24">
-                <path d="M7 17 17 7M8 7h9v9"></path>
-              </svg></h3>
-            <p class="kicker">BullMQ + Redis Background Backbone</p>
-            <p class="desc">Robust asynchronous task orchestrator handling heavy OCR extraction, batch email delivery,
-              and multi-tenant webhook dispatches with HMAC signature verification, dead-letter queues, and guaranteed
-              exactly-once processing semantics.</p>
-            <div class="chip-row">
-              <span class="tag">BullMQ</span>
-              <span class="tag">Redis</span>
-              <span class="tag">NestJS</span>
-              <span class="tag">Postal SMTP</span>
-              <span class="tag">HMAC</span>
-            </div>
-          </article>
-
-          <!-- Qeloma Suite items -->
-          <a class="work-card" href="https://github.com/Qeloma/qeloma-verdict" target="_blank"
-            rel="noopener noreferrer">
-            <div
-              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
-              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
-              <div class="work-card-api-status" data-card-api="qeloma-verdict">
-                <span class="mini-dot"></span>
-                <span class="card-api-label">Audit API: 200 OK</span>
-                <span class="card-api-latency">15ms</span>
-              </div>
-            </div>
-            <h3 style="margin-top: 0.8rem;">Qeloma Verdict <svg viewBox="0 0 24 24">
-                <path d="M7 17 17 7M8 7h9v9"></path>
-              </svg></h3>
-            <p class="desc">Tamper-evident decision engine generating reasoning receipts with cryptographic audit trails
-              — built for EU AI Act transparency and record-keeping.</p>
-            <div class="chip-row"><span class="tag">Node.js</span><span class="tag">Crypto</span><span
-                class="tag">Audit</span></div>
-          </a>
-
-          <a class="work-card" href="https://github.com/Qeloma/qeloma-ocr" target="_blank" rel="noopener noreferrer">
-            <div
-              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
-              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
-              <div class="work-card-api-status" data-card-api="qeloma-ocr">
-                <span class="mini-dot"></span>
-                <span class="card-api-label">Vision API: 200 OK</span>
-                <span class="card-api-latency">21ms</span>
-              </div>
-            </div>
-            <h3 style="margin-top: 0.8rem;">Qeloma OCR <svg viewBox="0 0 24 24">
-                <path d="M7 17 17 7M8 7h9v9"></path>
-              </svg></h3>
-            <p class="desc">Client-side OCR with per-word confidence scores — Tesseract.js, Gemini vision, or a hybrid
-              of both for intelligent document processing.</p>
-            <div class="chip-row"><span class="tag">OCR</span><span class="tag">Gemini</span><span
-                class="tag">Tesseract.js</span></div>
-          </a>
-
-          <a class="work-card" href="https://qelomalens.vercel.app/" target="_blank"
-            rel="noopener noreferrer">
-            <div
-              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
-              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
-              <div class="work-card-api-status" data-card-api="qeloma-ocr">
-                <span class="mini-dot"></span>
-                <span class="card-api-label">Lens RAG: 200 OK</span>
-                <span class="card-api-latency">24ms</span>
-              </div>
-            </div>
-            <h3 style="margin-top: 0.8rem;">Qeloma Lens Studio <svg viewBox="0 0 24 24">
-                <path d="M7 17 17 7M8 7h9v9"></path>
-              </svg></h3>
-            <p class="desc">AI-powered document analysis — summarize, extract, and compare over PDFs, DOCX, and images,
-              powered by Gemini with rule-based fallbacks.</p>
-            <div class="chip-row"><span class="tag">Gemini</span><span class="tag">RAG</span><span
-                class="tag">Fallbacks</span></div>
-          </a>
-
-          <a class="work-card" href="https://qeloma-voice.vercel.app/" target="_blank"
-            rel="noopener noreferrer">
-            <div
-              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
-              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
-              <div class="work-card-api-status" data-card-api="ai-gateway">
-                <span class="mini-dot"></span>
-                <span class="card-api-label">Live Audio: 200 OK</span>
-                <span class="card-api-latency">29ms</span>
-              </div>
-            </div>
-            <h3 style="margin-top: 0.8rem;">Qeloma Voice Studio <svg viewBox="0 0 24 24">
-                <path d="M7 17 17 7M8 7h9v9"></path>
-              </svg></h3>
-            <p class="desc">Real-time voice analyst that answers questions grounded in your own documents via the Gemini
-              Live API with streaming audio.</p>
-            <div class="chip-row"><span class="tag">Gemini Live</span><span class="tag">Voice</span><span
-                class="tag">RAG</span></div>
-          </a>
-
-          <a class="work-card" href="https://qeloma-shift.vercel.app/" target="_blank" rel="noopener noreferrer">
-            <div
-              style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; flex-wrap: wrap;">
-              <span class="role-tag" style="margin-bottom: 0;">Open Source · Qeloma</span>
-              <div class="work-card-api-status" data-card-api="qeloma-shift">
-                <span class="mini-dot"></span>
-                <span class="card-api-label">AST Diff: 200 OK</span>
-                <span class="card-api-latency">16ms</span>
-              </div>
-            </div>
-            <h3 style="margin-top: 0.8rem;">Qeloma Shift <svg viewBox="0 0 24 24">
-                <path d="M7 17 17 7M8 7h9v9"></path>
-              </svg></h3>
-            <p class="desc">Semantic change-intelligence engine — diffs contracts and configs at the meaning level,
-              ranks changes by severity, and explains business impact.</p>
-            <div class="chip-row"><span class="tag">NLP</span><span class="tag">Diffing</span><span
-                class="tag">Scoring</span></div>
-          </a>
-
-        </div>
-      </div>
-
-      <!-- Tab 2: Enterprise Systems Under Strict NDA -->
-      <div class="tabpanel" id="panel-ent" role="tabpanel" aria-labelledby="tab-ent" hidden>
         <div
           style="background: var(--bg-elevated); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1.2rem 1.4rem; border-radius: 6px; margin-bottom: 2rem;">
           <p style="font-size: 0.92rem; line-height: 1.6; color: var(--text);">
@@ -2051,7 +746,7 @@
                 class="tag">FastAPI</span><span class="tag">Django DRF</span></div>
           </article>
         </div>
-      </div>
+      
     </div>
   </section>
 
@@ -2060,7 +755,7 @@
     <div class="container">
       <div class="section-head" data-reveal="">
         <div>
-          <h2 class="section-title"><span class="idx">07</span>GitHub</h2>
+          <h2 class="section-title"><span class="idx">06</span>GitHub</h2>
           <p class="eyebrow" style="margin-top: 0.4rem;">Open-source engineering velocity, repositories &amp; verified live activity</p>
         </div>
         <p class="section-note">Live sync from <a href="https://github.com/JawadulHadi" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: underline;">@JawadulHadi on GitHub</a></p>
@@ -2069,20 +764,20 @@
       <!-- Live Account Overview Counters -->
       <div class="github-live-metrics" data-reveal="">
         <div class="github-metric-box">
-          <span class="github-metric-val" id="ghReposCount">25+</span>
+          <span class="github-metric-val" id="ghReposCount">&hellip;</span>
           <span class="github-metric-label">Public Repositories</span>
         </div>
         <div class="github-metric-box">
-          <span class="github-metric-val" id="ghFollowersCount">20+</span>
+          <span class="github-metric-val" id="ghFollowersCount">&hellip;</span>
           <span class="github-metric-label">GitHub Followers</span>
         </div>
         <div class="github-metric-box">
-          <span class="github-metric-val">100%</span>
-          <span class="github-metric-label">Python &amp; TS Dominance</span>
+          <span class="github-metric-val" id="ghPublicGistsCount">&hellip;</span>
+          <span class="github-metric-label">Public Gists</span>
         </div>
         <div class="github-metric-box">
-          <span class="github-metric-val" style="color: var(--teal);">Active</span>
-          <span class="github-metric-label">Live Developer Status</span>
+          <span class="github-metric-val" id="ghMemberSinceCount">&hellip;</span>
+          <span class="github-metric-label">Member Since</span>
         </div>
       </div>
 
@@ -2127,61 +822,7 @@
       </div>
 
       <div class="github-repos-grid" data-reveal="" id="githubReposGrid">
-        <div class="github-repo-item">
-          <div>
-            <h4 class="github-repo-title">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-              qeloma-verdict
-            </h4>
-            <p class="github-repo-desc">Provider-agnostic LLM orchestration and 3-tier fallback engine (Retry → RAG → Rule-based).</p>
-          </div>
-          <div class="github-repo-meta">
-            <span class="github-lang-pill"><span class="github-lang-dot python"></span> Python</span>
-            <a href="https://qeloma-verdict.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: none; font-weight: 600;">Repository ↗</a>
-          </div>
-        </div>
-
-        <div class="github-repo-item">
-          <div>
-            <h4 class="github-repo-title">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-              qeloma-ocr
-            </h4>
-            <p class="github-repo-desc">Document processing and multimodal vision ingestion pipeline with high-scale async queue handling.</p>
-          </div>
-          <div class="github-repo-meta">
-            <span class="github-lang-pill"><span class="github-lang-dot python"></span> Python</span>
-            <a href="https://qeloma-ocr.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: none; font-weight: 600;">Repository ↗</a>
-          </div>
-        </div>
-
-        <div class="github-repo-item">
-          <div>
-            <h4 class="github-repo-title">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-              qeloma_shift
-            </h4>
-            <p class="github-repo-desc">Shift and schedule automation service supporting complex constraint solving and multi-tenant isolation.</p>
-          </div>
-          <div class="github-repo-meta">
-            <span class="github-lang-pill"><span class="github-lang-dot python"></span> Python / Django</span>
-            <a href="https://qeloma-shift.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: none; font-weight: 600;">Repository ↗</a>
-          </div>
-        </div>
-
-        <div class="github-repo-item">
-          <div>
-            <h4 class="github-repo-title">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-              qeloma_voice_studio
-            </h4>
-            <p class="github-repo-desc">Real-time voice intelligence and streaming speech orchestration interface.</p>
-          </div>
-          <div class="github-repo-meta">
-            <span class="github-lang-pill"><span class="github-lang-dot typescript"></span> TypeScript / Python</span>
-            <a href="https://qeloma-verdict.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: var(--gold); text-decoration: none; font-weight: 600;">Repository ↗</a>
-          </div>
-        </div>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">Loading repositories from GitHub&hellip;</p>
       </div>
     </div>
   </section>
@@ -2191,7 +832,7 @@
     <div class="container">
       <div class="section-head" data-reveal="">
         <div>
-          <h2 class="section-title"><span class="idx">08</span>Professional Certifications</h2>
+          <h2 class="section-title"><span class="idx">07</span>Professional Certifications</h2>
           <p class="eyebrow" style="margin-top: 0.4rem;">31 Verified Industry Credentials Across AI, Cloud &amp; Full-Stack Systems</p>
         </div>
         <div style="display: flex; gap: 0.6rem; align-items: center;">
@@ -2201,89 +842,10 @@
         </div>
       </div>
 
-      <!-- Executive Credential Domains Grid -->
-      <div class="cert-exec-grid" data-reveal="">
-        <div class="cert-exec-card">
-          <div class="cert-exec-head">
-            <span class="cert-exec-badge">16 Verified Credentials</span>
-            <h3 class="cert-exec-title">Agentic AI, MCP &amp; LLM Systems</h3>
-          </div>
-          <p class="cert-exec-desc">Production AI agent architectures, Anthropic Model Context Protocol (MCP) &amp; Agent Skills, Microsoft Press AI Agents with Copilot, Google Cloud GenAI, and multi-agent coordination.</p>
-          <div class="cert-exec-tags">
-            <span class="tag">Anthropic MCP</span>
-            <span class="tag">Agent Skills</span>
-            <span class="tag">Microsoft Press</span>
-            <span class="tag">Google GenAI</span>
-            <span class="tag">RAG Fallbacks</span>
-          </div>
-        </div>
-
-        <div class="cert-exec-card">
-          <div class="cert-exec-head">
-            <span class="cert-exec-badge">9 Credly Badges</span>
-            <h3 class="cert-exec-title">IBM SkillsBuild Credentials</h3>
-          </div>
-          <p class="cert-exec-desc">Comprehensive IBM Credly-issued credentials spanning Cloud Computing, Cybersecurity, Enterprise AI Fundamentals, Data Architecture, and professional workplace problem-solving.</p>
-          <div class="cert-exec-tags">
-            <span class="tag">Cloud Architecture</span>
-            <span class="tag">Cybersecurity</span>
-            <span class="tag">Enterprise AI</span>
-            <span class="tag">Data Platforms</span>
-          </div>
-        </div>
-
-        <div class="cert-exec-card">
-          <div class="cert-exec-head">
-            <span class="cert-exec-badge">4 Certified Licenses</span>
-            <h3 class="cert-exec-title">Django &amp; Full-Stack Systems</h3>
-          </div>
-          <p class="cert-exec-desc">Formal certification as Certified Django Developer (e-smartdata License: ESD-037/10/2025), Python Machine Learning pipelines, and scalable API systems engineering.</p>
-          <div class="cert-exec-tags">
-            <span class="tag">Certified Django Dev</span>
-            <span class="tag">Python ML</span>
-            <span class="tag">FastAPI</span>
-            <span class="tag">System Design</span>
-          </div>
-        </div>
-
-        <div class="cert-exec-card">
-          <div class="cert-exec-head">
-            <span class="cert-exec-badge">2 Certificates</span>
-            <h3 class="cert-exec-title">Responsible AI &amp; Engineering Mastery</h3>
-          </div>
-          <p class="cert-exec-desc">Responsible AI engineering governance, ethics in production LLMs, and high-impact critical problem-solving frameworks for engineering teams.</p>
-          <div class="cert-exec-tags">
-            <span class="tag">Responsible AI</span>
-            <span class="tag">Critical Problem-Solving</span>
-            <span class="tag">Leadership</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Executive Gateway Card to Dedicated Gallery -->
-      <div class="cert-portal-card" data-reveal="">
-        <div class="cert-portal-content">
-          <div class="cert-portal-badge">Interactive Verification Ledger</div>
-          <h3 class="cert-portal-title">Professional Certifications Gallery</h3>
-          <p class="cert-portal-desc">
-            Access the full dedicated verification hub featuring real-time category filtering, direct verification links, Credly badge views, and authenticated license IDs for all 31 credentials.
-          </p>
-          <div class="cert-portal-issuers">
-            <span class="cert-issuer-pill">Anthropic</span>
-            <span class="cert-issuer-pill">Google Cloud</span>
-            <span class="cert-issuer-pill">IBM SkillsBuild</span>
-            <span class="cert-issuer-pill">Microsoft Press</span>
-            <span class="cert-issuer-pill">e-smartdata</span>
-            <span class="cert-issuer-pill">LinkedIn Learning</span>
-          </div>
-        </div>
-        <div class="cert-portal-action">
-          <a href="certifications.html" class="btn btn-primary btn-portal">
-            Explore 31 Verified Credentials Gallery ↗
-          </a>
-        </div>
-      </div>
-
+      <p style="font-size: 0.95rem; color: var(--text-muted); max-width: 60ch; margin-top: 0.5rem;">
+        Full category breakdown, verification links, and Credly badges live on the dedicated
+        <a href="certifications.html" style="color: var(--gold);">Certifications page</a>.
+      </p>
     </div>
   </section>
 
@@ -2292,7 +854,7 @@
     <div class="container">
       <span class="eyebrow" data-reveal="">Get in touch</span>
       <h2 data-reveal="">Let's build something resilient together.</h2>
-      <p class="contact-mission" data-reveal="">Based in Islamabad, Pakistan, working US / EU / APAC overlap hours. Open
+      <p class="contact-mission" data-reveal="">Based in Islamabad, Pakistan &mdash; schedule fully flexible, aligned to EST/PST hours. Open
         to Senior Backend, Solutions Architecture, and AI Platform roles (remote, hybrid, contract, or full-time).</p>
 
       <!-- Direct Contact Channels Cards (Clean, Clutter-free) -->
@@ -2412,7 +974,7 @@
       </div>
       <p class="voice-toast-msg">
         Hi! I'm Jawad's AI Voice Assistant. Would you like an interactive audio tour of his 7+ yrs experience, 3-tier AI
-        fallback architecture, or 26 verified certifications?
+        fallback architecture, or 31 verified certifications?
       </p>
       <div class="voice-toast-actions">
         <button class="btn btn-primary btn-xs" type="button" id="startVoiceTourBtn">
@@ -2481,12 +1043,12 @@
         🎙️ Concierge
       </button>
       <button class="voice-mode-tab" type="button" data-voice-mode="docs-to-voice" id="voiceTabDocsToVoice" role="tab"
-        aria-selected="false">
-        🔊 Docs to Voice
+        aria-selected="false" title="Requires a connected Google account — not available yet">
+        🔊 Docs to Voice <span style="opacity:0.6; font-size:0.7em;">(soon)</span>
       </button>
       <button class="voice-mode-tab" type="button" data-voice-mode="voice-to-docs" id="voiceTabVoiceToDocs" role="tab"
-        aria-selected="false">
-        🗣️ Voice to Docs
+        aria-selected="false" title="Requires a connected Google account — not available yet">
+        🗣️ Voice to Docs <span style="opacity:0.6; font-size:0.7em;">(soon)</span>
       </button>
     </div>
 
@@ -2511,14 +1073,9 @@
             3-Tier AI</button>
           <button class="voice-pill" type="button"
             data-prompt="Tell me about his 7+ years of experience and track record">🎙️ Experience</button>
-          <button class="voice-pill" type="button" data-prompt="What are his 26 verified certifications?">🎙️ 26
-            Certs</button>
+          <button class="voice-pill" type="button" data-prompt="What are his 31 verified certifications?">🎙️ 31 Certs</button>
           <button class="voice-pill" type="button" data-prompt="Tell me about his 10 Chrome Extensions suite">🎙️ Chrome
             Suite</button>
-          <button class="voice-pill" type="button" data-prompt="Read active Google Doc aloud">🔊 Read Active
-            Doc</button>
-          <button class="voice-pill" type="button" data-prompt="Start dictating note to Google Doc">🗣️ Dictate to
-            Doc</button>
           <button class="voice-pill" type="button" data-prompt="How can I contact or hire Jawad?">🎙️ Contact /
             Hire</button>
         </div>
@@ -2741,13 +1298,23 @@
             <span class="figma-icon-comp">❖</span> 04_Strategic Services
           </a>
           <a class="figma-layer-item js-sitemap-nav" href="#work">
-            <span class="figma-icon-comp">❖</span> 05_Signature Work
+            <span class="figma-icon-comp">❖</span> 05_Enterprise Work
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="#github-stats">
+            <span class="figma-icon-comp">❖</span> 06_GitHub
           </a>
           <a class="figma-layer-item js-sitemap-nav" href="#certifications">
-            <span class="figma-icon-comp">❖</span> 06_26 Certifications
+            <span class="figma-icon-comp">❖</span> 07_31 Certifications
           </a>
           <a class="figma-layer-item js-sitemap-nav" href="#contact">
-            <span class="figma-icon-comp">❖</span> 07_Direct Contact
+            <span class="figma-icon-comp">❖</span> 08_Direct Contact
+          </a>
+          <div class="figma-panel-title" style="margin-top:0.75rem;">Standalone Pages</div>
+          <a class="figma-layer-item js-sitemap-nav" href="case-study.html">
+            <span class="figma-icon-frame">◇</span> Case Study
+          </a>
+          <a class="figma-layer-item js-sitemap-nav" href="projects.html">
+            <span class="figma-icon-frame">◇</span> Projects
           </a>
           <div class="figma-panel-title" style="margin-top:0.75rem;">Interactive Subsystems</div>
           <a class="figma-layer-item js-sitemap-nav" href="#portfolioCli">
@@ -2858,22 +1425,56 @@
                 <a class="figma-jump-btn js-sitemap-nav" href="#services">Jump to Services →</a>
               </div>
 
-              <!-- Node 6: Signature Work -->
+              <!-- Node 6: Enterprise Work -->
               <div class="figma-node-card">
                 <div class="figma-node-head">
                   <div class="figma-node-title">
-                    <span class="figma-icon-comp">❖</span> Frame: Signature Work
+                    <span class="figma-icon-comp">❖</span> Frame: Enterprise Work
                   </div>
                   <span class="figma-badge-200">#work</span>
                 </div>
-                <p class="figma-node-desc">Tabbed showcase featuring Enterprise Client Platforms (ATS &amp; HRMS under
-                  NDA) and Open Source Developer Suite (10 Chrome Extensions).</p>
+                <p class="figma-node-desc">Enterprise client platforms (ATS &amp; HRMS under NDA). Personal projects
+                  and the Qeloma suite now live on a standalone Projects page.</p>
                 <div class="figma-node-tags">
-                  <span class="figma-node-tag">10 Chrome Extensions</span>
-                  <span class="figma-node-tag">Modular Micro-Services ATS</span>
-                  <span class="figma-node-tag">Animated Tab Pill</span>
+                  <span class="figma-node-tag">Multi-Tenant ATS</span>
+                  <span class="figma-node-tag">APAC HRMS</span>
+                  <span class="figma-node-tag">NDA Client Work</span>
                 </div>
                 <a class="figma-jump-btn js-sitemap-nav" href="#work">Jump to Work →</a>
+              </div>
+
+              <!-- Node: Case Study -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Page: Case Study
+                  </div>
+                  <span class="figma-badge-200">case-study.html</span>
+                </div>
+                <p class="figma-node-desc">Designing for AI Failure — the 3-tier fallback architecture case study,
+                  with system diagrams, a live simulator, and code sample.</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">RAG Fallback</span>
+                  <span class="figma-node-tag">System Diagrams</span>
+                </div>
+                <a class="figma-jump-btn" href="case-study.html">Open Case Study →</a>
+              </div>
+
+              <!-- Node: Projects -->
+              <div class="figma-node-card">
+                <div class="figma-node-head">
+                  <div class="figma-node-title">
+                    <span class="figma-icon-comp">❖</span> Page: Projects
+                  </div>
+                  <span class="figma-badge-200">projects.html</span>
+                </div>
+                <p class="figma-node-desc">Personal flagships, the Chrome extension suite, and the full Qeloma
+                  open-source product line.</p>
+                <div class="figma-node-tags">
+                  <span class="figma-node-tag">Chrome Extensions</span>
+                  <span class="figma-node-tag">Qeloma Suite</span>
+                </div>
+                <a class="figma-jump-btn" href="projects.html">Open Projects →</a>
               </div>
 
               <!-- Node 7: Certifications -->

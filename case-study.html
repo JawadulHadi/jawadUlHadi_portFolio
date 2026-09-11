@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    (function () {
+      try {
+        var validThemes = ["light", "dark", "ai-classic", "cyber"];
+        var stored = localStorage.getItem("jh-theme");
+        var theme = (stored && validThemes.indexOf(stored) !== -1)
+          ? stored
+          : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case Study: Designing for AI Failure | Jawad Ul Hadi</title>
+  <meta name="description"
+    content="Engineering case study: a provider-agnostic, 3-tier fallback architecture (Retry → RAG → Rule-Based Floor) that keeps AI-backed features running when the model doesn't.">
+  <meta name="author" content="Jawad Ul Hadi">
+
+  <!-- Immediate Zero-Latency Favicon (Inline Data-URI + Preloaded SVG) -->
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%230a1628'/%3E%3Ctext x='50' y='64' font-family='sans-serif' font-weight='800' font-size='32' fill='%23b9843f' text-anchor='middle' letter-spacing='1'%3EJUH%3C/text%3E%3C/svg%3E"
+    type="image/svg+xml">
+  <link rel="alternate icon" href="favicon.svg" type="image/svg+xml" fetchpriority="high">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="preload" href="favicon.svg" as="image" type="image/svg+xml">
+
+  <meta name="theme-color" content="#f5f3f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1628" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://jawadulhadi-portfolio.vercel.app/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jawad Ul Hadi — Senior Backend Engineer | Scalable SaaS &amp; AI Platforms">
+  <meta property="og:description"
+    content="Engineering case study: a provider-agnostic, 3-tier fallback architecture (Retry → RAG → Rule-Based Floor) that keeps AI-backed features running when the model doesn't.">
+  <meta property="og:url" content="https://jawadulhadi-portfolio.vercel.app/">
+  <meta property="og:image" content="https://jawadulhadi-portfolio.vercel.app/banners/repo-banner-dark.png">
+  <meta property="og:image:width" content="2560">
+  <meta property="og:image:height" content="1280">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jawadulhadi-portfolio.vercel.app/banners/repo-banner-dark.png">
+
+  <!-- Critical Anti-FOUC Paint Stylesheet -->
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+
+    html[data-theme="light"],
+    html:not([data-theme="dark"]):not([data-theme="cyber"]):not([data-theme="ai-classic"]) {
+      background-color: #f5f3f0;
+      color: #0a1628;
+      color-scheme: light;
+    }
+
+    html[data-theme="dark"] {
+      background-color: #0a1628;
+      color: #f5f3f0;
+      color-scheme: dark;
+    }
+
+    html[data-theme="ai-classic"] {
+      background-color: #f8fafc;
+      color: #0f172a;
+      color-scheme: light;
+    }
+
+    html[data-theme="cyber"] {
+      background-color: #050814;
+      color: #e2f1ff;
+      color-scheme: dark;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background-color: inherit;
+      color: inherit;
+    }
+
+    @keyframes jhSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jawad Ul Hadi",
+  "jobTitle": "Senior Backend Engineer",
+  "description": "Senior Backend Engineer | Architecting Scalable SaaS & AI Platforms",
+  "url": "https://jawadulhadi-portfolio.vercel.app/",
+  "email": "jawadulhadicc@gmail.com",
+  "telephone": "+923467248414",
+  "address": { "@type": "PostalAddress", "addressLocality": "Islamabad", "addressCountry": "PK" },
+  "worksFor": { "@type": "Organization", "name": "MicroAgility Services (Pvt) Ltd." },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "Government College University, Faisalabad" },
+  "sameAs": [
+    "https://www.linkedin.com/in/jawad-ul-hadi",
+    "https://github.com/JawadulHadi",
+    "https://orcid.org/0009-0007-1317-4615"
+  ]
+}
+</script>
+
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+<span id="top"></span>
+<header class="header">
+    <div class="header-in">
+      <a class="brand" href="index.html#top" aria-label="Jawad Ul Hadi — home">
+        <span class="monogram" aria-hidden="true">JUH</span>
+        <span>Jawad Ul Hadi</span>
+      </a>
+      <nav class="main-nav" aria-label="Primary" id="mainNav">
+        <a href="index.html#about">About</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="case-study.html">Case Study</a>
+        <a href="index.html#skills">Skills</a>
+        <a href="index.html#services">Services</a>
+        <a href="projects.html">Projects</a>
+        <a href="index.html#work">Work</a>
+        <a href="index.html#github-stats">GitHub</a>
+        <a href="certifications.html">Certifications</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="header-actions">
+        <a class="btn btn-outline" href="certifications.html" title="Explore Professional Certifications Gallery (31 Verified)">Certifications Gallery ↗</a>
+        <a class="btn btn-outline js-resume-download" href="resume.pdf" target="_blank"
+          download="Jawad_Ul_Hadi_Resume.pdf" title="Download & View PDF Résumé">Resume</a>
+
+        <!-- PROPER THEME SWITCHER DROPDOWN -->
+        <div class="theme-selector" id="themeSelector">
+          <button class="theme-selector-trigger" type="button" id="themeSelectorBtn"
+            aria-haspopup="true" aria-expanded="false" aria-controls="themeDropdownMenu"
+            aria-label="Select Color Theme" title="Switch visual theme">
+            <span class="theme-trigger-icon" id="themeTriggerIcon" aria-hidden="true">
+              <!-- Default Icon -->
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.4"></circle><path d="M12 2v2.4M12 19.6V22M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2 12h2.4M19.6 12H22M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"></path></svg>
+            </span>
+            <span class="theme-trigger-label" id="themeTriggerLabel">Theme</span>
+            <svg class="theme-trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+
+          <div class="theme-dropdown" id="themeDropdownMenu" role="menu" aria-labelledby="themeSelectorBtn">
+            <div class="theme-dropdown-header">Visual Palette</div>
+            <div class="theme-options-list">
+              <button type="button" class="theme-opt-btn" data-theme-value="light" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-light" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">Classic Light</span>
+                    <span class="theme-opt-desc">Warm cream &amp; gold</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+
+              <button type="button" class="theme-opt-btn" data-theme-value="dark" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-dark" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">Slate Dark</span>
+                    <span class="theme-opt-desc">Deep navy &amp; gold</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+
+              <button type="button" class="theme-opt-btn" data-theme-value="ai-classic" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-ai" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">AI White &amp; Azure</span>
+                    <span class="theme-opt-desc">Slate white &amp; blue</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+
+              <button type="button" class="theme-opt-btn" data-theme-value="cyber" role="menuitemradio" aria-checked="false">
+                <div class="theme-opt-left">
+                  <span class="theme-swatch swatch-cyber" aria-hidden="true">
+                    <span class="theme-swatch-dot"></span>
+                  </span>
+                  <div class="theme-opt-info">
+                    <span class="theme-opt-name">Cyber Synth</span>
+                    <span class="theme-opt-desc">Midnight &amp; neon cyan</span>
+                  </div>
+                </div>
+                <svg class="theme-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+<main>
+  <section class="section" style="padding-top: 2.5rem;">
+    <div class="container">
+      <a href="index.html" style="color: var(--text-muted); font-size: 0.85rem;">&larr; Back to Portfolio</a>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+        <!-- Synth AI & Neural Architecture Showcase -->
+        <div class="synth-neural-banner" data-reveal="">
+          <div class="synth-neural-header">
+            <div>
+              <span class="synth-badge">AI / Synth Neural Engine</span>
+              <h3 style="font-family: var(--font-display); font-size: 1.28rem; margin-top: 6px; color: var(--text);">
+                From Raw Logic To Real Intelligence
+              </h3>
+            </div>
+            <span
+              style="font-family: var(--font-display); font-size: 0.78rem; color: var(--gold); background: rgba(0, 240, 255, 0.08); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px;">
+              Live Interactive Neural Synapse
+            </span>
+          </div>
+          <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; max-width: 78ch;">
+            Deploying production-grade AI agents and robust software systems engineered for the modern digital
+            landscape. Bridging deterministic backend backbones (NestJS, PostgreSQL, Redis, BullMQ) with generative
+            multimodal intelligence (Google Gemini, OpenAI, Claude, RAG, and 3-tier fallback guarantees).
+          </p>
+          <canvas id="synthSynapseCanvas" class="synth-synapse-canvas"
+            title="Move your cursor / touch to trigger neural synaptic pulses"></canvas>
+        </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDY -->
+  <section class="section section-band" id="case-study">
+    <div class="container">
+      <div class="section-head" data-reveal="">
+        <h2 class="section-title">Designing for AI Failure</h2>
+        <p class="section-note">Architecture ownership, proven in production — not a slide, a running system</p>
+      </div>
+        <section class="rag-case-study-card" id="rag-architecture-showcase" data-reveal="">
+          <div class="rag-case-study-header">
+            <div>
+              <div class="rag-badge-group">
+                <span class="rag-badge">Engineering / AI Systems · Architecture Case Study</span>
+                <span class="rag-badge"
+                  style="border-color: #10b981; color: #10b981; background: rgba(16, 185, 129, 0.1);">Verified
+                  Production Proof</span>
+              </div>
+              <h3 class="rag-case-study-title">Designing for AI Failure: RAG + BullMQ Fallback Architecture</h3>
+              <p class="rag-case-study-subtitle">
+                Inside the provider-agnostic, 3-tier fallback architecture that keeps enterprise AI workflows running
+                with zero downtime when models falter.
+              </p>
+            </div>
+            <div class="rag-header-cta">
+              <button class="btn btn-outline btn-sm" id="copyRagSpecsBtn" type="button"
+                title="Copy Architecture Specs &amp; Key Metrics to Clipboard">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                <span id="copyRagSpecsText">Copy Architecture Specs</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Executive Outcome Metrics from Slide 5 -->
+          <div class="rag-metrics-grid">
+            <div class="rag-metric-box">
+              <div class="rag-metric-num">~60%</div>
+              <div class="rag-metric-desc">reduction in AI codebase surface area after unifying 5 provider integrations
+                behind one service.</div>
+            </div>
+            <div class="rag-metric-box">
+              <div class="rag-metric-num">5</div>
+              <div class="rag-metric-desc">production AI workflows running on one shared reliability pattern across
+                enterprise tenants.</div>
+            </div>
+            <div class="rag-metric-box">
+              <div class="rag-metric-num">0</div>
+              <div class="rag-metric-desc">new infrastructure needed to ship v1 of the RAG fallback tier using existing
+                BullMQ + Redis + pgvector.</div>
+            </div>
+            <div class="rag-metric-box">
+              <div class="rag-metric-num">3</div>
+              <div class="rag-metric-desc">tiers of fallback: retry inside queue → RAG-grounded answer → deterministic
+                rule-based floor.</div>
+            </div>
+          </div>
+
+          <div class="rag-quote-callout">
+            &ldquo;The AI makes the system smart; the fallback ladder makes it something you can depend on during
+            business hours, every day.&rdquo;
+          </div>
+
+          <!-- Interactive Architecture Figure Tabs -->
+          <div class="rag-fig-nav" role="tablist" aria-label="RAG Architecture Figures">
+            <button class="rag-fig-btn active" type="button" data-fig="fig1" role="tab" aria-selected="true">
+              <span>Figure 1:</span> Unified AI Service
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig2" role="tab" aria-selected="false">
+              <span>Figure 2:</span> Indexing &amp; Retrieval Flow
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig3" role="tab" aria-selected="false">
+              <span>Figure 3:</span> The Resilience Ladder
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig4" role="tab" aria-selected="false">
+              <span>⚡ Live Simulator:</span> Resilience Playground
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig5" role="tab" aria-selected="false">
+              <span>📄 Case Study:</span> Problem &amp; Architecture
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig6" role="tab" aria-selected="false">
+              <span>💻 Code:</span> NestJS &amp; BullMQ Pattern
+            </button>
+            <button class="rag-fig-btn" type="button" data-fig="fig7" role="tab" aria-selected="false">
+              <span>📊 Outcomes:</span> Verification &amp; Proof
+            </button>
+          </div>
+
+          <!-- Figure 1 Panel: System Overview -->
+          <div class="rag-fig-view active" id="rag-fig1-panel" role="tabpanel">
+            <div class="rag-diagram-wrap">
+              <div
+                style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                Figure 1 · System Overview: The Unified AI Service (One entry point for every AI request — five
+                capabilities, one reliability ladder)
+              </div>
+
+              <!-- Upstream Clients -->
+              <div class="arch-row">
+                <div class="arch-node">Recruiter Console</div>
+                <div class="arch-node">ATS / HRMS System</div>
+                <div class="arch-node">Careers Portal</div>
+                <div class="arch-node">Partner APIs</div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Single Provider Contract (NestJS Guard &amp; Ingestion Controller)</div>
+
+              <!-- Unified AI Service -->
+              <div class="arch-row">
+                <div class="arch-node primary" style="width: 100%; max-width: 760px;">
+                  <strong>UNIFIED AI SERVICE</strong>
+                  <span class="arch-node sub">Single entry point for every AI request — one provider contract &amp;
+                    telemetry hub</span>
+                </div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Async Task Offload</div>
+
+              <!-- Async Work Queue -->
+              <div class="arch-row">
+                <div class="arch-node queue" style="width: 100%; max-width: 760px;">
+                  <strong>ASYNC WORK QUEUE (BullMQ + Redis)</strong>
+                  <span class="arch-node sub">Idempotent, retry-safe background workers with exponential backoff
+                    buffers</span>
+                </div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Dispatched into 5 Shared Capabilities</div>
+
+              <!-- 5 Capabilities -->
+              <div class="arch-row">
+                <div class="arch-node ai-cap">
+                  <strong>Smart Parsing</strong>
+                  <span class="arch-node sub">docs + OCR</span>
+                </div>
+                <div class="arch-node ai-cap">
+                  <strong>Candidate Scoring</strong>
+                  <span class="arch-node sub">explainable fit</span>
+                </div>
+                <div class="arch-node ai-cap">
+                  <strong>Interview Questions</strong>
+                  <span class="arch-node sub">role-aware</span>
+                </div>
+                <div class="arch-node ai-cap">
+                  <strong>Hiring Verdict</strong>
+                  <span class="arch-node sub">evidence-backed</span>
+                </div>
+                <div class="arch-node ai-cap">
+                  <strong>Conversational Assistant</strong>
+                  <span class="arch-node sub">grounded chat</span>
+                </div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Inherits Uniform Reliability Pipeline</div>
+
+              <!-- Reliability Ladder -->
+              <div class="arch-row">
+                <div class="arch-node ladder" style="max-width: 760px;">
+                  <strong>RELIABILITY LADDER</strong>
+                  <span class="arch-node sub">AI Answer → Confidence &amp; Latency Check → RAG Grounded Fallback →
+                    Deterministic Rule-Based Floor</span>
+                </div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Dynamic Failover &amp; Retrieval Grounding</div>
+
+              <!-- Grounded Knowledge vs Model Providers -->
+              <div class="arch-row">
+                <div class="arch-node rag-box" style="flex: 1; max-width: 370px;">
+                  <strong>GROUNDED KNOWLEDGE (RAG)</strong>
+                  <span class="arch-node sub">Deterministic vector retrieval over the tenant's own jobs &amp; candidate
+                    corpus</span>
+                </div>
+                <div class="arch-node"
+                  style="flex: 1; max-width: 370px; border-color: #6366f1; background: rgba(99, 102, 241, 0.12); color: #c7d2fe;">
+                  <strong>MODEL PROVIDERS (ABSTRACTED)</strong>
+                  <span class="arch-node sub">Google Gemini &bull; OpenAI &bull; Anthropic Claude (automatic runtime
+                    failover)</span>
+                </div>
+              </div>
+              <div class="arch-arrow">▼ &nbsp; Strict Multi-Tenant Isolation &amp; Governance</div>
+
+              <!-- Multi-Tenant Security & Privacy -->
+              <div class="arch-row">
+                <div class="arch-node"
+                  style="width: 100%; max-width: 760px; background: #0a101d; border-color: #334155; color: #94a3b8; font-size: 0.78rem;">
+                  <strong>MULTI-TENANT SECURITY &amp; PRIVACY</strong>: Vaulted API Secrets &bull; Tenant-Scoped Vector
+                  Queries &bull; Audit Logging &bull; GDPR Right to Erasure Cascade
+                </div>
+              </div>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; margin-top: 0.8rem;">
+              <strong>Key Architectural Guarantee:</strong> Every client talks to one service. Every heavy task runs on
+              one queue. Every AI-backed capability inherits the same reliability ladder.
+            </p>
+          </div>
+
+          <!-- Figure 2 Panel: Indexing & Retrieval -->
+          <div class="rag-fig-view" id="rag-fig2-panel" role="tabpanel">
+            <div class="rag-diagram-wrap">
+              <div
+                style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                Figure 2 · Request Flow: Indexing &amp; Retrieval (Write path builds the index async · read path
+                degrades to grounded snippets, never an error)
+              </div>
+
+              <!-- Write Path -->
+              <div style="margin-bottom: 1.4rem; padding-bottom: 1.2rem; border-bottom: 1px dashed var(--border);">
+                <span
+                  style="font-family: var(--font-display); font-size: 0.75rem; color: #38bdf8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">
+                  WRITE PATH — INDEXING (Async, BullMQ Worker Pool)
+                </span>
+                <div class="arch-row" style="justify-content: flex-start; margin-top: 0.6rem;">
+                  <div class="arch-node">1. Document Parsed &amp; Stored<span class="arch-node sub">tenant-scoped</span>
+                  </div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node queue">2. Enqueue Embedding Job<span class="arch-node sub">BullMQ + Redis</span>
+                  </div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node">3. Chunk Text<span class="arch-node sub">deterministic (no AI)</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node"
+                    style="border-color: #6366f1; background: rgba(99, 102, 241, 0.12); color: #c7d2fe;">4. Embed
+                    Chunks<span class="arch-node sub">AI service &bull; 768-dim</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node rag-box">5. Vector Store<span class="arch-node sub">upsert, tenant-tagged</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Read Path -->
+              <div style="margin-bottom: 1.4rem;">
+                <span
+                  style="font-family: var(--font-display); font-size: 0.75rem; color: #10b981; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;">
+                  READ PATH — RETRIEVAL + GROUNDED GENERATION (With Graceful Fallback)
+                </span>
+                <div class="arch-row" style="justify-content: flex-start; margin-top: 0.6rem;">
+                  <div class="arch-node">1. Recruiter Asks Question<span class="arch-node sub">prompt input</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node"
+                    style="border-color: #6366f1; background: rgba(99, 102, 241, 0.12); color: #c7d2fe;">2. Embed
+                    Query<span class="arch-node sub">AI Service</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node rag-box">3. Tenant-Scoped Vector Search<span class="arch-node sub">cosine
+                      similarity</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node primary">4. Grounded Prompt + Gen<span class="arch-node sub">context
+                      injection</span></div>
+                  <div class="arch-arrow">→</div>
+                  <div class="arch-node"
+                    style="border-color: #10b981; background: rgba(16, 185, 129, 0.15); color: #6ee7b7;">5. Answer +
+                    Citations<span class="arch-node sub">evidence-backed</span></div>
+                </div>
+
+                <!-- Fallback branch if AI down -->
+                <div
+                  style="margin-top: 0.8rem; margin-left: 280px; padding: 0.6rem 1rem; border-left: 2px solid #f59e0b; background: rgba(245, 158, 11, 0.08); border-radius: 0 6px 6px 0;">
+                  <span style="font-size: 0.78rem; color: #f59e0b; font-weight: 600;">⚡ If Model Provider Down /
+                    Disabled:</span>
+                  <span style="font-size: 0.78rem; color: var(--text-muted); margin-left: 6px;">
+                    Degrades directly to <strong>Ranked Snippets</strong> (no LLM generation required, still 100%
+                    grounded and cited).
+                  </span>
+                </div>
+              </div>
+
+              <!-- Right to Erasure -->
+              <div style="background: #080c16; border: 1px solid #1e293b; border-radius: 6px; padding: 0.8rem 1rem;">
+                <span
+                  style="font-family: var(--font-display); font-size: 0.75rem; color: #f87171; font-weight: 600; text-transform: uppercase;">
+                  GDPR / PRIVACY: RIGHT TO ERASURE
+                </span>
+                <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 4px;">
+                  Deleting a candidate or tenant record triggers an atomic cascade that purges their relational record,
+                  MeiliSearch index entry, raw S3/GCS payloads, and every derived 768-dim vector embedding from the
+                  vector store.
+                </p>
+              </div>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; margin-top: 0.8rem;">
+              <strong>Key Architectural Guarantee:</strong> The read path degrades to ranked, grounded snippets instead
+              of an error whenever generation is unavailable.
+            </p>
+          </div>
+
+          <!-- Figure 3 Panel: The Resilience Ladder -->
+          <div class="rag-fig-view" id="rag-fig3-panel" role="tabpanel">
+            <div class="rag-diagram-wrap">
+              <div
+                style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                Figure 3 · The Resilience Ladder: Retry → RAG Fallback → Rule-Based Floor (Never a hard failure)
+              </div>
+
+              <div class="arch-row" style="justify-content: flex-start;">
+                <div class="arch-node" style="border-color: #38bdf8;">Ingestion Controller<span
+                    class="arch-node sub">returns 202 immediately</span></div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node">Document Service<span class="arch-node sub">validate + enqueue</span></div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node queue">BullMQ Queue<span class="arch-node sub">Redis-backed</span></div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node">Parsing Worker<span class="arch-node sub">idempotent</span></div>
+                <div class="arch-arrow">→</div>
+                <div class="arch-node primary">Unified AI Service<span class="arch-node sub">Gemini → OpenAI →
+                    Claude</span></div>
+              </div>
+
+              <!-- Ladder Execution Branches -->
+              <div
+                style="margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; margin-left: 40px; border-left: 2px dashed var(--border); padding-left: 1.2rem;">
+
+                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                  <span
+                    style="font-family: var(--font-display); font-size: 0.76rem; color: #10b981; font-weight: 600; min-width: 140px;">
+                    [Tier 1: Success]
+                  </span>
+                  <div class="arch-node"
+                    style="border-color: #10b981; background: rgba(16, 185, 129, 0.12); color: #6ee7b7;">
+                    Parsed Successfully → Document Repository (tenant-scoped store)
+                  </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                  <span
+                    style="font-family: var(--font-display); font-size: 0.76rem; color: #f59e0b; font-weight: 600; min-width: 140px;">
+                    [Tier 2: On Provider Fail]
+                  </span>
+                  <div class="arch-node rag-box">
+                    RAG Fallback → Grounded Vector Retrieval → Document Repository
+                  </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                  <span
+                    style="font-family: var(--font-display); font-size: 0.76rem; color: #ef4444; font-weight: 600; min-width: 140px;">
+                    [Tier 3: Retrieval Empty]
+                  </span>
+                  <div class="arch-node rule-box">
+                    Rule-Based Extractor → OCR / Regex Pattern Match → Document Repository
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; margin-top: 0.8rem;">
+              <strong>Key Architectural Guarantee:</strong> The same ladder at the module level: retry stays inside the
+              queue, RAG catches provider failure, and rule-based logic catches the rare case where retrieval comes up
+              empty.
+            </p>
+          </div>
+
+          <!-- Figure 4 Panel: Live Resilience Simulator -->
+          <div class="rag-fig-view" id="rag-fig4-panel" role="tabpanel">
+            <div class="rag-sim-box">
+              <div class="rag-sim-header">
+                <div>
+                  <span
+                    style="font-family: var(--font-display); font-size: 0.76rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em;">
+                    Live Interactive Resilience Simulator
+                  </span>
+                  <h4 style="font-size: 1.05rem; color: var(--text); margin-top: 2px;">
+                    Simulate Real-Time Failure Scenarios &amp; Verify Fallback Transitions
+                  </h4>
+                </div>
+                <div class="rag-sim-presets">
+                  <button class="rag-sim-preset-btn active" type="button" data-sim-scenario="normal">1. Providers Online
+                    (200 OK)</button>
+                  <button class="rag-sim-preset-btn" type="button" data-sim-scenario="openai-fail">2. OpenAI 503 →
+                    Auto-Failover</button>
+                  <button class="rag-sim-preset-btn" type="button" data-sim-scenario="all-llm-down">3. All LLMs Down →
+                    Tier 2 RAG</button>
+                  <button class="rag-sim-preset-btn" type="button" data-sim-scenario="empty-rag">4. Empty Vectors → Tier
+                    3 Floor</button>
+                </div>
+              </div>
+
+              <div class="rag-sim-grid">
+                <!-- Ladder Step Visualizer -->
+                <div class="rag-sim-ladder-display">
+                  <div
+                    style="font-size: 0.78rem; font-family: var(--font-display); color: var(--text-muted); margin-bottom: 0.2rem;">
+                    ACTIVE RESILIENCE LADDER STATE:
+                  </div>
+
+                  <div class="rag-sim-step active" id="simStepQueue">
+                    <div class="rag-sim-step-title">
+                      <span>Queue &amp; Idempotency Layer</span>
+                      <span class="rag-sim-step-badge"
+                        style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">BullMQ</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;">
+                      Job enqueued with HMAC tenant token; 202 Accepted returned in 8ms.
+                    </div>
+                  </div>
+
+                  <div class="rag-sim-step active" id="simStepLLM">
+                    <div class="rag-sim-step-title">
+                      <span>Tier 1: Multi-Provider LLM Engine</span>
+                      <span class="rag-sim-step-badge" id="simLLMBadge"
+                        style="background: rgba(16, 185, 129, 0.2); color: #10b981;">Online</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;" id="simLLMDesc">
+                      Gemini 2.5 Flash / Claude 3.7 / OpenAI GPT-4o with automatic circuit breaker.
+                    </div>
+                  </div>
+
+                  <div class="rag-sim-step" id="simStepRAG">
+                    <div class="rag-sim-step-title">
+                      <span>Tier 2: RAG Grounded Vector Fallback</span>
+                      <span class="rag-sim-step-badge" id="simRAGBadge"
+                        style="background: rgba(148, 163, 184, 0.2); color: #94a3b8;">Standby</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;" id="simRAGDesc">
+                      Deterministic 768-dim embeddings over tenant candidate corpus (no LLM generation needed).
+                    </div>
+                  </div>
+
+                  <div class="rag-sim-step" id="simStepRule">
+                    <div class="rag-sim-step-title">
+                      <span>Tier 3: Rule-Based Floor Extractor</span>
+                      <span class="rag-sim-step-badge" id="simRuleBadge"
+                        style="background: rgba(148, 163, 184, 0.2); color: #94a3b8;">Standby</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 3px;" id="simRuleDesc">
+                      OCR layout heuristic &amp; regex structural pattern matcher guarantee reliable fallback payload.
+                    </div>
+                  </div>
+
+                  <button class="btn btn-primary btn-sm" type="button" id="simRunBtn"
+                    style="margin-top: 0.4rem; justify-content: center;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    Re-Run Selected Scenario Simulation
+                  </button>
+                </div>
+
+                <!-- Live Stream Console -->
+                <div>
+                  <div
+                    style="font-size: 0.78rem; font-family: var(--font-display); color: var(--text-muted); margin-bottom: 0.4rem; display: flex; justify-content: space-between;">
+                    <span>TELEMETRY CONSOLE STREAM:</span>
+                    <span id="simLatencyBadge" style="color: #4ade80;">Latency: 420ms</span>
+                  </div>
+                  <div class="rag-sim-console" id="simConsoleOutput">
+                    <div class="sim-log-time">[12:57:01.012] <span class="sim-log-info">INFO</span>
+                      [IngestionController] POST /v1/ai/parse-resume tenantId=ten_micro_9182 (202 Accepted, 8ms)</div>
+                    <div class="sim-log-time">[12:57:01.025] <span class="sim-log-info">INFO</span> [BullMQ:Worker]
+                      Picked up job #84102 payload="resume_sr_engineer.pdf"</div>
+                    <div class="sim-log-time">[12:57:01.080] <span class="sim-log-info">INFO</span> [UnifiedAIService]
+                      Dispatching to Primary Provider (Google Gemini 2.5 Flash)</div>
+                    <div class="sim-log-time">[12:57:01.430] <span class="sim-log-success">SUCCESS</span>
+                      [UnifiedAIService] Parsed 18 skill entities, 3 job roles, confidence=0.97</div>
+                    <div class="sim-log-time">[12:57:01.442] <span class="sim-log-info">INFO</span> [VectorStore]
+                      Upserted 4 chunks (768-dim) into tenant pgvector partition</div>
+                    <div class="sim-log-time">[12:57:01.445] <span class="sim-log-success">RESULT</span> [JobComplete]
+                      Status: 200 OK | Reliability Tier: TIER-1 (Primary LLM)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Figure 5 Panel: Full Case Study & Problem Analysis -->
+          <div class="rag-fig-view" id="rag-fig5-panel" role="tabpanel">
+            <div class="rag-diagram-wrap">
+              <div
+                style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                Engineering Deep Dive · Problem Statement &amp; Architecture Specs
+              </div>
+
+              <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; margin-bottom: 1.4rem;">
+                <div
+                  style="background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 1.3rem;">
+                  <h4
+                    style="color: #dc2626; font-size: 0.95rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 6px;">
+                    <span>⚠️</span> The Enterprise Reality of LLMs in Production
+                  </h4>
+                  <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
+                    Third-party LLM APIs suffer from unpredictable rate-limits (HTTP 429), regional outages (HTTP 503),
+                    latency spikes (10s+ pauses), and strict token budget constraints. If an enterprise platform couples
+                    core operations directly to raw LLM calls, a single upstream outage brings hiring pipelines and
+                    recruiter consoles to a hard stop.
+                  </p>
+                </div>
+
+                <div
+                  style="background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 1.3rem;">
+                  <h4
+                    style="color: #059669; font-size: 0.95rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 6px;">
+                    <span>🛡️</span> The Architectural Solution
+                  </h4>
+                  <p style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.6;">
+                    A single Unified AI Service backed by BullMQ/Redis idempotent queues and a strict 3-tier resilience
+                    ladder: Tier 1 (automatic multi-provider retry/failover) &rarr; Tier 2 (tenant-scoped RAG grounded
+                    vector retrieval) &rarr; Tier 3 (deterministic rule-based OCR &amp; pattern floor). The system never
+                    returns a 500 error to users.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                style="background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 1.3rem;">
+                <h4 style="font-size: 0.95rem; color: var(--text); margin-bottom: 0.6rem;">Core Architecture
+                  Specifications &amp; Design Guarantees</h4>
+                <ul
+                  style="font-size: 0.86rem; color: var(--text-muted); line-height: 1.7; list-style: disc; padding-left: 1.4rem;">
+                  <li><strong>Provider Agnosticism:</strong> Dynamic switching between Google Gemini, OpenAI GPT-4o, and
+                    Anthropic Claude 3.7 with no downstream caller code modification.</li>
+                  <li><strong>Multi-Tenant Isolation:</strong> Vaulted per-tenant API keys and metadata-filtered vector
+                    queries ensuring zero cross-tenant data leakage.</li>
+                  <li><strong>Idempotent Processing:</strong> BullMQ queue workers with deterministic job IDs prevent
+                    duplicate billing or token consumption during retries.</li>
+                  <li><strong>Zero Cold-Start Lag:</strong> Lightweight pre-computed vector indices allow instant
+                    snippet fallback when upstream LLMs experience transient spikes.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Figure 6 Panel: NestJS & BullMQ Code Implementation -->
+          <div class="rag-fig-view" id="rag-fig6-panel" role="tabpanel">
+            <div class="rag-diagram-wrap" style="padding: 1.2rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+                <span
+                  style="font-family: var(--font-display); font-size: 0.78rem; color: var(--gold); text-transform: uppercase;">
+                  UnifiedAIService.ts — Production Provider Abstraction &amp; 3-Tier Fallback Ladder
+                </span>
+                <span style="font-size: 0.72rem; font-family: var(--font-display); color: #0284c7;">TypeScript /
+                  NestJS</span>
+              </div>
+              <pre class="rag-code-block"
+                style="background: #090e18; border: 1px solid #1e293b; border-radius: 8px; padding: 1.25rem; font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: #e2e8f0; line-height: 1.6; overflow-x: auto; margin: 0;"><code><span style="color: #c084fc;">export class</span> <span style="color: #38bdf8;">UnifiedAIService</span> {
+  <span style="color: #c084fc;">async</span> <span style="color: #60a5fa;">executeWithReliabilityLadder</span>&lt;T&gt;(
+    req: <span style="color: #facc15;">AIRequestPayload</span>,
+    tenantContext: <span style="color: #facc15;">TenantSecurityContext</span>
+  ): <span style="color: #38bdf8;">Promise</span>&lt;<span style="color: #facc15;">AIResponse</span>&lt;T&gt;&gt; {
+    <span style="color: #64748b;">// Tier 1: Multi-Provider LLM with Exponential Retry</span>
+    <span style="color: #c084fc;">try</span> {
+      <span style="color: #c084fc;">return await</span> <span style="color: #38bdf8;">this</span>.<span style="color: #60a5fa;">dispatchPrimaryLLM</span>(req, tenantContext);
+    } <span style="color: #c084fc;">catch</span> (llmErr) {
+      <span style="color: #38bdf8;">this</span>.logger.<span style="color: #f87171;">warn</span>(<span style="color: #4ade80;">`Tier-1 LLM failed: ${llmErr.message}. Escalating to Tier-2 RAG.`</span>);
+    }
+
+    <span style="color: #64748b;">// Tier 2: Tenant-Scoped Grounded Vector Retrieval (RAG Fallback)</span>
+    <span style="color: #c084fc;">try</span> {
+      <span style="color: #c084fc;">const</span> vectorMatches = <span style="color: #c084fc;">await</span> <span style="color: #38bdf8;">this</span>.vectorStore.<span style="color: #60a5fa;">searchByTenant</span>({
+        tenantId: tenantContext.tenantId,
+        query: req.queryText,
+        threshold: 0.78
+      });
+      <span style="color: #c084fc;">if</span> (vectorMatches.length &gt; 0) {
+        <span style="color: #c084fc;">return</span> <span style="color: #38bdf8;">this</span>.<span style="color: #60a5fa;">formatGroundedSnippets</span>(vectorMatches, <span style="color: #4ade80;">'TIER_2_RAG'</span>);
+      }
+    } <span style="color: #c084fc;">catch</span> (ragErr) {
+      <span style="color: #38bdf8;">this</span>.logger.<span style="color: #f87171;">warn</span>(<span style="color: #4ade80;">`Tier-2 RAG empty/failed: ${ragErr.message}. Escalating to Tier-3 Floor.`</span>);
+    }
+
+    <span style="color: #64748b;">// Tier 3: Deterministic Rule-Based Heuristics &amp; OCR Floor</span>
+    <span style="color: #c084fc;">return</span> <span style="color: #38bdf8;">this</span>.ruleEngine.<span style="color: #60a5fa;">extractHeuristicData</span>(req.rawDocument, <span style="color: #4ade80;">'TIER_3_RULE_FLOOR'</span>);
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- Figure 7 Panel: Outcomes & Verification Proof -->
+          <div class="rag-fig-view" id="rag-fig7-panel" role="tabpanel">
+            <div class="rag-diagram-wrap">
+              <div
+                style="font-family: var(--font-display); font-size: 0.8rem; color: var(--gold); margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">
+                Verified Production Outcomes &amp; Architectural Proof
+              </div>
+
+              <div class="rag-metrics-grid">
+                <div class="rag-metric-box">
+                  <div class="rag-metric-num">~60%</div>
+                  <div class="rag-metric-desc">reduction in AI codebase surface area after unifying 5 provider
+                    integrations behind one service.</div>
+                </div>
+                <div class="rag-metric-box">
+                  <div class="rag-metric-num">5</div>
+                  <div class="rag-metric-desc">production AI workflows running on one shared reliability pattern across
+                    enterprise tenants.</div>
+                </div>
+                <div class="rag-metric-box">
+                  <div class="rag-metric-num">0</div>
+                  <div class="rag-metric-desc">new infrastructure needed to ship v1 of the RAG fallback tier using
+                    existing BullMQ + Redis + pgvector.</div>
+                </div>
+                <div class="rag-metric-box">
+                  <div class="rag-metric-num">3</div>
+                  <div class="rag-metric-desc">tiers of fallback: retry inside queue → RAG-grounded answer →
+                    deterministic rule-based floor.</div>
+                </div>
+              </div>
+
+              <div class="rag-quote-callout" style="font-size: 0.95rem; margin-top: 1rem;">
+                &ldquo;The best code is never rewritten not because it’s perfect, but because it’s flexible enough to
+                evolve with the business.&rdquo;
+              </div>
+            </div>
+          </div>
+
+        </section>
+    </div>
+  </section>
+
+</main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span class="monogram" aria-hidden="true">JUH</span>
+      <p>Jawad Ul Hadi — Backend Lead / Architect. <a href="index.html" style="color: var(--gold);">Back to Portfolio</a></p>
+      <p class="copyright">&copy; 2026 Jawad Ul Hadi. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js" defer></script>
+</body>
+
+</html>
