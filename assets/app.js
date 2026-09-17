@@ -562,7 +562,7 @@
           '  <span class="out-highlight">skills</span>        - Summary of core backend, AI & cloud stack',
           '  <span class="out-highlight">experience</span>    - Overview of production engineering track record',
           '  <span class="out-highlight">projects</span>      - 10-Extension Chrome Suite & AI architectures',
-          '  <span class="out-highlight">certifications</span>- 31 Verified credentials (Anthropic MCP, Google Cloud, IBM, LinkedIn)',
+          '  <span class="out-highlight">certifications</span>- 54 Verified credentials (Anthropic Claude Academy, Google, IBM, Microsoft Learning, LinkedIn)',
           '  <span class="out-highlight">services</span>      - Backend architecture & AI consulting offerings',
           '  <span class="out-highlight">contact</span>       - Direct Gmail, WhatsApp & LinkedIn channels',
           '  <span class="out-highlight">resume</span>        - Launch modal HTML/PDF previewer directly',
@@ -649,7 +649,7 @@
       experience: function () {
         return [
           '<span class="out-heading">💼 PRODUCTION TRACK RECORD (7+ YEARS):</span>',
-          '  <span class="out-highlight">1. MicroAgility (Jan 2024 — August 2026):</span> Backend Lead & Solutions Architect',
+          '  <span class="out-highlight">1. MicroAgility (Jan 2024 — Present):</span> Backend Lead / Senior Software Engineer',
           "     • Multi-tenant ATS (Modular micro-service architecture, high-scale API ecosystem, 3-tier tenancy).",
           "     • Async BullMQ resume ingestion with OCR & provider-agnostic AI fallback.",
           "     • Zero cross-tenant data bleed, custom self-hosted Postal email engine.",
@@ -695,7 +695,7 @@
           '<span class="out-heading">📬 DIRECT COMMUNICATION:</span>',
           '  <span class="out-highlight">Gmail:</span>    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20from%20Portfolio%20-%20Jawad%20Ul%20Hadi" target="_blank" rel="noopener noreferrer" class="out-link">jawadulhadicc@gmail.com (Direct Compose ↗)</a>',
           '  <span class="out-highlight">WhatsApp:</span> <a href="https://wa.me/923467248414?text=Hi%20Jawad,%20I%20reviewed%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer" class="out-link">+92 346 7248414 (Direct Message ↗)</a>',
-          '  <span class="out-highlight">Location:</span> Islamabad, Pakistan (US / EU / APAC overlap)',
+          '  <span class="out-highlight">Location:</span> Islamabad, Pakistan (EST/PST aligned)',
           '  <span class="out-highlight">LinkedIn:</span> <a href="https://linkedin.com/in/jawad-ul-hadi" target="_blank" rel="noopener noreferrer" class="out-link">linkedin.com/in/jawad-ul-hadi</a>',
           '  <span class="out-highlight">GitHub:</span>   <a href="https://github.com/JawadulHadi" target="_blank" rel="noopener noreferrer" class="out-link">github.com/JawadulHadi</a>',
           '  <span class="out-highlight">ORCID:</span>    <a href="https://orcid.org/0009-0007-1317-4615" target="_blank" rel="noopener noreferrer" class="out-link">0009-0007-1317-4615</a>',
@@ -1217,8 +1217,8 @@
     var AI_KNOWLEDGE = {
       greeting: {
         spoken:
-          "Welcome to Jawad Ul Hadi's portfolio! Jawad is a Senior Backend Engineer and Solutions Architect with over 7 years of experience architecting multi-tenant SaaS platforms, resilient 3-tier fallback AI systems, and high-throughput BullMQ async queues. How can I assist you today? You can ask me about his work at MicroAgility, his AI fallback resilience, his 31 verified certifications, his 10 Chrome extensions, or how to contact him.",
-        text: "👋 <strong>Welcome to Jawad Ul Hadi's Portfolio!</strong><br><br>Jawad is a <strong>Senior Backend Engineer &amp; Solutions Architect</strong> with 7+ years of experience in multi-tenant SaaS, 3-tier AI fallback systems, and high-throughput async queues.<br><br>Feel free to ask me anything about his experience, AI architecture, 31 verified certifications, or how to get in touch!",
+          "Welcome to Jawad Ul Hadi's portfolio! Jawad is a Backend Lead and Architect with over 7 years of experience architecting multi-tenant SaaS platforms, resilient 3-tier fallback AI systems, and high-throughput BullMQ async queues. How can I assist you today? You can ask me about his work at MicroAgility, his AI fallback resilience, his 54 verified certifications, his open-source projects, or how to contact him.",
+        text: "👋 <strong>Welcome to Jawad Ul Hadi's Portfolio!</strong><br><br>Jawad is a <strong>Backend Lead &amp; Architect</strong> with 7+ years of experience in multi-tenant SaaS, 3-tier AI fallback systems, and high-throughput async queues.<br><br>Feel free to ask me anything about his experience, AI architecture, 54 verified certifications, or how to get in touch!",
       },
       fallback: {
         spoken:
@@ -1232,8 +1232,8 @@
       },
       certifications: {
         spoken:
-          "Jawad holds 31 verified professional credentials. These include Anthropic Agent Skills & MCP, Google Cloud Generative AI Fundamentals, Certified Django Developer from e-smartdata, 9 IBM SkillsBuild certifications across AI, Cloud, and Cybersecurity, and 19 advanced LinkedIn Learning credentials specializing in Agentic AI, Quantization, GitHub Copilot Agents, and LangChain.",
-        text: "📜 <strong>31 Verified Certifications:</strong><br><br>• <strong>Anthropic:</strong> Agent Skills &amp; Model Context Protocol (MCP)<br>• <strong>Google Cloud:</strong> Generative AI Fundamentals (License: G3A7L84CRV82)<br>• <strong>e-smartdata:</strong> Certified Django Developer (License: ESD-037/10/2025)<br>• <strong>IBM SkillsBuild (9 Badges):</strong> Artificial Intelligence, Cloud Computing, Cybersecurity, Data, Web Dev<br>• <strong>LinkedIn Learning (19 Credentials):</strong> Agentic AI, Quantization, Claude Code Subagents, GitHub Copilot Agents, LangChain, RAG",
+          "Jawad holds 54 verified professional credentials. These include Anthropic Claude Academy and Agent Skills & MCP, Google Generative AI Fundamentals, Certified Django Developer from e-smartdata, 14 IBM SkillsBuild badges across AI, Cloud, and Data, 8 Cloud and DevOps credentials from Microsoft Learning and Cognitive Class, and advanced LinkedIn Learning credentials specializing in Agentic AI, Quantization, GitHub Copilot Agents, and LangChain.",
+        text: "📜 <strong>54 Verified Certifications:</strong><br><br>• <strong>Anthropic:</strong> Claude Academy, Agent Skills &amp; Model Context Protocol (MCP)<br>• <strong>Google:</strong> Generative AI Fundamentals, Gemini Enterprise<br>• <strong>e-smartdata:</strong> Certified Django Developer (License: ESD-037/10/2025)<br>• <strong>IBM SkillsBuild (14 Badges):</strong> Artificial Intelligence, Cloud Computing, Cybersecurity, Data Science, Containers &amp; Kubernetes<br>• <strong>Cloud &amp; DevOps (8):</strong> Microsoft Learning Azure Well-Architected, Cognitive Class Kubernetes<br>• <strong>LinkedIn Learning:</strong> Agentic AI, Quantization, Claude Code Subagents, GitHub Copilot Agents, LangChain, RAG",
       },
       extensions: {
         spoken:
@@ -1247,8 +1247,8 @@
       },
       contact: {
         spoken:
-          "You can reach Jawad directly via email at jawadulhadicc@gmail.com, or message him instantly on WhatsApp at +92 346 7248414. He is also active on LinkedIn and GitHub, and is open to remote, hybrid, or relocation opportunities with US, EU, and APAC overlap.",
-        text: '📬 <strong>Direct Contact Channels:</strong><br><br>• <strong>Gmail:</strong> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20from%20Portfolio" target="_blank" class="out-link">jawadulhadicc@gmail.com ↗</a><br>• <strong>WhatsApp:</strong> <a href="https://wa.me/923467248414" target="_blank" class="out-link">+92 346 7248414 ↗</a><br>• <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/jawad-ul-hadi" target="_blank" class="out-link">linkedin.com/in/jawad-ul-hadi ↗</a><br>• <strong>Location:</strong> Islamabad, Pakistan (US / EU / APAC overlap)',
+          "You can reach Jawad directly via email at jawadulhadicc@gmail.com, or message him instantly on WhatsApp at +92 346 7248414. He is also active on LinkedIn and GitHub, and is fully remote with his schedule aligned to EST/PST hours.",
+        text: '📬 <strong>Direct Contact Channels:</strong><br><br>• <strong>Gmail:</strong> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jawadulhadicc@gmail.com&su=Inquiry%20from%20Portfolio" target="_blank" class="out-link">jawadulhadicc@gmail.com ↗</a><br>• <strong>WhatsApp:</strong> <a href="https://wa.me/923467248414" target="_blank" class="out-link">+92 346 7248414 ↗</a><br>• <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/jawad-ul-hadi" target="_blank" class="out-link">linkedin.com/in/jawad-ul-hadi ↗</a><br>• <strong>Location:</strong> Islamabad, Pakistan (EST/PST aligned)',
       },
       resume: {
         spoken:
@@ -1257,8 +1257,8 @@
       },
       whois: {
         spoken:
-          "Jawad Ul Hadi is a Senior Backend Engineer and Solutions Architect based in Islamabad, Pakistan. He has a 360-degree engineering perspective spanning high-performance databases, resilient AI orchestration, and multi-tenant SaaS platforms.",
-        text: "👨‍💻 <strong>About Jawad Ul Hadi:</strong><br><br><em>'The best code is never rewritten not because it’s perfect, but because it’s flexible enough to evolve with the business.'</em><br><br>Senior Backend Engineer, Solutions Architect, and AI Integrator with 7+ years of track record building scalable SaaS backends.",
+          "Jawad Ul Hadi is a Backend Lead and Architect based in Islamabad, Pakistan. He has a 360-degree engineering perspective spanning high-performance databases, resilient AI orchestration, and multi-tenant SaaS platforms.",
+        text: "👨‍💻 <strong>About Jawad Ul Hadi:</strong><br><br><em>'The best code is never rewritten not because it’s perfect, but because it’s flexible enough to evolve with the business.'</em><br><br>Backend Lead, Architect, and AI-First Engineer with 7+ years of track record building scalable SaaS backends.",
       },
     };
 
@@ -1554,7 +1554,7 @@
       } else {
         match = {
           spoken:
-            "Jawad Ul Hadi is a Senior Backend Engineer and Solutions Architect with 7+ years of experience specializing in resilient AI backends, multi-tenant SaaS, and 31 verified credentials. Would you like to hear about his 3-tier AI fallback, his work experience, or his contact information?",
+            "Jawad Ul Hadi is a Backend Lead and Architect with 7+ years of experience specializing in resilient AI backends, multi-tenant SaaS, and 54 verified credentials. Would you like to hear about his 3-tier AI fallback, his work experience, or his contact information?",
           text: "💡 Jawad specializes in <strong>Scalable SaaS</strong>, <strong>3-Tier AI Fallback Ladders</strong>, and <strong>BullMQ Queue Architectures</strong>.<br><br>Ask me about his <strong>Experience</strong>, <strong>Certifications</strong>, <strong>AI Architecture</strong>, or <strong>Direct Contact Channels</strong>!",
         };
       }
@@ -2820,7 +2820,7 @@
     function handleCopySpecs() {
       var summaryText = [
         "CASE STUDY: DESIGNING FOR AI FAILURE",
-        "Author: Jawad Ul Hadi (Senior Backend & Solutions Architect)",
+        "Author: Jawad Ul Hadi (Backend Lead / Architect)",
         "Architecture: Unified AI Service with 3-Tier Fallback Ladder (Retry → RAG Grounded Retrieval → Rule-Based Floor)",
         "",
         "KEY METRICS & OUTCOMES:",
@@ -4110,7 +4110,7 @@
           "RFC-082: Provider-Agnostic AI Gateway & 3-Tier Resilience Spec",
         content:
           "RFC-082: Provider-Agnostic AI Gateway with 3-Tier Fallback Resilience\n" +
-          "Author: Jawad Ul Hadi (Senior Backend Engineer & Solutions Architect)\n" +
+          "Author: Jawad Ul Hadi (Backend Lead / Architect)\n" +
           "Status: PRODUCTION SPECIFICATION\n\n" +
           "1. Executive Summary\n" +
           "This document details the architectural implementation of a resilient AI gateway. It abstracts model providers (Google Gemini, OpenAI, Anthropic) behind a unified interface with proactive circuit-breaking and zero hard-failures.\n\n" +
@@ -4126,7 +4126,7 @@
           "SPEC-104: High-Throughput Multi-Tenant SaaS Isolation Architecture",
         content:
           "SPEC-104: High-Throughput Multi-Tenant SaaS Isolation Architecture\n" +
-          "Author: Jawad Ul Hadi (Senior Backend Engineer & Solutions Architect)\n" +
+          "Author: Jawad Ul Hadi (Backend Lead / Architect)\n" +
           "Status: ARCHITECTURAL REVIEW\n\n" +
           "1. Tenancy Model\n" +
           "Hybrid database isolation combining shared schema tenant ID scoping for standard tenants and isolated Postgres schemas for enterprise compliance.\n\n" +
@@ -4138,7 +4138,7 @@
           "GUIDE-042: BullMQ Idempotent Queue Spine & Dead-Letter Recovery",
         content:
           "GUIDE-042: BullMQ Idempotent Queue Spine & Dead-Letter Recovery\n" +
-          "Author: Jawad Ul Hadi (Senior Backend Engineer & Solutions Architect)\n" +
+          "Author: Jawad Ul Hadi (Backend Lead / Architect)\n" +
           "Status: PRODUCTION STANDARD\n\n" +
           "1. Idempotency Guarantees\n" +
           "Redis SETNX lock keys with 24-hour TTL ensure that asynchronous tasks are never processed more than once during network partitions.\n\n" +
@@ -5337,7 +5337,7 @@
         topLangsImg.src = "https://github-readme-stats.vercel.app/api/top-langs/?username=JawadulHadi&layout=compact&theme=" + theme + "&hide_border=true&bg_color=" + bg + "&title_color=" + title + "&text_color=" + text;
       }
       if (streakImg) {
-        streakImg.src = "https://github-readme-streak-stats.herokuapp.com/?user=JawadulHadi&theme=" + theme + "&hide_border=true&background=" + bg + "&ring=" + title + "&fire=" + title + "&currStreakLabel=" + title;
+        streakImg.src = "https://streak-stats.demolab.com/?user=JawadulHadi&theme=" + theme + "&hide_border=true&background=" + bg + "&ring=" + title + "&fire=" + title + "&currStreakLabel=" + title;
       }
       if (activityGraphImg) {
         activityGraphImg.src = "https://github-readme-activity-graph.vercel.app/graph?username=JawadulHadi&theme=" + (isLight ? "github-light" : "tokyo-night") + "&bg_color=" + bg + "&color=" + title + "&line=7db3a0&point=" + title + "&hide_border=true";
