@@ -425,6 +425,8 @@ h4 {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.02rem;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 .monogram {
   width: 34px;
@@ -437,6 +439,7 @@ h4 {
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.04em;
+  flex-shrink: 0;
   transition:
     background 0.25s,
     color 0.25s;
@@ -484,11 +487,6 @@ h4 {
   gap: 0.65rem;
   flex-shrink: 1;
   min-width: 0;
-}
-@media (max-width: 960px) {
-  .header-actions a[href="certifications.html"] {
-    display: none;
-  }
 }
 
 /* ---------- ENHANCED THEME SELECTOR & DROPDOWN ---------- */
@@ -6149,7 +6147,7 @@ img, svg, video, canvas, iframe {
     text-align: left;
   }
 }
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .nav-toggle {
     display: flex;
   }
